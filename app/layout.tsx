@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bluedino.kr"),
   verification: {
     google: "v6lak7MNUZ5kKMsNH1T_ErDNqFl35Jgm3-GVAZ-M1qc",
     other: {
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   other: {
     "google-adsense-account": "ca-pub-5407950462485150",
+  },
+  openGraph: {
+    title: "BlueDino 투자 계산기 플랫폼",
+    description:
+      "복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산 등 투자 계산을 쉽게 할 수 있는 플랫폼",
+    url: "https://bluedino.kr",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
   },
 };
 
