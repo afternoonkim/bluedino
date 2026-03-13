@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://www.bluedino.site";
+const BASE_URL = "https://bluedino.kr";
 
 const routes = [
   "",
