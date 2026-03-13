@@ -22,16 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5407950462485150"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body>
-        {ADSENSE_CLIENT ? (
-          <Script
-            id="adsense-script"
-            async
-            strategy="afterInteractive"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5407950462485150"
-            crossOrigin="anonymous"
-          />
-        ) : null}
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
