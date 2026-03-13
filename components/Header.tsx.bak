@@ -1,0 +1,62 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="w-full bg-[#0f172a] text-white shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        {/* 로고 */}
+        <Link href="/" className="text-xl font-bold tracking-wide">
+          🦕 BlueDino
+        </Link>
+
+        {/* 데스크탑 메뉴 */}
+        <nav className="hidden md:flex gap-8 text-sm font-medium">
+          <Link href="/calculator" className="hover:text-cyan-400 transition">
+            배당 투자 계산기
+          </Link>
+          <Link href="/fire" className="hover:text-cyan-400 transition">
+            FIRE(경제적 자유) 계산기
+          </Link>
+          <Link href="/capital-gains" className="hover:text-cyan-400 transition">
+            해외주식 양도세 계산기
+          </Link>
+          <Link href="/tools" className="hover:text-cyan-400 transition">
+            투자 도구
+          </Link>
+          <Link href="/about" className="hover:text-cyan-400 transition">
+            소개
+          </Link>
+        </nav>
+
+        {/* 모바일 햄버거 */}
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* 모바일 메뉴 */}
+      {open && (
+        <div className="md:hidden bg-[#1e293b] px-6 pb-4 space-y-3 text-sm">
+          <Link href="/calculator" className="block">
+            배당 계산기
+          </Link>
+          <Link href="/tools" className="block">
+            투자 도구
+          </Link>
+          <Link href="/about" className="block">
+            소개
+          </Link>
+        </div>
+      )}
+    </header>
+  );
+}

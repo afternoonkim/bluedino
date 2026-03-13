@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020b1d;
+  --foreground: #e5eefc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+@layer components {
+  .bd-page {
+    @apply px-4 py-8 text-slate-100 md:px-6 lg:px-8;
+  }
+
+  .bd-container {
+    @apply mx-auto max-w-7xl;
+  }
+
+  .bd-container-narrow {
+    @apply mx-auto max-w-5xl;
+  }
+
+  .bd-section {
+    @apply space-y-6;
+  }
+
+  .bd-card {
+    @apply rounded-3xl border border-slate-800 bg-slate-900/95 shadow-xl;
+  }
+
+  .bd-card-soft {
+    @apply rounded-3xl border border-slate-800 bg-slate-900/70 shadow-lg;
+  }
+
+  .bd-card-padding {
+    @apply p-6 md:p-8;
+  }
+
+  .bd-title-xl {
+    @apply text-3xl font-bold tracking-tight text-white md:text-4xl;
+  }
+
+  .bd-title-lg {
+    @apply text-2xl font-bold tracking-tight text-white md:text-3xl;
+  }
+
+  .bd-title-md {
+    @apply text-xl font-semibold text-white md:text-2xl;
+  }
+
+  .bd-text-main {
+    @apply text-base leading-7 text-slate-200;
+  }
+
+  .bd-text-sub {
+    @apply text-sm leading-7 text-slate-400 md:text-base;
+  }
+
+  .bd-grid-2 {
+    @apply grid gap-6 lg:grid-cols-2;
+  }
+
+  .bd-grid-3 {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .bd-input {
+    @apply w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20;
+  }
+
+  .bd-select {
+    @apply w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20;
+  }
+
+  .bd-button-primary {
+    @apply inline-flex items-center justify-center rounded-2xl bg-cyan-500 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400;
+  }
+
+  .bd-button-secondary {
+    @apply inline-flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 px-5 py-3 font-semibold text-slate-100 transition hover:border-slate-600 hover:bg-slate-800;
+  }
+
+  .bd-badge {
+    @apply inline-flex items-center rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300;
+  }
+
+  .bd-divider {
+    @apply border-t border-slate-800;
+  }
+
+  .bd-list {
+    @apply space-y-3 text-slate-300;
+  }
+
+  .bd-list-item {
+    @apply rounded-2xl border border-slate-800 bg-slate-950/60 p-4 leading-7;
+  }
+}
