@@ -5,6 +5,9 @@ import ClientLayout from "@/components/layout/ClientLayout";
 export const metadata: Metadata = {
   verification: {
     google: "v6lak7MNUZ5kKMsNH1T_ErDNqFl35Jgm3-GVAZ-M1qc",
+    other: {
+      "naver-site-verification": "7105657ffc86bbf65301008e5ca5a4c6f09a3fb0"
+    }
   },
   title: { default: "BlueDino", template: "%s | BlueDino" },
   description:
