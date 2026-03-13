@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <body>
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
       </body>
     </html>
   );
