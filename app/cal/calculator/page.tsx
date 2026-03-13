@@ -13,6 +13,18 @@ import {
 } from "recharts";
 import * as htmlToImage from "html-to-image";
 
+export const metadata = {
+  title: "배당 계산기 | 배당 수익 계산기",
+  description:
+    "주식 배당 수익을 계산할 수 있는 배당 계산기입니다. 투자 금액과 배당 수익률을 입력하면 예상 배당금을 확인할 수 있습니다.",
+  keywords: [
+    "배당 계산기",
+    "배당 수익 계산",
+    "dividend calculator",
+    "배당 투자 계산",
+  ],
+};
+
 type YearRow = {
   year: number;
   cashTotal: number;

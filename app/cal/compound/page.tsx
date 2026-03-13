@@ -12,6 +12,18 @@ import {
 } from "recharts";
 import * as htmlToImage from "html-to-image";
 
+export const metadata = {
+  title: "복리 계산기 | 투자 복리 수익 계산",
+  description:
+    "투자 금액과 기간, 수익률을 입력하면 복리 투자 결과를 계산할 수 있는 복리 계산기입니다.",
+  keywords: [
+    "복리 계산기",
+    "compound interest calculator",
+    "복리 투자 계산",
+    "투자 수익 계산",
+  ],
+};
+
 type ContributionTiming = "end" | "begin";
 
 type YearRow = {

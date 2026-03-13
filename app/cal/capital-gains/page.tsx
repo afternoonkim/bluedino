@@ -3,6 +3,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as htmlToImage from "html-to-image";
 
+export const metadata = {
+  title: "해외주식 양도세 계산기 | 주식 세금 계산",
+  description:
+    "해외주식 매매 시 발생하는 양도소득세를 계산할 수 있는 해외주식 양도세 계산기입니다.",
+  keywords: [
+    "해외주식 양도세 계산기",
+    "주식 양도세 계산",
+    "capital gains tax calculator",
+    "해외주식 세금",
+  ],
+};
+
 type Currency = "KRW" | "USD";
 
 type TradeRow = {

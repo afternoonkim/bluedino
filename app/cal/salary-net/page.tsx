@@ -13,6 +13,17 @@ import {
   Wallet,
 } from "lucide-react";
 
+export const metadata = {
+  title: "연봉 실수령액 계산기 | 세후 월급 계산",
+  description:
+    "연봉을 입력하면 세금과 4대 보험을 제외한 실제 실수령액을 계산할 수 있는 연봉 실수령액 계산기입니다.",
+  keywords: [
+    "연봉 실수령액 계산기",
+    "세후 월급 계산",
+    "salary calculator",
+  ],
+};
+
 type WithholdingRate = 80 | 100 | 120;
 
 type DeductionBreakdown = {

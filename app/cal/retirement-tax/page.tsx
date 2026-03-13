@@ -3,6 +3,17 @@
 import { useMemo, useState } from "react";
 import { Briefcase, Calculator, Info, Table2 } from "lucide-react";
 
+export const metadata = {
+  title: "퇴직소득세 계산기 | 퇴직금 세금 계산",
+  description:
+    "퇴직금 수령 시 발생하는 퇴직소득세를 계산할 수 있는 퇴직소득세 계산기입니다.",
+  keywords: [
+    "퇴직소득세 계산기",
+    "퇴직금 세금 계산",
+    "retirement tax calculator",
+  ],
+};
+
 function formatWon(n: number) {
   return Math.round(n).toLocaleString("ko-KR");
 }

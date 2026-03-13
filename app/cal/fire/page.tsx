@@ -20,6 +20,18 @@ type ChartRow = {
   phase: "accum" | "retire";
 };
 
+export const metadata = {
+  title: "FIRE 계산기 | 경제적 자유 은퇴 계산",
+  description:
+    "FIRE 목표 금액과 저축률을 입력하면 경제적 자유 달성 시점을 계산할 수 있는 FIRE 계산기입니다.",
+  keywords: [
+    "FIRE 계산기",
+    "경제적 자유 계산",
+    "early retirement calculator",
+    "은퇴 계산기",
+  ],
+};
+
 export default function FireCalculatorPage() {
   const format = (n: number) => Math.floor(n).toLocaleString("ko-KR");
   const unformat = (s: string) => Number(String(s).replace(/,/g, ""));
