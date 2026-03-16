@@ -301,12 +301,12 @@ export default function CalculatorPage() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {/* 좌측 입력 영역 */}
         <div className="rounded-3xl border border-slate-800 bg-slate-900/95 p-6 shadow-xl text-slate-100">
-          {/* <h2 className="flex items-center gap-2 text-lg font-bold text-white">
+          {/* <h2 className="flex items-center gap-2 min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-white">
             📊 배당 투자 계산기
           </h2> */}
 
           <div className="mt-6 space-y-8 rounded-3xl border border-slate-800 bg-slate-950/50 p-6 text-slate-100">
-            <h3 className="text-base font-semibold text-white">초기 투자 설정</h3>
+            <h3 className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">초기 투자 설정</h3>
 
             <Input label="초기 보유 주식 수" value={shares} setValue={setShares} />
             <PriceInput
@@ -400,7 +400,7 @@ export default function CalculatorPage() {
             {/* 목표 배당 역산 */}
             <div className="mt-10">
               <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-base font-semibold text-white">
+                <h2 className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
                   목표 배당금 역산
                 </h2>
                 <button
@@ -442,16 +442,16 @@ export default function CalculatorPage() {
                     return (
                       <>
                         <div className="mb-6 grid grid-cols-2 gap-6">
-                          <div className="rounded-2xl border border-slate-700 bg-slate-950/70 p-4">
+                          <div className="min-w-0 rounded-2xl border border-slate-700 bg-slate-950/70 p-4">
                             <div className="text-xs text-slate-400">필요 투자금</div>
-                            <div className="mt-1 text-2xl font-bold text-cyan-300">
+                            <div className="mt-1 min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-bold leading-tight text-cyan-300">
                               {Math.floor(result.requiredAsset).toLocaleString()}원
                             </div>
                           </div>
 
-                          <div className="rounded-2xl border border-slate-700 bg-slate-950/70 p-4">
+                          <div className="min-w-0 rounded-2xl border border-slate-700 bg-slate-950/70 p-4">
                             <div className="text-xs text-slate-400">필요 주식 수</div>
-                            <div className="mt-1 text-2xl font-bold text-white">
+                            <div className="mt-1 min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-bold leading-tight text-white">
                               {Math.ceil(result.requiredShares).toLocaleString()}주
                             </div>
                           </div>
@@ -460,14 +460,14 @@ export default function CalculatorPage() {
                         <div className="mb-6 grid grid-cols-2 gap-6">
                           <div>
                             <div className="text-xs text-slate-400">세전 연배당</div>
-                            <div className="text-base font-semibold text-white">
+                            <div className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
                               {Math.floor(result.yearlyBeforeTax).toLocaleString()}원
                             </div>
                           </div>
 
                           <div>
                             <div className="text-xs text-slate-400">세후 연배당</div>
-                            <div className="text-base font-semibold text-emerald-300">
+                            <div className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-emerald-300">
                               {Math.floor(result.yearlyAfterTax).toLocaleString()}원
                             </div>
                           </div>
@@ -486,7 +486,7 @@ export default function CalculatorPage() {
             {/* 세금 영역 */}
             <div className="mt-8">
               <div className="flex items-center justify-between">
-                <span className="text-base font-semibold text-white">
+                <span className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
                   세금 반영
                 </span>
                 <button
@@ -507,7 +507,7 @@ export default function CalculatorPage() {
 
               {taxEnabled && (
                 <div className="mt-6 space-y-4">
-                  <label className="text-base font-semibold text-white">
+                  <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
                     계좌 유형
                   </label>
 
@@ -565,37 +565,37 @@ export default function CalculatorPage() {
             <div ref={resultRef} id="capture-root" className="space-y-6">
               {/* ROI 카드 */}
               <div className="rounded-3xl border border-slate-800 bg-slate-900/95 p-6 shadow-xl text-slate-100">
-                <h2 className="flex items-center gap-2 text-lg font-bold text-white">
+                <h2 className="flex items-center gap-2 min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-white">
                   📊 투자 수익률 (ROI)
                 </h2>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
+                  <div className="min-w-0 min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
                     <div className="text-sm text-slate-400">초기 투자금</div>
-                    <div className="text-lg font-bold text-orange-300">
+                    <div className="min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-orange-300">
                       {roiData.initialInvestment.toLocaleString()}원
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
+                  <div className="min-w-0 min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
                     <div className="text-sm text-slate-400">총 투입 원금</div>
-                    <div className="text-lg font-bold text-white">
+                    <div className="min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-white">
                       {roiData.totalInvested.toLocaleString()}원
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
+                  <div className="min-w-0 min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
                     <div className="text-sm text-slate-400">최종 가치 (재투자)</div>
-                    <div className="text-lg font-bold text-emerald-300">
+                    <div className="min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-emerald-300">
                       {roiData.finalDrip.toLocaleString()}원
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
+                  <div className="min-w-0 min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
                     <div className="text-sm text-slate-400">최종 가치 (현금수령)</div>
-                    <div className="text-lg font-bold text-cyan-300">
+                    <div className="min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-cyan-300">
                       {roiData.finalCash.toLocaleString()}원
                     </div>
                   </div>
@@ -604,23 +604,23 @@ export default function CalculatorPage() {
                 <div className="mt-4 space-y-2 text-base text-slate-200">
                   <div>
                     총 수익 (재투자) :
-                    <span className="ml-2 font-bold text-emerald-300">
+                    <span className="ml-2 inline-block break-all font-bold leading-tight text-emerald-300">
                       {(roiData.finalDrip - roiData.totalInvested).toLocaleString()}원
                     </span>
                   </div>
 
                   <div>
                     총 수익 (현금수령) :
-                    <span className="ml-2 font-bold text-cyan-300">
+                    <span className="ml-2 inline-block break-all font-bold leading-tight text-cyan-300">
                       {(roiData.finalCash - roiData.totalInvested).toLocaleString()}원
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+                  <div className="min-w-0 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
                     <div className="text-sm text-slate-300">연평균 수익률 (재투자)</div>
-                    <div className="text-2xl font-bold text-emerald-300">
+                    <div className="min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-bold leading-tight text-emerald-300">
                       {(roiData.cagrDrip * 100).toFixed(2)}%
                     </div>
                     <div className="text-xs text-slate-400">
@@ -628,9 +628,9 @@ export default function CalculatorPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                  <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                     <div className="text-sm text-slate-300">연평균 수익률 (현금수령)</div>
-                    <div className="text-2xl font-bold text-white">
+                    <div className="min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-bold leading-tight text-white">
                       {(roiData.cagrCash * 100).toFixed(2)}%
                     </div>
                     <div className="text-xs text-slate-400">
@@ -639,7 +639,7 @@ export default function CalculatorPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-base font-semibold text-emerald-200">
+                <div className="mt-4 min-w-0 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-base font-semibold text-emerald-200">
                   DRIP 효과 : {(roiData.finalDrip - roiData.finalCash).toLocaleString()}원
                   차이
                 </div>
@@ -653,12 +653,12 @@ export default function CalculatorPage() {
 
               {/* 세금 정보 카드 */}
               <div className="rounded-3xl border border-slate-800 bg-slate-900/95 p-6 shadow-xl text-slate-100">
-                <h2 className="mb-4 text-base font-bold text-white">💰 세금 정보</h2>
+                <h2 className="mb-4 min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">💰 세금 정보</h2>
 
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-sm text-slate-400">누적 세전 배당금</div>
-                    <div className="text-base font-bold text-white">
+                    <div className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">
                       {Math.floor(
                         roiData.totalCashDividend / (1 - roiData.taxRatePct / 100)
                       ).toLocaleString()}
@@ -668,14 +668,14 @@ export default function CalculatorPage() {
 
                   <div>
                     <div className="text-sm text-slate-400">누적 납부 세금</div>
-                    <div className="text-base font-bold text-rose-300">
+                    <div className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-rose-300">
                       {Math.floor(roiData.totalTax).toLocaleString()}원
                     </div>
                   </div>
 
                   <div>
                     <div className="text-sm text-slate-400">세후 실수령 배당</div>
-                    <div className="text-base font-bold text-emerald-300">
+                    <div className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-emerald-300">
                       {roiData.totalCashDividend.toLocaleString()}원
                     </div>
                   </div>
@@ -871,7 +871,7 @@ export default function CalculatorPage() {
 function Input({ label, value, setValue }: any) {
   return (
     <div className="space-y-2">
-      <label className="text-base font-semibold text-white">{label}</label>
+      <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
       <input
         type="number"
         value={value}
@@ -885,7 +885,7 @@ function Input({ label, value, setValue }: any) {
 function PriceInput({ label, value, setValue, format, unformat }: any) {
   return (
     <div className="space-y-2">
-      <label className="text-base font-semibold text-white">{label}</label>
+      <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
       <input
         type="text"
         value={format(unformat(value))}
@@ -899,7 +899,7 @@ function PriceInput({ label, value, setValue, format, unformat }: any) {
 function Slider({ label, value, setValue, min, max, step }: any) {
   return (
     <div className="space-y-2">
-      <label className="text-base font-semibold text-white">{label}</label>
+      <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
       <div className="flex items-center space-x-2">
         <input
           type="range"
@@ -924,7 +924,7 @@ function Slider({ label, value, setValue, min, max, step }: any) {
 function ToggleButton({ label, value, setValue }: any) {
   return (
     <div className="flex items-center justify-between py-2 text-slate-200">
-      <span className="text-base font-semibold text-white">{label}</span>
+      <span className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</span>
       <button
         onClick={() => setValue(!value)}
         className={`rounded-full px-4 py-1 transition ${
@@ -942,7 +942,7 @@ function ToggleButton({ label, value, setValue }: any) {
 function ButtonGroup({ label, options, selected, setSelected }: any) {
   return (
     <div>
-      <label className="mb-3 block text-base font-semibold text-white">
+      <label className="mb-3 block min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
         {label}
       </label>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
@@ -978,7 +978,7 @@ function CalculatorInfoSection({
 }) {
   return (
     <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900/95 p-8 shadow-xl text-slate-100">
-      <h3 className="text-lg font-bold text-white">{title}</h3>
+      <h3 className="min-w-0 break-all text-[clamp(1rem,1.7vw,1.125rem)] font-bold leading-tight text-white">{title}</h3>
 
       <div className="mt-4 space-y-6">
         <div>

@@ -225,9 +225,9 @@ function ResultCard({
   };
 
   return (
-    <div className={`rounded-3xl border bg-gradient-to-br p-5 shadow-sm ${accentClasses[accent]}`}>
+    <div className={`min-w-0 rounded-3xl border bg-gradient-to-br p-5 shadow-sm ${accentClasses[accent]}`}>
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{title}</p>
-      <p className="mt-3 text-2xl font-black tracking-tight text-white">{value}</p>
+      <p className="mt-3 min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-black leading-tight tracking-tight text-white">{value}</p>
       <p className="mt-2 text-sm leading-6 text-slate-400">{description}</p>
     </div>
   );
@@ -306,17 +306,17 @@ export default function SalaryNetCalculatorPage() {
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">현재 설정 기준</p>
-                <p className="mt-2 text-lg font-bold text-white">{manwon(annualSalaryManwon)}</p>
+                <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-white">{manwon(annualSalaryManwon)}</p>
                 <p className="text-xs text-slate-400">세전 연봉</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 월 실수령액</p>
-                <p className="mt-2 text-lg font-bold text-cyan-300">{won(result.monthlyNet)}</p>
+                <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-cyan-300">{won(result.monthlyNet)}</p>
                 <p className="text-xs text-slate-400">추정치</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 연 실수령액</p>
-                <p className="mt-2 text-lg font-bold text-emerald-300">{won(result.annualNet)}</p>
+                <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-emerald-300">{won(result.annualNet)}</p>
                 <p className="text-xs text-slate-400">추정치</p>
               </div>
             </div>
@@ -508,19 +508,19 @@ export default function SalaryNetCalculatorPage() {
               <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
                 <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <p className="text-xs font-semibold text-slate-400">월 세전 급여</p>
-                  <p className="mt-2 text-lg font-bold text-white">{won(result.monthlyGross)}</p>
+                  <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-white">{won(result.monthlyGross)}</p>
                 </div>
                 <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <p className="text-xs font-semibold text-slate-400">월 과세 대상 급여</p>
-                  <p className="mt-2 text-lg font-bold text-white">{won(result.monthlyTaxable)}</p>
+                  <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-white">{won(result.monthlyTaxable)}</p>
                 </div>
                 <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <p className="text-xs font-semibold text-slate-400">월 총 공제액</p>
-                  <p className="mt-2 text-lg font-bold text-rose-300">{won(result.totalMonthlyDeduction)}</p>
+                  <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-rose-300">{won(result.totalMonthlyDeduction)}</p>
                 </div>
                 <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <p className="text-xs font-semibold text-slate-400">월 실수령액</p>
-                  <p className="mt-2 text-lg font-bold text-cyan-300">{won(result.monthlyNet)}</p>
+                  <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-cyan-300">{won(result.monthlyNet)}</p>
                 </div>
               </div>
 

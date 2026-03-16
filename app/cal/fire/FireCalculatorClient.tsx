@@ -826,9 +826,9 @@ function MiniCard({
       : "text-rose-300";
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
+    <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm">
       <div className="text-xs text-slate-400">{title}</div>
-      <div className={`mt-1 text-base font-bold ${toneClass}`}>{value}</div>
+      <div className={`mt-1 min-w-0 break-all text-[clamp(0.95rem,1.5vw,1rem)] font-bold leading-tight ${toneClass}`}>{value}</div>
     </div>
   );
 }

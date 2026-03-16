@@ -438,7 +438,7 @@ export default function CompoundCalculatorPage() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+              <div className="mt-6 min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                 <div className="h-[360px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
@@ -563,12 +563,12 @@ export default function CompoundCalculatorPage() {
             <section className="bd-card bd-card-padding text-slate-100">
               <h3 className="text-lg font-bold text-white">계산 안내</h3>
               <div className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                   연 수익률은 월 복리로 단순 환산해 계산합니다. 실제 투자 결과는
                   시장 변동성, 수수료, 세금, 환율, 투자 시점에 따라 달라질 수
                   있습니다.
                 </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                   물가상승률을 입력하면 실질 자산을 함께 보여주므로, 단순 숫자가
                   아니라 체감 구매력 기준으로 결과를 해석할 수 있습니다.
                 </div>
@@ -739,9 +739,9 @@ function SummaryCard({
   };
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+    <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
       <div className="text-xs text-slate-400">{label}</div>
-      <div className={`mt-2 text-xl font-bold ${toneMap[tone]}`}>{value}</div>
+      <div className={`mt-2 min-w-0 break-all text-[clamp(1rem,1.8vw,1.25rem)] font-bold leading-tight ${toneMap[tone]}`}>{value}</div>
     </div>
   );
 }

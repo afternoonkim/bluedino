@@ -213,11 +213,11 @@ export default function RetirementTaxCalculatorPage() {
 
           {/* 결과 요약 */}
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-5">
+            <div className="min-w-0 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-5">
               <div className="text-sm font-semibold text-cyan-200">
                 예상 퇴직소득세 (지방세 포함)
               </div>
-              <div className="mt-2 text-2xl font-extrabold text-cyan-300">
+              <div className="mt-2 min-w-0 break-all text-[clamp(1.25rem,2vw,2rem)] font-extrabold leading-tight text-cyan-300">
                 {formatWon(result.totalTax)}원
               </div>
               <div
@@ -229,11 +229,11 @@ export default function RetirementTaxCalculatorPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
               <div className="text-sm font-semibold text-slate-300">
                 소득세(국세)
               </div>
-              <div className="mt-2 text-xl font-bold text-white">
+              <div className="mt-2 min-w-0 break-all text-[clamp(1rem,1.8vw,1.25rem)] font-bold leading-tight text-white">
                 {formatWon(result.incomeTax)}원
               </div>
               <div className="mt-1 text-xs text-slate-400">
@@ -241,11 +241,11 @@ export default function RetirementTaxCalculatorPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
               <div className="text-sm font-semibold text-slate-300">
                 지방소득세
               </div>
-              <div className="mt-2 text-xl font-bold text-white">
+              <div className="mt-2 min-w-0 break-all text-[clamp(1rem,1.8vw,1.25rem)] font-bold leading-tight text-white">
                 {formatWon(result.localTax)}원
               </div>
               <div className="mt-1 text-xs text-slate-400">(국세 × 10%)</div>
@@ -254,27 +254,27 @@ export default function RetirementTaxCalculatorPage() {
 
           {/* 디테일 */}
           <div className="mt-6 grid gap-4 md:grid-cols-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
               <div className="text-xs text-slate-400">근속연수공제</div>
-              <div className="mt-1 font-bold text-white">
+              <div className="mt-1 min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">
                 {formatWon(result.tenDed)}원
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
               <div className="text-xs text-slate-400">환산급여</div>
-              <div className="mt-1 font-bold text-white">
+              <div className="mt-1 min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">
                 {formatWon(result.cs)}원
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
               <div className="text-xs text-slate-400">환산급여공제</div>
-              <div className="mt-1 font-bold text-white">
+              <div className="mt-1 min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">
                 {formatWon(result.csDed)}원
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
               <div className="text-xs text-slate-400">과세표준(환산)</div>
-              <div className="mt-1 font-bold text-white">
+              <div className="mt-1 min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-bold leading-tight text-white">
                 {formatWon(result.taxBase)}원
               </div>
             </div>
