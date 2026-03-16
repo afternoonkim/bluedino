@@ -398,7 +398,7 @@ export default function CompoundCalculatorPage() {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
                 <SummaryCard label="예상 최종 자산" value={formatShortKrw(simulation.totalAsset)} tone="blue" />
                 <SummaryCard label="총 납입 원금" value={formatShortKrw(simulation.totalInvested)} tone="slate" />
                 <SummaryCard label="총 수익금" value={formatShortKrw(simulation.totalProfit)} tone="green" />
@@ -434,7 +434,7 @@ export default function CompoundCalculatorPage() {
                   </p>
                 </div>
                 <div className="rounded-full border border-slate-700 bg-slate-950/70 px-3 py-2 text-xs text-slate-300">
-                  {simulation.rows.length}개 연도 데이터
+                  {simulation.rows.length}개 연도
                 </div>
               </div>
 
@@ -493,93 +493,93 @@ export default function CompoundCalculatorPage() {
               </div>
             </section>
 
-            <section className="bd-card bd-card-padding text-slate-100">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white">복리 투자 참고표</h3>
-                  <p className="mt-2 text-sm text-slate-400">
-                    월 투자금을 고정했을 때 기간과 수익률에 따라 자산이 어떻게
-                    달라지는지 빠르게 비교할 수 있습니다.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-3">
-                  <div className="text-xs text-slate-400">월 투자금 선택</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {[30, 50, 100, 200, 300, 500, 700, 1000, 1500, 2500].map((preset) => (
-                      <button
-                        key={preset}
-                        onClick={() => setSelectedMonthlyPreset(preset)}
-                        className={`rounded-xl px-3 py-2 text-xs font-semibold transition ${
-                          selectedMonthlyPreset === preset
-                            ? "bg-blue-600 text-white"
-                            : "border border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-600 hover:bg-slate-800"
-                        }`}
-                      >
-                        {preset >= 10000 ? `${preset / 10000}억` : `${preset}만`}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-800">
-                <table className="min-w-full text-sm">
-                  <thead className="bg-slate-800/90">
-                    <tr>
-                      <th className="border-b border-slate-700 px-4 py-3 text-left text-slate-200">
-                        투자 기간 \ 수익률
-                      </th>
-                      {[4, 6, 8, 10, 12, 15].map((rate) => (
-                        <th
-                          key={rate}
-                          className="border-b border-slate-700 px-4 py-3 text-center text-cyan-300"
-                        >
-                          연 {rate}%
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {referenceTable.map((row) => (
-                      <tr key={String(row.years)} className="bg-slate-950/40">
-                        <td className="border-t border-slate-800 px-4 py-3 font-semibold text-slate-200">
-                          {row.years}년 투자
-                        </td>
-                        {[4, 6, 8, 10, 12, 15].map((rate) => (
-                          <td
-                            key={`${row.years}-${rate}`}
-                            className="border-t border-slate-800 px-4 py-3 text-center text-slate-300"
-                          >
-                            {String(row[`rate-${rate}`])}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section className="bd-card bd-card-padding text-slate-100">
-              <h3 className="text-lg font-bold text-white">계산 안내</h3>
-              <div className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-                <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                  연 수익률은 월 복리로 단순 환산해 계산합니다. 실제 투자 결과는
-                  시장 변동성, 수수료, 세금, 환율, 투자 시점에 따라 달라질 수
-                  있습니다.
-                </div>
-                <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                  물가상승률을 입력하면 실질 자산을 함께 보여주므로, 단순 숫자가
-                  아니라 체감 구매력 기준으로 결과를 해석할 수 있습니다.
-                </div>
-                <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-amber-200">
-                  이 계산기는 참고용 도구입니다. 실제 투자 판단 전에는 본인의 자산
-                  배분, 세금 구조, 리스크 허용 범위를 함께 검토하는 것이 좋습니다.
-                </div>
-              </div>
-            </section>
           </div>
         </div>
+        <section className="bd-card bd-card-padding text-slate-100">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <h3 className="text-lg font-bold text-white">복리 투자 참고표</h3>
+              <p className="mt-2 text-sm text-slate-400">
+                월 투자금을 고정했을 때 기간과 수익률에 따라 자산이 어떻게
+                달라지는지 빠르게 비교할 수 있습니다.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-3">
+              <div className="text-xs text-slate-400">월 투자금 선택</div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[30, 50, 100, 200, 300, 500, 700, 1000, 1500, 2500].map((preset) => (
+                  <button
+                    key={preset}
+                    onClick={() => setSelectedMonthlyPreset(preset)}
+                    className={`rounded-xl px-3 py-2 text-xs font-semibold transition ${
+                      selectedMonthlyPreset === preset
+                        ? "bg-blue-600 text-white"
+                        : "border border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-600 hover:bg-slate-800"
+                    }`}
+                  >
+                    {preset >= 10000 ? `${preset / 10000}억` : `${preset}만`}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-800">
+            <table className="min-w-full text-sm">
+              <thead className="bg-slate-800/90">
+                <tr>
+                  <th className="border-b border-slate-700 px-4 py-3 text-left text-slate-200">
+                    투자 기간 \ 수익률
+                  </th>
+                  {[4, 6, 8, 10, 12, 15].map((rate) => (
+                    <th
+                      key={rate}
+                      className="border-b border-slate-700 px-4 py-3 text-center text-cyan-300"
+                    >
+                      연 {rate}%
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {referenceTable.map((row) => (
+                  <tr key={String(row.years)} className="bg-slate-950/40">
+                    <td className="border-t border-slate-800 px-4 py-3 font-semibold text-slate-200">
+                      {row.years}년 투자
+                    </td>
+                    {[4, 6, 8, 10, 12, 15].map((rate) => (
+                      <td
+                        key={`${row.years}-${rate}`}
+                        className="border-t border-slate-800 px-4 py-3 text-center text-slate-300"
+                      >
+                        {String(row[`rate-${rate}`])}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="bd-card bd-card-padding text-slate-100">
+          <h3 className="text-lg font-bold text-white">계산 안내</h3>
+          <div className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+              연 수익률은 월 복리로 단순 환산해 계산합니다. 실제 투자 결과는
+              시장 변동성, 수수료, 세금, 환율, 투자 시점에 따라 달라질 수
+              있습니다.
+            </div>
+            <div className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+              물가상승률을 입력하면 실질 자산을 함께 보여주므로, 단순 숫자가
+              아니라 체감 구매력 기준으로 결과를 해석할 수 있습니다.
+            </div>
+            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-amber-200">
+              이 계산기는 참고용 도구입니다. 실제 투자 판단 전에는 본인의 자산
+              배분, 세금 구조, 리스크 허용 범위를 함께 검토하는 것이 좋습니다.
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

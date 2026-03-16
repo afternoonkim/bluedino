@@ -464,7 +464,7 @@ export default function SalaryNetCalculatorPage() {
           </aside>
 
           <section className="space-y-6">
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2">
               <ResultCard
                 title="월 예상 실수령액"
                 value={won(result.monthlyNet)}
@@ -505,7 +505,7 @@ export default function SalaryNetCalculatorPage() {
                 </div>
               </div>
 
-              <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-4">
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
                 <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
                   <p className="text-xs font-semibold text-slate-400">월 세전 급여</p>
                   <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-white">{won(result.monthlyGross)}</p>
@@ -567,6 +567,44 @@ export default function SalaryNetCalculatorPage() {
 
             <div className="rounded-[28px] border border-slate-800 bg-slate-900/95 p-5 shadow-sm md:p-6">
               <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-violet-500/10 p-2 text-violet-300">
+                  <CircleDollarSign className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-black tracking-tight text-white">한눈에 보는 현재 결과</h2>
+                  <p className="mt-1 text-sm text-slate-400">현재 입력값으로 해석하면 이렇게 볼 수 있습니다.</p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-4">
+                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                  <p className="text-sm font-semibold text-slate-400">월급 통장 기준</p>
+                  <p className="mt-3 text-xl font-black text-white">{won(result.monthlyNet)}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">
+                    세전 월급 {won(result.monthlyGross)}에서 공제 {won(result.totalMonthlyDeduction)}이 빠진 값입니다.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                  <p className="text-sm font-semibold text-slate-400">연봉 체감 기준</p>
+                  <p className="mt-3 text-xl font-black text-white">{won(result.annualNet)}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">
+                    연간 총액 {won(result.annualGross)} 중 체감 실수령 비중은 {(100 - result.effectiveDeductionRate).toFixed(1)}%입니다.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                  <p className="text-sm font-semibold text-slate-400">관리 포인트</p>
+                  <p className="mt-3 text-xl font-black text-white">{won(result.totalMonthlyDeduction)}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">
+                    공제 항목이 큰 편이라면 비과세 항목, 원천징수 비율, 절세계좌 활용 전략을 함께 점검하는 것이 좋습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+            <br/>
+            <div className="rounded-[28px] border border-slate-800 bg-slate-900/95 p-5 shadow-sm md:p-6">
+              <div className="flex items-center gap-3">
                 <div className="rounded-xl bg-slate-800 p-2 text-slate-300">
                   <FileText className="h-5 w-5" />
                 </div>
@@ -614,7 +652,7 @@ export default function SalaryNetCalculatorPage() {
                 </table>
               </div>
             </div>
-
+            <br/>
             <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
               <div className="rounded-[28px] border border-slate-800 bg-slate-900/95 p-5 shadow-sm md:p-6">
                 <div className="flex items-center gap-3">
@@ -687,45 +725,8 @@ export default function SalaryNetCalculatorPage() {
                 </div>
               </div>
             </div>
-
-            <div className="rounded-[28px] border border-slate-800 bg-slate-900/95 p-5 shadow-sm md:p-6">
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-violet-500/10 p-2 text-violet-300">
-                  <CircleDollarSign className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-black tracking-tight text-white">한눈에 보는 현재 결과</h2>
-                  <p className="mt-1 text-sm text-slate-400">현재 입력값으로 해석하면 이렇게 볼 수 있습니다.</p>
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                  <p className="text-sm font-semibold text-slate-400">월급 통장 기준</p>
-                  <p className="mt-3 text-xl font-black text-white">{won(result.monthlyNet)}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    세전 월급 {won(result.monthlyGross)}에서 공제 {won(result.totalMonthlyDeduction)}이 빠진 값입니다.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                  <p className="text-sm font-semibold text-slate-400">연봉 체감 기준</p>
-                  <p className="mt-3 text-xl font-black text-white">{won(result.annualNet)}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    연간 총액 {won(result.annualGross)} 중 체감 실수령 비중은 {(100 - result.effectiveDeductionRate).toFixed(1)}%입니다.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                  <p className="text-sm font-semibold text-slate-400">관리 포인트</p>
-                  <p className="mt-3 text-xl font-black text-white">{won(result.totalMonthlyDeduction)}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">
-                    공제 항목이 큰 편이라면 비과세 항목, 원천징수 비율, 절세계좌 활용 전략을 함께 점검하는 것이 좋습니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <CalculatorSeoContent
+            <br/>
+            <CalculatorSeoContent
             sections={[
               {
                 title: "연봉 실수령액 계산기란?",
@@ -745,7 +746,6 @@ export default function SalaryNetCalculatorPage() {
               },
             ]}
           />
-        </div>
       </div>
     </main>
   );
