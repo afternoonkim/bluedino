@@ -141,8 +141,8 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              <StatCard title="투자 계산기" value="6개" sub="배당 · 복리 · FIRE · 세금 · 실수령액" />
-              <StatCard title="ETF 메뉴 (준비중)" value="3개" sub="순위 · 비교 · 배당 캘린더" />
+              <StatCard title="투자·대출 계산기" value="10개" sub="배당 · 복리 · FIRE · 세금 · 대출" />
+              <StatCard title="금융 가이드" value="5개" sub="ISA · IRP · 연금저축 · CMA · 파킹통장" />
               <StatCard title="핵심 방향" value="설명형" sub="도구와 콘텐츠를 함께 제공" />
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Start Here"
             title="처음 방문했다면 여기부터 보세요"
-            description="BlueDino를 처음 쓰는 분이 대표 계산기와 핵심 투자 정보, 절세 흐름을 한 번에 파악할 수 있도록 주요 메뉴를 먼저 배치했습니다."
+            description="BlueDino를 처음 쓰는 분이 대표 계산기와 핵심 투자 정보, 절세 흐름, 대출 판단 흐름을 한 번에 파악할 수 있도록 주요 메뉴를 먼저 배치했습니다."
           />
 
           <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -203,6 +203,36 @@ export default function HomePage() {
                   <h3 className="mt-4 text-xl font-bold text-white">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-400">{item.description}</p>
                   <div className="mt-6 text-sm font-semibold text-cyan-300">가이드 보기 →</div>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+
+
+        <section className="mt-12">
+          <SectionHeader
+            eyebrow="Loan Tools"
+            title="대출 계산기도 바로 활용할 수 있게 확장했습니다"
+            description="DSR, LTV, 대출이자, 주담대 계산기를 통해 소득 기준 상환능력과 담보 기준 한도, 월 상환 부담까지 함께 확인할 수 있도록 구성했습니다."
+          />
+
+          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { title: "DSR 계산기", href: "/cal/dsr", description: "소득 대비 원리금 부담과 추가 대출 여력 확인" },
+              { title: "LTV 계산기", href: "/cal/ltv", description: "주택 가격 대비 담보대출 가능 범위 점검" },
+              { title: "대출이자 계산기", href: "/cal/loan-interest", description: "월 상환액, 총이자, 상환방식 차이 비교" },
+              { title: "주담대 계산기", href: "/cal/mortgage", description: "자기자본과 취득비용까지 반영한 자금 계획" },
+            ].map((item) => (
+              <Link key={item.href} href={item.href}>
+                <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg transition hover:-translate-y-1 hover:border-slate-700 hover:bg-slate-900">
+                  <span className="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
+                    Loan Calculator
+                  </span>
+                  <h3 className="mt-4 text-xl font-bold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-400">{item.description}</p>
+                  <div className="mt-6 text-sm font-semibold text-cyan-300">계산기 열기 →</div>
                 </article>
               </Link>
             ))}

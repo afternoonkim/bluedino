@@ -1,11 +1,11 @@
-import { financeCategories } from "@/lib/finance/config";
-import { getAllFinanceRoutes } from "@/lib/finance/data";
 import type { MetadataRoute } from "next";
+import { getAllFinanceRoutes } from "@/lib/finance/data";
+import { financeCategories } from "@/lib/finance/config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 const staticRoutes = [
-  "",
+  "/",
   "/finance",
   "/cal/calculator",
   "/cal/capital-gains",
@@ -13,6 +13,10 @@ const staticRoutes = [
   "/cal/fire",
   "/cal/retirement-tax",
   "/cal/salary-net",
+  "/cal/dsr",
+  "/cal/ltv",
+  "/cal/loan-interest",
+  "/cal/mortgage",
   "/info/blog",
   "/info/etc/about",
   "/info/etc/contact",
@@ -54,40 +58,23 @@ const staticRoutes = [
   "/info/strategy/retirement-income",
   "/info/strategy/tax-efficient-investing",
   "/info/videos",
-] as const;
-
-function getPriority(route: string) {
-  if (route === "") return 1;
-  if (route === "/finance") return 0.95;
-  if (route.startsWith("/finance/")) return route.split("/").length >= 4 ? 0.9 : 0.92;
-  if (route.startsWith("/cal/")) return 0.9;
-  if (route === "/info/guide" || route === "/info/strategy") return 0.88;
-  return 0.8;
-}
-
-function getChangeFrequency(route: string): MetadataRoute.Sitemap[number]["changeFrequency"] {
-  if (route === "") return "weekly";
-  if (route.startsWith("/finance/")) return "weekly";
-  if (route.startsWith("/cal/")) return "monthly";
-  return "monthly";
-}
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const financeHubRoutes = financeCategories.map((category) => category.basePath);
-  const financeDetailRoutes = getAllFinanceRoutes().map(
-    ({ category, slug }) => `/finance/${category}/${slug}`,
-  );
+  const categoryRoutes = financeCategories.map((category) => category.basePath);
+  const financeRoutes = getAllFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
 
-  const allRoutes = Array.from(
-    new Set([...staticRoutes, ...financeHubRoutes, ...financeDetailRoutes]),
-  );
+  const allRoutes = Array.from(new Set([...staticRoutes, ...categoryRoutes, ...financeRoutes]));
 
   return allRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: now,
-    changeFrequency: getChangeFrequency(route),
-    priority: getPriority(route),
+    changeFrequency:
+      route === "/" ? "weekly" : route.startsWith("/finance/") || route.startsWith("/cal/") ? "weekly" : "monthly",
+    priority:
+      route === "/" ? 1 :
+      route === "/finance" || route.startsWith("/finance/") || route.startsWith("/cal/") ? 0.9 : 0.8,
   }));
 }

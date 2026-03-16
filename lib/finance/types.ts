@@ -1,4 +1,12 @@
-export type FinanceCategoryKey = "isa" | "irp" | "pension";
+export type FinanceCategoryKey =
+  | "isa"
+  | "irp"
+  | "pension"
+  | "cma"
+  | "parking"
+  | "loan-basics"
+  | "credit-loan"
+  | "mortgage-loan";
 
 export type FinanceCategory = {
   key: FinanceCategoryKey;

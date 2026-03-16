@@ -121,7 +121,7 @@ export default function Sidebar({
               />
               <SidebarItem
                 href="/finance"
-                label="금융 가이드(절세계좌)"
+                label="금융 가이드"
                 icon={Landmark}
                 collapsed={collapsed}
               />
@@ -212,6 +212,30 @@ export default function Sidebar({
                 href="/cal/salary-net"
                 label="연봉 실수령액 계산기"
                 icon={Wallet}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/cal/dsr"
+                label="DSR 계산기"
+                icon={Landmark}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/cal/ltv"
+                label="LTV 계산기"
+                icon={Building2}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/cal/loan-interest"
+                label="대출이자 계산기"
+                icon={DollarSign}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/cal/mortgage"
+                label="주담대 계산기"
+                icon={Briefcase}
                 collapsed={collapsed}
               />
             </SidebarGroup>

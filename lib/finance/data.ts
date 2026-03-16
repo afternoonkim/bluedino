@@ -1,14 +1,23 @@
-
-import { irpQuestions } from "@/data/finance/irp";
 import { isaQuestions } from "@/data/finance/isa";
+import { irpQuestions } from "@/data/finance/irp";
 import { pensionQuestions } from "@/data/finance/pension";
-import { financeCategories } from "./config";
+import { cmaQuestions } from "@/data/finance/cma";
+import { parkingQuestions } from "@/data/finance/parking";
+import { loanBasicsQuestions } from "@/data/finance/loan-basics";
+import { creditLoanQuestions } from "@/data/finance/credit-loan";
+import { mortgageLoanQuestions } from "@/data/finance/mortgage-loan";
+
 import type { FinanceCategoryKey, FinanceQuestionItem } from "./types";
 
 export const financeQuestionMap: Record<FinanceCategoryKey, FinanceQuestionItem[]> = {
   isa: isaQuestions,
   irp: irpQuestions,
   pension: pensionQuestions,
+  cma: cmaQuestions,
+  parking: parkingQuestions,
+  "loan-basics": loanBasicsQuestions,
+  "credit-loan": creditLoanQuestions,
+  "mortgage-loan": mortgageLoanQuestions,
 };
 
 export function getQuestionsByCategory(category: FinanceCategoryKey) {
@@ -16,14 +25,15 @@ export function getQuestionsByCategory(category: FinanceCategoryKey) {
 }
 
 export function getQuestionBySlug(category: FinanceCategoryKey, slug: string) {
-  return getQuestionsByCategory(category).find((item) => item.slug === slug) ?? null;
+  const questions = getQuestionsByCategory(category);
+  return questions.find((item) => item.slug === slug);
 }
 
 export function getAllFinanceRoutes() {
-  return financeCategories.flatMap((category) =>
-    getQuestionsByCategory(category.key).map((item) => ({
-      category: category.key,
+  return Object.entries(financeQuestionMap).flatMap(([category, questions]) =>
+    questions.map((item) => ({
+      category,
       slug: item.slug,
-    })),
+    }))
   );
 }
