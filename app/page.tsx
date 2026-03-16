@@ -44,12 +44,12 @@ const calculators = [
     href: "/finance",
     badge: "Guide",
   },
-  {
-    title: "미국 기업분석",
-    description: "미국 기업 티커를 입력하면 현재 주가, 핵심 재무지표, 연간 재무 흐름을 한 번에 확인",
-    href: "/stocks",
-    badge: "Analysis",
-  },
+  // {
+  //   title: "미국 기업분석",
+  //   description: "미국 기업 티커를 입력하면 현재 주가, 핵심 재무지표, 연간 재무 흐름을 한 번에 확인",
+  //   href: "/stocks",
+  //   badge: "Analysis",
+  // },
   // {
   //   title: "ETF 순위",
   //   description: "배당수익률, 운용보수, 자산규모를 기준으로 주요 ETF를 빠르게 비교",

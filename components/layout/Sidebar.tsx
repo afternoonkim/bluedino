@@ -121,7 +121,7 @@ export default function Sidebar({
               />
               <SidebarItem
                 href="/finance"
-                label="금융 가이드"
+                label="금융 가이드(절세계좌)"
                 icon={Landmark}
                 collapsed={collapsed}
               />
