@@ -10,22 +10,31 @@ declare global {
 
 interface AdBlockProps {
   slot?: string;
+  slotKey?: "default" | "top" | "bottom" | "sidebar" | "inline";
   format?: "auto" | "rectangle" | "horizontal";
   className?: string;
   label?: string;
 }
 
 const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
-const DEFAULT_SLOT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000";
+const slotMap = {
+  default: process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
+  top: process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP ?? process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
+  bottom: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM ?? process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
+  sidebar: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
+  inline: process.env.NEXT_PUBLIC_ADSENSE_SLOT_INLINE ?? process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
+} as const;
 
 export default function AdBlock({
-  slot = DEFAULT_SLOT,
+  slot,
+  slotKey = "default",
   format = "auto",
   className = "",
   label = "AdSense 광고 영역",
 }: AdBlockProps) {
+  const resolvedSlot = slot ?? slotMap[slotKey];
   const isDev = process.env.NODE_ENV === "development";
-  const canRenderAd = !isDev && Boolean(AD_CLIENT) && Boolean(slot);
+  const canRenderAd = !isDev && Boolean(AD_CLIENT) && Boolean(resolvedSlot);
 
   useEffect(() => {
     if (!canRenderAd) return;
@@ -37,7 +46,7 @@ export default function AdBlock({
     } catch (error) {
       console.error("AdSense render error:", error);
     }
-  }, [canRenderAd, slot]);
+  }, [canRenderAd, resolvedSlot]);
 
   const formatClass =
     format === "horizontal"
@@ -67,7 +76,7 @@ export default function AdBlock({
         className={`adsbygoogle block ${formatClass}`}
         style={{ display: "block" }}
         data-ad-client={AD_CLIENT}
-        data-ad-slot={slot}
+        data-ad-slot={resolvedSlot}
         data-ad-format={format}
         data-full-width-responsive="true"
       />

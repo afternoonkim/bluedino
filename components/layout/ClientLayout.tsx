@@ -5,6 +5,7 @@ import { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 import SiteFooter from "@/components/layout/SiteFooter";
+import RouteAwareAdShell from "@/components/ad/RouteAwareAdShell";
 
 export default function ClientLayout({
   children,
@@ -25,7 +26,9 @@ export default function ClientLayout({
         <Topbar />
 
         <div className="flex-1 px-4 py-6 md:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">{children}</div>
+          <div className="mx-auto max-w-7xl">
+            <RouteAwareAdShell>{children}</RouteAwareAdShell>
+          </div>
         </div>
 
         <SiteFooter />

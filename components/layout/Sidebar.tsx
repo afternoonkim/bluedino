@@ -18,6 +18,10 @@ import {
   ChartCandlestick,
   Rss,
   PlaySquare,
+  Building2,
+  Trophy,
+  GitCompareArrows,
+  CalendarDays,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -138,6 +142,30 @@ export default function Sidebar({
                 icon={PlaySquare}
                 collapsed={collapsed}
               />
+              {/* <SidebarItem
+                href="/stocks"
+                label="미국 기업분석"
+                icon={Building2}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/etf/ranking"
+                label="ETF 순위"
+                icon={Trophy}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/etf/compare"
+                label="ETF 비교"
+                icon={GitCompareArrows}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/etf/dividend-calendar"
+                label="ETF 배당 캘린더"
+                icon={CalendarDays}
+                collapsed={collapsed}
+              /> */}
             </SidebarGroup>
           </div>
 

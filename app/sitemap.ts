@@ -10,6 +10,14 @@ const routes = [
   "/cal/fire",
   "/cal/retirement-tax",
   "/cal/salary-net",
+  // "/stocks",
+  // "/etf/ranking",
+  // "/etf/compare",
+  // "/etf/dividend-calendar",
+  // "/stocks/AAPL",
+  // "/stocks/MSFT",
+  // "/stocks/NVDA",
+  // "/stocks/AMZN",
   "/info/blog",
   "/info/etc/about",
   "/info/etc/contact",
@@ -59,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: now,
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route.startsWith("/cal/") || route === "/info/guide" || route === "/info/strategy" ? 0.9 : 0.8,
+    changeFrequency: route === "" ? "weekly" : route.startsWith("/stocks/") ? "weekly" : "monthly",
+    priority: route === "" ? 1 : route === "/stocks" || route.startsWith("/stocks/") || route.startsWith("/cal/") || route === "/info/guide" || route === "/info/strategy" ? 0.9 : 0.8,
   }));
 }
