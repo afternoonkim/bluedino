@@ -22,6 +22,7 @@ import {
   Trophy,
   GitCompareArrows,
   CalendarDays,
+  Landmark,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -116,6 +117,12 @@ export default function Sidebar({
                 href="/info/investment/account-tax-step"
                 label="절세계좌 활용순서"
                 icon={TrendingUp}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance"
+                label="금융 가이드"
+                icon={Landmark}
                 collapsed={collapsed}
               />
               <SidebarItem

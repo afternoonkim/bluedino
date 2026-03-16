@@ -39,6 +39,12 @@ const calculators = [
     badge: "Calculator",
   },
   {
+    title: "금융 가이드",
+    description: "ISA 질문 90개를 시작으로 IRP와 연금저축까지 확장 가능한 질문형 SEO 허브",
+    href: "/finance",
+    badge: "Guide",
+  },
+  {
     title: "미국 기업분석",
     description: "미국 기업 티커를 입력하면 현재 주가, 핵심 재무지표, 연간 재무 흐름을 한 번에 확인",
     href: "/stocks",
@@ -71,9 +77,9 @@ const guideCards = [
     href: "/info/guide/etf-basics",
   },
   {
-    title: "ISA 계좌 기초",
-    description: "절세계좌를 처음 이해하는 사람도 흐름을 잡을 수 있도록 정리했습니다.",
-    href: "/info/guide/isa-basics",
+    title: "ISA 질문 가이드",
+    description: "실제 검색 문장 기준으로 ISA 질문을 한 페이지씩 정리한 네이버 SEO형 허브입니다.",
+    href: "/finance/isa",
   },
   {
     title: "포트폴리오 기초",

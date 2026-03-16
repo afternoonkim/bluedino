@@ -1,23 +1,18 @@
+import { financeCategories } from "@/lib/finance/config";
+import { getAllFinanceRoutes } from "@/lib/finance/data";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
-const routes = [
+const staticRoutes = [
   "",
+  "/finance",
   "/cal/calculator",
   "/cal/capital-gains",
   "/cal/compound",
   "/cal/fire",
   "/cal/retirement-tax",
   "/cal/salary-net",
-  // "/stocks",
-  // "/etf/ranking",
-  // "/etf/compare",
-  // "/etf/dividend-calendar",
-  // "/stocks/AAPL",
-  // "/stocks/MSFT",
-  // "/stocks/NVDA",
-  // "/stocks/AMZN",
   "/info/blog",
   "/info/etc/about",
   "/info/etc/contact",
@@ -59,15 +54,40 @@ const routes = [
   "/info/strategy/retirement-income",
   "/info/strategy/tax-efficient-investing",
   "/info/videos",
-];
+] as const;
+
+function getPriority(route: string) {
+  if (route === "") return 1;
+  if (route === "/finance") return 0.95;
+  if (route.startsWith("/finance/")) return route.split("/").length >= 4 ? 0.9 : 0.92;
+  if (route.startsWith("/cal/")) return 0.9;
+  if (route === "/info/guide" || route === "/info/strategy") return 0.88;
+  return 0.8;
+}
+
+function getChangeFrequency(route: string): MetadataRoute.Sitemap[number]["changeFrequency"] {
+  if (route === "") return "weekly";
+  if (route.startsWith("/finance/")) return "weekly";
+  if (route.startsWith("/cal/")) return "monthly";
+  return "monthly";
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return routes.map((route) => ({
+  const financeHubRoutes = financeCategories.map((category) => category.basePath);
+  const financeDetailRoutes = getAllFinanceRoutes().map(
+    ({ category, slug }) => `/finance/${category}/${slug}`,
+  );
+
+  const allRoutes = Array.from(
+    new Set([...staticRoutes, ...financeHubRoutes, ...financeDetailRoutes]),
+  );
+
+  return allRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: now,
-    changeFrequency: route === "" ? "weekly" : route.startsWith("/stocks/") ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/stocks" || route.startsWith("/stocks/") || route.startsWith("/cal/") || route === "/info/guide" || route === "/info/strategy" ? 0.9 : 0.8,
+    changeFrequency: getChangeFrequency(route),
+    priority: getPriority(route),
   }));
 }
