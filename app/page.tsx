@@ -50,24 +50,24 @@ const calculators = [
     href: "/stocks",
     badge: "Analysis",
   },
-  {
-    title: "ETF 순위",
-    description: "배당수익률, 운용보수, 자산규모를 기준으로 주요 ETF를 빠르게 비교",
-    href: "/etf/ranking",
-    badge: "ETF",
-  },
-  {
-    title: "ETF 비교",
-    description: "대표 ETF 2개를 선택해 가격, AUM, 운용보수, 보유종목을 한 번에 비교",
-    href: "/etf/compare",
-    badge: "ETF",
-  },
-  {
-    title: "ETF 배당 캘린더",
-    description: "다가오는 대표 ETF의 ex-date와 지급일을 캘린더 형태로 정리",
-    href: "/etf/dividend-calendar",
-    badge: "ETF",
-  },
+  // {
+  //   title: "ETF 순위",
+  //   description: "배당수익률, 운용보수, 자산규모를 기준으로 주요 ETF를 빠르게 비교",
+  //   href: "/etf/ranking",
+  //   badge: "ETF",
+  // },
+  // {
+  //   title: "ETF 비교",
+  //   description: "대표 ETF 2개를 선택해 가격, AUM, 운용보수, 보유종목을 한 번에 비교",
+  //   href: "/etf/compare",
+  //   badge: "ETF",
+  // },
+  // {
+  //   title: "ETF 배당 캘린더",
+  //   description: "다가오는 대표 ETF의 ex-date와 지급일을 캘린더 형태로 정리",
+  //   href: "/etf/dividend-calendar",
+  //   badge: "ETF",
+  // },
 ];
 
 const guideCards = [
@@ -142,7 +142,7 @@ export default function HomePage() {
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <StatCard title="투자 계산기" value="6개" sub="배당 · 복리 · FIRE · 세금 · 실수령액" />
-              <StatCard title="ETF 메뉴" value="3개" sub="순위 · 비교 · 배당 캘린더" />
+              <StatCard title="ETF 메뉴 (준비중)" value="3개" sub="순위 · 비교 · 배당 캘린더" />
               <StatCard title="핵심 방향" value="설명형" sub="도구와 콘텐츠를 함께 제공" />
             </div>
           </div>
