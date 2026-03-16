@@ -38,6 +38,7 @@ export type FinanceQuestionItem = {
   keywords?: string[];
   caution?: string;
   relatedSlugs?: string[];
+  answer?: string[];
   searchPriority?: number;
 };
 
