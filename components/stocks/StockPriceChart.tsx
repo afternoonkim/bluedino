@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  Line,
   LineChart,
-  ResponsiveContainer,
-  Tooltip,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 import type { HistoricalPoint } from "@/lib/stocks/types";
 
@@ -55,13 +55,18 @@ export default function StockPriceChart({ data }: { data: HistoricalPoint[] }) {
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: "#020617",
-              border: "1px solid rgba(148,163,184,0.25)",
-              borderRadius: "16px",
+              backgroundColor: "#081225",
+              border: "1px solid rgba(34, 211, 238, 0.18)",
+              borderRadius: 12,
               color: "#e2e8f0",
             }}
-            labelFormatter={(label: string) => new Date(label).toLocaleDateString("ko-KR")}
-            formatter={(value: number | string) => [formatPrice(Number(value)), "종가"]}
+            labelFormatter={(label) => {
+              if (typeof label === "string" || typeof label === "number") {
+                return new Date(label).toLocaleDateString("ko-KR");
+              }
+              return "";
+            }}
+            formatter={(value) => [formatPrice(Number(value)), "종가"]}
           />
           <Line
             type="monotone"
