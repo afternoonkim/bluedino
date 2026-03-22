@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import CapitalGainsCalculatorClient from "./CapitalGainsCalculatorClient";
 
 export const metadata: Metadata = {
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("capital-gains");
+const faqStructuredData = buildCalculatorFaqSchema("capital-gains");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,12 +50,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="capital-gains-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="해외주식-양도세-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <CapitalGainsCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

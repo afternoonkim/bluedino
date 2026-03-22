@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import RetirementTaxCalculatorClient from "./RetirementTaxCalculatorClient";
 
 export const metadata: Metadata = {
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("retirement-tax");
+const faqStructuredData = buildCalculatorFaqSchema("retirement-tax");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,12 +50,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="retirement-tax-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="퇴직소득세-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <RetirementTaxCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

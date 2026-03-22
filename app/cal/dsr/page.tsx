@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import DsrCalculatorClient from "./DsrCalculatorClient";
 
 export const metadata: Metadata = {
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("dsr");
+const faqStructuredData = buildCalculatorFaqSchema("dsr");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -39,12 +44,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="dsr-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="dsr-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <DsrCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

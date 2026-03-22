@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import CompoundCalculatorClient from "./CompoundCalculatorClient";
 
 export const metadata: Metadata = {
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("compound");
+const faqStructuredData = buildCalculatorFaqSchema("compound");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,12 +50,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="compound-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="복리-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <CompoundCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

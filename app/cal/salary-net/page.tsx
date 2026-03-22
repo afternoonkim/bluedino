@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import SalaryNetCalculatorClient from "./SalaryNetCalculatorClient";
 
 export const metadata: Metadata = {
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("salary-net");
+const faqStructuredData = buildCalculatorFaqSchema("salary-net");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,12 +50,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="salary-net-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="연봉-실수령액-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <SalaryNetCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

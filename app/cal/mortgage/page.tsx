@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import MortgageCalculatorClient from "./MortgageCalculatorClient";
 
 export const metadata: Metadata = {
@@ -19,6 +21,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("mortgage");
+const faqStructuredData = buildCalculatorFaqSchema("mortgage");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -33,12 +38,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="mortgage-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="주담대-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <MortgageCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }

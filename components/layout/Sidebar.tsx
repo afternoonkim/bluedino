@@ -19,9 +19,6 @@ import {
   Rss,
   PlaySquare,
   Building2,
-  Trophy,
-  GitCompareArrows,
-  CalendarDays,
   Landmark,
 } from "lucide-react";
 import Image from "next/image";
@@ -106,7 +103,13 @@ export default function Sidebar({
 
         <div className="flex-1 space-y-6 overflow-y-auto p-4">
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="투자정보" collapsed={collapsed}>
+            <SidebarGroup title="절세계좌 · 대출 · 배당" collapsed={collapsed}>
+              <SidebarItem
+                href="/finance"
+                label="금융 가이드 메인"
+                icon={Landmark}
+                collapsed={collapsed}
+              />
               <SidebarItem
                 href="/info/investment/account-tax"
                 label="계좌별 세금정보"
@@ -117,12 +120,6 @@ export default function Sidebar({
                 href="/info/investment/account-tax-step"
                 label="절세계좌 활용순서"
                 icon={TrendingUp}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/finance"
-                label="금융 가이드"
-                icon={Landmark}
                 collapsed={collapsed}
               />
               <SidebarItem
@@ -149,35 +146,11 @@ export default function Sidebar({
                 icon={PlaySquare}
                 collapsed={collapsed}
               />
-              {/* <SidebarItem
-                href="/stocks"
-                label="미국 기업분석"
-                icon={Building2}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/etf/ranking"
-                label="ETF 순위"
-                icon={Trophy}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/etf/compare"
-                label="ETF 비교"
-                icon={GitCompareArrows}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/etf/dividend-calendar"
-                label="ETF 배당 캘린더"
-                icon={CalendarDays}
-                collapsed={collapsed}
-              /> */}
             </SidebarGroup>
           </div>
 
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="계산기" collapsed={collapsed}>
+            <SidebarGroup title="대표 계산기" collapsed={collapsed}>
               <SidebarItem
                 href="/cal/calculator"
                 label="배당 계산기"
@@ -258,11 +231,8 @@ export default function Sidebar({
             <div className="space-y-1">
               <div className="font-semibold text-slate-300">BlueDino Platform</div>
               <div>v1.0.0</div>
-              <div className="text-[10px] text-slate-500">Data-driven investing tools</div>
             </div>
-          ) : (
-            <div className="text-center text-[10px] text-slate-500">v1</div>
-          )}
+          ) : null}
         </div>
       </aside>
     </>

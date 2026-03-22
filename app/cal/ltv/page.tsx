@@ -1,5 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
+import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import LtvCalculatorClient from "./LtvCalculatorClient";
 
 export const metadata: Metadata = {
@@ -19,6 +21,9 @@ export const metadata: Metadata = {
   },
 };
 
+const landingData = getCalculatorLandingData("ltv");
+const faqStructuredData = buildCalculatorFaqSchema("ltv");
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -33,12 +38,20 @@ const structuredData = {
 export default function Page() {
   return (
     <>
+      {faqStructuredData ? (
+        <Script
+          id="ltv-faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        />
+      ) : null}
       <Script
         id="ltv-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <LtvCalculatorClient />
+      {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
 }
