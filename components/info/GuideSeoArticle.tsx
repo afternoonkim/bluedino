@@ -1,6 +1,14 @@
+import type { ReactNode } from "react";
 
-// 사용자에게 보이는 콘텐츠만 구성된 컴포넌트
-export default function GuideSeoArticle({ title, children }) {
+type GuideSeoArticleProps = {
+  title: string;
+  children: ReactNode;
+};
+
+export default function GuideSeoArticle({
+  title,
+  children,
+}: GuideSeoArticleProps) {
   return (
     <article>
       <h1>{title}</h1>
