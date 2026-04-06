@@ -23,12 +23,11 @@ export default function SiteFooter() {
             <div className="flex items-center gap-2">
               <span className="font-semibold text-white">BlueDino</span>
               <span className="text-xs text-slate-400">
-                계산기 · 데이터 기반 투자 도구
+                초보 투자자도 이해하기 쉬운 금융 계산기 · 가이드
               </span>
             </div>
             <p className="mt-2 max-w-2xl text-xs leading-relaxed text-slate-400">
-              본 사이트의 계산 결과와 정보는 참고용입니다. 실제 세금, 수익률,
-              제도 적용 여부는 개인 상황과 정책 변경에 따라 달라질 수 있습니다.
+              본 사이트의 계산 결과와 정보는 참고용입니다. BlueDino는 계산기와 가이드를 통해 판단에 필요한 정보를 쉽게 정리해 제공하며, 실제 세금·수익률·제도 적용 여부는 개인 상황과 정책 변경에 따라 달라질 수 있습니다.
             </p>
           </div>
 
@@ -37,6 +36,8 @@ export default function SiteFooter() {
             <FooterLink href="/info/etc/contact">문의</FooterLink>
             <FooterLink href="/info/etc/privacy">개인정보처리방침</FooterLink>
             <FooterLink href="/info/etc/terms">이용약관</FooterLink>
+            <FooterLink href="/info/etc/editorial-policy">콘텐츠 운영 원칙</FooterLink>
+            <FooterLink href="/info/etc/methodology">작성 기준</FooterLink>
           </div>
         </div>
 
@@ -45,7 +46,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} BlueDino Platform. All rights reserved.
           </div>
           <div className="text-xs text-slate-500">
-            {/* Contact: <span className="text-slate-300">support@bluedino.site</span> */}
+            운영 문의: <span className="text-slate-300">afternoonkim93@gmail.com</span>
           </div>
         </div>
       </div>

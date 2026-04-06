@@ -197,7 +197,7 @@ export default function DsrCalculatorClient() {
 
         <CalculatorSeoContent
           heading="DSR 계산기 보는 법과 실전 체크포인트"
-          intro="네이버에서 DSR 계산기, 대출한도 계산기, 주담대 DSR 같은 키워드를 검색하는 분들은 대개 지금 받을 수 있는 대출이 어느 정도인지 감을 잡고 싶어 합니다. 아래 항목을 함께 보면 계산기 결과를 더 현실적으로 해석할 수 있습니다."
+          intro="이 계산기는 지금 내 소득 기준으로 대출 부담이 어느 정도인지 가늠해볼 때 유용합니다. 아래 항목을 함께 보면 계산 결과를 실제 상황에 더 가깝게 해석할 수 있습니다."
           sections={[
             {
               title: "DSR은 왜 중요한가",

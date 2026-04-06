@@ -130,7 +130,7 @@ export default function LtvCalculatorClient() {
 
         <CalculatorSeoContent
           heading="LTV 계산기 해석할 때 같이 봐야 하는 요소"
-          intro="네이버에서 LTV 계산기, 주담대 한도, 내 집 마련 자금 같은 키워드를 검색하는 분들은 대개 집값 대비 얼마까지 빌릴 수 있는지와 자기자본이 얼마나 필요한지 동시에 궁금해합니다."
+          intro="이 계산기는 집값 대비 어느 정도까지 대출이 가능한지, 그리고 자기자본이 얼마나 필요한지 빠르게 가늠해볼 때 유용합니다."
           sections={[
             {
               title: "LTV는 한도, DSR은 상환능력",

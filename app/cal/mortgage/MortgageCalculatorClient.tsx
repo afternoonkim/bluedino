@@ -125,7 +125,7 @@ export default function MortgageCalculatorClient() {
 
         <CalculatorSeoContent
           heading="주담대 계산기와 함께 봐야 하는 핵심 포인트"
-          intro="네이버에서 주담대 계산기, 주택담보대출 월 상환액, 내 집 마련 자금 같은 키워드를 찾는 분들은 대체로 집값보다 내가 실제로 감당 가능한 현금흐름이 얼마인지 알고 싶어 합니다."
+          intro="이 계산기는 주택담보대출을 받을 때 월 상환액과 총이자를 미리 확인하고, 내 현금흐름으로 감당 가능한 수준인지 판단할 때 유용합니다."
           sections={[
             {
               title: "월 상환액이 생활비를 잠식하지 않는지",

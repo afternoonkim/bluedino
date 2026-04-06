@@ -1,9 +1,10 @@
 import Script from "next/script";
 
+const ADSENSE_ENABLED = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
 const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 
 export default function AdSenseScript() {
-  if (!AD_CLIENT) return null;
+  if (!ADSENSE_ENABLED || !AD_CLIENT) return null;
 
   return (
     <Script

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AdBlock from "@/components/ad/AdBlock";
+import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
 
 const heroCalculators = [
   {
@@ -153,17 +154,17 @@ const recommendedFlows = [
 const recentUpdates = [
   {
     label: "홈 구조 개편",
-    title: "처음 방문해도 바로 써볼 수 있도록 대표 계산기 6개를 앞쪽에 모았습니다.",
+    title: "대표 계산기 6개를 전면 배치해 첫 진입 동선을 단순화했습니다.",
     href: "/",
   },
   {
     label: "카테고리 정리",
-    title: "배당 · 절세 · 대출 · 콘텐츠 흐름으로 필요한 정보를 찾기 쉽게 정리했습니다.",
+    title: "배당 · 절세 · 대출 · 콘텐츠 4축으로 탐색 구조를 다시 묶었습니다.",
     href: "/finance",
   },
   {
     label: "계산기 허브",
-    title: "주요 계산기와 설명형 가이드를 한 흐름으로 연결해 필요한 정보를 이어서 보기 쉽게 정리했습니다.",
+    title: "주요 계산기와 설명형 가이드를 한 흐름으로 연결해 체류 동선을 강화했습니다.",
     href: "/info/guide",
   },
 ];
@@ -176,7 +177,7 @@ const guideCards = [
   },
   {
     title: "ISA 질문 가이드",
-    description: "ISA를 처음 볼 때 자주 헷갈리는 질문을 한 페이지씩 쉽게 정리한 금융 가이드입니다.",
+    description: "실제 검색 문장 기준으로 ISA 질문을 한 페이지씩 정리한 SEO형 허브입니다.",
     href: "/finance/isa",
   },
   {
@@ -204,7 +205,7 @@ const guideCards = [
 const trustItems = [
   "계산 결과와 투자 정보는 참고용으로 제공되며 특정 종목 매수·매도를 권유하지 않습니다.",
   "세금과 제도 정보는 이해를 돕기 위한 요약이며 실제 적용은 개인 상황과 제도 변경에 따라 달라질 수 있습니다.",
-  "개인정보처리방침, 이용약관, 문의 페이지를 함께 운영해 필요한 안내를 확인할 수 있도록 돕고 있습니다.",
+  "개인정보처리방침, 이용약관, 문의 페이지를 함께 운영해 사이트 신뢰 구조를 강화하고 있습니다.",
 ];
 
 export default function HomePage() {
@@ -245,7 +246,7 @@ export default function HomePage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <StatCard title="대표 계산기" value="6개" sub="홈 전면 배치" />
               <StatCard title="핵심 카테고리" value="4축" sub="배당 · 절세 · 대출 · 콘텐츠" />
-              <StatCard title="이용 흐름" value="쉽게 연결" sub="계산기 → 가이드 → 최신 콘텐츠" />
+              <StatCard title="탐색 구조" value="허브형" sub="계산기 → 가이드 → 최신 콘텐츠" />
             </div>
           </div>
         </section>
@@ -271,7 +272,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Top Tools"
             title="대표 계산기 6개"
-            description="처음 방문한 사용자도 바로 활용할 수 있도록 대표 계산기를 먼저 배치했습니다."
+            description="방문자가 가장 먼저 활용할 가능성이 높은 계산기만 앞에 모아 첫 진입 동선을 단순하게 만들었습니다."
           />
 
           <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -318,7 +319,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow="Popular"
               title="인기 계산기"
-              description="홈에서 바로 활용하기 쉬운 대표 계산기를 짧은 설명과 함께 모았습니다."
+              description="홈에서 바로 많이 클릭될 가능성이 높은 계산기를 짧은 설명과 함께 따로 모았습니다."
             />
             <div className="mt-6 space-y-4">
               {popularCalculators.map((item) => (
@@ -420,43 +421,12 @@ export default function HomePage() {
 
         <AdBlock label="홈 중단 광고 영역" />
 
-        <section className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
-            <SectionHeader
-              eyebrow="Who runs this site"
-              title="BlueDino는 누가 운영하나요"
-              description="개인 투자자 관점에서 자주 헷갈리는 금융 숫자와 개념을 쉽게 정리하기 위해 운영하는 정보 사이트입니다."
-            />
-            <div className="mt-6 space-y-3 text-sm leading-7 text-slate-300">
-              <p>특정 상품 가입이나 종목 매수를 권하기보다, 스스로 판단할 때 필요한 계산기와 설명형 가이드를 한 흐름으로 연결해 제공합니다.</p>
-              <p>사이트 소개와 문의 페이지를 함께 운영해 방문자가 운영 목적과 기본 안내를 바로 확인할 수 있도록 구성했습니다.</p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/info/etc/about" className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-400/50 hover:bg-cyan-500/15">소개 보기</Link>
-              <Link href="/info/etc/contact" className="rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-600 hover:bg-slate-950">문의하기</Link>
-            </div>
-          </article>
-
-          <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
-            <SectionHeader
-              eyebrow="How to use"
-              title="이렇게 활용하면 좋습니다"
-              description="BlueDino를 처음 방문했을 때 가장 빠르게 도움을 받는 흐름을 짧게 정리했습니다."
-            />
-            <div className="mt-6 space-y-3">
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">1. 계산기로 내 금액과 기간을 먼저 넣어봅니다.</div>
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">2. 바로 아래 연결 가이드에서 세금·계좌·대출 개념을 다시 확인합니다.</div>
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">3. 실제 실행 전에는 금융회사와 공식 기관의 최신 기준을 한 번 더 확인합니다.</div>
-            </div>
-          </article>
-        </section>
-
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
               eyebrow="Trust"
               title="신뢰할 수 있는 구조"
-              description="사이트를 어떻게 활용하면 좋은지 한눈에 확인할 수 있는 안내 페이지를 함께 연결했습니다."
+              description="사이트 목적과 운영 기준을 명확히 보여주는 페이지를 함께 연결해 신뢰 구조를 유지하고 있습니다."
             />
             <div className="mt-6 space-y-3">
               {trustItems.map((item) => (
@@ -473,7 +443,7 @@ export default function HomePage() {
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <h2 className="text-2xl font-bold text-white">운영 페이지</h2>
             <p className="mt-4 text-sm leading-7 text-slate-400">
-              소개, 문의, 개인정보처리방침, 이용약관 페이지를 통해 필요한 안내를 쉽게 확인할 수 있도록 구성했습니다.
+              소개, 문의, 개인정보처리방침, 이용약관 페이지를 통해 방문자가 사이트 목적과 운영 기준을 쉽게 확인할 수 있도록 구성했습니다.
             </p>
 
             <div className="mt-6 grid gap-3">

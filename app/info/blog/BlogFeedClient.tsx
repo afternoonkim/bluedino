@@ -390,7 +390,7 @@ export default function BlogFeedClient() {
             <div className="bd-list mt-4">
               <div className="bd-list-item">블로그에서 최근 어떤 카테고리 글을 많이 쓰는지 빠르게 확인</div>
               <div className="bd-list-item">상위 카테고리와 하위 카테고리 기준으로 실제 블로그 탐색 흐름 구현</div>
-              <div className="bd-list-item">카드에서 원문으로 넘어가 네이버블로그 체류시간 유도</div>
+              <div className="bd-list-item">카드에서 원문 글로 이동해 더 자세한 내용을 이어서 확인</div>
             </div>
           </div> */}
 

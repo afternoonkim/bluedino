@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdBlock from "@/components/ad/AdBlock";
 import { guideArticles, guideCategories } from "@/lib/info/guideArticles";
+import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
 
 export const metadata: Metadata = {
   title: "투자 기초 가이드 | BlueDino",
@@ -76,6 +77,18 @@ export default function GuidePage() {
             {index === 0 || index === 1 ? <AdBlock /> : null}
           </section>
         ))}
+
+        <section className="bd-card bd-card-padding">
+          <span className="bd-badge">가이드 사용 안내</span>
+          <h2 className="bd-title-lg mt-4">이 페이지를 먼저 보는 것이 좋은 사람</h2>
+          <div className="bd-list mt-4">
+            <div className="bd-list-item">주식, ETF, 절세계좌, 배당 같은 단어는 익숙하지만 서로 어떻게 연결되는지 아직 감이 없는 사람</div>
+            <div className="bd-list-item">짧은 영상이나 요약 글만 보고 개념이 섞여버린 상태에서 다시 기본부터 정리하고 싶은 사람</div>
+            <div className="bd-list-item">가이드를 읽고 바로 계산기로 넘어가서 내 숫자에 맞춰 확인하고 싶은 사람</div>
+          </div>
+        </section>
+
+        <EditorialTrustPanel compact />
 
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">직접 계산해보면 더 쉬운 주제</h2>

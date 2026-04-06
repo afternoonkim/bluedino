@@ -222,6 +222,18 @@ export default function Sidebar({
                 icon={LayoutDashboard}
                 collapsed={collapsed}
               />
+              <SidebarItem
+                href="/info/etc/editorial-policy"
+                label="콘텐츠 운영 원칙"
+                icon={BookOpen}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/info/etc/methodology"
+                label="작성 기준"
+                icon={FileSpreadsheet}
+                collapsed={collapsed}
+              />
             </SidebarGroup>
           </div>
         </div>

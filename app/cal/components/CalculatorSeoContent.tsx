@@ -47,6 +47,10 @@ export default function CalculatorSeoContent({
           </article>
         ))}
       </div>
+
+      <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm leading-7 text-slate-300">
+        입력한 조건에 따라 결과가 달라지는 참고 계산이므로, 실제 적용 전에는 금융회사·증권사·공공기관의 최신 기준과 개인 조건을 함께 확인해보세요.
+      </div>
     </section>
   );
 }

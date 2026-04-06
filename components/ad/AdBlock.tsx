@@ -16,6 +16,8 @@ interface AdBlockProps {
   label?: string;
 }
 
+
+const ADSENSE_ENABLED = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
 const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 const slotMap = {
   default: process.env.NEXT_PUBLIC_ADSENSE_SLOT_DEFAULT ?? "0000000000",
@@ -34,7 +36,7 @@ export default function AdBlock({
 }: AdBlockProps) {
   const resolvedSlot = slot ?? slotMap[slotKey];
   const isDev = process.env.NODE_ENV === "development";
-  const canRenderAd = !isDev && Boolean(AD_CLIENT) && Boolean(resolvedSlot);
+  const canRenderAd = ADSENSE_ENABLED && !isDev && Boolean(AD_CLIENT) && Boolean(resolvedSlot);
 
   useEffect(() => {
     if (!canRenderAd) return;
@@ -56,18 +58,7 @@ export default function AdBlock({
       : "min-h-[120px]";
 
   if (!canRenderAd) {
-    return (
-      <div className={`my-10 w-full ${className}`}>
-        <div
-          className={`flex w-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900/70 px-4 text-center text-sm text-slate-500 ${formatClass}`}
-        >
-          <span>{label}</span>
-          <span className="mt-1 text-xs text-slate-600">
-            개발 환경 또는 애드센스 미설정 상태
-          </span>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   return (

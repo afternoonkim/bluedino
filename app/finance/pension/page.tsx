@@ -7,7 +7,7 @@ import { pensionQuestions } from "@/data/finance/pension";
 
 export const metadata: Metadata = {
   title: "연금저축 질문 가이드 | BlueDino",
-  description: "연금저축계좌 세액공제, ETF 투자, 수령 전략과 중도해지 질문을 실제 검색 패턴 중심으로 정리한 BlueDino 금융 가이드",
+  description: "연금저축계좌 세액공제, ETF 투자, 수령 전략과 중도해지 기준을 이해하기 쉽게 정리한 BlueDino 금융 가이드",
   alternates: { canonical: "/finance/pension" },
 };
 
@@ -20,11 +20,11 @@ export default function PensionPage() {
           <span className="bd-badge">연금계좌</span>
           <h1 className="bd-title-xl mt-4">연금저축 질문 가이드</h1>
           <p className="bd-text-main mt-4">
-            연금저축은 세액공제만 보고 시작하면 오래 유지하기 어렵고, 반대로 장기 복리와 연금 수령까지 함께 보면 활용 가치가 커집니다. BlueDino는 실제 검색 질문을 기준으로 연금저축계좌의 가입, 납입, 투자, 인출, 수령 전략을 정리합니다.
+            연금저축은 세액공제만 보고 시작하면 오래 유지하기 어렵고, 반대로 장기 복리와 연금 수령까지 함께 보면 활용 가치가 커집니다. BlueDino는 연금저축계좌의 가입, 납입, 투자, 인출, 수령 전략을 이해하기 쉽게 정리합니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
             <span className="rounded-full border border-slate-700 px-3 py-1">질문 {pensionQuestions.length}개</span>
-            <span className="rounded-full border border-slate-700 px-3 py-1">실제 검색 질문 중심</span>
+            <span className="rounded-full border border-slate-700 px-3 py-1">핵심 질문 정리</span>
             <span className="rounded-full border border-slate-700 px-3 py-1">계산기 연계</span>
           </div>
         </section>

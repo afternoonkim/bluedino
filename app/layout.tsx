@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import ClientLayout from "@/components/layout/ClientLayout";
 import AdSenseScript from "@/components/ad/AdSenseScript";
@@ -30,6 +31,27 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BlueDino",
+  url: "https://bluedino.kr",
+  email: "afternoonkim93@gmail.com",
+  description: "개인 투자자와 예비 투자자를 위한 금융 계산기 및 설명형 가이드를 제공하는 정보 사이트",
+  founder: {
+    "@type": "Person",
+    name: "BlueDino 운영자",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "BlueDino",
+  url: "https://bluedino.kr",
+  description: "투자 계산기와 금융 가이드를 한곳에서 볼 수 있는 BlueDino",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +60,16 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body>
+        <Script
+          id="organization-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <Script
+          id="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <AdSenseScript />
         <ClientLayout>{children}</ClientLayout>
         <Analytics />

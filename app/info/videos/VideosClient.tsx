@@ -132,9 +132,9 @@ export default function VideosClient() {
               <span className="bd-badge">투자정보</span>
               <h1 className="bd-title-xl mt-4">경제 유튜브 영상 모아보기</h1>
               <p className="bd-text-main mt-4 max-w-3xl">
-                주요 경제 채널의 최신 영상을 한곳에 모아 빠르게 탐색할 수 있는
-                페이지입니다. 채널별로 필터링하고, 제목 검색 후 바로 유튜브 원문으로
-                이동할 수 있게 구성했습니다.
+                주요 경제 채널의 최신 영상을 한곳에 모아 빠르게 살펴볼 수 있는
+                페이지입니다. 채널별로 정리해 필요한 영상을 찾고, 관심 있는 원문 영상으로
+                바로 이동할 수 있게 구성했습니다.
               </p>
               <p className="bd-text-sub mt-3">최신 수집 시각 {fetchedAt || "-"}</p>
             </div>

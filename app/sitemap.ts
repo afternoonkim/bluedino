@@ -22,6 +22,8 @@ const staticRoutes = [
   "/info/etc/contact",
   "/info/etc/privacy",
   "/info/etc/terms",
+  "/info/etc/methodology",
+  "/info/etc/editorial-policy",
   "/info/guide",
   "/info/guide/cashflow-vs-capital-gains",
   "/info/guide/compound-interest",

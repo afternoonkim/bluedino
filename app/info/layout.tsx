@@ -12,7 +12,7 @@ export default function InvestmentLayout({ children }: { children: React.ReactNo
       <section className="bd-card-soft p-5">
         <div className="text-lg font-bold">투자정보</div>
         <div className="mt-1 text-sm text-slate-400">
-          투자 판단은 본인 책임이며, 본 페이지는 정보 제공 목적입니다.
+          투자와 절세, 계좌 활용을 이해하기 쉽게 정리한 안내 페이지입니다. 실제 적용 전에는 최신 제도와 개인 조건을 함께 확인해보세요.
         </div>
       </section>
 

@@ -63,8 +63,8 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
           <p className="bd-text-main mt-4">{category.intro}</p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
             <span className="rounded-full border border-slate-700 px-3 py-1">질문 {questions.length}개</span>
-            <span className="rounded-full border border-slate-700 px-3 py-1">실제 검색 질문 중심</span>
-            <span className="rounded-full border border-slate-700 px-3 py-1">계산기 연계</span>
+            <span className="rounded-full border border-slate-700 px-3 py-1">초보자 질문 정리</span>
+            <span className="rounded-full border border-slate-700 px-3 py-1">관련 계산기 연결</span>
           </div>
         </section>
 

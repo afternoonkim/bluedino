@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import AdBlock from "@/components/ad/AdBlock";
+import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
 
 export type StrategyLinkItem = { label: string; href: string };
 export type StrategyFaqItem = { question: string; answer: string };
@@ -73,7 +74,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">많이 궁금해하는 질문</h2>
+          <h2 className="bd-title-md">처음 볼 때 많이 헷갈리는 부분</h2>
           <h3 className="mt-4 text-lg font-semibold text-white">{article.introQuestion}</h3>
           <p className="bd-text-main mt-4">{article.introAnswer}</p>
         </section>
@@ -164,6 +165,18 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
             <Link href="/finance" className="bd-button-secondary">
               금융 가이드 보기
             </Link>
+          </div>
+        </section>
+
+
+        <EditorialTrustPanel compact />
+
+        <section className="bd-card-soft bd-card-padding">
+          <h2 className="bd-title-md">이 전략을 볼 때 같이 생각하면 좋은 점</h2>
+          <div className="bd-list mt-5">
+            <div className="bd-list-item">전략 자체보다 내 투자 기간, 현금흐름, 감당 가능한 변동성을 함께 보는 것이 중요합니다.</div>
+            <div className="bd-list-item">같은 전략도 계좌 선택과 세후 기준에 따라 체감 결과가 달라질 수 있습니다.</div>
+            <div className="bd-list-item">실행 전에는 내 금액을 직접 넣어 계산기로 확인해보는 편이 훨씬 현실적입니다.</div>
           </div>
         </section>
 
