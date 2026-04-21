@@ -65,6 +65,39 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-02-12",
+    updatedAt: "2025-04-10",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "단리와 복리, 숫자로 비교하기" },
+      { type: "paragraph", text: "원금 1,000만 원을 연 7%로 20년간 굴린다고 가정하면, 단리는 20년 뒤 2,400만 원(원금 1,000 + 이자 1,400)이 됩니다. 같은 조건에서 복리는 약 3,870만 원으로 늘어납니다. 두 구조의 차이는 재투자되는 이자에 다시 이자가 붙는지 여부뿐이지만, 20년이 지나면 결과 금액이 약 1.6배 벌어집니다." },
+      { type: "heading", text: "72의 법칙으로 기간 감 잡기" },
+      { type: "paragraph", text: "복리 수익률이 r%일 때 원금이 두 배가 되는 데 걸리는 기간은 대략 72 ÷ r 년입니다. 연 6%면 약 12년, 연 8%면 약 9년이 걸립니다. 정확한 수치는 아니지만, 장기 계획의 뼈대를 잡을 때 실용적인 근사치로 활용할 수 있습니다." },
+      { type: "heading", text: "복리를 갉아먹는 세 가지 요인" },
+      {
+        type: "list",
+        items: [
+        "세금: 매매·배당 시점마다 과세되면 재투자될 원금이 줄어 복리 효과가 약해집니다. 연금저축·IRP·ISA처럼 과세 이연/비과세 한도가 있는 계좌를 먼저 채우는 편이 유리합니다.",
+        "수수료·총보수: 펀드·ETF의 총보수가 1%p 더 높으면 30년 누적 수익은 체감상 20~30% 차이로 벌어질 수 있습니다. 장기 상품일수록 총보수 0.x%의 차이가 결과를 크게 바꿉니다.",
+        "인플레이션: 표면 수익률이 연 7%라도 물가 상승률이 3%라면 실질 수익률은 약 4%입니다. 실질 기준으로 목표를 세워야 장기 결과를 보수적으로 가늠할 수 있습니다."
+        ]
+      },
+      { type: "heading", text: "실행 순서 제안" },
+      {
+        type: "list",
+        items: [
+        "1) 현금흐름을 점검해 매달 일정 금액을 자동이체로 빼둡니다.",
+        "2) 연금저축·IRP·ISA 한도를 먼저 활용해 과세 이연 효과를 확보합니다.",
+        "3) 위 한도를 초과하는 금액은 저비용 패시브 ETF·채권 비중과 함께 일반계좌에서 운용합니다.",
+        "4) 배당·분배금은 자동 재투자로 설정하고, 1년에 한 번만 비중을 점검합니다."
+        ]
+      }
+    ],
+    sources: [
+      { label: "국세청 — 연금저축·IRP 세제 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융감독원 — ETF 총보수·추적오차 공시", href: "https://www.fss.or.kr/" },
+      { label: "한국은행 경제통계시스템 — 소비자물가지수", href: "https://ecos.bok.or.kr/" }
     ]
   },
   "dividend-basics": {
@@ -132,6 +165,41 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-02-20",
+    updatedAt: "2025-04-10",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "배당률 표면 숫자에 속지 않으려면" },
+      { type: "paragraph", text: "배당률(Dividend Yield)은 연 배당금 ÷ 주가로 계산합니다. 주가가 급락하면 배당률이 일시적으로 높아 보이지만, 실제로는 실적 악화로 배당이 줄어들거나 중단될 수 있는 신호일 때가 많습니다. 배당률이 8~10%를 넘는 종목은 \"왜 이 가격인가\"를 먼저 확인하는 편이 안전합니다." },
+      { type: "heading", text: "배당성향(Payout Ratio) 읽는 법" },
+      { type: "paragraph", text: "배당성향은 순이익 대비 배당금 비율입니다. 성숙기 기업은 40~60%가 일반적이고, 80%를 장기간 넘기는 경우 이익이 조금만 흔들려도 배당을 줄여야 할 가능성이 커집니다. 리츠·MLP처럼 법적으로 이익의 상당 부분을 분배해야 하는 구조는 예외적으로 성향이 높게 표시될 수 있습니다." },
+      { type: "heading", text: "배당 성장주 vs 고배당주" },
+      {
+        type: "list",
+        items: [
+        "Dividend Aristocrats: 25년 이상 연속 배당을 늘려온 S&P500 기업. 경기 흐름과 관계없이 배당 정책을 지켜온 이력이 있어 배당의 지속성에 가중치를 둘 때 참고됩니다.",
+        "Dividend Kings: 50년 이상 연속 배당 증가 이력을 가진 기업. 수가 많지 않지만 장기 보유 성향을 가진 투자자에게 대표적으로 인용됩니다.",
+        "SCHD·DGRO 등 배당 성장 ETF: 배당수익률은 2~4% 수준이지만 배당 증가율이 연 7~10%대라 장기 누적 수익이 고배당 ETF를 역전하는 경우가 나타납니다."
+        ]
+      },
+      { type: "heading", text: "국내와 미국 배당 과세 구조 차이" },
+      { type: "paragraph", text: "국내 주식 배당은 15.4%(소득세 14% + 지방세 1.4%)가 원천징수됩니다. 미국 주식 배당은 미국에서 15%가 먼저 원천징수되고, 국내 금융소득 2,000만 원을 넘지 않으면 추가 과세가 없습니다. 2,000만 원을 초과하면 종합과세 대상이 되어 누진세율이 적용될 수 있다는 점도 함께 기억해두면 좋습니다." },
+      { type: "heading", text: "실행 순서 제안" },
+      {
+        type: "list",
+        items: [
+        "1) 총배당금이 아닌 배당성향·잉여현금흐름(FCF) 대비 배당 비중을 확인합니다.",
+        "2) 최근 5~10년간 배당 증가율이 꾸준한지 살펴봅니다.",
+        "3) 국내 배당은 ISA/연금계좌를 통해 과세 이연 효과를 먼저 확보합니다.",
+        "4) 해외 배당은 환율·원천징수를 감안해 기대 수익률을 보수적으로 계산합니다."
+        ]
+      }
+    ],
+    sources: [
+      { label: "S&P Global — Dividend Aristocrats 방법론", href: "https://www.spglobal.com/spdji/en/indices/strategy/sp-500-dividend-aristocrats/" },
+      { label: "국세청 — 금융소득 종합과세 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융투자협회 — 배당 관련 통계", href: "https://www.kofia.or.kr/" }
     ]
   },
   "diversification": {
@@ -198,6 +266,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-03-25",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "분산투자는 왜 '공짜 점심'이라 불리나" },
+      { type: "paragraph", text: "노벨경제학상 수상자인 해리 마코위츠는 상관관계가 완벽히 같지 않은 자산을 섞으면 기대수익은 유지하면서 변동성만 낮출 수 있다는 사실을 증명했습니다. 이를 '투자의 공짜 점심(free lunch)'이라 부릅니다. 같은 기대수익률이라도 분산된 포트폴리오는 낙폭이 줄어 장기 생존 확률이 높아집니다." },
+      { type: "heading", text: "분산의 세 축: 자산·지역·시점" },
+      {
+        type: "list",
+        items: [
+          "자산 분산: 주식·채권·현금성·대체자산으로 나눠 경기 국면별로 서로 다른 반응을 보이게 함.",
+          "지역 분산: 국내·미국·선진국·신흥국으로 배분해 특정 국가 리스크를 줄임.",
+          "시점 분산: 정기 적립식(DCA)으로 매수 가격을 분산해 시점 선택 오류를 완화."
+        ]
+      },
+      { type: "heading", text: "과도한 분산의 함정" },
+      { type: "paragraph", text: "종목 수를 늘린다고 분산 효과가 계속 커지지는 않습니다. 연구에 따르면 서로 다른 산업의 20~30개 종목 이후부터는 분산 효과 증가폭이 미미합니다. 오히려 관리 비용만 늘고, 지수 ETF 하나가 더 효율적인 분산이 되는 구간이 금방 시작됩니다." }
+    ],
+    sources: [
+      { label: "한국거래소 — 지수·ETF 공시", href: "https://www.krx.co.kr/" },
+      { label: "금융감독원 — 투자자 보호 자료실", href: "https://www.fss.or.kr/" }
     ]
   },
   "dividend-growth": {
@@ -264,6 +354,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-02-25",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "배당 '성장'이 왜 중요한가" },
+      { type: "paragraph", text: "현재 배당률이 2%인 종목도 연 10%씩 배당을 늘리면 10년 뒤 초기 투자원금 기준 체감 배당률(YOC, Yield On Cost)은 약 5%까지 올라갑니다. 반대로 10% 고배당주가 성장 없이 배당을 유지만 하면 YOC는 그대로입니다. 장기 수익의 지렛대는 높은 현재 배당보다 꾸준한 증가율에 있습니다." },
+      { type: "heading", text: "배당 성장을 가능케 하는 지표" },
+      {
+        type: "list",
+        items: [
+          "잉여현금흐름(FCF) 여유분: 배당의 안정적 재원.",
+          "부채비율과 이자보상배율: 불황기에도 배당을 유지할 체력 확인.",
+          "배당성향(Payout Ratio) 40~60% 구간: 성장 여력이 있는 구조.",
+          "연속 배당 증가 이력(5~25년+): 경영진의 배당 정책 신호."
+        ]
+      },
+      { type: "heading", text: "한국 종목 적용 시 주의점" },
+      { type: "paragraph", text: "국내는 미국처럼 수십 년 연속 배당 증가 종목이 많지 않습니다. 최근에는 기업 지배구조 개편과 주주환원 정책 강화 영향으로 배당 정책을 공시하는 기업이 늘었지만, 여전히 배당 연속성은 업종·경기에 영향을 크게 받습니다." }
+    ],
+    sources: [
+      { label: "금융투자협회 — 배당 관련 통계", href: "https://www.kofia.or.kr/" },
+      { label: "S&P Global — Dividend Aristocrats 방법론", href: "https://www.spglobal.com/spdji/en/indices/strategy/sp-500-dividend-aristocrats/" }
     ]
   },
   "dividend": {
@@ -330,6 +443,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-02-18",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "배당의 구조를 한 문장으로" },
+      { type: "paragraph", text: "배당은 기업이 벌어들인 이익의 일부를 주주에게 현금 또는 주식으로 돌려주는 행위입니다. 지급 주기(연간·반기·분기·월)와 정책(고정 vs 이익 연동)에 따라 투자 성격이 달라집니다." },
+      { type: "heading", text: "배당과 자본차익의 세금 차이" },
+      {
+        type: "list",
+        items: [
+          "국내 배당: 15.4% 원천징수. 연 금융소득 2,000만 원 초과 시 종합과세.",
+          "해외 배당: 미국은 15% 원천징수 후 국내 신고. 2,000만 원 이하면 추가 과세 없음.",
+          "국내 상장 주식 매매차익: 원칙적으로 비과세(대주주 요건 제외).",
+          "해외 주식 매매차익: 연 250만 원 공제 후 22% 양도세(분리과세)."
+        ]
+      },
+      { type: "heading", text: "배당주를 언제 사야 하나" },
+      { type: "paragraph", text: "배당락일(ex-dividend date) 전날까지 매수해야 해당 배당을 받을 수 있습니다. 배당락일 당일 매수분은 그 배당에서 제외됩니다. 다만 배당락일 이후 주가가 배당금만큼 조정되는 경향이 있어, 배당만 노린 단기 매매는 세금까지 고려하면 순익이 거의 없는 경우가 많습니다." }
+    ],
+    sources: [
+      { label: "국세청 — 금융소득 종합과세", href: "https://www.nts.go.kr/" },
+      { label: "한국거래소 — 배당락일 공시", href: "https://www.krx.co.kr/" }
     ]
   },
   "etf-basics": {
@@ -396,6 +532,50 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-03-05",
+    updatedAt: "2025-04-10",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "ETF는 어떻게 만들어지나" },
+      { type: "paragraph", text: "ETF(상장지수펀드)는 운용사가 지수를 추종하도록 설계한 바스켓 펀드를 주식처럼 거래소에 상장한 상품입니다. 주식처럼 실시간 매매가 가능하면서도 수십~수백 종목을 한 번에 보유하는 효과가 있어, 개별 종목 분석 부담을 크게 줄여줍니다." },
+      { type: "heading", text: "꼭 확인할 세 숫자" },
+      {
+        type: "list",
+        items: [
+        "총보수(TER): 운용사가 매년 자산에서 떼어가는 비용입니다. 국내 상장 패시브 ETF는 0.05~0.3%, 액티브는 0.5% 이상이 일반적입니다.",
+        "추적오차(Tracking Error): 지수와 실제 수익률의 차이입니다. 동일 지수를 따르는 ETF 중에서는 추적오차가 작을수록 구조적으로 유리합니다.",
+        "괴리율(Premium/Discount): 순자산가치(NAV)와 시장가의 차이. 거래량이 적은 ETF는 괴리율이 커지므로, 대규모 매수·매도 시 불리해질 수 있습니다."
+        ]
+      },
+      { type: "heading", text: "국내 상장 vs 미국 직상장 과세 차이" },
+      { type: "paragraph", text: "국내 상장 해외지수 ETF는 매매차익에 15.4% 배당소득세가 원천징수되고 2,000만 원 초과 시 종합과세 대상입니다. 미국 직상장 ETF(VOO·SCHD 등)는 연 250만 원 공제 후 22% 양도소득세(분리과세)가 적용됩니다. 금액이 커질수록 미국 직상장의 분리과세가 유리해지는 지점이 나타납니다." },
+      { type: "heading", text: "ETF를 고를 때 점검할 항목" },
+      {
+        type: "list",
+        items: [
+        "지수의 명확성: S&P500·코스피200 같은 대표지수인지, 테마형(2차전지·AI)인지 확인합니다.",
+        "편입종목의 집중도: 상위 10종목 비중이 지나치게 크면 지수 다변화 효과가 약해집니다.",
+        "배당·분배 정책: 월배당형·분기배당형·재투자형 중 본인 목표에 맞는 구조를 고릅니다.",
+        "환헤지 여부: (H) 표시는 환율 변동을 헤지한다는 뜻이며, 헤지 비용이 별도로 발생합니다.",
+        "운용 규모(AUM): 운용 규모가 작으면 상장폐지 위험이 상대적으로 높아집니다."
+        ]
+      },
+      { type: "heading", text: "실행 순서 제안" },
+      {
+        type: "list",
+        items: [
+        "1) 자산 배분 목표(주식·채권·해외·국내)를 먼저 정합니다.",
+        "2) 각 자산별로 추종 지수가 명확한 패시브 ETF를 후보로 선정합니다.",
+        "3) 총보수·추적오차·운용규모를 비교해 상위 1~2개를 추립니다.",
+        "4) 절세계좌(연금저축·IRP·ISA) 한도 내에서 먼저 매수합니다."
+        ]
+      }
+    ],
+    sources: [
+      { label: "한국거래소 — ETF 시장 통계", href: "https://www.krx.co.kr/" },
+      { label: "금융감독원 — ETF 공시 (총보수·추적오차)", href: "https://dart.fss.or.kr/" },
+      { label: "국세청 — 해외주식 양도소득세 안내", href: "https://www.nts.go.kr/" }
     ]
   },
   "etf-vs-stocks": {
@@ -462,6 +642,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-03-08",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "ETF와 개별주의 구조적 차이" },
+      { type: "paragraph", text: "ETF는 수십~수백 종목을 한 번에 보유하는 바스켓입니다. 특정 기업의 실적 쇼크에 대한 영향이 완화되는 대신, 한 종목이 급등해도 전체 수익률에 미치는 영향이 제한됩니다. 반대로 개별주는 기업 분석 품질에 따라 지수 대비 초과 수익을 노릴 수 있지만, 실패 시 손실도 집중됩니다." },
+      { type: "heading", text: "세금·비용 구조" },
+      {
+        type: "list",
+        items: [
+          "ETF 총보수: 연 0.05~0.5%가 자산에서 차감.",
+          "개별주: 매매 시마다 증권거래세(국내 0.18%), 수수료가 발생하지만 총보수는 없음.",
+          "분배금 과세: ETF는 배당소득세 15.4%, 개별주와 동일."
+        ]
+      },
+      { type: "heading", text: "둘을 섞는 '코어-새틀라이트' 전략" },
+      { type: "paragraph", text: "포트폴리오의 70~80%를 저비용 패시브 ETF(코어)로 깔고, 나머지 20~30%를 본인이 확신 있는 개별주(새틀라이트)에 배분하는 방식이 대표적입니다. 시장 수익을 기본으로 확보하면서, 개별 선택의 실수가 전체에 미치는 영향을 제한할 수 있습니다." }
+    ],
+    sources: [
+      { label: "한국거래소 — ETF 시장 통계", href: "https://www.krx.co.kr/" },
+      { label: "금융투자협회 — ETF 총보수·추적오차", href: "https://www.kofia.or.kr/" }
     ]
   },
   "fire-calculator-guide": {
@@ -528,6 +730,30 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-03-20",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "FIRE 계산기 입력값의 의미" },
+      {
+        type: "list",
+        items: [
+          "연 지출: 은퇴 후 필요한 연간 생활비. 현재 소비의 70~80%에서 시작해 조정.",
+          "목표 자산: 연 지출 × 25(=4% 룰) 또는 × 30(=3.3% 룰)로 보수적 산정.",
+          "현재 자산: 연금저축·IRP·ISA·일반계좌 합산.",
+          "월 저축액: 세후 기준, 비상금 제외한 순투자 금액.",
+          "실질 수익률: 표면 수익률 − 물가상승률(한국 장기 2~3% 가정)."
+        ]
+      },
+      { type: "heading", text: "계산기를 쓸 때 놓치기 쉬운 점" },
+      { type: "paragraph", text: "계산기는 평균 수익률을 가정하지만 실제 시장은 변동성이 큽니다. 미국 S&P500은 장기 평균이 약 연 10%지만, 연도별로는 -38%(2008)에서 +34%(2013)까지 벌어집니다. 평균 시나리오 외에 악화 시나리오도 함께 돌려보는 편이 안전합니다." },
+      { type: "heading", text: "점검 주기와 리밸런싱" },
+      { type: "paragraph", text: "FIRE 계획은 최소 1년에 한 번 재계산하고, 자산배분도 연 1회 리밸런싱하는 것이 일반적입니다. 자산이 목표치의 80%를 넘었다면 위험자산 비중을 점진적으로 낮춰 낙폭 리스크를 줄이는 글라이드패스(glide path)도 자주 인용됩니다." }
+    ],
+    sources: [
+      { label: "한국은행 경제통계시스템 — 소비자물가지수", href: "https://ecos.bok.or.kr/" },
+      { label: "William P. Bengen (1994)", href: "https://www.financialplanningassociation.org/sites/default/files/2020-05/MAR94%20JFP-Bengen.pdf" }
     ]
   },
   "fire": {
@@ -594,6 +820,41 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-03-18",
+    updatedAt: "2025-04-10",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "4% 룰은 어디에서 나왔나" },
+      { type: "paragraph", text: "4% 룰은 Trinity Study(Cooley·Hubbard·Walz, 1998)와 William Bengen(1994)의 연구에서 제시된 지속가능 인출률 가이드입니다. 미국 주식 60/채권 40 포트폴리오를 기준으로, 은퇴 첫해 자산의 4%를 인출하고 이후 물가상승률만큼만 조정해 인출해도 30년간 자산이 고갈될 확률이 낮다는 결과였습니다." },
+      { type: "heading", text: "한국 상황에서 4% 룰을 그대로 적용해도 될까" },
+      { type: "paragraph", text: "한국은 국민연금·퇴직연금 제도가 있고, 기대수익률·세제·환율 구조가 미국과 다릅니다. 실무적으로는 3.0~3.5%의 보수적 인출률을 기준으로 자산 목표를 잡고, 이후 자산·시장 상황에 따라 4%까지 상향 여부를 검토하는 방식이 자주 인용됩니다." },
+      { type: "heading", text: "FIRE 달성 기간과 저축률 관계" },
+      { type: "paragraph", text: "Mr. Money Mustache가 정리한 표에 따르면, 실질 수익률 5% 가정에서 저축률(소득 대비 저축 비중)이 10%면 약 51년, 30%면 약 28년, 50%면 약 17년, 65%면 약 10.5년 만에 FIRE 자산(연지출×25)에 도달합니다. 소득을 올리는 것 못지않게 지출을 줄이는 쪽이 기간을 극적으로 단축시킵니다." },
+      { type: "heading", text: "한국형 FIRE 구조 제안" },
+      {
+        type: "list",
+        items: [
+        "연금저축 + IRP(합산 900만 원 한도): 세액공제 16.5% / 13.2%를 활용해 실효 수익률을 높입니다.",
+        "ISA: 서민형은 이자·배당 400만 원까지 비과세, 일반형은 200만 원까지 비과세. 3년 이상 유지 후 연금계좌로 전환 시 추가 세액공제도 가능합니다.",
+        "일반계좌 ETF: 절세계좌 한도 초과분을 저비용 패시브 ETF 위주로 운용합니다.",
+        "생활비 비상금: 6~12개월치 생활비를 CMA·파킹통장에 분리 보관해, 시장 하락기에도 포트폴리오를 건드리지 않도록 합니다."
+        ]
+      },
+      { type: "heading", text: "Lean / Fat / Coast FIRE 구분" },
+      {
+        type: "list",
+        items: [
+        "Lean FIRE: 최소 생활비 기준으로 은퇴(연 지출이 상대적으로 낮음). 인출률 여유가 적어 시장 악화에 민감합니다.",
+        "Fat FIRE: 여유 있는 생활비 기준. 자산 규모가 더 크고, 일정 소비 수준을 유지하는 것을 목표로 합니다.",
+        "Coast FIRE: 젊은 시기에 일정 자산을 축적해두고, 이후에는 본인 생활비만 벌면 되는 상태. 완전 은퇴가 아닌 자유로운 직업 선택을 목표로 합니다."
+        ]
+      }
+    ],
+    sources: [
+      { label: "William P. Bengen (1994) — Determining Withdrawal Rates Using Historical Data", href: "https://www.financialplanningassociation.org/sites/default/files/2020-05/MAR94%20JFP-Bengen.pdf" },
+      { label: "Trinity Study — Cooley, Hubbard, Walz (1998)", href: "https://www.aaii.com/files/pdf/6794_retirement-savings-choosing-a-withdrawal-rate-that-is-sustainable.pdf" },
+      { label: "Mr. Money Mustache — The Shockingly Simple Math Behind Early Retirement", href: "https://www.mrmoneymustache.com/2012/01/13/the-shockingly-simple-math-behind-early-retirement/" }
     ]
   },
   "high-dividend-risks": {
@@ -660,6 +921,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-02-28",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "'고배당 = 좋은 종목'이 아닌 이유" },
+      { type: "paragraph", text: "배당률은 연 배당금을 주가로 나눈 값입니다. 주가가 급락하면 분모가 작아져 배당률이 자동으로 높아집니다. 실적이 나빠져 배당금을 곧 줄일 가능성이 있는 '배당 함정(dividend trap)'일 수 있습니다." },
+      { type: "heading", text: "고배당 종목이 자주 위치하는 업종" },
+      {
+        type: "list",
+        items: [
+          "성숙 산업(통신·담배·유틸리티): 성장이 낮은 대신 현금흐름이 안정.",
+          "리츠·MLP: 법적으로 이익의 90% 이상을 배당해야 하므로 외형상 고배당.",
+          "금융주: 경기 하락 시 배당 삭감 사례가 과거에 반복됨(2008년 이후).",
+          "구조적 사양 업종: 장기적으로 이익이 줄고 있어 배당 유지가 어려울 수 있음."
+        ]
+      },
+      { type: "heading", text: "확인해야 할 지표" },
+      { type: "paragraph", text: "배당성향 80% 이상, 부채비율 급증, 잉여현금흐름 감소, 경쟁 심화 같은 신호가 겹치면 향후 배당 삭감 가능성이 높아집니다. 단순히 배당률 숫자만 보지 말고, 배당의 지속 가능성을 함께 확인해야 합니다." }
+    ],
+    sources: [
+      { label: "금융감독원 — 상장회사 배당 공시", href: "https://dart.fss.or.kr/" },
+      { label: "S&P Global — Dividend 관련 리서치", href: "https://www.spglobal.com/" }
     ]
   },
   "isa-basics": {
@@ -726,6 +1010,50 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-04-02",
+    updatedAt: "2025-04-15",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "ISA가 왜 만들어졌나" },
+      { type: "paragraph", text: "ISA(개인종합자산관리계좌)는 예·적금, 국내외 주식·ETF, 리츠·채권 등을 하나의 계좌에서 운용하면서 발생한 이자·배당·매매차익에 대해 일정 금액까지 비과세 혜택을 주는 절세계좌입니다. 장기 저축·투자 습관을 장려하기 위해 도입됐고, 금융소득 종합과세를 피하고 싶은 투자자가 1순위로 활용합니다." },
+      { type: "heading", text: "유형별 한도와 혜택" },
+      {
+        type: "list",
+        items: [
+        "일반형: 총급여 상관없이 누구나 가입, 이자·배당 200만 원까지 비과세, 초과분은 9.9% 분리과세.",
+        "서민형: 총급여 5,000만 원 이하 등 요건 충족 시 400만 원까지 비과세. 세제상 가장 유리한 유형.",
+        "농어민형: 농어민에게만 적용, 서민형과 동일한 400만 원 비과세.",
+        "납입 한도: 연 2,000만 원, 5년 누적 최대 1억 원(이월 가능).",
+        "의무 가입 기간: 3년(중도 해지 시 비과세 혜택 소급 과세)."
+        ]
+      },
+      { type: "heading", text: "ISA에 담으면 특히 유리한 자산" },
+      {
+        type: "list",
+        items: [
+        "국내 상장 해외지수 ETF: 배당소득세 15.4% 과세 대상이라 비과세 효과가 큼. (예: KODEX 미국S&P500, TIGER 미국나스닥100)",
+        "국내 고배당주·리츠: 배당소득이 금융소득 종합과세 대상에 포함될 수 있어 ISA로 분리과세 전환 시 유리.",
+        "채권형 ETF·채권: 이자소득이 크면 금융소득 종합과세 위험이 올라가므로 ISA에서 운용 시 체감 혜택 큼."
+        ]
+      },
+      { type: "heading", text: "연금계좌 전환 특례" },
+      { type: "paragraph", text: "ISA 만기 자산을 연금저축·IRP로 이체하면 이체 금액의 10%(최대 300만 원) 추가 세액공제를 받을 수 있습니다. 기존 연금저축 600만 원 + IRP 300만 원 한도와 별도로 적용되며, 중장기 은퇴 준비와 ISA의 단기 비과세 혜택을 동시에 챙길 수 있는 구조입니다." },
+      { type: "heading", text: "실행 순서 제안" },
+      {
+        type: "list",
+        items: [
+        "1) 총급여로 일반형/서민형 적용 여부를 먼저 확인합니다.",
+        "2) 연 2,000만 원 한도 내에서 매달 자동이체 금액을 정합니다.",
+        "3) 배당·이자 소득이 큰 자산을 우선 담습니다.",
+        "4) 만기 시 상황에 따라 연금계좌 전환 특례 활용 여부를 결정합니다."
+        ]
+      }
+    ],
+    sources: [
+      { label: "국세청 — ISA 세제 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융위원회 — ISA 제도 안내", href: "https://www.fsc.go.kr/" },
+      { label: "금융투자협회 — ISA 운용 통계", href: "https://www.kofia.or.kr/" }
     ]
   },
   "isa-benefits": {
@@ -792,6 +1120,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-04-05",
+    updatedAt: "2025-04-15",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "ISA의 3대 혜택 요약" },
+      {
+        type: "list",
+        items: [
+          "비과세 한도: 서민형 400만 원, 일반형 200만 원까지 이자·배당 비과세.",
+          "분리과세: 비과세 한도 초과분은 9.9%로 분리과세, 종합과세 합산 제외.",
+          "연금계좌 전환 특례: 만기 자산을 연금저축·IRP로 이체 시 10%(최대 300만 원) 추가 세액공제."
+        ]
+      },
+      { type: "heading", text: "세금 관점 시뮬레이션" },
+      { type: "paragraph", text: "연 배당 300만 원을 받는 투자자가 있다고 가정합시다. 일반 계좌에서는 15.4% 원천징수로 약 46만 원이 세금으로 나갑니다. 서민형 ISA에서는 400만 원까지 비과세이므로 세금 0원. 5년간 누적하면 230만 원의 세금 차이가 만들어집니다." },
+      { type: "heading", text: "활용 순서 권장안" },
+      { type: "paragraph", text: "① 총급여로 서민형 가능 여부 확인 → ② 연 2,000만 원 한도 내에서 배당 자산 먼저 담기 → ③ 3년 이상 유지 → ④ 만기 시 연금계좌 전환 특례로 추가 세액공제 활용. 이 순서를 따르면 단기 절세와 장기 은퇴 준비 혜택을 모두 챙길 수 있습니다." }
+    ],
+    sources: [
+      { label: "국세청 — ISA 세제 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융위원회 — ISA 제도 안내", href: "https://www.fsc.go.kr/" }
     ]
   },
   "long-vs-short-term": {
@@ -858,6 +1208,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-02-10",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "기간이 수익률 분포에 미치는 영향" },
+      { type: "paragraph", text: "미국 S&P500 역사 자료(1926~)에 따르면 1년 보유 시 수익률 편차는 -43%~+54%로 매우 큽니다. 하지만 20년 보유로 기간을 늘리면 최저 +2%대로 안정되며 손실 구간이 거의 사라집니다. 기간이 길어질수록 시장의 장기 평균 수익률에 수렴합니다." },
+      { type: "heading", text: "단기 매매의 구조적 불리함" },
+      {
+        type: "list",
+        items: [
+          "증권거래세(국내 0.18%)·수수료가 반복 매매마다 누적.",
+          "매매차익 세금(해외 22%, 국내 대주주 해당 시) 발생.",
+          "시점 선택 오류 비용: 타이밍을 5일 놓치면 장기 수익률이 크게 떨어진다는 JPM 연구."
+        ]
+      },
+      { type: "heading", text: "장기투자가 쉬워지는 구조" },
+      { type: "paragraph", text: "장기 투자의 가장 큰 적은 시장이 아니라 본인의 감정입니다. 자동이체로 매달 일정 금액을 투입하고, 계좌 확인 주기를 줄이는 것만으로도 중도 포기 확률이 크게 낮아집니다. 투자 원칙을 문서화해 흔들릴 때마다 다시 읽는 것도 도움이 됩니다." }
+    ],
+    sources: [
+      { label: "J.P. Morgan — Guide to Retirement", href: "https://am.jpmorgan.com/us/en/asset-management/adv/insights/retirement-insights/guide-to-retirement/" },
+      { label: "한국거래소 — 장기 투자 통계", href: "https://www.krx.co.kr/" }
     ]
   },
   "loss-tax": {
@@ -924,6 +1296,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-03-28",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "해외주식 양도세의 손익통산 구조" },
+      { type: "paragraph", text: "해외주식 양도소득세는 연 단위로 이익과 손실을 합산합니다. 한 해 A종목에서 500만 원 이익, B종목에서 300만 원 손실이라면 과세 대상은 순이익 200만 원에서 기본공제 250만 원을 뺀 값이 되어 실제 납부세는 0원입니다." },
+      { type: "heading", text: "이월공제는 불가" },
+      { type: "paragraph", text: "해외주식 양도세는 해당 연도 안에서만 손익을 합산할 수 있고, 한 해의 순손실을 다음 해 이익과 상계할 수는 없습니다. 따라서 연말에 평가손실 종목을 일부 매도해 이익을 상쇄(손실 수확, tax-loss harvesting)하는 전략이 자주 인용됩니다." },
+      { type: "heading", text: "실행 시 주의점" },
+      {
+        type: "list",
+        items: [
+          "가족 간 증여·명의 분산은 반드시 세무사 상담 후 진행.",
+          "Wash-sale(동일 종목을 짧은 기간 내 재매수) 규정은 한국에는 공식 명문 규정이 없지만 실질과세 원칙에 따라 부인될 여지 있음.",
+          "연말 기준 환율에 따라 손익 금액이 달라지므로 12월 매매 시 환율 변동까지 고려.",
+          "국내 주식은 원칙적으로 비과세라 이 구조가 적용되지 않음."
+        ]
+      }
+    ],
+    sources: [
+      { label: "국세청 — 해외주식 양도소득세", href: "https://www.nts.go.kr/" },
+      { label: "한국금융투자협회 — 세제 가이드", href: "https://www.kofia.or.kr/" }
     ]
   },
   "monthly-dividend-etf-checklist": {
@@ -990,6 +1385,32 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-03-12",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "월배당 ETF의 구조" },
+      { type: "paragraph", text: "월배당 ETF는 편입 종목들의 분기·연간 배당을 운용사가 시점 조정해 매월 분배금으로 지급합니다. 현금흐름이 꾸준하다는 장점이 있지만, 분배를 위해 커버드콜·옵션 전략을 쓰는 상품은 주가 상승폭이 제한될 수 있습니다." },
+      { type: "heading", text: "체크리스트 7가지" },
+      {
+        type: "list",
+        items: [
+          "분배금 재원: 배당만인지 옵션 프리미엄까지 포함인지 확인.",
+          "총보수·기초지수 추적 구조 확인.",
+          "12개월 분배금 합산 기준 실제 배당률 계산(표면 숫자 아님).",
+          "원금 손실 위험: 주가가 하락해도 분배금은 계속 나올 수 있음.",
+          "세금: 국내 상장은 15.4% 원천징수, 미국 상장은 15%.",
+          "환율 노출 여부(H/비헤지).",
+          "운용 규모(AUM): 너무 작으면 상장폐지 위험."
+        ]
+      },
+      { type: "heading", text: "월배당 = 인컴 전부는 아님" },
+      { type: "paragraph", text: "월배당 ETF는 현금흐름 관리에는 편리하지만, 성장주 중심 ETF보다 장기 총수익이 낮을 수 있습니다. 본인의 투자 목적(은퇴 직전 현금흐름 vs 자산 성장)에 맞춰 비중을 조절하는 편이 좋습니다." }
+    ],
+    sources: [
+      { label: "한국거래소 — ETF 분배금 공시", href: "https://www.krx.co.kr/" },
+      { label: "금융감독원 — ETF 투자자 유의사항", href: "https://www.fss.or.kr/" }
     ]
   },
   "pension-vs-irp": {
@@ -1056,6 +1477,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-03-22",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "두 계좌의 한도와 세액공제" },
+      {
+        type: "list",
+        items: [
+          "연금저축: 연 600만 원 납입 한도, 세액공제율 13.2~16.5%.",
+          "IRP(개인형퇴직연금): 연금저축 한도 포함 합산 900만 원까지 세액공제, 그 이상 납입은 가능하지만 공제 없음.",
+          "세액공제율은 총급여 5,500만 원(종합소득 4,500만 원) 기준 차등."
+        ]
+      },
+      { type: "heading", text: "운용 자산 차이" },
+      { type: "paragraph", text: "연금저축은 국내 상장 ETF·펀드 위주로 투자 가능하고, IRP는 위험자산(주식형 ETF·펀드 등) 70% 한도 규제가 있습니다. 안전자산(예적금·국채·채권형 등) 30% 이상을 반드시 편입해야 합니다." },
+      { type: "heading", text: "연금 수령 시 과세" },
+      { type: "paragraph", text: "55세 이후 연금 형태로 수령하면 연금소득세 3.3~5.5%가 적용되어, 일시 수령보다 세금이 크게 줄어듭니다. 중도 인출은 기타소득세 16.5%로 불리하므로 최대한 55세 이후까지 유지하는 편이 유리합니다." }
+    ],
+    sources: [
+      { label: "국세청 — 연금계좌 세제 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융감독원 — 퇴직연금 종합안내", href: "https://www.fss.or.kr/" }
     ]
   },
   "pension": {
@@ -1122,6 +1565,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "복리 계산기",
         "href": "/cal/compound"
       }
+    ],
+    publishedAt: "2025-03-15",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "한국 연금의 3층 구조" },
+      {
+        type: "list",
+        items: [
+          "1층 국민연금: 의무 가입, 소득 비례 설계. 노후 기본 생활비의 핵심.",
+          "2층 퇴직연금(DB/DC/IRP): 회사가 적립, DC/IRP는 본인이 운용.",
+          "3층 개인연금(연금저축): 자발적 가입, 세액공제와 과세이연 혜택."
+        ]
+      },
+      { type: "heading", text: "세액공제와 과세이연" },
+      { type: "paragraph", text: "연금저축·IRP 합산 최대 900만 원까지 세액공제를 받을 수 있으며(13.2~16.5%), 운용 중 발생한 이익은 인출 전까지 과세가 이연됩니다. 과세이연은 복리효과를 크게 만드는 핵심 장치입니다." },
+      { type: "heading", text: "수령 시점 전략" },
+      { type: "paragraph", text: "연금은 10년 이상 분할 수령하면 연금소득세 3.3~5.5%로 낮아지고, 일시 수령 시에는 기타소득세 16.5%가 부과됩니다. 연 1,500만 원 초과 시 종합과세 또는 분리과세 선택 가능." }
+    ],
+    sources: [
+      { label: "국민연금공단", href: "https://www.nps.or.kr/" },
+      { label: "국세청 — 연금계좌 세제 안내", href: "https://www.nts.go.kr/" }
     ]
   },
   "portfolio-basics": {
@@ -1188,6 +1653,30 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-03-01",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "포트폴리오 구성의 핵심 단계" },
+      {
+        type: "list",
+        items: [
+          "1) 목표 기간과 금액 정의: 은퇴, 주택, 자녀 교육 등.",
+          "2) 위험 허용도 점검: 최대 손실 -20%와 -40%, 본인이 감당 가능한 구간 확인.",
+          "3) 자산 배분(주식·채권·현금·대체) 비율 결정.",
+          "4) 세부 종목·ETF 선택.",
+          "5) 연 1회 리밸런싱 규칙 수립."
+        ]
+      },
+      { type: "heading", text: "연령별 참고 배분" },
+      { type: "paragraph", text: "전통적인 100 − 나이 공식을 따르면 30세는 주식 70%/채권 30%, 50세는 50%/50%가 출발점입니다. 다만 이는 가이드일 뿐, 실제 배분은 본인의 현금흐름·보유자산·직업 안정성을 함께 고려해야 합니다." },
+      { type: "heading", text: "리밸런싱이 하는 일" },
+      { type: "paragraph", text: "주식이 급등해 비중이 목표보다 커지면 일부를 팔아 채권을 사고, 반대면 주식을 더 사는 방식입니다. 비싸진 자산을 팔고 싸진 자산을 사는 역행 효과가 자연스럽게 생겨 장기 변동성 관리에 도움이 됩니다." }
+    ],
+    sources: [
+      { label: "CFA Institute — Portfolio Management", href: "https://www.cfainstitute.org/" },
+      { label: "금융투자협회 — 자산배분 참고자료", href: "https://www.kofia.or.kr/" }
     ]
   },
   "portfolio-mistakes": {
@@ -1254,6 +1743,30 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-03-04",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "초보 투자자가 자주 빠지는 실수" },
+      {
+        type: "list",
+        items: [
+          "과도한 종목 집중: 한 종목·한 섹터에 50% 이상 배분.",
+          "시장 타이밍 시도: 상승장에 늦게 들어가고 하락장에 손절 반복.",
+          "잦은 포트폴리오 수정: 뉴스마다 비중 변경.",
+          "위험 허용도 과대평가: 실제 하락 시 감내 불가.",
+          "비상자금 없이 전액 투자: 급한 돈이 필요할 때 손실 확정 매도 강요."
+        ]
+      },
+      { type: "heading", text: "행동경제학이 설명하는 실수" },
+      { type: "paragraph", text: "손실회피(loss aversion)는 같은 금액의 이익보다 손실을 2배 이상 강하게 느끼게 만듭니다. 이 때문에 손실 종목은 들고 있고 이익 종목을 빨리 파는 처분효과(disposition effect)가 자주 나타납니다. 규칙 기반 리밸런싱은 이런 편향을 줄이는 장치입니다." },
+      { type: "heading", text: "예방 체크리스트" },
+      { type: "paragraph", text: "매매 전에 '이 결정이 원래 세운 계획에 부합하는가, 뉴스에 반응한 결정인가'를 스스로 묻는 습관을 들이고, 매매 이유와 결과를 기록해 복기하면 같은 실수가 반복되는 빈도가 줄어듭니다." }
+    ],
+    sources: [
+      { label: "Daniel Kahneman — Thinking, Fast and Slow", href: "https://us.macmillan.com/books/9780374533557/thinkingfastandslow" },
+      { label: "CFA Institute — Behavioral Finance", href: "https://www.cfainstitute.org/" }
     ]
   },
   "risk-management": {
@@ -1320,6 +1833,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-03-10",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "리스크 = 변동성이 아닌 영구 손실 가능성" },
+      { type: "paragraph", text: "변동성은 가격이 흔들리는 폭이고, 리스크는 투자 목적에 실패할 가능성입니다. 은퇴 10년 전이라면 단기 변동성보다 영구적 자본 손실이 더 중요한 리스크입니다." },
+      { type: "heading", text: "개인 투자자의 핵심 리스크 관리 도구" },
+      {
+        type: "list",
+        items: [
+          "비상자금 6~12개월치: 시장 하락기에도 포트폴리오를 건드리지 않게 함.",
+          "자산배분: 주식·채권·현금을 섞어 낙폭 완화.",
+          "보험(실손·생명·손해): 비재무적 리스크가 재무에 미치는 영향 차단.",
+          "부채 관리: DSR·LTV가 일정 수준을 넘지 않게 유지."
+        ]
+      },
+      { type: "heading", text: "자산별 낙폭 가늠" },
+      { type: "paragraph", text: "S&P500의 역사적 최대낙폭(MDD)은 약 -55%(2008), 국내 코스피는 약 -54%(2008)입니다. 채권 혼합 60/40 포트폴리오는 MDD가 상대적으로 -30% 수준으로 완화되는 경향이 있습니다. 본인의 포트폴리오가 이런 구간을 견딜 수 있는지 사전에 점검하는 것이 중요합니다." }
+    ],
+    sources: [
+      { label: "금융감독원 — 투자자 보호 자료실", href: "https://www.fss.or.kr/" },
+      { label: "CFA Institute — Risk Management", href: "https://www.cfainstitute.org/" }
     ]
   },
   "stock-basics": {
@@ -1386,6 +1922,30 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-02-05",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "주식이라는 증서의 의미" },
+      { type: "paragraph", text: "주식은 회사의 지분 증서입니다. 주주는 이익 배당, 의결권, 잔여재산분배권을 가집니다. 상장 주식은 거래소에서 누구나 사고팔 수 있지만, 가격은 매순간 수요와 공급, 실적 기대, 시장 심리에 따라 변합니다." },
+      { type: "heading", text: "자주 보는 지표들" },
+      {
+        type: "list",
+        items: [
+          "PER(주가수익비율): 주가 ÷ 주당순이익. 업종별 기준이 다르고 성장성이 높을수록 커지는 경향.",
+          "PBR(주가순자산비율): 주가 ÷ 주당순자산. 1배 미만은 저PBR, 자산가치 관점 할인 신호.",
+          "ROE(자기자본이익률): 순이익 ÷ 자기자본. 15% 이상이면 우수로 보는 기준이 일반적.",
+          "EPS(주당순이익): 기업 이익을 주식 수로 나눈 값.",
+          "배당성향: 순이익 대비 배당금 비율."
+        ]
+      },
+      { type: "heading", text: "처음 시작할 때 유의점" },
+      { type: "paragraph", text: "종목 수는 처음부터 많이 늘리지 말고, 잘 아는 산업 1~2개의 대표 종목에서 시작하는 편이 공부 효율이 좋습니다. 개별주 비중이 부담된다면 지수 ETF로 시장 수익을 먼저 확보하고 점진적으로 비중을 조절하는 방식을 권장합니다." }
+    ],
+    sources: [
+      { label: "한국거래소 — 상장기업 공시", href: "https://www.krx.co.kr/" },
+      { label: "금융감독원 전자공시 DART", href: "https://dart.fss.or.kr/" }
     ]
   },
   "tax": {
@@ -1452,6 +2012,30 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-04-10",
+    updatedAt: "2025-04-15",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "투자 관련 주요 세금 한눈에" },
+      {
+        type: "list",
+        items: [
+          "국내 주식 매매차익: 원칙 비과세(대주주 예외).",
+          "해외 주식 매매차익: 연 250만 원 공제 후 22% 양도세(분리과세).",
+          "국내 배당·이자: 15.4% 원천징수, 연 2,000만 원 초과 시 종합과세.",
+          "해외 배당: 미국 15% 원천징수 후 국내 신고.",
+          "ETF 매매차익: 국내 상장 해외지수 ETF는 배당소득세 15.4% 과세."
+        ]
+      },
+      { type: "heading", text: "절세계좌 우선순위" },
+      { type: "paragraph", text: "세율이 높은 자산(해외 ETF·배당 종목)을 ISA·연금저축·IRP에 먼저 담으면 체감 절세 효과가 큽니다. 절세계좌 한도를 모두 활용한 뒤 일반계좌로 넘어가는 순서가 일반적입니다." },
+      { type: "heading", text: "연말 세무 점검 포인트" },
+      { type: "paragraph", text: "해외주식 양도세는 1년 단위 손익 합산이 원칙이므로 연말에 평가손익을 점검해 손실 수확(tax-loss harvesting)을 검토하고, 금융소득 종합과세 경계선(2,000만 원)에 가까우면 배당 매매 시점을 조정하는 전략이 쓰입니다." }
+    ],
+    sources: [
+      { label: "국세청 — 세법 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융투자협회 — 세제 참고자료", href: "https://www.kofia.or.kr/" }
     ]
   },
   "us-stock-tax-basics": {
@@ -1518,6 +2102,28 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "배당 계산기",
         "href": "/cal/calculator"
       }
+    ],
+    publishedAt: "2025-03-30",
+    updatedAt: "2025-04-15",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "미국 주식 양도세 계산 구조" },
+      { type: "paragraph", text: "연간 실현 순이익에서 기본공제 250만 원을 뺀 금액에 22%(양도세 20% + 지방세 2%)를 곱해 산출합니다. 예를 들어 연 순이익 1,000만 원이면 (1,000 − 250) × 22% = 165만 원이 납부세액입니다." },
+      { type: "heading", text: "배당소득과의 구분" },
+      {
+        type: "list",
+        items: [
+          "배당: 미국에서 15% 원천징수, 국내 2,000만 원 이하면 추가 신고 없음.",
+          "양도세: 국내에서 자진 신고(매년 5월).",
+          "이 둘은 별개이며, 배당과 매매차익을 합산하지 않음."
+        ]
+      },
+      { type: "heading", text: "환율과 신고 기준" },
+      { type: "paragraph", text: "미국 주식 양도세는 매수·매도 시점의 원화 환산 금액 기준으로 계산합니다. 같은 달러 기준 이익이라도 환율 변동에 따라 원화 기준 과세 대상이 커지거나 작아질 수 있으므로, 환율까지 포함한 손익을 관리해야 합니다." }
+    ],
+    sources: [
+      { label: "국세청 — 해외주식 양도소득세 안내", href: "https://www.nts.go.kr/" },
+      { label: "한국은행 — 환율 통계", href: "https://ecos.bok.or.kr/" }
     ]
   },
   "why-tax-advantaged-accounts": {
@@ -1584,6 +2190,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "양도소득세 계산기",
         "href": "/cal/capital-gains"
       }
+    ],
+    publishedAt: "2025-04-08",
+    updatedAt: "2025-04-15",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "절세계좌가 복리에 미치는 영향" },
+      { type: "paragraph", text: "절세계좌의 핵심 효과는 과세이연과 세액공제입니다. 예를 들어 매년 15.4% 과세되던 자산이 연금계좌에서 과세이연되면 같은 수익률에서 30년 누적 자산이 20% 이상 커질 수 있습니다. 세금이 빠져나가지 않은 원금이 계속 복리로 굴러가기 때문입니다." },
+      { type: "heading", text: "계좌별 핵심 혜택 요약" },
+      {
+        type: "list",
+        items: [
+          "연금저축: 연 600만 원 세액공제, 과세이연, 55세 이후 연금 수령 시 낮은 세율.",
+          "IRP: 연금저축 합산 900만 원까지 세액공제, 안전자산 30% 의무.",
+          "ISA: 이자·배당 최대 400만 원 비과세, 초과분 9.9% 분리과세.",
+          "주택청약종합저축: 연 240만 원 소득공제(연소득 7,000만 원 이하 무주택자)."
+        ]
+      },
+      { type: "heading", text: "자산 배치 순서" },
+      { type: "paragraph", text: "연금저축·IRP 한도 채우기 → ISA 담기 → 일반계좌의 순서가 세금 관점에서 가장 효율적입니다. 단, 중도 유동성이 필요할 수 있다면 절세계좌에 자금을 묶기 전에 비상자금과 단기 목표 자금을 먼저 확보하는 것이 안전합니다." }
+    ],
+    sources: [
+      { label: "국세청 — 연금계좌 세제 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융위원회 — ISA 제도 안내", href: "https://www.fsc.go.kr/" }
     ]
   },
   "cashflow-vs-capital-gains": {
@@ -1650,6 +2279,29 @@ export const guideArticles: Record<string, GuideArticle> = {
         "label": "FIRE 계산기",
         "href": "/cal/fire"
       }
+    ],
+    publishedAt: "2025-02-16",
+    updatedAt: "2025-04-12",
+    author: "afternoonkim (BlueDino 운영자)",
+    longContent: [
+      { type: "heading", text: "두 수익 방식의 구조 차이" },
+      { type: "paragraph", text: "현금흐름형(배당·임대료 등)은 주기적으로 현금이 들어와 생활비로 쓰거나 재투자할 수 있는 구조입니다. 자본차익형(주가 상승)은 보유 중에는 현금이 없고 매도 시점에 한 번에 실현됩니다. 두 방식은 세금과 심리적 체감이 전혀 다릅니다." },
+      { type: "heading", text: "세금 차이" },
+      {
+        type: "list",
+        items: [
+          "배당: 받을 때마다 15.4%(국내)·15%(미국) 과세.",
+          "국내 주식 매매차익: 원칙 비과세.",
+          "해외 주식 매매차익: 연 250만 원 공제 후 22%.",
+          "세금만 놓고 보면 국내 주식 자본차익형이 단연 유리."
+        ]
+      },
+      { type: "heading", text: "생애 주기별 비중 조절" },
+      { type: "paragraph", text: "자산 축적기(20~40대)에는 세금 효율이 좋은 자본차익형 비중을 높여 자산을 키우고, 은퇴가 가까워질수록 현금흐름형 비중을 늘려 실제 생활비 공급원을 구축하는 전환 전략이 자주 권장됩니다." }
+    ],
+    sources: [
+      { label: "국세청 — 세법 안내", href: "https://www.nts.go.kr/" },
+      { label: "금융투자협회 — 배당·매매차익 세제", href: "https://www.kofia.or.kr/" }
     ]
   }
 };

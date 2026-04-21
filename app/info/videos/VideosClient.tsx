@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, RefreshCcw, Search, Youtube } from "lucide-react";
-import AdBlock from "@/components/ad/AdBlock";
 
 type VideoItem = {
   id: string;
@@ -195,8 +194,6 @@ export default function VideosClient() {
             })}
           </div>
         </section>
-
-        <AdBlock />
 
         {loading ? (
           <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

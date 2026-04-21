@@ -17,7 +17,7 @@ const staticRoutes = [
   "/cal/ltv",
   "/cal/loan-interest",
   "/cal/mortgage",
-  "/info/blog",
+  // "/info/blog" — 외부 네이버 RSS 집계 페이지라 색인 제외 (noindex)
   "/info/etc/about",
   "/info/etc/contact",
   "/info/etc/privacy",
@@ -59,7 +59,7 @@ const staticRoutes = [
   "/info/strategy/market-downturn",
   "/info/strategy/retirement-income",
   "/info/strategy/tax-efficient-investing",
-  "/info/videos",
+  // "/info/videos" — 외부 YouTube 영상 집계 페이지라 색인 제외 (noindex)
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

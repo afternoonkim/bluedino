@@ -6,6 +6,11 @@ import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
 type LinkItem = { label: string; href: string };
 type FaqItem = { question: string; answer: string };
 
+export type LongContentBlock =
+  | { type: "heading"; text: string }
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[] };
+
 export type GuideArticle = {
   slug: string;
   title: string;
@@ -24,9 +29,34 @@ export type GuideArticle = {
   faqs: FaqItem[];
   related: LinkItem[];
   calculators: LinkItem[];
+  publishedAt?: string;
+  updatedAt?: string;
+  author?: string;
+  longContent?: LongContentBlock[];
+  sources?: LinkItem[];
 };
 
+const DEFAULT_AUTHOR = "afternoonkim (BlueDino 운영자)";
+const DEFAULT_PUBLISHED_AT = "2025-01-01";
+
+function formatDateLabel(input?: string) {
+  if (!input) return "";
+  const date = new Date(input);
+  if (Number.isNaN(date.getTime())) return input;
+  return new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+}
+
 export default function GuideArticlePage({ article }: { article: GuideArticle }) {
+  const author = article.author ?? DEFAULT_AUTHOR;
+  const publishedAt = article.publishedAt ?? DEFAULT_PUBLISHED_AT;
+  const updatedAt = article.updatedAt ?? publishedAt;
+  const publishedLabel = formatDateLabel(publishedAt);
+  const updatedLabel = formatDateLabel(updatedAt);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -45,6 +75,23 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
     "@type": "Article",
     headline: article.title,
     description: article.description,
+    inLanguage: "ko-KR",
+    datePublished: publishedAt,
+    dateModified: updatedAt,
+    author: {
+      "@type": "Person",
+      name: author,
+      url: "https://bluedino.kr/info/etc/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "BlueDino",
+      url: "https://bluedino.kr",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://bluedino.kr/info/guide/${article.slug}`,
+    },
   };
 
   return (
@@ -64,6 +111,19 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">{article.badge}</span>
           <h1 className="bd-title-lg mt-4">{article.title}</h1>
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+            <span className="font-semibold text-slate-200">{author}</span>
+            {publishedLabel && (
+              <span>
+                발행 <time dateTime={publishedAt}>{publishedLabel}</time>
+              </span>
+            )}
+            {updatedLabel && updatedAt !== publishedAt && (
+              <span>
+                수정 <time dateTime={updatedAt}>{updatedLabel}</time>
+              </span>
+            )}
+          </div>
           <p className="bd-text-main mt-4">{article.hero}</p>
         </section>
 
@@ -84,6 +144,46 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
             ))}
           </div>
         </section>
+
+        {article.longContent && article.longContent.length > 0 && (
+          <section className="bd-card bd-card-padding">
+            <h2 className="bd-title-md">자세히 살펴보기</h2>
+            <div className="mt-4 space-y-4">
+              {article.longContent.map((block, index) => {
+                if (block.type === "heading") {
+                  return (
+                    <h3
+                      key={`heading-${index}-${block.text}`}
+                      className="mt-6 text-lg font-semibold text-white"
+                    >
+                      {block.text}
+                    </h3>
+                  );
+                }
+                if (block.type === "list") {
+                  return (
+                    <ul
+                      key={`list-${index}`}
+                      className="list-disc space-y-2 pl-6 text-slate-300 leading-7"
+                    >
+                      {block.items.map((item, itemIndex) => (
+                        <li key={`list-${index}-${itemIndex}`}>{item}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+                return (
+                  <p
+                    key={`paragraph-${index}`}
+                    className="bd-text-main leading-8"
+                  >
+                    {block.text}
+                  </p>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">자주 놓치는 부분</h2>
@@ -149,6 +249,29 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
             </Link>
           </div>
         </section>
+
+        {article.sources && article.sources.length > 0 && (
+          <section className="bd-card-soft bd-card-padding">
+            <h2 className="bd-title-md">참고 자료</h2>
+            <p className="bd-text-sub mt-3">
+              본문 근거로 참고한 공식 자료·공개 보고서 목록입니다. 제도와 세율은 변경될 수 있으므로, 실제 실행 전에 원문을 다시 확인하는 것을 권장합니다.
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-slate-300">
+              {article.sources.map((source) => (
+                <li key={source.href}>
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
+                  >
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">읽기 전에 알아두면 좋은 점</h2>

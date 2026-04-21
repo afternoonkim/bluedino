@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import AdBlock from "@/components/ad/AdBlock";
 import { ExternalLink, FileText, RefreshCcw, Search, Sparkles } from "lucide-react";
 
 type BlogItem = {
@@ -260,8 +259,6 @@ export default function BlogFeedClient() {
             현재 반환된 글 {returnedCount}개
           </div>
         </section>
-
-        <AdBlock />
 
         {loading ? (
           <section className="bd-grid-3">
