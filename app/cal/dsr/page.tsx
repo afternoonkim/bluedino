@@ -41,6 +41,16 @@ const structuredData = {
   url: "https://bluedino.kr/cal/dsr",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 3, name: "DSR 계산기", item: "https://bluedino.kr/cal/dsr" },
+  ],
+};
+
 export default function Page() {
   return (
     <>
@@ -55,6 +65,11 @@ export default function Page() {
         id="dsr-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="dsr-breadcrumb-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <DsrCalculatorClient />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}

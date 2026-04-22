@@ -35,6 +35,16 @@ const structuredData = {
   url: "https://bluedino.kr/cal/mortgage",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 3, name: "주택담보대출 계산기", item: "https://bluedino.kr/cal/mortgage" },
+  ],
+};
+
 export default function Page() {
   return (
     <>
@@ -49,6 +59,11 @@ export default function Page() {
         id="주담대-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="mortgage-breadcrumb-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <MortgageCalculatorClient />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}

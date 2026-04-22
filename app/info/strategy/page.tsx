@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import AdBlock from "@/components/ad/AdBlock";
+
+export const metadata: Metadata = {
+  title: "투자 전략 가이드 | BlueDino",
+  description:
+    "절세계좌, 자산배분, 배당, ETF 코어-새틀라이트, 하락장 대응, 은퇴 생활비까지 실전 판단이 필요한 주제를 한 번에 정리한 BlueDino 투자 전략 모음",
+  alternates: { canonical: "/info/strategy" },
+  openGraph: {
+    title: "투자 전략 가이드 | BlueDino",
+    description:
+      "절세계좌, 자산배분, 배당, ETF 코어-새틀라이트, 하락장 대응, 은퇴 생활비까지 실전 판단이 필요한 주제를 한 번에 정리한 BlueDino 투자 전략 모음",
+    url: "https://bluedino.kr/info/strategy",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "투자 전략 가이드 | BlueDino",
+    description:
+      "절세계좌, 자산배분, 배당, ETF 코어-새틀라이트, 하락장 대응, 은퇴 생활비까지 실전 판단이 필요한 주제를 한 번에 정리한 BlueDino 투자 전략 모음",
+  },
+};
 
 const cards = [
   {

@@ -67,13 +67,42 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-12",
-    updatedAt: "2025-04-10",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "단리와 복리, 숫자로 비교하기" },
       { type: "paragraph", text: "원금 1,000만 원을 연 7%로 20년간 굴린다고 가정하면, 단리는 20년 뒤 2,400만 원(원금 1,000 + 이자 1,400)이 됩니다. 같은 조건에서 복리는 약 3,870만 원으로 늘어납니다. 두 구조의 차이는 재투자되는 이자에 다시 이자가 붙는지 여부뿐이지만, 20년이 지나면 결과 금액이 약 1.6배 벌어집니다." },
       { type: "heading", text: "72의 법칙으로 기간 감 잡기" },
       { type: "paragraph", text: "복리 수익률이 r%일 때 원금이 두 배가 되는 데 걸리는 기간은 대략 72 ÷ r 년입니다. 연 6%면 약 12년, 연 8%면 약 9년이 걸립니다. 정확한 수치는 아니지만, 장기 계획의 뼈대를 잡을 때 실용적인 근사치로 활용할 수 있습니다." },
+      { type: "heading", text: "20년 복리 시뮬레이션: 월 50만 원, 연 7% 케이스" },
+      { type: "paragraph", text: "BlueDino 복리 계산기에 초기 자산 0원, 월 납입 50만 원, 연 수익률 7%, 기간 20년을 입력했을 때의 결과입니다. 같은 돈을 투자해도 시간이 지날수록 원금 대비 수익의 비율이 어떻게 뒤바뀌는지 연차별로 정리했습니다." },
+      {
+        type: "chart",
+        kind: "bar",
+        caption: "연차별 총 자산 추이 (초기 0원 · 월 50만 원 · 연 7%)",
+        unit: "만 원",
+        series: [
+          { label: "1년차", value: 620, display: "620만" },
+          { label: "5년차", value: 3580, display: "3,580만" },
+          { label: "10년차", value: 8654, display: "8,654만" },
+          { label: "15년차", value: 15848, display: "1억 5,848만" },
+          { label: "20년차", value: 26046, display: "2억 6,046만" }
+        ],
+        note: "같은 조건에서 20년간 순 납입 원금은 1억 2,000만 원이므로, 1억 4,046만 원이 누적 수익에 해당합니다."
+      },
+      {
+        type: "table",
+        caption: "원금 · 수익 · 합계 세부 (단위: 만 원)",
+        headers: ["시점", "누적 납입 원금", "누적 수익", "총 자산", "수익 비율"],
+        rows: [
+          ["1년", "600", "20", "620", "약 3%"],
+          ["5년", "3,000", "580", "3,580", "약 16%"],
+          ["10년", "6,000", "2,654", "8,654", "약 31%"],
+          ["15년", "9,000", "6,848", "15,848", "약 43%"],
+          ["20년", "12,000", "14,046", "26,046", "약 54%"]
+        ],
+        note: "월 말 납입·매달 복리 반영, 세금·수수료·인플레이션은 제외한 명목 기준. 실제 적용 전 BlueDino 복리 계산기에서 본인 수치를 직접 넣어보세요."
+      },
       { type: "heading", text: "복리를 갉아먹는 세 가지 요인" },
       {
         type: "list",
@@ -167,7 +196,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-20",
-    updatedAt: "2025-04-10",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "배당률 표면 숫자에 속지 않으려면" },
@@ -268,7 +297,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-25",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "분산투자는 왜 '공짜 점심'이라 불리나" },
@@ -356,7 +385,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-25",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "배당 '성장'이 왜 중요한가" },
@@ -445,7 +474,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-18",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "배당의 구조를 한 문장으로" },
@@ -534,7 +563,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-05",
-    updatedAt: "2025-04-10",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "ETF는 어떻게 만들어지나" },
@@ -644,7 +673,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-08",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "ETF와 개별주의 구조적 차이" },
@@ -732,7 +761,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-20",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "FIRE 계산기 입력값의 의미" },
@@ -822,7 +851,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-18",
-    updatedAt: "2025-04-10",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "4% 룰은 어디에서 나왔나" },
@@ -831,6 +860,35 @@ export const guideArticles: Record<string, GuideArticle> = {
       { type: "paragraph", text: "한국은 국민연금·퇴직연금 제도가 있고, 기대수익률·세제·환율 구조가 미국과 다릅니다. 실무적으로는 3.0~3.5%의 보수적 인출률을 기준으로 자산 목표를 잡고, 이후 자산·시장 상황에 따라 4%까지 상향 여부를 검토하는 방식이 자주 인용됩니다." },
       { type: "heading", text: "FIRE 달성 기간과 저축률 관계" },
       { type: "paragraph", text: "Mr. Money Mustache가 정리한 표에 따르면, 실질 수익률 5% 가정에서 저축률(소득 대비 저축 비중)이 10%면 약 51년, 30%면 약 28년, 50%면 약 17년, 65%면 약 10.5년 만에 FIRE 자산(연지출×25)에 도달합니다. 소득을 올리는 것 못지않게 지출을 줄이는 쪽이 기간을 극적으로 단축시킵니다." },
+      { type: "heading", text: "저축률별 FIRE 달성 기간 (실질 수익률 5% 가정)" },
+      { type: "paragraph", text: "FIRE 계산에서 가장 잘 알려진 공식은 저축률이 높을수록 달성 기간이 비선형으로 짧아진다는 점입니다. 초기 자산 0원, 실질 수익률 연 5%, 4% 룰(목표 자산 = 연 지출 × 25) 기준으로 계산하면 다음과 같은 결과가 나옵니다." },
+      {
+        type: "chart",
+        kind: "bar",
+        caption: "저축률별 FIRE 달성까지 걸리는 기간",
+        unit: "년",
+        series: [
+          { label: "저축률 30%", value: 28, display: "28.0년" },
+          { label: "저축률 40%", value: 21.6, display: "21.6년" },
+          { label: "저축률 50%", value: 16.6, display: "16.6년" },
+          { label: "저축률 60%", value: 12.4, display: "12.4년" },
+          { label: "저축률 70%", value: 8.8, display: "8.8년" }
+        ],
+        note: "이 수치는 수입의 절대 수준과 무관하며, 저축률(수입 대비 저축 비중)과 수익률만으로 결정됩니다. 공식: 연수 = ln(1 + 25 × (1-s) × r / s) / ln(1+r)"
+      },
+      {
+        type: "table",
+        caption: "저축률별 FIRE 목표와 달성 기간 (월 지출 300만 원 예시)",
+        headers: ["저축률", "월 저축액", "4% 룰 목표 자산", "달성 기간"],
+        rows: [
+          ["30%", "약 128만 원", "9억 원", "28.0년"],
+          ["40%", "약 200만 원", "9억 원", "21.6년"],
+          ["50%", "약 300만 원", "9억 원", "16.6년"],
+          ["60%", "약 450만 원", "9억 원", "12.4년"],
+          ["70%", "약 700만 원", "9억 원", "8.8년"]
+        ],
+        note: "월 지출 300만 원을 유지한다고 가정할 때, 수입의 몇 %를 저축하느냐로 환산한 예시입니다. 실제 수치는 소득·세금·지출 변동에 따라 달라지므로 BlueDino FIRE 계산기에서 본인 케이스를 확인해보세요."
+      },
       { type: "heading", text: "한국형 FIRE 구조 제안" },
       {
         type: "list",
@@ -923,7 +981,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-28",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "'고배당 = 좋은 종목'이 아닌 이유" },
@@ -1012,7 +1070,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-04-02",
-    updatedAt: "2025-04-15",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "ISA가 왜 만들어졌나" },
@@ -1122,7 +1180,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-04-05",
-    updatedAt: "2025-04-15",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "ISA의 3대 혜택 요약" },
@@ -1210,7 +1268,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-10",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "기간이 수익률 분포에 미치는 영향" },
@@ -1298,7 +1356,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-28",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "해외주식 양도세의 손익통산 구조" },
@@ -1387,11 +1445,45 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-12",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "월배당 ETF의 구조" },
       { type: "paragraph", text: "월배당 ETF는 편입 종목들의 분기·연간 배당을 운용사가 시점 조정해 매월 분배금으로 지급합니다. 현금흐름이 꾸준하다는 장점이 있지만, 분배를 위해 커버드콜·옵션 전략을 쓰는 상품은 주가 상승폭이 제한될 수 있습니다." },
+      { type: "heading", text: "월배당 vs 분기배당 현금흐름 비교 (연 120만 원 기준)" },
+      { type: "paragraph", text: "연간 총 배당액이 같아도, 월배당 ETF와 분기배당 ETF는 매달 통장에 찍히는 금액이 다릅니다. 같은 120만 원을 12개월에 나눠 받을 때의 차이를 그대로 표로 정리했습니다. 금액 자체가 크지 않더라도, 고정지출이 있는 가계에서는 언제 들어오는지가 현금흐름 체감을 크게 바꿉니다." },
+      {
+        type: "table",
+        caption: "연 120만 원 배당을 월별로 나눈 현금흐름 (단위: 만 원)",
+        headers: ["월", "월배당 ETF", "분기배당 ETF", "차이"],
+        rows: [
+          ["1월", "10", "0", "+10"],
+          ["2월", "10", "0", "+10"],
+          ["3월", "10", "30", "−20"],
+          ["4월", "10", "0", "+10"],
+          ["5월", "10", "0", "+10"],
+          ["6월", "10", "30", "−20"],
+          ["7월", "10", "0", "+10"],
+          ["8월", "10", "0", "+10"],
+          ["9월", "10", "30", "−20"],
+          ["10월", "10", "0", "+10"],
+          ["11월", "10", "0", "+10"],
+          ["12월", "10", "30", "−20"],
+          ["연 합계", "120", "120", "0"]
+        ],
+        note: "총액은 같지만 월배당은 매달 동일하게, 분기배당은 3·6·9·12월에 한 번에 들어옵니다. 월 지출 흐름에 맞춰 둘을 섞어서 보유하는 전략도 가능합니다."
+      },
+      {
+        type: "chart",
+        kind: "bar",
+        caption: "월별 현금흐름 분산도 비교",
+        unit: "만 원 (최대 월 수령액)",
+        series: [
+          { label: "월배당 ETF", value: 10, display: "10만/월" },
+          { label: "분기배당 ETF", value: 30, display: "30만/분기" }
+        ],
+        note: "월 수령액의 크기가 아니라 매달 수령 여부가 현금흐름 안정성의 핵심입니다. 생활비 대체 목적이면 월배당이, 재투자가 목적이면 분기배당·반기배당도 충분히 대안입니다."
+      },
       { type: "heading", text: "체크리스트 7가지" },
       {
         type: "list",
@@ -1479,7 +1571,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-22",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "두 계좌의 한도와 세액공제" },
@@ -1567,7 +1659,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-15",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "한국 연금의 3층 구조" },
@@ -1655,7 +1747,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-01",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "포트폴리오 구성의 핵심 단계" },
@@ -1745,7 +1837,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-04",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "초보 투자자가 자주 빠지는 실수" },
@@ -1835,7 +1927,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-10",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "리스크 = 변동성이 아닌 영구 손실 가능성" },
@@ -1924,7 +2016,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-05",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "주식이라는 증서의 의미" },
@@ -2014,7 +2106,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-04-10",
-    updatedAt: "2025-04-15",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "투자 관련 주요 세금 한눈에" },
@@ -2104,11 +2196,41 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-03-30",
-    updatedAt: "2025-04-15",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "미국 주식 양도세 계산 구조" },
       { type: "paragraph", text: "연간 실현 순이익에서 기본공제 250만 원을 뺀 금액에 22%(양도세 20% + 지방세 2%)를 곱해 산출합니다. 예를 들어 연 순이익 1,000만 원이면 (1,000 − 250) × 22% = 165만 원이 납부세액입니다." },
+      { type: "heading", text: "양도차익 구간별 해외주식 양도세 계산표" },
+      { type: "paragraph", text: "해외주식 양도소득세는 연간 양도차익(매도금액 − 매수금액 − 거래비용)에서 기본공제 250만 원을 뺀 금액에 22%(양도소득세 20% + 지방소득세 2%)를 부과합니다. 다음은 구간별 실제 세금이 얼마나 되는지, 동일한 공식으로 계산한 결과입니다." },
+      {
+        type: "table",
+        caption: "연간 양도차익 구간별 세금 (1인 기준, 환율 영향 제외)",
+        headers: ["연간 양도차익", "기본공제 250만 원 차감", "과세표준", "22% 적용 세금", "세후 수령액"],
+        rows: [
+          ["100만 원", "−250만 원", "0원", "0원", "100만 원"],
+          ["250만 원", "−250만 원", "0원", "0원", "250만 원"],
+          ["500만 원", "−250만 원", "250만 원", "55만 원", "445만 원"],
+          ["1,000만 원", "−250만 원", "750만 원", "165만 원", "835만 원"],
+          ["2,000만 원", "−250만 원", "1,750만 원", "385만 원", "1,615만 원"],
+          ["5,000만 원", "−250만 원", "4,750만 원", "1,045만 원", "3,955만 원"]
+        ],
+        note: "기본공제는 연 1회 · 인당 250만 원입니다. 같은 금액이라도 한 해에 몰아서 실현하면 공제를 한 번밖에 못 쓰고, 두 해에 나눠 실현하면 공제를 두 번 쓸 수 있어 세금이 달라집니다."
+      },
+      {
+        type: "chart",
+        kind: "bar",
+        caption: "양도차익별 세금 부담 (단위: 만 원)",
+        unit: "만 원",
+        series: [
+          { label: "차익 100만", value: 0, display: "0만" },
+          { label: "차익 500만", value: 55, display: "55만" },
+          { label: "차익 1,000만", value: 165, display: "165만" },
+          { label: "차익 2,000만", value: 385, display: "385만" },
+          { label: "차익 5,000만", value: 1045, display: "1,045만" }
+        ],
+        note: "환차익은 과세 대상 양도차익에 포함됩니다. 배당은 별도 배당소득세(원천징수 15% + 지방세 1.5%)로 과세되어 이 표와는 별개로 계산해야 합니다."
+      },
       { type: "heading", text: "배당소득과의 구분" },
       {
         type: "list",
@@ -2192,7 +2314,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-04-08",
-    updatedAt: "2025-04-15",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "절세계좌가 복리에 미치는 영향" },
@@ -2206,6 +2328,33 @@ export const guideArticles: Record<string, GuideArticle> = {
           "ISA: 이자·배당 최대 400만 원 비과세, 초과분 9.9% 분리과세.",
           "주택청약종합저축: 연 240만 원 소득공제(연소득 7,000만 원 이하 무주택자)."
         ]
+      },
+      { type: "heading", text: "일반계좌 vs 일반형 ISA: 배당 10년 세금 비교" },
+      { type: "paragraph", text: "같은 종목·같은 연 배당을 10년간 받는다고 가정할 때, 일반계좌에서는 매년 배당소득세 15.4%가 원천징수되지만, 일반형 ISA는 계좌 만기 시점 기준 순이익 200만 원까지 비과세, 초과분은 9.9% 분리과세로 적용됩니다(서민형은 비과세 한도 400만 원). 세후 누적 결과가 실제로 얼마나 벌어지는지 단순화된 예시로 비교해보면 다음과 같습니다." },
+      {
+        type: "table",
+        caption: "연 배당 금액별 10년 누적 세금 (단위: 만 원)",
+        headers: ["연 배당액", "10년 총 배당", "일반계좌 세금", "일반형 ISA 세금", "세금 차이"],
+        rows: [
+          ["100만 원", "1,000만 원", "154.0", "79.2", "-74.8"],
+          ["200만 원", "2,000만 원", "308.0", "178.2", "-129.8"],
+          ["300만 원", "3,000만 원", "462.0", "277.2", "-184.8"],
+          ["500만 원", "5,000만 원", "770.0", "475.2", "-294.8"]
+        ],
+        note: "ISA 세금 = (10년 총 배당 − 200만 원) × 9.9%로 단순화한 계산입니다. 손익통산, 해지 시점, 중도 인출 여부에 따라 실제 결과는 달라질 수 있고, 금융투자소득세·종합과세 개인 상황은 별도 확인이 필요합니다."
+      },
+      {
+        type: "chart",
+        kind: "bar",
+        caption: "10년 후 남는 세금 차액 (ISA가 덜 내는 금액)",
+        unit: "만 원",
+        series: [
+          { label: "배당 100만", value: 74.8, display: "74.8만" },
+          { label: "배당 200만", value: 129.8, display: "129.8만" },
+          { label: "배당 300만", value: 184.8, display: "184.8만" },
+          { label: "배당 500만", value: 294.8, display: "294.8만" }
+        ],
+        note: "배당이 커질수록 ISA 절세 효과 절대 금액도 커집니다. 다만 ISA는 연간 납입한도(일반형 기준 연 2,000만 원, 5년 총 1억 원)가 있으므로 실제 전략은 본인 납입 여력과 함께 설계해야 합니다."
       },
       { type: "heading", text: "자산 배치 순서" },
       { type: "paragraph", text: "연금저축·IRP 한도 채우기 → ISA 담기 → 일반계좌의 순서가 세금 관점에서 가장 효율적입니다. 단, 중도 유동성이 필요할 수 있다면 절세계좌에 자금을 묶기 전에 비상자금과 단기 목표 자금을 먼저 확보하는 것이 안전합니다." }
@@ -2281,7 +2430,7 @@ export const guideArticles: Record<string, GuideArticle> = {
       }
     ],
     publishedAt: "2025-02-16",
-    updatedAt: "2025-04-12",
+    updatedAt: "2026-04-22",
     author: "afternoonkim (BlueDino 운영자)",
     longContent: [
       { type: "heading", text: "두 수익 방식의 구조 차이" },

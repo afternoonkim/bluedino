@@ -9,7 +9,22 @@ type FaqItem = { question: string; answer: string };
 export type LongContentBlock =
   | { type: "heading"; text: string }
   | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] };
+  | { type: "list"; items: string[] }
+  | {
+      type: "table";
+      caption?: string;
+      headers: string[];
+      rows: string[][];
+      note?: string;
+    }
+  | {
+      type: "chart";
+      kind: "bar";
+      caption?: string;
+      unit?: string;
+      series: { label: string; value: number; display?: string }[];
+      note?: string;
+    };
 
 export type GuideArticle = {
   slug: string;
@@ -70,6 +85,16 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+      { "@type": "ListItem", position: 2, name: "투자 기초 가이드", item: "https://bluedino.kr/info/guide" },
+      { "@type": "ListItem", position: 3, name: article.title, item: `https://bluedino.kr/info/guide/${article.slug}` },
+    ],
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -105,6 +130,11 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         id={`guide-faq-${article.slug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script
+        id={`guide-breadcrumb-${article.slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <article className="bd-container-narrow bd-section">
@@ -170,6 +200,125 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
                         <li key={`list-${index}-${itemIndex}`}>{item}</li>
                       ))}
                     </ul>
+                  );
+                }
+                if (block.type === "table") {
+                  return (
+                    <figure
+                      key={`table-${index}`}
+                      className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+                    >
+                      {block.caption && (
+                        <figcaption className="border-b border-white/10 px-5 py-3 text-sm font-semibold text-slate-200">
+                          {block.caption}
+                        </figcaption>
+                      )}
+                      <div className="overflow-x-auto">
+                        <table className="w-full border-collapse text-left text-sm text-slate-300">
+                          <thead>
+                            <tr className="bg-white/5 text-xs uppercase tracking-wide text-slate-400">
+                              {block.headers.map((h, hi) => (
+                                <th
+                                  key={`th-${index}-${hi}`}
+                                  className="px-4 py-3 font-semibold"
+                                  scope="col"
+                                >
+                                  {h}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {block.rows.map((row, ri) => (
+                              <tr
+                                key={`tr-${index}-${ri}`}
+                                className="border-t border-white/5"
+                              >
+                                {row.map((cell, ci) => (
+                                  <td
+                                    key={`td-${index}-${ri}-${ci}`}
+                                    className={
+                                      ci === 0
+                                        ? "px-4 py-3 font-semibold text-slate-100"
+                                        : "px-4 py-3 tabular-nums"
+                                    }
+                                  >
+                                    {cell}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      {block.note && (
+                        <div className="border-t border-white/10 bg-white/5 px-5 py-3 text-xs text-slate-400">
+                          {block.note}
+                        </div>
+                      )}
+                    </figure>
+                  );
+                }
+                if (block.type === "chart") {
+                  const maxValue = Math.max(
+                    ...block.series.map((s) => s.value),
+                    1,
+                  );
+                  return (
+                    <figure
+                      key={`chart-${index}`}
+                      className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-5 py-5"
+                    >
+                      {block.caption && (
+                        <figcaption className="mb-4 text-sm font-semibold text-slate-200">
+                          {block.caption}
+                          {block.unit && (
+                            <span className="ml-2 text-xs font-normal text-slate-400">
+                              (단위: {block.unit})
+                            </span>
+                          )}
+                        </figcaption>
+                      )}
+                      <div className="space-y-3">
+                        {block.series.map((point, pi) => {
+                          const widthPct = Math.max(
+                            4,
+                            (point.value / maxValue) * 100,
+                          );
+                          const display =
+                            point.display ??
+                            point.value.toLocaleString("ko-KR");
+                          return (
+                            <div
+                              key={`bar-${index}-${pi}`}
+                              className="grid grid-cols-[6rem_1fr_5rem] items-center gap-3 text-sm"
+                            >
+                              <span className="truncate font-medium text-slate-300">
+                                {point.label}
+                              </span>
+                              <div
+                                className="h-3 rounded-full bg-white/5"
+                                role="presentation"
+                              >
+                                <div
+                                  className="h-3 rounded-full bg-gradient-to-r from-cyan-500 to-sky-500"
+                                  style={{ width: `${widthPct}%` }}
+                                  aria-label={`${point.label}: ${display}`}
+                                />
+                              </div>
+                              <span className="text-right tabular-nums text-slate-200">
+                                {display}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {block.note && (
+                        <div className="mt-4 border-t border-white/10 pt-3 text-xs text-slate-400">
+                          {block.note}
+                        </div>
+                      )}
+                    </figure>
                   );
                 }
                 return (

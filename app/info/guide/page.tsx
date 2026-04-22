@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import AdBlock from "@/components/ad/AdBlock";
 import { guideArticles, guideCategories } from "@/lib/info/guideArticles";
 import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
@@ -8,6 +9,51 @@ export const metadata: Metadata = {
   title: "투자 기초 가이드 | BlueDino",
   description:
     "주식, ETF, ISA, 연금저축, 배당, 복리까지 투자 입문자가 먼저 이해하면 좋은 핵심 개념을 쉽게 정리한 BlueDino 가이드 모음",
+  alternates: { canonical: "/info/guide" },
+  openGraph: {
+    title: "투자 기초 가이드 | BlueDino",
+    description:
+      "주식, ETF, ISA, 연금저축, 배당, 복리까지 투자 입문자가 먼저 이해하면 좋은 핵심 개념을 쉽게 정리한 BlueDino 가이드 모음",
+    url: "https://bluedino.kr/info/guide",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "투자 기초 가이드 | BlueDino",
+    description:
+      "주식, ETF, ISA, 연금저축, 배당, 복리까지 투자 입문자가 먼저 이해하면 좋은 핵심 개념을 쉽게 정리한 BlueDino 가이드 모음",
+  },
+};
+
+const guideSlugs = guideCategories.flatMap((category) => category.items);
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "BlueDino 투자 기초 가이드",
+  itemListOrder: "https://schema.org/ItemListOrderAscending",
+  numberOfItems: guideSlugs.length,
+  itemListElement: guideSlugs.map((slug, index) => {
+    const article = guideArticles[slug];
+    return {
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://bluedino.kr/info/guide/${slug}`,
+      name: article.title,
+      description: article.description,
+    };
+  }),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+    { "@type": "ListItem", position: 2, name: "투자 기초 가이드", item: "https://bluedino.kr/info/guide" },
+  ],
 };
 
 type GuideCardProps = {
@@ -39,6 +85,16 @@ function GuideCard({ slug }: GuideCardProps) {
 export default function GuidePage() {
   return (
     <div className="bd-page">
+      <Script
+        id="guide-index-itemlist"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      <Script
+        id="guide-index-breadcrumb"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="bd-container bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">투자 기초 가이드</span>

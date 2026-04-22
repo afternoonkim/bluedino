@@ -5,7 +5,23 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "BlueDino 소개 · 운영자",
   description:
-    "BlueDino 운영자 afternoonkim의 배경, 편집 원칙, 사이트 운영 방향을 안내합니다. 개인 투자자 시선에서 정리한 금융 계산기와 가이드 플랫폼입니다.",
+    "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개, 편집 원칙, 운영 방향 안내.",
+  alternates: { canonical: "/info/etc/about" },
+  openGraph: {
+    title: "BlueDino 소개 · 운영자",
+    description:
+      "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개, 편집 원칙, 운영 방향 안내.",
+    url: "https://bluedino.kr/info/etc/about",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BlueDino 소개 · 운영자",
+    description:
+      "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개.",
+  },
 };
 
 const personSchema = {
@@ -17,7 +33,19 @@ const personSchema = {
   email: "afternoonkim93@gmail.com",
   jobTitle: "금융 정보 사이트 운영자",
   description:
-    "개인 투자자 관점에서 투자 계산기와 금융 가이드를 정리해 운영하는 BlueDino의 운영자.",
+    "두 아이를 키우는 평범한 직장인이자 개인 투자자로, 결혼 이후 약 5년간 직접 가계부·절세계좌·ETF·배당 구조를 공부하며 자가 마련과 순자산 1억 원 이상을 달성한 뒤, 그 경험을 바탕으로 BlueDino의 투자 계산기와 금융 가이드를 운영하는 사람.",
+  knowsAbout: [
+    "복리 투자",
+    "배당 투자",
+    "ETF",
+    "ISA 계좌",
+    "연금저축",
+    "IRP",
+    "양도소득세",
+    "퇴직소득세",
+    "FIRE",
+    "자산배분",
+  ],
   worksFor: {
     "@type": "Organization",
     name: "BlueDino",
@@ -69,17 +97,35 @@ export default function AboutPage() {
 
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">누가 운영하나요</h2>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="mt-4 grid gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
               <div className="text-sm font-semibold text-white">운영자</div>
               <p className="bd-text-sub mt-3">
                 BlueDino는 <span className="font-semibold text-white">afternoonkim</span>이 개인 자격으로
-                운영하는 금융 정보 사이트입니다. 개인 투자자로 직접 배당·ETF·절세계좌를 운용하며 겪은
-                시행착오를 바탕으로, 처음 투자를 시작하는 분이 자주 마주치는 개념과 숫자를 쉽게 정리하는 것을
-                목표로 합니다.
+                운영하는 금융 정보 사이트입니다. 아래는 제가 이 사이트를 만들게 된 배경을 1인칭으로 정리한 소개입니다.
               </p>
               <p className="bd-text-sub mt-3">
-                {/* TODO: 실제 경력/자격(예: 관련 업무 경력, CFP·투자권유대행인 등 자격, SNS 링크 등)을 여기에 보강하면 E-E-A-T 강화에 도움이 됩니다. */}
+                저는 두 아이를 키우고 있는 평범한 직장인이자 개인 투자자입니다. 결혼을 시작할 때 모아둔 자금이 거의 없어서,
+                처음에는 월급으로 생활비를 쓰고 나면 저축이나 투자 여력이 빠듯한 상태였습니다. 그래서 결혼 이후 약 5년 동안은
+                수익을 빠르게 내는 것보다 &ldquo;모르는 용어를 모르는 채로 넘기지 않는 것&rdquo;을 우선순위로 두고, 매일 조금씩
+                가계부·세금·절세계좌·ETF·배당 구조를 하나씩 정리해 나갔습니다.
+              </p>
+              <p className="bd-text-sub mt-3">
+                그 시간을 거치면서 지금은 가족이 함께 살 자가를 마련했고, 순자산도 1억 원 이상으로 늘어났습니다. 금액 자체가
+                크다기보다, &ldquo;0에서 시작해도 개념을 제대로 이해하고 꾸준히 실행하면 현실적인 구간까지는 올 수 있다&rdquo;는 것을
+                스스로의 경험으로 확인한 쪽에 가깝습니다. 현재는 ISA 계좌·해외주식·ETF를 중심으로 장기 배당과 절세, 현금흐름
+                관점에서 포트폴리오를 유지하고 있고, 아이들이 커가는 시점에 맞춰 자금 계획과 절세계좌 구조를 조금씩 조정하고
+                있습니다.
+              </p>
+              <p className="bd-text-sub mt-3">
+                BlueDino를 만들게 된 이유는, 제가 5년 동안 공부하면서 가장 오래 헷갈렸던 부분을 다른 사람은 조금 더 짧게 넘어갈
+                수 있도록 돕고 싶어서였습니다. 특히 아이를 키우면서 투자와 세금을 처음부터 공부해야 했던 입장에서는, 단편적인
+                영상이나 짧은 요약만으로는 &ldquo;내 상황에 어떻게 적용해야 하는지&rdquo;까지 연결되지 않는 경우가 많았습니다.
+                BlueDino의 가이드와 계산기는 그때의 저에게 필요했던 용어를 쉽게 풀고, 계산 결과를 어떻게 해석해야 하는지까지
+                이어 주는 흐름을 기준으로 정리하고 있습니다. 그래서 이 사이트는 특정 종목이나 유행 상품을 추천하는 곳이 아니라,
+                처음 투자를 시작한 분이 자신의 숫자로 스스로 판단할 수 있도록 돕는 것을 목표로 운영되고 있습니다.
+              </p>
+              <p className="bd-text-sub mt-3">
                 문의: <span className="font-semibold text-cyan-300">afternoonkim93@gmail.com</span>
               </p>
             </div>

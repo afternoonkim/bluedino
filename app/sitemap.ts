@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { financeCategories } from "@/lib/finance/config";
+import { guideArticles } from "@/lib/info/guideArticles";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
@@ -25,31 +26,6 @@ const staticRoutes = [
   "/info/etc/methodology",
   "/info/etc/editorial-policy",
   "/info/guide",
-  "/info/guide/cashflow-vs-capital-gains",
-  "/info/guide/compound-interest",
-  "/info/guide/diversification",
-  "/info/guide/dividend",
-  "/info/guide/dividend-basics",
-  "/info/guide/dividend-growth",
-  "/info/guide/etf-basics",
-  "/info/guide/etf-vs-stocks",
-  "/info/guide/fire",
-  "/info/guide/fire-calculator-guide",
-  "/info/guide/high-dividend-risks",
-  "/info/guide/isa-basics",
-  "/info/guide/isa-benefits",
-  "/info/guide/long-vs-short-term",
-  "/info/guide/loss-tax",
-  "/info/guide/monthly-dividend-etf-checklist",
-  "/info/guide/pension",
-  "/info/guide/pension-vs-irp",
-  "/info/guide/portfolio-basics",
-  "/info/guide/portfolio-mistakes",
-  "/info/guide/risk-management",
-  "/info/guide/stock-basics",
-  "/info/guide/tax",
-  "/info/guide/us-stock-tax-basics",
-  "/info/guide/why-tax-advantaged-accounts",
   "/info/investment/account-tax",
   "/info/investment/account-tax-step",
   "/info/strategy",
@@ -62,17 +38,38 @@ const staticRoutes = [
   // "/info/videos" — 외부 YouTube 영상 집계 페이지라 색인 제외 (noindex)
 ];
 
+const guideRoutes = Object.keys(guideArticles).map((slug) => `/info/guide/${slug}`);
+
+function parseDate(value: string | undefined, fallback: Date) {
+  if (!value) return fallback;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed;
+}
+
+function resolveLastModified(route: string, fallback: Date): Date {
+  if (route.startsWith("/info/guide/")) {
+    const slug = route.slice("/info/guide/".length);
+    const article = guideArticles[slug];
+    if (article) {
+      return parseDate(article.updatedAt ?? article.publishedAt, fallback);
+    }
+  }
+  return fallback;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const categoryRoutes = financeCategories.map((category) => category.basePath);
   const financeRoutes = getAllFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
 
-  const allRoutes = Array.from(new Set([...staticRoutes, ...categoryRoutes, ...financeRoutes]));
+  const allRoutes = Array.from(
+    new Set([...staticRoutes, ...guideRoutes, ...categoryRoutes, ...financeRoutes]),
+  );
 
   return allRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,
-    lastModified: now,
+    lastModified: resolveLastModified(route, now),
     changeFrequency:
       route === "/" ? "weekly" : route.startsWith("/finance/") || route.startsWith("/cal/") ? "weekly" : "monthly",
     priority:

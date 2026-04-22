@@ -47,6 +47,16 @@ const structuredData = {
   url: "https://bluedino.kr/cal/retirement-tax",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 3, name: "퇴직소득세 계산기", item: "https://bluedino.kr/cal/retirement-tax" },
+  ],
+};
+
 export default function Page() {
   return (
     <>
@@ -61,6 +71,11 @@ export default function Page() {
         id="퇴직소득세-계산기-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="retirement-tax-breadcrumb-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <RetirementTaxCalculatorClient />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
