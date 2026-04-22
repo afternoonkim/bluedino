@@ -83,16 +83,22 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
         tag: "목표 설계",
       },
       {
+        title: "배당 투자 기초",
+        href: "/info/guide/dividend-basics",
+        description: "배당률, 배당락, 세후 수익까지 배당 투자에서 꼭 짚어야 할 개념을 정리했습니다.",
+        tag: "개념 가이드",
+      },
+      {
+        title: "배당 투자 전략",
+        href: "/info/strategy/dividend",
+        description: "배당률보다 지속 가능성과 목적을 먼저 보는 배당 전략 가이드입니다.",
+        tag: "전략",
+      },
+      {
         title: "ISA 질문 가이드",
         href: "/finance/isa",
         description: "절세계좌를 활용한 배당 투자 흐름을 자주 나오는 질문을 중심으로 정리한 가이드입니다.",
         tag: "절세 가이드",
-      },
-      {
-        title: "투자 전략 글 모아보기",
-        href: "/info/strategy",
-        description: "배당주, ETF, 장기 투자 전략 관련 글을 이어서 탐색할 수 있습니다.",
-        tag: "콘텐츠",
       },
     ],
   },
@@ -119,8 +125,9 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
     links: [
       { title: "FIRE 계산기", href: "/cal/fire", description: "복리로 키운 자산이 실제 은퇴 가능 자산 수준인지 이어서 확인할 수 있습니다.", tag: "관련 계산기" },
       { title: "배당 계산기", href: "/cal/calculator", description: "복리로 자산을 만든 뒤 배당 현금흐름 전략으로 연결할 때 좋습니다.", tag: "현금흐름" },
+      { title: "복리 투자 효과 가이드", href: "/info/guide/compound-interest", description: "단리·복리 차이부터 20년 시뮬레이션 표까지 복리 개념을 제대로 정리했습니다.", tag: "개념 가이드" },
+      { title: "자산배분 전략", href: "/info/strategy/asset-allocation", description: "복리를 오래 유지하려면 먼저 내 자산 비중 구조부터 정리해야 합니다.", tag: "전략" },
       { title: "연금저축 질문 가이드", href: "/finance/pension", description: "장기 복리 운용과 세액공제를 함께 고려할 때 참고하기 좋은 가이드입니다.", tag: "연금 가이드" },
-      { title: "투자 가이드 모아보기", href: "/info/investment", description: "초보 투자자용 핵심 개념과 장기 투자 글을 함께 볼 수 있습니다.", tag: "콘텐츠" },
     ],
   },
   "fire": {
@@ -147,7 +154,8 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
       { title: "복리 계산기", href: "/cal/compound", description: "FIRE 목표 자산까지 누적되는 복리 과정을 더 자세히 볼 수 있습니다.", tag: "관련 계산기" },
       { title: "배당 계산기", href: "/cal/calculator", description: "경제적 자유 이후 배당 현금흐름 전략을 설계할 때 활용할 수 있습니다.", tag: "현금흐름" },
       { title: "연봉 실수령액 계산기", href: "/cal/salary-net", description: "현재 월 실수령액 기준으로 저축 여력을 다시 잡아볼 수 있습니다.", tag: "저축 여력" },
-      { title: "투자 전략 글 모아보기", href: "/info/strategy", description: "장기 투자와 자산 배분 전략 관련 글을 이어서 볼 수 있습니다.", tag: "콘텐츠" },
+      { title: "FIRE란 무엇인가", href: "/info/guide/fire", description: "FIRE의 정의와 4% 룰, 저축률별 필요 기간까지 개념을 먼저 정리하고 싶을 때 읽기 좋습니다.", tag: "개념 가이드" },
+      { title: "은퇴 현금흐름 전략", href: "/info/strategy/retirement-income", description: "자산 규모보다 인출 구조와 월 생활비를 먼저 설계하는 은퇴 전략 가이드입니다.", tag: "전략" },
     ],
   },
   "capital-gains": {
@@ -171,10 +179,11 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
       { question: "손실 종목이 있으면 세금이 줄어들 수 있나요?", answer: "상황에 따라 손익 통산 효과가 있을 수 있습니다. 그래서 매도 순서와 시점 전략이 중요해집니다." },
     ],
     links: [
+      { title: "미국주식 양도소득세 기초", href: "/info/guide/us-stock-tax-basics", description: "250만 원 기본공제, 22% 세율, 차익 구간별 세금 표까지 신고 전에 꼭 알아두면 좋은 개념 정리입니다.", tag: "개념 가이드" },
+      { title: "손실 종목 세금 처리", href: "/info/guide/loss-tax", description: "해외주식 손익 통산과 매도 순서 전략을 이어서 볼 수 있습니다.", tag: "절세 실무" },
       { title: "ISA 질문 가이드", href: "/finance/isa", description: "절세 계좌를 통해 세후 수익률을 관리하는 흐름을 이해할 수 있습니다.", tag: "절세 가이드" },
+      { title: "절세계좌 활용 전략", href: "/info/strategy/tax-efficient-investing", description: "ISA·연금저축·IRP를 역할별로 나눠 세후 수익률을 지키는 전략 가이드입니다.", tag: "전략" },
       { title: "배당 계산기", href: "/cal/calculator", description: "매매 차익 외에 현금흐름 중심 투자 전략을 같이 비교할 수 있습니다.", tag: "관련 계산기" },
-      { title: "투자 가이드 모아보기", href: "/info/investment", description: "해외주식 투자 기초와 세금 관련 글을 함께 볼 수 있습니다.", tag: "콘텐츠" },
-      { title: "전략 글 모아보기", href: "/info/strategy", description: "세후 수익률 관점의 투자 전략 글을 연결해서 볼 수 있습니다.", tag: "전략" },
     ],
   },
   "retirement-tax": {
@@ -198,10 +207,11 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
       { question: "퇴직금은 그냥 현금으로 받는 게 좋나요?", answer: "상황에 따라 다릅니다. 당장 필요한 자금인지, 연금 이전을 고려하는지, 세후 운용 계획이 있는지에 따라 달라질 수 있습니다." },
     ],
     links: [
+      { title: "연금저축과 IRP 차이", href: "/info/guide/pension-vs-irp", description: "퇴직금 이전·세액공제·인출 방식에서 연금저축과 IRP의 차이를 정리한 가이드입니다.", tag: "개념 가이드" },
       { title: "IRP 질문 가이드", href: "/finance/irp", description: "퇴직금과 연금계좌를 함께 고민할 때 가장 먼저 보기 좋은 가이드입니다.", tag: "연금 가이드" },
       { title: "연금저축 질문 가이드", href: "/finance/pension", description: "퇴직 이후 장기 운용과 세액공제 전략을 이어서 검토할 수 있습니다.", tag: "절세" },
+      { title: "은퇴 현금흐름 전략", href: "/info/strategy/retirement-income", description: "퇴직금 수령 이후의 인출 구조와 월 생활비 설계를 이어서 볼 수 있습니다.", tag: "전략" },
       { title: "복리 계산기", href: "/cal/compound", description: "퇴직금을 장기 운용했을 때 자산이 어떻게 커질지 시뮬레이션할 수 있습니다.", tag: "관련 계산기" },
-      { title: "배당 계산기", href: "/cal/calculator", description: "퇴직금 일부를 현금흐름 자산으로 운용하는 전략을 가늠할 수 있습니다.", tag: "현금흐름" },
     ],
   },
   "salary-net": {
@@ -227,6 +237,7 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
     links: [
       { title: "복리 계산기", href: "/cal/compound", description: "실수령액 기준 월 투자 가능 금액을 넣어 장기 자산 성장 흐름을 확인할 수 있습니다.", tag: "관련 계산기" },
       { title: "FIRE 계산기", href: "/cal/fire", description: "현재 소득에서 저축 여력을 반영해 경제적 자유 시점을 설계할 수 있습니다.", tag: "목표 설계" },
+      { title: "복리 투자 효과 가이드", href: "/info/guide/compound-interest", description: "월 저축액·수익률·기간이 20년 뒤 결과를 어떻게 바꾸는지 수치로 정리한 가이드입니다.", tag: "개념 가이드" },
       { title: "IRP 질문 가이드", href: "/finance/irp", description: "연말정산과 세액공제를 연결해 실질 가처분소득을 관리할 때 참고하기 좋습니다.", tag: "절세 가이드" },
       { title: "연금저축 질문 가이드", href: "/finance/pension", description: "세후 자금으로 장기 투자와 세액공제를 같이 챙길 때 볼 수 있는 가이드입니다.", tag: "연금" },
     ],

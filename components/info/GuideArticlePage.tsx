@@ -155,6 +155,19 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
             )}
           </div>
           <p className="bd-text-main mt-4">{article.hero}</p>
+          <div
+            role="note"
+            aria-label="투자 정보 면책 안내"
+            className="mt-6 rounded-xl border border-amber-400/30 bg-amber-400/5 p-4"
+          >
+            <p className="text-xs leading-6 text-amber-100/90">
+              <span className="mr-2 inline-block rounded-full bg-amber-400/15 px-2 py-0.5 text-[11px] font-semibold text-amber-200">
+                투자 정보 안내
+              </span>
+              본 글은 특정 상품 가입이나 종목 매수를 권유하지 않는 교육·정보 목적의 참고 자료입니다.
+              세금·제도·수익률은 개인 상황과 시점에 따라 달라질 수 있으니, 실제 실행 전에 금융회사·세무 전문가·공공기관의 공식 자료를 반드시 함께 확인하세요.
+            </p>
+          </div>
         </section>
 
         <section className="bd-card bd-card-padding">

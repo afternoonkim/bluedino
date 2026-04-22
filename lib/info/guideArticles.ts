@@ -54,6 +54,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "장기투자와 단기투자 차이",
         "href": "/info/guide/long-vs-short-term"
+      },
+      {
+        "label": "자산배분 전략",
+        "href": "/info/strategy/asset-allocation"
       }
     ],
     "calculators": [
@@ -183,6 +187,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "월배당 ETF 체크리스트",
         "href": "/info/guide/monthly-dividend-etf-checklist"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [
@@ -284,6 +292,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "ETF와 개별주 차이",
         "href": "/info/guide/etf-vs-stocks"
+      },
+      {
+        "label": "자산배분 전략",
+        "href": "/info/strategy/asset-allocation"
       }
     ],
     "calculators": [
@@ -372,6 +384,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "복리 투자 실제 효과",
         "href": "/info/guide/compound-interest"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [
@@ -461,6 +477,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "현금흐름 투자와 자본차익 차이",
         "href": "/info/guide/cashflow-vs-capital-gains"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [
@@ -550,6 +570,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "포트폴리오 기초",
         "href": "/info/guide/portfolio-basics"
+      },
+      {
+        "label": "ETF 코어-새틀라이트 전략",
+        "href": "/info/strategy/etf-core-satellite"
       }
     ],
     "calculators": [
@@ -660,6 +684,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "분산투자 꼭 해야 할까",
         "href": "/info/guide/diversification"
+      },
+      {
+        "label": "ETF 코어-새틀라이트 전략",
+        "href": "/info/strategy/etf-core-satellite"
       }
     ],
     "calculators": [
@@ -748,6 +776,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "현금흐름 투자와 자본차익 차이",
         "href": "/info/guide/cashflow-vs-capital-gains"
+      },
+      {
+        "label": "은퇴 현금흐름 전략",
+        "href": "/info/strategy/retirement-income"
       }
     ],
     "calculators": [
@@ -838,6 +870,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "포트폴리오 기초",
         "href": "/info/guide/portfolio-basics"
+      },
+      {
+        "label": "은퇴 현금흐름 전략",
+        "href": "/info/strategy/retirement-income"
       }
     ],
     "calculators": [
@@ -968,6 +1004,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "월배당 ETF 체크리스트",
         "href": "/info/guide/monthly-dividend-etf-checklist"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [
@@ -1057,6 +1097,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "연금저축과 IRP 차이",
         "href": "/info/guide/pension-vs-irp"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -1167,6 +1211,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "연금저축과 IRP 차이",
         "href": "/info/guide/pension-vs-irp"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -1255,6 +1303,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "포트폴리오 실수",
         "href": "/info/guide/portfolio-mistakes"
+      },
+      {
+        "label": "하락장 대응 전략",
+        "href": "/info/strategy/market-downturn"
       }
     ],
     "calculators": [
@@ -1343,6 +1395,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "ISA 계좌로 투자하면 뭐가 좋을까",
         "href": "/info/guide/isa-benefits"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -1432,6 +1488,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "고배당주 투자할 때 무엇을 조심해야 할까",
         "href": "/info/guide/high-dividend-risks"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [
@@ -1558,6 +1618,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "절세계좌를 먼저 써야 하는 이유",
         "href": "/info/guide/why-tax-advantaged-accounts"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -1646,6 +1710,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "복리 투자 실제 효과",
         "href": "/info/guide/compound-interest"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -1734,6 +1802,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "리스크 관리 기초",
         "href": "/info/guide/risk-management"
+      },
+      {
+        "label": "자산배분 전략",
+        "href": "/info/strategy/asset-allocation"
       }
     ],
     "calculators": [
@@ -1824,6 +1896,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "리스크 관리 기초",
         "href": "/info/guide/risk-management"
+      },
+      {
+        "label": "하락장 대응 전략",
+        "href": "/info/strategy/market-downturn"
       }
     ],
     "calculators": [
@@ -1914,6 +1990,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "장기투자와 단기투자 무엇이 다를까",
         "href": "/info/guide/long-vs-short-term"
+      },
+      {
+        "label": "하락장 대응 전략",
+        "href": "/info/strategy/market-downturn"
       }
     ],
     "calculators": [
@@ -2003,6 +2083,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "포트폴리오란 무엇이고 어떻게 짜야 할까",
         "href": "/info/guide/portfolio-basics"
+      },
+      {
+        "label": "자산배분 전략",
+        "href": "/info/strategy/asset-allocation"
       }
     ],
     "calculators": [
@@ -2093,6 +2177,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "절세계좌를 먼저 써야 하는 이유",
         "href": "/info/guide/why-tax-advantaged-accounts"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -2183,6 +2271,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "절세계좌를 먼저 써야 하는 이유",
         "href": "/info/guide/why-tax-advantaged-accounts"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -2301,6 +2393,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "손실이 났을 때 세금은 어떻게 될까",
         "href": "/info/guide/loss-tax"
+      },
+      {
+        "label": "절세계좌 활용 전략",
+        "href": "/info/strategy/tax-efficient-investing"
       }
     ],
     "calculators": [
@@ -2417,6 +2513,10 @@ export const guideArticles: Record<string, GuideArticle> = {
       {
         "label": "복리 투자 실제로 얼마나 차이 날까",
         "href": "/info/guide/compound-interest"
+      },
+      {
+        "label": "배당 투자 전략",
+        "href": "/info/strategy/dividend"
       }
     ],
     "calculators": [

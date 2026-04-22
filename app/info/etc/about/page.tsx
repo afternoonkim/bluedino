@@ -51,6 +51,10 @@ const personSchema = {
     name: "BlueDino",
     url: "https://bluedino.kr",
   },
+  sameAs: [
+    "https://blog.naver.com/issue_item",
+    "https://github.com/afternoonkim",
+  ],
 };
 
 export default function AboutPage() {
@@ -127,6 +131,28 @@ export default function AboutPage() {
               </p>
               <p className="bd-text-sub mt-3">
                 문의: <span className="font-semibold text-cyan-300">afternoonkim93@gmail.com</span>
+              </p>
+              <p className="bd-text-sub mt-3">
+                운영자 블로그:{" "}
+                <a
+                  href="https://blog.naver.com/issue_item"
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  className="font-semibold text-cyan-300 hover:text-cyan-200 underline"
+                >
+                  blog.naver.com/issue_item
+                </a>
+              </p>
+              <p className="bd-text-sub mt-3">
+                GitHub:{" "}
+                <a
+                  href="https://github.com/afternoonkim"
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  className="font-semibold text-cyan-300 hover:text-cyan-200 underline"
+                >
+                  github.com/afternoonkim
+                </a>
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
