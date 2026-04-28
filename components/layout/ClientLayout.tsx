@@ -6,6 +6,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 import SiteFooter from "@/components/layout/SiteFooter";
 import RouteAwareAdShell from "@/components/ad/RouteAwareAdShell";
+import RouteNavigationButtons from "@/components/common/RouteNavigationButtons";
 
 export default function ClientLayout({
   children,
@@ -15,7 +16,10 @@ export default function ClientLayout({
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#020b1d] text-slate-100">
+    <div
+      className="min-h-screen bg-[#020b1d] text-slate-100"
+      suppressHydrationWarning
+    >
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
 
       <div
@@ -27,7 +31,9 @@ export default function ClientLayout({
 
         <div className="flex-1 px-4 py-6 md:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
+            <RouteNavigationButtons position="top" />
             <RouteAwareAdShell>{children}</RouteAwareAdShell>
+            <RouteNavigationButtons position="bottom" />
           </div>
         </div>
 

@@ -68,7 +68,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body>
+      <head>
+        {/*
+         * Some browser extensions inject inline styles like style="user-select: auto"
+         * into body's descendant nodes after the SSR HTML is delivered but before React
+         * hydrates. This causes Next.js to throw a hydration mismatch error.
+         * The affected node is sometimes Next.js's own __next_root_layout_boundary__
+         * which we cannot directly mark with suppressHydrationWarning. So we strip
+         * any injected user-select inline styles in a small inline script that runs
+         * before React hydration.
+         */}
+        <script
+          id="bd-strip-extension-userselect"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var n=document.querySelectorAll('[style*="user-select"]');for(var i=0;i<n.length;i++){var el=n[i];el.style.userSelect='';if(!el.getAttribute('style')){el.removeAttribute('style');}}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning>
         <Script
           id="organization-jsonld"
           type="application/ld+json"

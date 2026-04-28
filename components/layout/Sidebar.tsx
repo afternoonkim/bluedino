@@ -103,11 +103,17 @@ export default function Sidebar({
 
         <div className="flex-1 space-y-6 overflow-y-auto p-4">
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="절세계좌 · 대출 · 배당" collapsed={collapsed}>
+            <SidebarGroup title="절세계좌 · 대출 · 배당" collapsed={collapsed} storageKey="finance">
               <SidebarItem
                 href="/finance"
                 label="금융 가이드 메인"
                 icon={Landmark}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/company-analysis"
+                label="기업분석"
+                icon={Building2}
                 collapsed={collapsed}
               />
               <SidebarItem
@@ -150,7 +156,7 @@ export default function Sidebar({
           </div>
 
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="대표 계산기" collapsed={collapsed}>
+            <SidebarGroup title="대표 계산기" collapsed={collapsed} storageKey="calculators">
               <SidebarItem
                 href="/cal/calculator"
                 label="배당 계산기"
@@ -215,7 +221,7 @@ export default function Sidebar({
           </div>
 
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="기타" collapsed={collapsed}>
+            <SidebarGroup title="기타" collapsed={collapsed} storageKey="etc" defaultOpen={false}>
               <SidebarItem
                 href="/info/etc/about"
                 label="소개"

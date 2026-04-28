@@ -63,9 +63,9 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
       />
 
       <article className="bd-container-narrow bd-section space-y-8">
-        <Link href="/info/strategy" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 hover:text-cyan-200">
+        {/* <Link href="/info/strategy" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 hover:text-cyan-200">
           ← 투자 전략으로 돌아가기
-        </Link>
+        </Link> */}
 
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">{article.badge}</span>

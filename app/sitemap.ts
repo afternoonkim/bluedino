@@ -2,12 +2,19 @@ import type { MetadataRoute } from "next";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { financeCategories } from "@/lib/finance/config";
 import { guideArticles } from "@/lib/info/guideArticles";
+import {
+  companyAnalysisMarkets,
+  getCompanyAnalysisRoutes,
+  getCompanyArticle,
+} from "@/lib/company-analysis/data";
+import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 const staticRoutes = [
   "/",
   "/finance",
+  "/company-analysis",
   "/cal/calculator",
   "/cal/capital-gains",
   "/cal/compound",
@@ -39,6 +46,10 @@ const staticRoutes = [
 ];
 
 const guideRoutes = Object.keys(guideArticles).map((slug) => `/info/guide/${slug}`);
+const companyMarketRoutes = companyAnalysisMarkets.map((market) => market.basePath);
+const companyDetailRoutes = getCompanyAnalysisRoutes().map(
+  ({ market, slug }) => `/company-analysis/${market}/${slug}`,
+);
 
 function parseDate(value: string | undefined, fallback: Date) {
   if (!value) return fallback;
@@ -54,6 +65,20 @@ function resolveLastModified(route: string, fallback: Date): Date {
       return parseDate(article.updatedAt ?? article.publishedAt, fallback);
     }
   }
+
+  if (route.startsWith("/company-analysis/")) {
+    const [, , market, slug] = route.split("/");
+    if (market && slug && market !== "korea" && market !== "global") {
+      return fallback;
+    }
+    if (market && slug) {
+      const article = getCompanyArticle(market as CompanyAnalysisMarket, slug);
+      if (article) {
+        return parseDate(article.updatedAt ?? article.publishedAt, fallback);
+      }
+    }
+  }
+
   return fallback;
 }
 
@@ -64,16 +89,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const financeRoutes = getAllFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
 
   const allRoutes = Array.from(
-    new Set([...staticRoutes, ...guideRoutes, ...categoryRoutes, ...financeRoutes]),
+    new Set([
+      ...staticRoutes,
+      ...guideRoutes,
+      ...categoryRoutes,
+      ...financeRoutes,
+      ...companyMarketRoutes,
+      ...companyDetailRoutes,
+    ]),
   );
 
   return allRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: resolveLastModified(route, now),
     changeFrequency:
-      route === "/" ? "weekly" : route.startsWith("/finance/") || route.startsWith("/cal/") ? "weekly" : "monthly",
+      route === "/" ? "weekly" : route.startsWith("/finance/") || route.startsWith("/cal/") || route.startsWith("/company-analysis") ? "weekly" : "monthly",
     priority:
       route === "/" ? 1 :
-      route === "/finance" || route.startsWith("/finance/") || route.startsWith("/cal/") ? 0.9 : 0.8,
+      route === "/finance" || route.startsWith("/finance/") || route.startsWith("/cal/") || route.startsWith("/company-analysis") ? 0.9 : 0.8,
   }));
 }

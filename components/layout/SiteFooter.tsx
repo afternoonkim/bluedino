@@ -32,6 +32,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <FooterLink href="/company-analysis">기업분석</FooterLink>
             <FooterLink href="/info/etc/about">소개</FooterLink>
             <FooterLink href="/info/etc/contact">문의</FooterLink>
             <FooterLink href="/info/etc/privacy">개인정보처리방침</FooterLink>
