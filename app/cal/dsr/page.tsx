@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import DsrCalculatorClient from "./DsrCalculatorClient";
 
@@ -72,6 +73,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <DsrCalculatorClient />
+      <CalculatorResultSeoNote calculator="dsr" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );

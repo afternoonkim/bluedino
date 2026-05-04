@@ -139,6 +139,18 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           <p className="bd-text-main mt-4">{article.caution}</p>
         </section>
 
+        <section className="bd-card bd-card-padding">
+          <h2 className="bd-title-md">자주 묻는 질문</h2>
+          <div className="mt-6 space-y-4">
+            {article.faqs.map((faq) => (
+              <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+                <p className="bd-text-main mt-3">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">숫자로 직접 확인해보기</h2>
           <p className="bd-text-main mt-4">
@@ -184,26 +196,6 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
 
         <EditorialTrustPanel compact />
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">이 전략을 볼 때 같이 생각하면 좋은 점</h2>
-          <div className="bd-list mt-5">
-            <div className="bd-list-item">전략 자체보다 내 투자 기간, 현금흐름, 감당 가능한 변동성을 함께 보는 것이 중요합니다.</div>
-            <div className="bd-list-item">같은 전략도 계좌 선택과 세후 기준에 따라 체감 결과가 달라질 수 있습니다.</div>
-            <div className="bd-list-item">실행 전에는 내 금액을 직접 넣어 계산기로 확인해보는 편이 훨씬 현실적입니다.</div>
-          </div>
-        </section>
-
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 묻는 질문</h2>
-          <div className="mt-6 space-y-4">
-            {article.faqs.map((faq) => (
-              <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                <p className="bd-text-main mt-3">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </article>
     </div>
   );

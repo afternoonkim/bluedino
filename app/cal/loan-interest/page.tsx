@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import LoanInterestCalculatorClient from "./LoanInterestCalculatorClient";
 
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
     siteName: "BlueDino",
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "대출이자 계산기 | 월 상환액·총이자 계산 | BlueDino",
+    description:
+      "대출금액, 금리, 기간, 상환방식을 입력하면 월 상환액과 총이자, 상환 스케줄을 확인할 수 있는 대출이자 계산기입니다.",
   },
 };
 
@@ -66,6 +73,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <LoanInterestCalculatorClient />
+      <CalculatorResultSeoNote calculator="loan-interest" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );

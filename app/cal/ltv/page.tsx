@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import LtvCalculatorClient from "./LtvCalculatorClient";
 
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
     siteName: "BlueDino",
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LTV 계산기 | 담보인정비율 계산 | BlueDino",
+    description:
+      "주택 가격과 보유 자금, 기존 담보대출을 입력하면 LTV를 계산하고 필요한 자기자본 규모를 확인할 수 있는 LTV 계산기입니다.",
   },
 };
 
@@ -66,6 +73,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <LtvCalculatorClient />
+      <CalculatorResultSeoNote calculator="ltv" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );

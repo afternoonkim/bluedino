@@ -25,11 +25,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!entry) {
     return { title: `${category.shortTitle} 질문 가이드 | BlueDino` };
   }
+  const canonicalPath = `${category.basePath}/${encodeURIComponent(entry.slug)}`;
+  const fullUrl = `https://bluedino.kr${canonicalPath}`;
+  const fullTitle = `${entry.title} | ${category.shortTitle} 질문 가이드 | BlueDino`;
+
   return {
-    title: `${entry.title} | ${category.shortTitle} 질문 가이드 | BlueDino`,
+    title: fullTitle,
     description: entry.description,
     keywords: entry.keywords,
-    alternates: { canonical: `${category.basePath}/${encodeURIComponent(entry.slug)}` },
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      title: fullTitle,
+      description: entry.description,
+      url: fullUrl,
+      siteName: "BlueDino",
+      locale: "ko_KR",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description: entry.description,
+    },
   };
 }
 
@@ -57,18 +74,46 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
     })),
   };
 
+  const articleUrl = `https://bluedino.kr${category.basePath}/${encodeURIComponent(entry.slug)}`;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: entry.title,
+    description: entry.description,
+    inLanguage: "ko-KR",
+    datePublished: "2025-01-01",
+    dateModified: "2026-04-27",
+    author: {
+      "@type": "Person",
+      name: "afternoonkim (BlueDino 운영자)",
+      url: "https://bluedino.kr/info/etc/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "BlueDino",
+      url: "https://bluedino.kr",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    articleSection: category.shortTitle,
+    keywords: entry.keywords,
+  };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "금융 가이드", item: "https://bluedino.kr/finance" },
       { "@type": "ListItem", position: 2, name: category.shortTitle, item: `https://bluedino.kr${category.basePath}` },
-      { "@type": "ListItem", position: 3, name: entry.title, item: `https://bluedino.kr${category.basePath}/${encodeURIComponent(entry.slug)}` },
+      { "@type": "ListItem", position: 3, name: entry.title, item: articleUrl },
     ],
   };
 
   return (
     <>
+      <Script id={`finance-article-${entry.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <Script id={`finance-faq-${entry.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id={`finance-breadcrumb-${entry.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 

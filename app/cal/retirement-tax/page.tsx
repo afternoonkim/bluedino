@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import RetirementTaxCalculatorClient from "./RetirementTaxCalculatorClient";
 
@@ -78,6 +79,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <RetirementTaxCalculatorClient />
+      <CalculatorResultSeoNote calculator="retirement-tax" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );

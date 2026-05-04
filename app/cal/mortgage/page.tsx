@@ -1,6 +1,7 @@
 import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
+import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import MortgageCalculatorClient from "./MortgageCalculatorClient";
 
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
     siteName: "BlueDino",
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "주담대 계산기 | 주택담보대출 한도·월상환 계산 | BlueDino",
+    description:
+      "주택가격, 자기자본, 금리, 기간을 넣으면 주담대 한도와 월 상환액, 총이자, DSR 추정치를 한 번에 확인할 수 있는 주담대 계산기입니다.",
   },
 };
 
@@ -66,6 +73,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <MortgageCalculatorClient />
+      <CalculatorResultSeoNote calculator="mortgage" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
     </>
   );
