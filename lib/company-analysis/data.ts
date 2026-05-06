@@ -1,4 +1,19 @@
 import { additionalGlobalCompanySeeds } from "./additionalGlobalSeeds";
+import {
+  COMPANY_CUSTOM_NOTES,
+  SECTION1_OPENERS,
+  SECTION2_OPENERS,
+  QUICK_CONCLUSION_OPENERS,
+  SUMMARY_OPENERS,
+  pickVariant,
+  getSectorSpecificParagraphs,
+} from "./companyVariations";
+import {
+  getCompanyIndices,
+  getCompanyTags,
+  getSubSectorLabel,
+  getCompanyTagLabel,
+} from "./companyMetadata";
 import { additionalKoreaCompanySeeds } from "./additionalKoreaSeeds";
 import type {
   CompanyAnalysisArticle,
@@ -5364,8 +5379,15 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
     ? `${seed.companyNameKo}(${seed.ticker}) 주가 전망 | ${seed.sector} 기업분석과 투자 체크포인트`
     : `${seed.companyNameKo}(${seed.ticker}) 주가 전망 | 미국주식 ${seed.sector} 기업분석`;
   const metaDescription = `${seed.companyNameKo}(${seed.ticker}) 기업분석입니다. ${seed.sector} 사업 구조, 성장 포인트, 실적 확인 지표, 주가 리스크와 투자 전 체크포인트를 사용자 관점에서 정리했습니다.`;
-  const summary = `${seed.companyNameKo}(${seed.ticker})는 ${seed.sector} 분야에서 투자자가 자주 확인하는 ${marketLabel}입니다. 이 글에서는 단순한 주가 흐름보다 사업 구조, 실적을 움직이는 변수, 밸류에이션 부담, 리스크 요인을 함께 정리합니다.`;
-  const quickConclusion = `${seed.companyNameKo}는 ${theme} 흐름을 볼 때 함께 확인할 만한 기업입니다. 다만 좋은 기업인지와 좋은 가격인지는 다르기 때문에 실적 성장률, 이익률, 주가에 반영된 기대치를 나눠서 보는 접근이 필요합니다.`;
+  const summaryFn = pickVariant(SUMMARY_OPENERS, seed.ticker);
+  const summary = summaryFn(seed.companyNameKo, seed.ticker, seed.sector, marketLabel);
+  const quickConclusionFn = pickVariant(QUICK_CONCLUSION_OPENERS, seed.ticker, 7);
+  const quickConclusion = quickConclusionFn(seed.companyNameKo, theme);
+
+  const indices = getCompanyIndices(seed.ticker);
+  const classifications = getCompanyTags(seed.sector, seed.ticker);
+  const classificationLabels = classifications.map((c) => getCompanyTagLabel(c));
+  const subSector = getSubSectorLabel(seed.sector);
 
   return {
     status: "published",
@@ -5376,6 +5398,10 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
     companyNameKo: seed.companyNameKo,
     companyNameEn: seed.companyNameEn,
     sector: seed.sector,
+    subSector,
+    indices,
+    classifications,
+    classificationLabels,
     badge,
     seoTitle,
     metaDescription,
@@ -5393,22 +5419,39 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
     publishedAt: PUBLISHED_AT,
     updatedAt: UPDATED_AT,
     sections: [
-      {
-        title: `${seed.companyNameKo} 사업 구조 핵심 정리`,
-        body: [
-          `${seed.companyNameKo}(${seed.ticker}) 분석에서 가장 먼저 볼 부분은 주가 차트가 아니라 매출이 만들어지는 구조입니다. ${seed.companyNameKo}는 ${seed.sector} 영역에서 사업을 전개하는 ${marketLabel}으로, 투자자는 이 기업이 어떤 고객에게 어떤 제품과 서비스를 팔고 있는지부터 확인해야 합니다.`,
+      (() => {
+        const customNote = COMPANY_CUSTOM_NOTES[seed.ticker.toUpperCase()];
+        const opener = pickVariant(SECTION1_OPENERS, seed.ticker)(
+          seed.companyNameKo,
+          seed.ticker,
+          seed.sector,
+          marketLabel,
+        );
+        const baseBody = [
+          `${opener} ${seed.companyNameKo}는 ${seed.sector} 영역에서 사업을 전개하는 ${marketLabel}으로, 투자자는 이 기업이 어떤 고객에게 어떤 제품과 서비스를 팔고 있는지부터 확인해야 합니다.`,
           `특히 ${theme} 흐름 안에서 ${seed.companyNameKo}가 단순 테마에 묶여 움직이는 기업인지, 실제 매출과 이익을 만드는 기업인지 구분하는 것이 중요합니다. 같은 업종이라도 고객사 구성, 가격 결정력, 기술 장벽, 원가 구조에 따라 실적 민감도는 크게 달라질 수 있습니다.`,
           `사용자 관점에서는 "유명한 기업인가"보다 "실적이 반복적으로 쌓일 수 있는 구조인가"가 더 중요합니다. 매출원이 특정 고객이나 특정 제품에 과도하게 집중되어 있다면 성장성이 커 보여도 변동성이 커질 수 있습니다.`,
-        ],
-      },
-      {
-        title: `${seed.companyNameKo}가 속한 산업의 핵심 변수`,
-        body: [
-          `${seed.sector} 산업에서 주가를 움직이는 핵심 변수는 ${getIndustryDriver(seed.sector)}입니다. 산업의 방향이 좋아도 모든 기업이 같은 속도로 성장하는 것은 아니기 때문에, ${seed.companyNameKo}가 산업 변화의 어느 위치에서 수혜를 받는지 확인해야 합니다.`,
-          `산업 분석에서 중요한 것은 뉴스의 크기가 아니라 실적 연결 가능성입니다. 투자자는 해당 산업의 수요 증가가 실제 주문, 가격, 마진, 현금흐름으로 이어지고 있는지 단계별로 확인하는 것이 좋습니다.`,
-          `${isKorea ? "국내기업" : "해외기업"}은 거시 환경에도 영향을 받습니다. 금리, 환율, 원자재 가격, 규제, 고객사의 투자 계획이 달라지면 같은 기업이라도 시장에서 평가받는 방식이 달라질 수 있습니다.`,
-        ],
-      },
+        ];
+        return {
+          title: `${seed.companyNameKo} 사업 구조 핵심 정리`,
+          body: customNote ? [customNote, ...baseBody] : baseBody,
+        };
+      })(),
+      (() => {
+        const opener2 = pickVariant(SECTION2_OPENERS, seed.ticker, 13)(
+          seed.companyNameKo,
+          seed.sector,
+          getIndustryDriver(seed.sector),
+        );
+        return {
+          title: `${seed.companyNameKo}가 속한 산업의 핵심 변수`,
+          body: [
+            opener2,
+            `산업 분석에서 중요한 것은 뉴스의 크기가 아니라 실적 연결 가능성입니다. 투자자는 해당 산업의 수요 증가가 실제 주문, 가격, 마진, 현금흐름으로 이어지고 있는지 단계별로 확인하는 것이 좋습니다.`,
+            `${isKorea ? "국내기업" : "해외기업"}은 거시 환경에도 영향을 받습니다. 금리, 환율, 원자재 가격, 규제, 고객사의 투자 계획이 달라지면 같은 기업이라도 시장에서 평가받는 방식이 달라질 수 있습니다.`,
+          ],
+        };
+      })(),
       {
         title: `실적을 볼 때 확인해야 할 숫자`,
         body: [
@@ -5425,6 +5468,10 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
           `따라서 투자자는 목표주가나 단기 전망만 보기보다 동종 기업 대비 이익률, 성장률, 부채 부담, 현금흐름을 비교해야 합니다. 이 과정이 있어야 단순히 "싸 보인다" 또는 "비싸 보인다"는 판단에서 벗어날 수 있습니다.`,
         ],
       },
+      ...((): { title: string; body: string[] }[] => {
+        const sectorBlock = getSectorSpecificParagraphs(seed.sector, seed.companyNameKo);
+        return sectorBlock ? [sectorBlock] : [];
+      })(),
       {
         title: `경쟁력과 해자 체크`,
         body: [

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdBlock from "@/components/ad/AdBlock";
+import ShareAndCite from "@/components/share/ShareAndCite";
 import { getFinanceCategory } from "@/lib/finance/config";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { getFinanceEntry, getRelatedEntries } from "@/lib/finance/content";
@@ -175,6 +176,12 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
                   </div>
                 </section>
               )}
+
+              <ShareAndCite
+                url={`${category.basePath}/${encodeURIComponent(entry.slug)}`}
+                title={entry.title}
+                category={`${category.shortTitle} 질문 가이드`}
+              />
             </div>
 
             <aside className="space-y-6">

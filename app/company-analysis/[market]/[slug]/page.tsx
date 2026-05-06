@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import AdBlock from "@/components/ad/AdBlock";
+import ShareAndCite from "@/components/share/ShareAndCite";
 import TradingViewStockChart from "@/components/company-analysis/TradingViewStockChart";
 import {
   getCompanyAnalysisRoutes,
@@ -157,9 +158,25 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
               {currentArticle.companyNameKo}({currentArticle.ticker}) 주가 전망과 기업분석
             </h1>
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
+            <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-400">
               <span className="rounded-full border border-slate-700 px-3 py-1">{currentArticle.exchange}</span>
-              <span className="rounded-full border border-slate-700 px-3 py-1">{currentArticle.sector}</span>
+              <span className="rounded-full border border-slate-700 px-3 py-1">{currentArticle.subSector}</span>
+              {currentArticle.indices.map((idx) => (
+                <span
+                  key={`idx-${idx}`}
+                  className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-cyan-200"
+                >
+                  {idx === "S&P500" ? "S&P 500" : idx === "NASDAQ100" ? "NASDAQ 100" : idx === "DJIA" ? "다우존스" : idx === "KOSPI200" ? "KOSPI 200" : idx === "KOSPI50" ? "KOSPI 50" : idx === "KOSDAQ150" ? "KOSDAQ 150" : idx === "RUSSELL1000" ? "Russell 1000" : idx} 편입
+                </span>
+              ))}
+              {currentArticle.classificationLabels.map((tagLabel) => (
+                <span
+                  key={`tag-${tagLabel}`}
+                  className="rounded-full border border-slate-700 bg-slate-950/40 px-3 py-1"
+                >
+                  #{tagLabel}
+                </span>
+              ))}
               <span className="rounded-full border border-slate-700 px-3 py-1">수정일 {currentArticle.updatedAt}</span>
             </div>
           </section>
@@ -238,6 +255,12 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                   ))}
                 </div>
               </section>
+
+              <ShareAndCite
+                url={`/company-analysis/${currentArticle.market}/${currentArticle.slug}`}
+                title={`${currentArticle.companyNameKo}(${currentArticle.ticker}) 주가 전망과 기업분석`}
+                category={`${currentMarketLabel} 분석`}
+              />
             </div>
 
             <aside className="space-y-6">
@@ -260,9 +283,35 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                     <span className="text-slate-500">구분</span>
                     <span className="text-right">{currentMarketLabel}</span>
                   </div>
-                  <div className="flex justify-between gap-3">
+                  <div className="flex justify-between gap-3 border-b border-slate-800 pb-3">
                     <span className="text-slate-500">시장</span>
                     <span className="text-right">{currentArticle.exchange}</span>
+                  </div>
+                  <div className="flex justify-between gap-3 border-b border-slate-800 pb-3">
+                    <span className="text-slate-500">세부 분류</span>
+                    <span className="text-right">{currentArticle.subSector}</span>
+                  </div>
+                  {currentArticle.indices.length > 0 && (
+                    <div className="border-b border-slate-800 pb-3">
+                      <div className="text-slate-500">지수 편입</div>
+                      <div className="mt-2 flex flex-wrap justify-end gap-1">
+                        {currentArticle.indices.map((idx) => (
+                          <span key={`side-idx-${idx}`} className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-xs text-cyan-200">
+                            {idx === "S&P500" ? "S&P 500" : idx === "NASDAQ100" ? "NASDAQ 100" : idx === "DJIA" ? "다우존스" : idx === "KOSPI200" ? "KOSPI 200" : idx === "KOSPI50" ? "KOSPI 50" : idx === "KOSDAQ150" ? "KOSDAQ 150" : idx === "RUSSELL1000" ? "Russell 1000" : idx}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-slate-500">투자자 검색 분류</div>
+                    <div className="mt-2 flex flex-wrap justify-end gap-1">
+                      {currentArticle.classificationLabels.map((label) => (
+                        <span key={`side-tag-${label}`} className="rounded-full border border-slate-700 bg-slate-950/60 px-2 py-0.5 text-xs text-slate-300">
+                          #{label}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </section>

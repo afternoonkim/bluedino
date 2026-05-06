@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import AdBlock from "@/components/ad/AdBlock";
 import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
+import ShareAndCite from "@/components/share/ShareAndCite";
 
 type LinkItem = { label: string; href: string };
 type FaqItem = { question: string; answer: string };
@@ -446,6 +447,12 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
             </ul>
           </section>
         )}
+
+        <ShareAndCite
+          url={`/info/guide/${article.slug}`}
+          title={article.title}
+          category="투자 기초 가이드"
+        />
 
         <EditorialTrustPanel compact />
 

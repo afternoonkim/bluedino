@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import AdBlock from "@/components/ad/AdBlock";
 import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
+import ShareAndCite from "@/components/share/ShareAndCite";
 
 export type StrategyLinkItem = { label: string; href: string };
 export type StrategyFaqItem = { question: string; answer: string };
@@ -193,6 +194,12 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           </div>
         </section>
 
+
+        <ShareAndCite
+          url={`/info/strategy/${article.slug}`}
+          title={article.title}
+          category="투자전략 가이드"
+        />
 
         <EditorialTrustPanel compact />
 

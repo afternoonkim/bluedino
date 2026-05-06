@@ -26,6 +26,14 @@ export type CompanyAnalysisArticle = {
   companyNameKo: string;
   companyNameEn: string;
   sector: string;
+  /** 세부 sub-sector 분류 라벨 (예: "메모리·HBM 반도체") */
+  subSector: string;
+  /** 지수 편입 정보 (KOSPI200 등) */
+  indices: string[];
+  /** 종목 분류 태그 키 (성장주/배당주/AI 테마 등) */
+  classifications: string[];
+  /** 종목 분류 태그 사람이 읽는 라벨 */
+  classificationLabels: string[];
   badge: string;
   seoTitle: string;
   metaDescription: string;
