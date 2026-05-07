@@ -3,14 +3,31 @@ import Link from "next/link";
 import AdBlock from "@/components/ad/AdBlock";
 
 export const metadata: Metadata = {
-  title: "투자전략 가이드 | 연령별·가정별 맞춤 투자전략 | BlueDino",
+  title: "투자전략 가이드 | 상황별·연령별 맞춤 투자전략 11가지 | BlueDino",
   description:
-    "20대, 30대, 40대, 50대 이후 연령별 투자전략부터 출산가정과 아이를 키우는 가정을 위한 현실적인 투자전략까지 사용자 관점으로 정리한 BlueDino 투자전략 모음",
+    "20대 사회 초년생, 1인 가구, 신혼부부·딩크족, 출산가정, 자녀 키우는 가정, 고소득자, 프리랜서, 대출 병행 투자, 첫 내 집 마련, 은퇴 5~10년 전, 은퇴 후 자산 운용까지 11가지 상황별 투자전략을 사용자 관점으로 정리한 BlueDino 투자전략 모음",
+  keywords: [
+    "투자전략",
+    "상황별 투자전략",
+    "1인 가구 투자전략",
+    "신혼부부 투자전략",
+    "딩크족 투자전략",
+    "프리랜서 투자전략",
+    "고소득자 투자전략",
+    "은퇴 투자전략",
+    "내 집 마련 투자",
+    "대출 병행 투자",
+    "연령별 투자전략",
+    "20대 투자",
+    "30대 투자",
+    "40대 투자",
+    "50대 투자",
+  ],
   alternates: { canonical: "/info/strategy" },
   openGraph: {
-    title: "투자전략 가이드 | 연령별·가정별 맞춤 투자전략 | BlueDino",
+    title: "투자전략 가이드 | 상황별·연령별 맞춤 투자전략 11가지 | BlueDino",
     description:
-      "절세계좌, 자산배분, 배당, ETF, 하락장 대응, 은퇴 생활비, 연령별 투자전략, 출산가정 투자전략을 한 번에 비교할 수 있는 투자전략 허브입니다.",
+      "1인 가구·딩크족·출산가정·고소득자·프리랜서·은퇴 전후·내 집 마련 등 11가지 상황별 투자전략과 절세계좌·자산배분·배당·ETF·하락장 대응 같은 핵심 전략을 한 번에 비교할 수 있는 투자전략 허브입니다.",
     url: "https://bluedino.kr/info/strategy",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -18,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "투자전략 가이드 | 연령별·가정별 맞춤 투자전략 | BlueDino",
+    title: "투자전략 가이드 | 상황별·연령별 맞춤 투자전략 11가지 | BlueDino",
     description:
-      "내 나이, 가정 상황, 투자 목적에 맞게 투자전략을 쉽게 고를 수 있도록 정리한 투자전략 허브입니다.",
+      "내 상황(1인·신혼·출산·자녀·고소득·프리랜서·은퇴 전후·내 집 마련)에 맞는 투자전략을 11가지 카드로 비교할 수 있는 BlueDino 투자전략 허브.",
   },
 };
 
@@ -201,9 +218,9 @@ export default function StrategyHubPage() {
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
               <span className="bd-badge">투자전략 가이드</span>
-              <h1 className="mt-4 bd-title-xl">투자전략, 내 나이와 가정 상황에 맞게 골라보세요</h1>
+              <h1 className="mt-4 bd-title-xl">투자전략, 내 상황과 인생 단계에 맞게 골라보세요</h1>
               <p className="mt-4 max-w-4xl bd-text-main">
-                투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지 정리하는 일에서 시작됩니다. 이 페이지에서는 연령별 투자전략, 출산가정 투자전략, 자녀가 있는 가정의 투자전략, 절세계좌와 ETF 전략까지 한눈에 비교할 수 있습니다.
+                투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지부터 정리하는 일에서 시작됩니다. BlueDino는 1인 가구·신혼부부·딩크족·출산가정·자녀를 키우는 가정·고소득자·프리랜서·대출 병행 투자자·첫 내 집 마련·은퇴 5~10년 전·은퇴 후까지 11가지 상황별 투자전략과 절세계좌·자산배분·배당·ETF 핵심 전략을 한눈에 비교할 수 있도록 정리했습니다.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="#life-stage" className="bd-button-primary">
@@ -238,10 +255,10 @@ export default function StrategyHubPage() {
         <section id="life-stage" className="bd-card-soft bd-card-padding">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <span className="bd-badge">상황별 추천</span>
+              <span className="bd-badge">상황별 추천 11가지</span>
               <h2 className="mt-3 bd-title-md">지금 내 상황에서 먼저 볼 투자전략</h2>
               <p className="mt-3 bd-text-sub">
-                투자 경험보다 중요한 것은 현재의 생활비, 가족 구성, 투자 기간입니다. 아래 글은 사용자가 바로 자기 상황에 대입할 수 있도록 구성했습니다.
+                투자 경험보다 중요한 것은 현재의 생활비, 가족 구성, 소득 형태, 투자 기간입니다. 1인 가구부터 은퇴 후 자산 운용까지 11가지 상황별 카드를 펼쳐, 본인에게 가장 가까운 카드부터 읽어보시면 자기 상황에 바로 대입할 수 있도록 구성했습니다.
               </p>
             </div>
             <Link href="#core-strategy" className="bd-button-secondary">
@@ -351,10 +368,9 @@ function QuickLink({
   description: string;
 }) {
   return (
-    <Link href={href} className="bd-card bd-card-padding transition hover:border-slate-700">
-      <p className="text-sm font-semibold text-cyan-300">바로가기</p>
-      <h3 className="mt-3 text-lg font-bold text-white">{label}</h3>
-      <p className="mt-2 text-sm leading-7 text-slate-400">{description}</p>
+    <Link href={href} className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5 transition hover:border-cyan-500/30 hover:bg-slate-900">
+      <p className="text-sm font-semibold text-cyan-300">{label}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
     </Link>
   );
 }
