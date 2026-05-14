@@ -90,7 +90,7 @@ async function fetchYoutubeJson<T>(
   const key = getApiKey();
 
   if (!key) {
-    throw new Error("YOUTUBE_API_KEY 환경변수가 없습니다.");
+    throw new Error("현재 영상 데이터를 불러올 수 없습니다.");
   }
 
   const url = new URL(`${API_BASE}${path}`);
@@ -257,7 +257,7 @@ export async function GET() {
       return NextResponse.json(
         {
           ok: false,
-          message: "YOUTUBE_API_KEY 환경변수를 설정해주세요.",
+          message: "현재 영상 데이터를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.",
           items: [],
         },
         { status: 500 }

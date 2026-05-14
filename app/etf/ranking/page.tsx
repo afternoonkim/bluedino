@@ -3,8 +3,22 @@ import { getEtfRankings, isFmpConfigured } from "@/lib/etf/fmp";
 import { EmptyState, formatCurrency, formatPercent, InfoNotice, NavPills, PageHero, StatBox } from "@/components/etf/EtfUi";
 
 export const metadata: Metadata = {
-  title: "ETF 순위",
-  description: "BlueDino가 추적하는 주요 미국 ETF의 배당수익률, 운용보수, AUM을 한 화면에서 비교할 수 있는 ETF 순위 페이지입니다.",
+  title: "ETF 순위 | 배당수익률·운용보수·AUM 비교",
+  description: "주요 미국 ETF의 배당수익률, 운용보수, 자산규모와 참고 점수를 함께 비교할 수 있는 ETF 순위 페이지입니다.",
+  alternates: { canonical: "/etf/ranking" },
+  openGraph: {
+    title: "ETF 순위 | 배당수익률·운용보수·AUM 비교",
+    description: "주요 미국 ETF의 배당수익률, 운용보수, 자산규모와 참고 점수를 함께 비교할 수 있는 ETF 순위 페이지입니다.",
+    url: "https://bluedino.kr/etf/ranking",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ETF 순위 | 배당수익률·운용보수·AUM 비교",
+    description: "주요 미국 ETF의 배당수익률, 운용보수, 자산규모와 참고 점수를 함께 비교할 수 있는 ETF 순위 페이지입니다.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -15,12 +29,12 @@ export default async function EtfRankingPage() {
       <div className="bd-page">
         <div className="bd-container space-y-8">
           <PageHero
-            badge="BlueDino ETF Ranking"
+            badge="ETF 순위 비교"
             title="ETF 순위"
-            description="FMP API 데이터를 서버 캐시에 저장한 뒤 사용자에게 제공하는 구조로 설계된 ETF 순위 메뉴입니다."
+            description="주요 ETF의 배당수익률, 운용보수, 자산규모를 한눈에 비교할 수 있는 ETF 순위 메뉴입니다."
             actions={<NavPills />}
           />
-          <InfoNotice>현재는 FMP_API_KEY가 설정되지 않아 실데이터를 불러오지 못하고 있습니다. Vercel 또는 로컬 환경변수에 키를 추가하면 바로 동작합니다.</InfoNotice>
+          <InfoNotice>현재 ETF 데이터를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.</InfoNotice>
         </div>
       </div>
     );
@@ -39,15 +53,15 @@ export default async function EtfRankingPage() {
     <div className="bd-page">
       <div className="bd-container space-y-8">
         <PageHero
-          badge="BlueDino ETF Ranking"
+          badge="ETF 순위 비교"
           title="ETF 순위"
-          description="배당수익률, 운용보수, 자산규모를 함께 반영해 BlueDino 방식으로 주요 ETF를 정리했습니다. API 응답은 서버 캐시에 저장되므로 방문자가 늘어나도 FMP 호출을 반복하지 않도록 설계했습니다."
+          description="배당수익률, 운용보수, 자산규모를 함께 보면서 주요 ETF를 빠르게 비교할 수 있습니다."
           actions={<NavPills />}
         />
 
         <section className="grid gap-4 md:grid-cols-3">
           <StatBox label="추적 ETF" value={`${rows.length}개`} sub="대표 ETF 유니버스 기반" />
-          <StatBox label="캐시 정책" value="6시간" sub="서버 캐시 후 재사용" />
+          <StatBox label="비교 기준" value="수익률·비용" sub="배당수익률과 운용보수 참고" />
           <StatBox label="현재 1위" value={top?.symbol ?? "-"} sub={top?.displayName ?? "데이터 없음"} />
         </section>
 
@@ -56,7 +70,7 @@ export default async function EtfRankingPage() {
         </InfoNotice>
 
         {rows.length === 0 ? (
-          <EmptyState title="표시할 ETF 데이터가 없습니다" description="FMP 응답이 비어 있거나 일시적으로 불안정할 수 있습니다. 잠시 후 다시 시도해 주세요." />
+          <EmptyState title="표시할 ETF 데이터가 없습니다" description="현재 ETF 데이터를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요." />
         ) : (
           <section className="bd-card-soft overflow-hidden">
             <div className="overflow-x-auto">

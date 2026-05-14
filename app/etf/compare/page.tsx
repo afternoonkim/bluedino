@@ -12,9 +12,22 @@ import {
 } from "@/components/etf/EtfUi";
 
 export const metadata: Metadata = {
-  title: "ETF 비교",
-  description:
-    "SCHD, JEPI, VYM 같은 주요 ETF를 운용보수, AUM, 상위 보유종목, 배당 일정으로 비교하는 BlueDino ETF 비교 페이지입니다.",
+  title: "ETF 비교 | SCHD·JEPI·VYM 핵심 지표 비교",
+  description: "SCHD, JEPI, VYM 같은 주요 ETF를 운용보수, AUM, 상위 보유종목, 배당 일정 기준으로 비교할 수 있는 ETF 비교 페이지입니다.",
+  alternates: { canonical: "/etf/compare" },
+  openGraph: {
+    title: "ETF 비교 | SCHD·JEPI·VYM 핵심 지표 비교",
+    description: "SCHD, JEPI, VYM 같은 주요 ETF를 운용보수, AUM, 상위 보유종목, 배당 일정 기준으로 비교할 수 있는 ETF 비교 페이지입니다.",
+    url: "https://bluedino.kr/etf/compare",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ETF 비교 | SCHD·JEPI·VYM 핵심 지표 비교",
+    description: "SCHD, JEPI, VYM 같은 주요 ETF를 운용보수, AUM, 상위 보유종목, 배당 일정 기준으로 비교할 수 있는 ETF 비교 페이지입니다.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -33,14 +46,14 @@ export default async function EtfComparePage({
       <div className="bd-page">
         <div className="bd-container space-y-8">
           <PageHero
-            badge="BlueDino ETF Compare"
+            badge="ETF 비교 도구"
             title="ETF 비교"
-            description="ETF 2개를 같은 화면에서 비교하는 메뉴입니다. 서버 캐시 후 재사용하도록 설계되어 API 호출량을 최소화합니다."
+            description="ETF 2개를 같은 화면에서 선택해 가격, 운용보수, 자산규모, 보유종목을 비교할 수 있는 메뉴입니다."
             actions={<NavPills />}
           />
           <InfoNotice>
-            현재는 FMP_API_KEY가 설정되지 않아 비교 데이터를 불러오지 못하고 있습니다.
-            환경변수를 추가한 뒤 배포하면 자동으로 동작합니다.
+            현재 ETF 비교 데이터를 불러올 수 없습니다.
+            잠시 후 다시 시도해 주세요.
           </InfoNotice>
         </div>
       </div>
@@ -60,13 +73,13 @@ export default async function EtfComparePage({
       <div className="bd-page">
         <div className="bd-container space-y-8">
           <PageHero
-            badge="BlueDino ETF Compare"
+            badge="ETF 비교 도구"
             title="ETF 비교"
             description="ETF 2개를 같은 화면에서 비교하는 메뉴입니다."
             actions={<NavPills />}
           />
           <InfoNotice>
-            현재 FMP 호출 제한 또는 일시적 응답 문제로 비교 데이터를 불러오지 못했습니다.
+            현재 ETF 비교 데이터를 불러올 수 없습니다.
             잠시 후 다시 시도해 주세요.
           </InfoNotice>
         </div>
@@ -122,7 +135,7 @@ export default async function EtfComparePage({
     <div className="bd-page">
       <div className="bd-container space-y-8">
         <PageHero
-          badge="BlueDino ETF Compare"
+          badge="ETF 비교 도구"
           title="ETF 비교"
           description="대표 ETF 2개를 선택하면 가격, 운용보수, AUM, 상위 보유종목, 최근 배당 일정을 한 화면에서 비교할 수 있습니다."
           actions={<NavPills />}
@@ -204,8 +217,8 @@ export default async function EtfComparePage({
                     {rightData.info?.description || rightData.displayName} 중심의 ETF입니다.
                   </div>
                   <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-cyan-100">
-                    이 비교 페이지는 선택한 ETF 2개에 대해서만 추가 데이터 호출이 발생하고,
-                    응답 결과는 서버 캐시에 저장되어 이후 방문자는 저장된 데이터를 재사용합니다.
+                    두 ETF의 비용, 규모, 보유종목, 배당 일정을 나란히 비교하면
+                    어떤 상품이 내 투자 목적에 더 맞는지 빠르게 점검할 수 있습니다.
                   </div>
                 </div>
               </article>
@@ -274,7 +287,7 @@ export default async function EtfComparePage({
                             >
                               <div className="flex items-center justify-between gap-3">
                                 <span className="font-semibold text-white">
-                                  Ex-Date {formatDate(event.date)}
+                                  배당락일 {formatDate(event.date)}
                                 </span>
                                 <span className="text-cyan-300">{event.frequency || "-"}</span>
                               </div>

@@ -1,5 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+const canonical = "/info/etc/contact";
+const title = "문의하기 | BlueDino";
+const description =
+  "BlueDino 이용 중 오류 제보, 계산기 개선 제안, 금융 가이드 수정 요청, 협업 문의를 보낼 수 있는 연락 안내 페이지입니다.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+    title,
+    description,
+    url: `https://bluedino.kr${canonical}`,
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
 export default function ContactPage() {
   return (
     <div className="bd-page">

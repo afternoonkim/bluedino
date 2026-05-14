@@ -160,9 +160,9 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
             />
           ) : (
             <section className="bd-card-soft bd-card-padding">
-              <h2 className="bd-title-md">준비 중입니다</h2>
+              <h2 className="bd-title-md">아직 표시할 기업분석이 없습니다</h2>
               <p className="bd-text-main mt-4">
-                현재 이 분류에는 공개된 기업분석 글이 없습니다. 새로운 글이 추가되면 이 목록에 자동으로 표시됩니다.
+                현재 이 분류에서 바로 볼 수 있는 기업분석 글이 없습니다. 다른 분류의 기업분석이나 산업·테마 가이드를 먼저 확인해 보세요.
               </p>
               <div className="mt-6">
                 <Link href="/company-analysis" className="bd-button-primary">

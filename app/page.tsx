@@ -81,14 +81,14 @@ const categoryCards = [
     ],
   },
   {
-    title: "가이드 · 블로그 · 유튜브",
+    title: "투자전략 · 산업 테마",
     description:
-      "계산기만 보는 흐름에서 끝나지 않도록 설명형 콘텐츠와 최신 경제 콘텐츠 진입을 따로 배치했습니다.",
+      "연령, 가구 형태, 은퇴 준비, 산업·테마 흐름을 기준으로 투자 방향을 비교할 수 있습니다.",
     links: [
       { label: "투자 기초 가이드", href: "/info/guide" },
-      { label: "블로그 최신글", href: "/info/blog" },
-      { label: "경제 유튜버 모아보기", href: "/info/videos" },
-      { label: "소개", href: "/info/etc/about" },
+      { label: "투자전략", href: "/info/strategy" },
+      { label: "산업·테마 가이드", href: "/industry" },
+      { label: "ETF 순위", href: "/etf/ranking" },
     ],
   },
 ];
@@ -150,21 +150,21 @@ const recommendedFlows = [
   },
 ];
 
-const recentUpdates = [
+const recommendedChoices = [
   {
-    label: "홈 구조 개편",
-    title: "처음 방문해도 바로 써볼 수 있도록 대표 계산기 6개를 앞쪽에 모았습니다.",
-    href: "/",
+    label: "처음 투자",
+    title: "투자 기초부터 보고 싶다면 ETF·포트폴리오 가이드로 시작해보세요.",
+    href: "/info/guide/etf-basics",
   },
   {
-    label: "카테고리 정리",
-    title: "배당 · 절세 · 대출 · 콘텐츠 흐름으로 필요한 정보를 찾기 쉽게 정리했습니다.",
-    href: "/finance",
+    label: "절세 고민",
+    title: "ISA·IRP·연금저축 차이가 헷갈린다면 계좌별 세금정보를 먼저 확인해보세요.",
+    href: "/info/investment/account-tax",
   },
   {
-    label: "계산기 허브",
-    title: "주요 계산기와 설명형 가이드를 한 흐름으로 연결해 필요한 정보를 이어서 보기 쉽게 정리했습니다.",
-    href: "/info/guide",
+    label: "ETF 비교",
+    title: "배당 ETF와 대표 ETF를 비교하고 싶다면 ETF 순위와 비교 메뉴를 활용해보세요.",
+    href: "/etf/ranking",
   },
 ];
 
@@ -204,7 +204,7 @@ const guideCards = [
 const trustItems = [
   "계산 결과와 투자 정보는 참고용으로 제공되며 특정 종목 매수·매도를 권유하지 않습니다.",
   "세금과 제도 정보는 이해를 돕기 위한 요약이며 실제 적용은 개인 상황과 제도 변경에 따라 달라질 수 있습니다.",
-  "개인정보처리방침, 이용약관, 문의 페이지를 함께 운영해 필요한 안내를 확인할 수 있도록 돕고 있습니다.",
+  "개인정보처리방침, 이용약관, 문의 페이지를 통해 필요한 안내를 확인할 수 있습니다.",
 ];
 
 export default function HomePage() {
@@ -250,6 +250,71 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="mt-12">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <span className="bd-badge">상황별 진입</span>
+              <h2 className="mt-3 bd-title-md">지금 가장 가까운 고민에서 시작해보세요</h2>
+              <p className="mt-3 bd-text-sub">
+                투자·금융 정보가 너무 많아 어디서부터 봐야 할지 헷갈릴 때, 본인 상황과 가장 가까운 카드를 먼저 눌러보시면 관련 가이드·계산기·전략으로 한 번에 이어집니다.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "배당금으로 현금흐름을 만들고 싶어요",
+                description: "월 배당 목표 금액을 정한 뒤 필요한 자산 규모와 ETF 선택 기준을 단계별로 확인할 수 있습니다.",
+                href: "/cal/calculator",
+                tag: "배당 · 현금흐름",
+              },
+              {
+                title: "대출 한도와 이자가 얼마나 나올지 알고 싶어요",
+                description: "DSR·LTV 한도부터 월 상환액과 총이자까지 본인 자금 계획에 맞춰 시뮬레이션할 수 있습니다.",
+                href: "/finance/loan-basics",
+                tag: "대출 · 부동산",
+              },
+              {
+                title: "ISA · IRP · 연금저축 차이가 헷갈려요",
+                description: "절세계좌 3가지의 한도·세액공제율·중도해지 조건을 한 번에 비교한 가이드로 정리했습니다.",
+                href: "/info/guide/pension-vs-irp",
+                tag: "절세 · 계좌",
+              },
+              {
+                title: "해외주식 세금이 궁금해요",
+                description: "양도세 250만 원 공제·손익통산·환율 반영까지 매년 절세할 수 있는 5가지 방법을 정리했습니다.",
+                href: "/info/guide/us-stock-tax-saving",
+                tag: "세금 · 절세",
+              },
+              {
+                title: "기업분석을 산업별로 보고 싶어요",
+                description: "반도체·2차전지·AI·배당주·바이오 등 산업·테마별로 묶어 종목을 비교할 수 있는 허브입니다.",
+                href: "/industry",
+                tag: "기업분석 · 산업",
+              },
+              {
+                title: "은퇴 준비 금액을 계산하고 싶어요",
+                description: "월 생활비 기준으로 필요한 노후 자산과 도달 시점을 본인 저축률·수익률에 맞춰 계산해보세요.",
+                href: "/cal/fire",
+                tag: "은퇴 · FIRE",
+              },
+            ].map((card) => (
+              <Link
+                key={card.href}
+                href={card.href}
+                className="group flex flex-col rounded-2xl border border-slate-800 bg-slate-950/60 p-5 transition hover:border-cyan-400/40 hover:bg-slate-900"
+              >
+                <span className="text-xs font-semibold text-cyan-300">{card.tag}</span>
+                <h3 className="mt-2 text-base font-bold text-white">{card.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-6 text-slate-300">{card.description}</p>
+                <span className="mt-4 inline-flex items-center text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">
+                  바로 시작 →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <section className="mt-10 grid gap-6 md:grid-cols-3">
           <FeatureCard
             title="빠른 진입"
@@ -261,7 +326,7 @@ export default function HomePage() {
           />
           <FeatureCard
             title="설명형 구조"
-            description="계산기만 제공하는 것이 아니라 관련 가이드, 블로그, 유튜브로 자연스럽게 이어지도록 구성했습니다."
+            description="계산기만 제공하는 것이 아니라 관련 가이드, 투자전략, 산업·테마 정보로 자연스럽게 이어지도록 구성했습니다."
           />
         </section>
 
@@ -269,7 +334,7 @@ export default function HomePage() {
 
         <section className="mt-10">
           <SectionHeader
-            eyebrow="Top Tools"
+            eyebrow="대표 계산기"
             title="대표 계산기 6개"
             description="처음 방문한 사용자도 바로 활용할 수 있도록 대표 계산기를 먼저 배치했습니다."
           />
@@ -290,7 +355,7 @@ export default function HomePage() {
 
         <section className="mt-12">
           <SectionHeader
-            eyebrow="Category Entry"
+            eyebrow="주제별 바로가기"
             title="카테고리 진입 구조"
             description="기능이 많아져도 길을 잃지 않도록 사용 목적 기준으로 4개 축을 다시 정리했습니다."
           />
@@ -316,7 +381,7 @@ export default function HomePage() {
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
-              eyebrow="Popular"
+              eyebrow="많이 찾는 계산기"
               title="인기 계산기"
               description="홈에서 바로 활용하기 쉬운 대표 계산기를 짧은 설명과 함께 모았습니다."
             />
@@ -339,12 +404,12 @@ export default function HomePage() {
 
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
-              eyebrow="Recently Updated"
-              title="최근 업데이트"
-              description="방문자가 홈 구조 변화와 현재 사이트 방향을 빠르게 파악할 수 있도록 요약했습니다."
+              eyebrow="상황별 추천"
+              title="바로 선택하기"
+              description="현재 상황에 맞는 시작점을 고르면 관련 계산기와 가이드로 자연스럽게 이어집니다."
             />
             <div className="mt-6 space-y-4">
-              {recentUpdates.map((item) => (
+              {recommendedChoices.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
@@ -362,7 +427,7 @@ export default function HomePage() {
 
         <section className="mt-12">
           <SectionHeader
-            eyebrow="Recommended Flow"
+            eyebrow="추천 이용 흐름"
             title="추천 흐름"
             description="사용자 목적별로 다음에 무엇을 눌러야 할지 보이도록 홈에서 바로 3가지 흐름을 제안합니다."
           />
@@ -397,7 +462,7 @@ export default function HomePage() {
 
         <section className="mt-12">
           <SectionHeader
-            eyebrow="Core Contents"
+            eyebrow="핵심 가이드"
             title="가이드와 설명형 콘텐츠"
             description="계산기 사용 후 바로 이해를 이어갈 수 있도록 핵심 가이드를 함께 강화했습니다."
           />
@@ -407,7 +472,7 @@ export default function HomePage() {
               <Link key={item.href} href={item.href}>
                 <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg transition hover:-translate-y-1 hover:border-slate-700 hover:bg-slate-900">
                   <span className="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
-                    Guide
+                    가이드
                   </span>
                   <h3 className="mt-4 text-xl font-bold text-white">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-400">{item.description}</p>
@@ -423,13 +488,13 @@ export default function HomePage() {
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
-              eyebrow="Who runs this site"
-              title="BlueDino는 누가 운영하나요"
-              description="개인 투자자 관점에서 자주 헷갈리는 금융 숫자와 개념을 쉽게 정리하기 위해 운영하는 정보 사이트입니다."
+              eyebrow="BlueDino 소개"
+              title="BlueDino는 어떤 사이트인가요"
+              description="개인 투자자가 자주 헷갈리는 금융 숫자와 개념을 쉽게 정리하기 위한 정보 사이트입니다."
             />
             <div className="mt-6 space-y-3 text-sm leading-7 text-slate-300">
               <p>특정 상품 가입이나 종목 매수를 권하기보다, 스스로 판단할 때 필요한 계산기와 설명형 가이드를 한 흐름으로 연결해 제공합니다.</p>
-              <p>사이트 소개와 문의 페이지를 함께 운영해 방문자가 운영 목적과 기본 안내를 바로 확인할 수 있도록 구성했습니다.</p>
+              <p>사이트 소개와 문의 페이지를 통해 제공 목적과 기본 안내를 바로 확인할 수 있도록 구성했습니다.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/info/etc/about" className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-400/50 hover:bg-cyan-500/15">소개 보기</Link>
@@ -439,7 +504,7 @@ export default function HomePage() {
 
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
-              eyebrow="How to use"
+              eyebrow="이용 방법"
               title="이렇게 활용하면 좋습니다"
               description="BlueDino를 처음 방문했을 때 가장 빠르게 도움을 받는 흐름을 짧게 정리했습니다."
             />
@@ -454,34 +519,15 @@ export default function HomePage() {
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
-              eyebrow="Trust"
+              eyebrow="신뢰 정보"
               title="신뢰할 수 있는 구조"
-              description="사이트를 어떻게 활용하면 좋은지 한눈에 확인할 수 있는 안내 페이지를 함께 연결했습니다."
+              description="사이트를 어떻게 활용하면 좋은지 한눈에 확인할 수 있도록 안내 페이지를 연결했습니다."
             />
-            <div className="mt-6 space-y-3">
-              {trustItems.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
-            <h2 className="text-2xl font-bold text-white">운영 페이지</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-400">
-              소개, 문의, 개인정보처리방침, 이용약관 페이지를 통해 필요한 안내를 쉽게 확인할 수 있도록 구성했습니다.
-            </p>
-
-            <div className="mt-6 grid gap-3">
-              <QuickLink href="/info/etc/about" label="BlueDino 소개" />
-              <QuickLink href="/info/etc/contact" label="문의하기" />
-              <QuickLink href="/info/etc/privacy" label="개인정보처리방침" />
-              <QuickLink href="/info/etc/terms" label="이용약관" />
-              <QuickLink href="/sitemap.xml" label="사이트맵" />
+            <div className="mt-6 grid gap-3 md:grid-cols-2">
+              <Link href="/info/etc/about" className="bd-button-secondary">BlueDino 소개</Link>
+              <Link href="/info/etc/methodology" className="bd-button-secondary">작성 기준</Link>
+              <Link href="/info/etc/editorial-policy" className="bd-button-secondary">편집 원칙</Link>
+              <Link href="/info/etc/contact" className="bd-button-secondary">문의하기</Link>
             </div>
           </article>
         </section>
@@ -492,20 +538,20 @@ export default function HomePage() {
 
 function StatCard({ title, value, sub }: { title: string; value: string; sub: string }) {
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-5">
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-400">{title}</div>
+    <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+      <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">{title}</div>
       <div className="mt-2 text-2xl font-bold text-white">{value}</div>
-      <div className="mt-1 text-sm text-slate-400">{sub}</div>
+      <div className="mt-1 text-xs text-slate-400">{sub}</div>
     </div>
   );
 }
 
 function FeatureCard({ title, description }: { title: string; description: string }) {
   return (
-    <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg">
-      <h2 className="text-xl font-semibold text-white">{title}</h2>
-      <p className="mt-3 text-sm leading-7 text-slate-400">{description}</p>
-    </article>
+    <div className="rounded-3xl border border-slate-800 bg-slate-950/60 p-6">
+      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <p className="mt-3 text-sm leading-7 text-slate-300">{description}</p>
+    </div>
   );
 }
 
@@ -519,10 +565,10 @@ function SectionHeader({
   description: string;
 }) {
   return (
-    <div>
-      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">{eyebrow}</div>
-      <h2 className="mt-3 text-2xl font-bold tracking-tight text-white md:text-3xl">{title}</h2>
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400 md:text-base">{description}</p>
+    <div className="max-w-3xl">
+      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">{eyebrow}</span>
+      <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">{title}</h2>
+      <p className="mt-3 text-sm leading-7 text-slate-300 md:text-base">{description}</p>
     </div>
   );
 }
@@ -539,14 +585,14 @@ function Card({
   cta: string;
 }) {
   return (
-    <article className="h-full rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg transition hover:-translate-y-1 hover:border-slate-700 hover:bg-slate-900">
-      <span className="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300">
-        {badge}
-      </span>
-      <h3 className="mt-4 text-xl font-bold text-white">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-slate-400">{description}</p>
-      <div className="mt-6 text-sm font-semibold text-cyan-300">{cta} →</div>
-    </article>
+    <div className="h-full rounded-3xl border border-slate-800 bg-slate-900/70 p-6 transition hover:border-cyan-500/30 hover:bg-slate-900">
+      <span className="text-xs font-semibold text-cyan-300">{badge}</span>
+      <h3 className="mt-3 text-base font-bold text-white">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-300">{description}</p>
+      <div className="mt-5 inline-flex items-center text-sm font-semibold text-cyan-300">
+        {cta} →
+      </div>
+    </div>
   );
 }
 
@@ -554,9 +600,10 @@ function QuickLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="rounded-2xl border border-slate-800 bg-slate-950/60 px-4 py-4 text-sm font-medium text-slate-200 transition hover:border-slate-700 hover:bg-slate-950"
+      className="rounded-2xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm font-medium text-slate-200 transition hover:border-cyan-500/30 hover:bg-slate-900"
     >
       {label}
     </Link>
   );
 }
+

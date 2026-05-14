@@ -2,6 +2,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
 import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import DividendCalculatorClient from "./DividendCalculatorClient";
 
@@ -80,6 +81,7 @@ export default function Page() {
       <DividendCalculatorClient />
       <CalculatorResultSeoNote calculator="dividend" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
     </>
   );
 }

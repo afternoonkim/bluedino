@@ -282,10 +282,7 @@ export default function BlogFeedClient() {
                 <h2 className="bd-title-md">피드를 불러오지 못했습니다</h2>
                 <p className="bd-text-main mt-3">{error}</p>
                 <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">
-                  <div>확인할 항목</div>
-                  <div className="mt-2">1. .env.local에 NAVER_BLOG_RSS_URL 설정</div>
-                  <div>2. RSS 주소가 https://rss.blog.naver.com/블로그아이디.xml 형태인지 확인</div>
-                  <div>3. 서버 재시작 후 다시 접속</div>
+                  <div>잠시 후 다시 시도해 주세요. 문제가 계속되면 문의 페이지를 통해 알려주세요.</div>
                 </div>
               </div>
             </div>

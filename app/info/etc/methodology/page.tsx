@@ -1,5 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+const canonical = "/info/etc/methodology";
+const title = "작성 기준 | BlueDino 금융 계산기·가이드 활용법";
+const description =
+  "BlueDino 계산기와 금융 가이드의 활용 기준, 공식 자료 확인 방법, 투자·세금·대출 정보 이용 시 주의할 점을 정리했습니다.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+    title,
+    description,
+    url: `https://bluedino.kr${canonical}`,
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
 export default function MethodologyPage() {
   return (
     <div className="bd-page">

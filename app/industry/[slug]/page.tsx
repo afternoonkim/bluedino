@@ -4,6 +4,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import AdBlock from "@/components/ad/AdBlock";
 import ShareAndCite from "@/components/share/ShareAndCite";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import {
   getIndustryHub,
   getAllIndustrySlugs,
@@ -119,7 +120,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
     dateModified: "2026-04-27",
     author: {
       "@type": "Person",
-      name: "afternoonkim (BlueDino 운영자)",
+      name: "afternoonkim",
       url: "https://bluedino.kr/info/etc/about",
     },
     publisher: {
@@ -272,6 +273,8 @@ export default async function IndustryHubPage({ params }: PageProps) {
               <Link href="/industry" className="bd-button-primary">산업·테마 가이드 전체</Link>
             </div>
           </section>
+
+          <PageTrustFooter pageKind="산업·테마 가이드" updatedAt="2026-04-27" />
 
           <ShareAndCite
             url={`/industry/${currentHub.slug}`}

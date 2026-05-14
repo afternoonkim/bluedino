@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import AdBlock from "@/components/ad/AdBlock";
-import EditorialTrustPanel from "@/components/trust/EditorialTrustPanel";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import ShareAndCite from "@/components/share/ShareAndCite";
 
 export type StrategyLinkItem = { label: string; href: string };
@@ -29,7 +29,67 @@ export type StrategyArticle = {
   calculators: StrategyLinkItem[];
 };
 
+
+function uniqueStrategyLinks(links: StrategyLinkItem[]) {
+  const seen = new Set<string>();
+  return links.filter((link) => {
+    if (seen.has(link.href)) return false;
+    seen.add(link.href);
+    return true;
+  });
+}
+
+function getAutoStrategyLinks(article: StrategyArticle) {
+  const text = `${article.slug} ${article.title} ${article.description} ${article.badge}`;
+  const calculators: StrategyLinkItem[] = [
+    { label: "복리 계산기", href: "/cal/compound" },
+    { label: "FIRE 계산기", href: "/cal/fire" },
+  ];
+  const guides: StrategyLinkItem[] = [
+    { label: "투자 기초 가이드", href: "/info/guide" },
+    { label: "금융 가이드", href: "/finance" },
+  ];
+
+  if (/절세|세금|tax|isa|irp|연금/i.test(text)) {
+    calculators.push(
+      { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings" },
+      { label: "연금저축·IRP 절세 계산기", href: "/cal/pension-tax-credit" },
+    );
+    guides.push(
+      { label: "ISA 계좌 기초", href: "/info/guide/isa-basics" },
+      { label: "연금저축과 IRP 차이", href: "/info/guide/pension-vs-irp" },
+    );
+  }
+
+  if (/자산배분|포트폴리오|etf|배당/i.test(text)) {
+    calculators.push(
+      { label: "배당 계산기", href: "/cal/calculator" },
+      { label: "ETF 비교 도구", href: "/etf/compare" },
+    );
+    guides.push(
+      { label: "ETF 기초 가이드", href: "/info/guide/etf-basics" },
+      { label: "ETF 순위 비교", href: "/etf/ranking" },
+    );
+  }
+
+  if (/대출|주담대|신혼|가구|dsr|ltv/i.test(text)) {
+    calculators.push(
+      { label: "DSR 계산기", href: "/cal/dsr" },
+      { label: "LTV 계산기", href: "/cal/ltv" },
+      { label: "주담대 계산기", href: "/cal/mortgage" },
+    );
+    guides.push({ label: "주담대 갈아타기 기준", href: "/info/guide/mortgage-refinancing-when" });
+  }
+
+  return {
+    calculators: uniqueStrategyLinks([...article.calculators, ...calculators]).slice(0, 8),
+    guides: uniqueStrategyLinks([...article.relatedGuides, ...guides]).slice(0, 8),
+    strategies: uniqueStrategyLinks(article.relatedStrategies).slice(0, 8),
+  };
+}
+
 export default function StrategyArticlePage({ article }: { article: StrategyArticle }) {
+  const autoLinks = getAutoStrategyLinks(article);
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -158,7 +218,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
             전략은 머리로 이해하는 것보다 내 금액과 기간을 넣어보는 것이 훨씬 빠릅니다. 아래 도구를 함께 보면 판단이 더 쉬워집니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            {article.calculators.map((item) => (
+            {autoLinks.calculators.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
               </Link>
@@ -169,7 +229,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">먼저 보면 이해가 쉬운 기초 가이드</h2>
           <div className="mt-6 flex flex-wrap gap-3">
-            {article.relatedGuides.map((item) => (
+            {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
               </Link>
@@ -183,7 +243,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">이 전략과 함께 보면 좋은 글</h2>
           <div className="mt-6 flex flex-wrap gap-3">
-            {article.relatedStrategies.map((item) => (
+            {autoLinks.strategies.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
               </Link>
@@ -201,7 +261,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           category="투자전략 가이드"
         />
 
-        <EditorialTrustPanel compact />
+        <PageTrustFooter pageKind="투자전략 가이드" updatedAt="2026-04-27" />
 
       </article>
     </div>

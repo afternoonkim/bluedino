@@ -72,7 +72,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-12",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "단리와 복리, 숫자로 비교하기" },
       { type: "paragraph", text: "원금 1,000만 원을 연 7%로 20년간 굴린다고 가정하면, 단리는 20년 뒤 2,400만 원(원금 1,000 + 이자 1,400)이 됩니다. 같은 조건에서 복리는 약 3,870만 원으로 늘어납니다. 두 구조의 차이는 재투자되는 이자에 다시 이자가 붙는지 여부뿐이지만, 20년이 지나면 결과 금액이 약 1.6배 벌어집니다." },
@@ -205,7 +205,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-20",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "배당률 표면 숫자에 속지 않으려면" },
       { type: "paragraph", text: "배당률(Dividend Yield)은 연 배당금 ÷ 주가로 계산합니다. 주가가 급락하면 배당률이 일시적으로 높아 보이지만, 실제로는 실적 악화로 배당이 줄어들거나 중단될 수 있는 신호일 때가 많습니다. 배당률이 8~10%를 넘는 종목은 \"왜 이 가격인가\"를 먼저 확인하는 편이 안전합니다." },
@@ -310,7 +310,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-25",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "분산투자는 왜 '공짜 점심'이라 불리나" },
       { type: "paragraph", text: "노벨경제학상 수상자인 해리 마코위츠는 상관관계가 완벽히 같지 않은 자산을 섞으면 기대수익은 유지하면서 변동성만 낮출 수 있다는 사실을 증명했습니다. 이를 '투자의 공짜 점심(free lunch)'이라 부릅니다. 같은 기대수익률이라도 분산된 포트폴리오는 낙폭이 줄어 장기 생존 확률이 높아집니다." },
@@ -402,7 +402,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-25",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "배당 '성장'이 왜 중요한가" },
       { type: "paragraph", text: "현재 배당률이 2%인 종목도 연 10%씩 배당을 늘리면 10년 뒤 초기 투자원금 기준 체감 배당률(YOC, Yield On Cost)은 약 5%까지 올라갑니다. 반대로 10% 고배당주가 성장 없이 배당을 유지만 하면 YOC는 그대로입니다. 장기 수익의 지렛대는 높은 현재 배당보다 꾸준한 증가율에 있습니다." },
@@ -495,7 +495,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-18",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "배당의 구조를 한 문장으로" },
       { type: "paragraph", text: "배당은 기업이 벌어들인 이익의 일부를 주주에게 현금 또는 주식으로 돌려주는 행위입니다. 지급 주기(연간·반기·분기·월)와 정책(고정 vs 이익 연동)에 따라 투자 성격이 달라집니다." },
@@ -588,7 +588,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-05",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "ETF는 어떻게 만들어지나" },
       { type: "paragraph", text: "ETF(상장지수펀드)는 운용사가 지수를 추종하도록 설계한 바스켓 펀드를 주식처럼 거래소에 상장한 상품입니다. 주식처럼 실시간 매매가 가능하면서도 수십~수백 종목을 한 번에 보유하는 효과가 있어, 개별 종목 분석 부담을 크게 줄여줍니다." },
@@ -702,7 +702,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-08",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "ETF와 개별주의 구조적 차이" },
       { type: "paragraph", text: "ETF는 수십~수백 종목을 한 번에 보유하는 바스켓입니다. 특정 기업의 실적 쇼크에 대한 영향이 완화되는 대신, 한 종목이 급등해도 전체 수익률에 미치는 영향이 제한됩니다. 반대로 개별주는 기업 분석 품질에 따라 지수 대비 초과 수익을 노릴 수 있지만, 실패 시 손실도 집중됩니다." },
@@ -794,7 +794,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-20",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "FIRE 계산기 입력값의 의미" },
       {
@@ -888,7 +888,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-18",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "4% 룰은 어디에서 나왔나" },
       { type: "paragraph", text: "4% 룰은 Trinity Study(Cooley·Hubbard·Walz, 1998)와 William Bengen(1994)의 연구에서 제시된 지속가능 인출률 가이드입니다. 미국 주식 60/채권 40 포트폴리오를 기준으로, 은퇴 첫해 자산의 4%를 인출하고 이후 물가상승률만큼만 조정해 인출해도 30년간 자산이 고갈될 확률이 낮다는 결과였습니다." },
@@ -1022,7 +1022,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-28",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "'고배당 = 좋은 종목'이 아닌 이유" },
       { type: "paragraph", text: "배당률은 연 배당금을 주가로 나눈 값입니다. 주가가 급락하면 분모가 작아져 배당률이 자동으로 높아집니다. 실적이 나빠져 배당금을 곧 줄일 가능성이 있는 '배당 함정(dividend trap)'일 수 있습니다." },
@@ -1115,7 +1115,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-04-02",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "ISA가 왜 만들어졌나" },
       { type: "paragraph", text: "ISA(개인종합자산관리계좌)는 예·적금, 국내외 주식·ETF, 리츠·채권 등을 하나의 계좌에서 운용하면서 발생한 이자·배당·매매차익에 대해 일정 금액까지 비과세 혜택을 주는 절세계좌입니다. 장기 저축·투자 습관을 장려하기 위해 도입됐고, 금융소득 종합과세를 피하고 싶은 투자자가 1순위로 활용합니다." },
@@ -1229,7 +1229,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-04-05",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "ISA의 3대 혜택 요약" },
       {
@@ -1321,7 +1321,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-10",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "기간이 수익률 분포에 미치는 영향" },
       { type: "paragraph", text: "미국 S&P500 역사 자료(1926~)에 따르면 1년 보유 시 수익률 편차는 -43%~+54%로 매우 큽니다. 하지만 20년 보유로 기간을 늘리면 최저 +2%대로 안정되며 손실 구간이 거의 사라집니다. 기간이 길어질수록 시장의 장기 평균 수익률에 수렴합니다." },
@@ -1413,7 +1413,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-28",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "해외주식 양도세의 손익통산 구조" },
       { type: "paragraph", text: "해외주식 양도소득세는 연 단위로 이익과 손실을 합산합니다. 한 해 A종목에서 500만 원 이익, B종목에서 300만 원 손실이라면 과세 대상은 순이익 200만 원에서 기본공제 250만 원을 뺀 값이 되어 실제 납부세는 0원입니다." },
@@ -1506,7 +1506,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-12",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "월배당 ETF의 구조" },
       { type: "paragraph", text: "월배당 ETF는 편입 종목들의 분기·연간 배당을 운용사가 시점 조정해 매월 분배금으로 지급합니다. 현금흐름이 꾸준하다는 장점이 있지만, 분배를 위해 커버드콜·옵션 전략을 쓰는 상품은 주가 상승폭이 제한될 수 있습니다." },
@@ -1636,7 +1636,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-22",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "두 계좌의 한도와 세액공제" },
       {
@@ -1728,7 +1728,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-15",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "한국 연금의 3층 구조" },
       {
@@ -1820,7 +1820,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-01",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "포트폴리오 구성의 핵심 단계" },
       {
@@ -1914,7 +1914,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-04",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "초보 투자자가 자주 빠지는 실수" },
       {
@@ -2008,7 +2008,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-10",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "리스크 = 변동성이 아닌 영구 손실 가능성" },
       { type: "paragraph", text: "변동성은 가격이 흔들리는 폭이고, 리스크는 투자 목적에 실패할 가능성입니다. 은퇴 10년 전이라면 단기 변동성보다 영구적 자본 손실이 더 중요한 리스크입니다." },
@@ -2101,7 +2101,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-05",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "주식이라는 증서의 의미" },
       { type: "paragraph", text: "주식은 회사의 지분 증서입니다. 주주는 이익 배당, 의결권, 잔여재산분배권을 가집니다. 상장 주식은 거래소에서 누구나 사고팔 수 있지만, 가격은 매순간 수요와 공급, 실적 기대, 시장 심리에 따라 변합니다." },
@@ -2195,7 +2195,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-04-10",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "투자 관련 주요 세금 한눈에" },
       {
@@ -2289,7 +2289,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-03-30",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "미국 주식 양도세 계산 구조" },
       { type: "paragraph", text: "연간 실현 순이익에서 기본공제 250만 원을 뺀 금액에 22%(양도세 20% + 지방세 2%)를 곱해 산출합니다. 예를 들어 연 순이익 1,000만 원이면 (1,000 − 250) × 22% = 165만 원이 납부세액입니다." },
@@ -2411,7 +2411,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-04-08",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "절세계좌가 복리에 미치는 영향" },
       { type: "paragraph", text: "절세계좌의 핵심 효과는 과세이연과 세액공제입니다. 예를 들어 매년 15.4% 과세되던 자산이 연금계좌에서 과세이연되면 같은 수익률에서 30년 누적 자산이 20% 이상 커질 수 있습니다. 세금이 빠져나가지 않은 원금이 계속 복리로 굴러가기 때문입니다." },
@@ -2531,7 +2531,7 @@ export const guideArticles: Record<string, GuideArticle> = {
     ],
     publishedAt: "2025-02-16",
     updatedAt: "2026-04-22",
-    author: "afternoonkim (BlueDino 운영자)",
+    author: "BlueDino 편집팀",
     longContent: [
       { type: "heading", text: "두 수익 방식의 구조 차이" },
       { type: "paragraph", text: "현금흐름형(배당·임대료 등)은 주기적으로 현금이 들어와 생활비로 쓰거나 재투자할 수 있는 구조입니다. 자본차익형(주가 상승)은 보유 중에는 현금이 없고 매도 시점에 한 번에 실현됩니다. 두 방식은 세금과 심리적 체감이 전혀 다릅니다." },
@@ -3607,6 +3607,685 @@ export const guideArticles: Record<string, GuideArticle> = {
     "calculators": [
       { "label": "복리 계산기", "href": "/cal/compound" },
       { "label": "연봉 실수령액 계산기", "href": "/cal/salary-net" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "monthly-dividend-etf-pros-cons": {
+    "slug": "monthly-dividend-etf-pros-cons",
+    "title": "월배당 ETF 장단점 — 매월 배당 받는 게 정말 유리할까",
+    "description": "월배당 ETF의 매월 분배·세금 분산·복리 효과 단점을 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 가이드. 분기배당 ETF와 비교해 장단점을 명확히 짚습니다.",
+    "badge": "월배당 ETF",
+    "hero": "월배당 ETF는 매월 분배금이 들어와 현금흐름이 안정적이지만, 같은 ETF의 분기배당·연배당 버전과 비교하면 세후 수익률 차이가 발생합니다. 매월 받는 편안함과 복리 효과 사이의 균형을 봐야 합니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "월배당 ETF가 분기배당 ETF보다 항상 좋은 건지, 매월 받는 만큼 세금이 더 나오는 건지 헷갈리는 분이 많습니다. 핵심은 \"현금흐름 안정성\"과 \"장기 복리 효과\" 사이의 트레이드오프입니다.",
+    "conceptTitle": "월배당 ETF 장단점 정리",
+    "conceptBody": [
+      "장점: 매월 분배금이 들어와 생활비·은퇴 인출 자금으로 쓰기 좋고, 세금도 매월 분산되어 한 번에 큰 액수가 빠지지 않습니다. 또 12개월에 걸쳐 분배 시점이 분산되어 \"배당락\" 영향도 줄어듭니다.",
+      "단점: 매월 분배되는 만큼 분배금을 즉시 재투자하지 않으면 복리 효과가 줄어들고, 일부 월배당 ETF는 ROC(원금 환급) 비중이 들어 있어 \"순배당\"이 광고 분배율보다 작을 수 있습니다. 또 같은 ETF의 분기배당 버전 대비 운용 수수료가 약간 높은 경우가 있습니다."
+    ],
+    "mistakes": [
+      "분배율만 보고 ROC(원금 환급) 비중을 확인 안 하는 경우",
+      "매월 분배금을 자동 재투자하지 않아 복리 효과를 놓치는 경우",
+      "같은 ETF의 분기배당 버전과 운용 수수료를 비교하지 않는 경우",
+      "월배당이 \"배당률 자체가 높다\"고 오해하는 경우"
+    ],
+    "exampleTitle": "JEPI 월배당 vs SCHD 분기배당 비교",
+    "exampleBody": "JEPI(월배당, 분배율 약 7~8%)와 SCHD(분기배당, 분배율 약 3.5%)는 성격이 다릅니다. JEPI는 커버드콜 전략으로 단기 현금흐름이 크지만 자본차익 상승이 제한되고, SCHD는 분기배당이지만 배당 성장률이 높아 장기 누적 총수익률이 안정적입니다. 본인의 투자 기간이 핵심 결정 기준입니다.",
+    "who": [
+      "월 현금흐름이 필요한 은퇴 준비자",
+      "분기배당 ETF 외에 월배당 옵션을 알아보는 분",
+      "ROC 비중 확인이 필요한 ETF 투자자"
+    ],
+    "caution": "월배당 ETF는 ETF별로 분배 구조(자본차익·옵션 프리미엄·이자·배당)가 다르므로 1099-DIV 명세서로 ROC 비중을 확인하시는 것이 안전합니다.",
+    "faqs": [
+    {
+      "question": "월배당 ETF의 ROC가 무엇인가요?",
+      "answer": "Return of Capital의 약자로, ETF가 분배금 일부를 \"원금에서\" 지급하는 구조입니다. 단기 분배율은 높아 보이지만 실제 \"순배당\"이 작을 수 있어 1099-DIV 명세표에서 ROC 비중을 확인해야 합니다."
+    },
+    {
+      "question": "JEPI와 SCHD 중 어떤 게 좋나요?",
+      "answer": "단기 현금흐름이 필요하시면 JEPI, 장기 누적 총수익률을 보시면 SCHD가 일반적으로 유리합니다. 본인의 투자 기간과 목적에 따라 둘을 섞는 \"바벨 전략\"도 자주 활용됩니다."
+    },
+    {
+      "question": "월배당 ETF 세금이 더 많이 나오나요?",
+      "answer": "총 분배금 기준으로는 분기배당과 같습니다. 다만 매월 작게 빠져 \"한 번에 큰 세금이 빠진 느낌\"이 적어 심리적 부담이 작은 정도입니다."
+    }
+    ],
+    "related": [
+      { "label": "배당 투자 기초", "href": "/info/guide/dividend-basics" },
+      { "label": "월배당 ETF 체크리스트", "href": "/info/guide/monthly-dividend-etf-checklist" },
+      { "label": "월배당 ETF 세금", "href": "/info/guide/monthly-dividend-tax" }
+    ],
+    "calculators": [
+      { "label": "배당 계산기", "href": "/cal/calculator" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "high-dividend-etf-risks": {
+    "slug": "high-dividend-etf-risks",
+    "title": "고배당 ETF가 위험한 이유 — 배당률 함정 5가지",
+    "description": "고배당 ETF의 배당률이 높을 때 함정이 되는 5가지 패턴(주가 하락·ROC·커버드콜 한계·집중 위험·세금 부담)을 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 가이드.",
+    "badge": "고배당 ETF",
+    "hero": "배당률이 8~10% 넘는 고배당 ETF는 \"매월 큰 현금이 들어온다\"는 매력이 크지만, 그 높은 배당률에는 5가지 함정이 숨어 있을 수 있습니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "JEPI·QYLD·NUSI 같은 고배당 ETF가 분배율 8~10%인데 \"왜 이렇게 높은지\" 모르고 매수하시는 분이 많습니다. 배당률이 높은 데는 이유가 있고, 그 이유를 모르면 자본 손실로 끝날 수 있습니다.",
+    "conceptTitle": "고배당 ETF의 5가지 함정",
+    "conceptBody": [
+      "1) 주가 하락으로 배당률이 일시적으로 올라간 경우 — 배당금이 줄어들고 있는데 주가가 더 빠르게 빠져 분배율 숫자만 높아진 상황. 2) ROC(원금 환급) 비중 — 분배금 일부가 원금에서 나와 \"순배당\"이 광고 분배율보다 작음.",
+      "3) 커버드콜 한계 — JEPI·QYLD 같은 커버드콜 ETF는 자본차익 상승 폭이 제한되어 장기 누적 총수익률이 일반 ETF보다 작을 수 있음. 4) 섹터 집중 위험 — 일부 고배당 ETF는 부동산·에너지·금융에 자산이 집중되어 섹터 사이클에 직접 노출. 5) 세금 부담 — 분배금이 많을수록 일반 계좌에서 종합소득세 합산 위험이 커짐."
+    ],
+    "mistakes": [
+      "분배율만 보고 ROC·커버드콜 한계를 확인 안 하는 경우",
+      "고배당 ETF를 \"안전한 자산\"으로 오해하는 경우",
+      "여러 고배당 ETF에 분산했지만 모두 같은 섹터(부동산·에너지)에 집중된 경우",
+      "장기 총수익률(주가 + 누적 배당)을 보지 않고 단기 분배율만 비교하는 경우"
+    ],
+    "exampleTitle": "QYLD 시뮬레이션",
+    "exampleBody": "QYLD(NASDAQ 100 커버드콜, 분배율 약 12%)는 매월 큰 분배금을 주지만 NASDAQ 100이 상승할 때 자본차익이 제한되어 장기 5~10년 누적 총수익률이 단순 NASDAQ ETF(QQQ) 대비 낮은 경우가 많습니다. 또 분배금 ROC 비중이 30~50%까지 차지하기도 합니다.",
+    "who": [
+      "고배당 ETF 매수를 고민하는 분",
+      "JEPI·QYLD·NUSI 같은 ETF의 분배 구조를 이해하고 싶은 분",
+      "단기 현금흐름과 장기 총수익률 사이에서 결정해야 하는 분"
+    ],
+    "caution": "고배당 ETF는 본인의 투자 목적(현금흐름 vs 장기 자산 형성)에 따라 적합도가 크게 다릅니다. 한 카테고리에 자산을 몰지 말고 분기배당·배당성장 ETF와 함께 분산하시는 것이 안전합니다.",
+    "faqs": [
+    {
+      "question": "고배당 ETF는 무조건 위험한가요?",
+      "answer": "위험한 것은 아니지만 \"배당률이 높다 = 좋은 ETF\"라는 단순 도식이 위험합니다. 본인의 투자 목적(은퇴 인출 vs 장기 자산 형성)에 맞게 적합한 카테고리를 고르시면 됩니다."
+    },
+    {
+      "question": "커버드콜 ETF의 자본차익 한계는 어느 정도인가요?",
+      "answer": "QYLD는 NASDAQ 100 자본차익의 약 50%만, JEPI는 약 70%만 받는 구조입니다. 시장 상승기에는 단순 인덱스 ETF 대비 누적 수익률이 작고, 시장 하락기에는 옵션 프리미엄으로 손실 일부를 보전하는 구조입니다."
+    },
+    {
+      "question": "고배당 ETF에서 ROC가 일반적인가요?",
+      "answer": "JEPI·QYLD 같은 커버드콜 ETF는 ROC 비중이 일반적으로 30~50%까지 들어갑니다. 1099-DIV 명세서를 매년 1~2월에 확인해 \"순배당\"이 얼마인지 점검하시는 것이 정확합니다."
+    }
+    ],
+    "related": [
+      { "label": "월배당 ETF 장단점", "href": "/info/guide/monthly-dividend-etf-pros-cons" },
+      { "label": "배당주 분류 가이드", "href": "/info/guide/dividend-king-vs-aristocrat" },
+      { "label": "고배당주 리스크", "href": "/info/guide/high-dividend-risks" }
+    ],
+    "calculators": [
+      { "label": "배당 계산기", "href": "/cal/calculator" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "covered-call-etf-explained": {
+    "slug": "covered-call-etf-explained",
+    "title": "커버드콜 ETF — 왜 배당률이 높을까",
+    "description": "커버드콜 ETF(JEPI·QYLD 등)의 옵션 프리미엄 구조와 자본차익 한계를 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 가이드.",
+    "badge": "커버드콜 ETF",
+    "hero": "커버드콜 ETF는 보유 주식을 담보로 콜옵션을 매도해 받는 옵션 프리미엄을 분배금으로 지급합니다. 분배율이 높지만 자본차익 상승이 제한되는 구조입니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "JEPI·QYLD 같은 ETF가 \"커버드콜\"이라고 하는데 정확히 무엇이고, 왜 분배율이 높은지 헷갈리는 분이 많습니다. 핵심은 \"옵션 프리미엄을 받고 자본차익 상승을 일부 포기하는\" 트레이드오프입니다.",
+    "conceptTitle": "커버드콜 전략의 작동 원리",
+    "conceptBody": [
+      "커버드콜은 보유 주식(예: NASDAQ 100 종목)에 대해 \"X 가격에 매도할 권리(콜옵션)\"를 시장에 팔아 옵션 프리미엄을 받는 전략입니다. 이 프리미엄이 곧 분배금의 큰 부분이 됩니다.",
+      "단점은 보유 종목의 주가가 X 이상 오르면 콜옵션이 행사되어 자본차익 일부를 포기해야 한다는 점입니다. 그래서 시장 상승기에는 단순 인덱스 ETF 대비 누적 수익률이 작고, 횡보·하락장에서는 옵션 프리미엄으로 손실 일부를 보전하는 구조입니다."
+    ],
+    "mistakes": [
+      "커버드콜 ETF를 \"위험 없는 고배당\"으로 오해하는 경우",
+      "시장 상승기에도 자본차익 상승이 동일하게 따라온다고 가정하는 경우",
+      "옵션 프리미엄이 매월 동일하다고 생각하는 경우 (실제는 시장 변동성에 따라 다름)"
+    ],
+    "exampleTitle": "JEPI 분배 구조 예시",
+    "exampleBody": "JEPI(JPMorgan Equity Premium Income)는 S&P 500 종목 일부에 콜옵션을 매도해 받는 프리미엄을 매월 분배합니다. 시장 변동성(VIX)이 높을수록 옵션 프리미엄이 커져 분배율이 일시적으로 올라가지만, 평온한 시장에서는 분배율이 낮아질 수 있습니다.",
+    "who": [
+      "JEPI·QYLD 같은 커버드콜 ETF에 투자 중이거나 고민하는 분",
+      "옵션 전략 ETF의 작동 원리를 이해하고 싶은 분"
+    ],
+    "caution": "커버드콜 ETF는 시장 환경에 따라 분배율이 매월 변동됩니다. 안정적 \"확정 배당\"이 아니라 \"옵션 시장에서 받는 프리미엄\"이라는 점을 기억하세요.",
+    "faqs": [
+    {
+      "question": "JEPI와 QYLD의 차이는?",
+      "answer": "JEPI는 S&P 500 액티브 운용 + 일부 콜옵션 매도, QYLD는 NASDAQ 100 풀 콜옵션 매도 구조입니다. JEPI는 자본차익 상승 일부를 받고, QYLD는 거의 모두 포기합니다. 분배율은 QYLD가 더 높지만 장기 총수익률은 JEPI가 안정적입니다."
+    },
+    {
+      "question": "커버드콜 ETF는 언제 사야 좋을까요?",
+      "answer": "시장이 횡보하거나 약하게 하락할 때 단순 인덱스 ETF 대비 좋은 성과를 냅니다. 강한 상승장에서는 인덱스 ETF가 더 유리하고, 강한 하락장에서는 둘 다 손실이 발생합니다."
+    },
+    {
+      "question": "커버드콜 ETF 세금은 어떻게 되나요?",
+      "answer": "옵션 프리미엄도 분배금으로 인식되어 일반 배당세 또는 양도세(미국 ETF의 경우 1099-DIV 분류에 따라)가 적용됩니다. ROC 비중이 일부 들어가 세금이 분배율보다 적을 수 있습니다."
+    }
+    ],
+    "related": [
+      { "label": "월배당 ETF 장단점", "href": "/info/guide/monthly-dividend-etf-pros-cons" },
+      { "label": "고배당 ETF 위험", "href": "/info/guide/high-dividend-etf-risks" }
+    ],
+    "calculators": [
+      { "label": "배당 계산기", "href": "/cal/calculator" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "dividend-target-monthly-100": {
+    "slug": "dividend-target-monthly-100",
+    "title": "배당금 월 100만 원 만들려면 얼마가 필요할까",
+    "description": "월 100만 원 배당 현금흐름을 만들기 위해 필요한 자산 규모를 배당률 4·6·8% 시나리오로 BlueDino가 계산한 가이드.",
+    "badge": "배당 목표",
+    "hero": "월 100만 원의 배당 현금흐름을 만들려면 \"배당률\"과 \"세금\"을 함께 봐야 합니다. 배당률 4·6·8% 시나리오별로 필요한 자산 규모를 정리했습니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "은퇴 후 월 100만 원 정도의 배당 현금흐름을 만들고 싶은데 자산이 얼마나 있어야 가능한지 헷갈리는 분이 많습니다. 핵심은 \"세전 배당률\"과 \"세후 실수령액\"의 차이입니다.",
+    "conceptTitle": "필요 자산 시뮬레이션",
+    "conceptBody": [
+      "월 100만 원 = 연 1,200만 원 세후 배당이 필요. 배당세 15.4%(국내 기준)를 역산하면 연 약 1,419만 원 세전 배당이 필요. 배당률 4%면 약 3.55억 원, 배당률 6%면 약 2.37억 원, 배당률 8%면 약 1.77억 원.",
+      "ISA에 담으면 비과세 한도 안에서 세금이 줄어 같은 배당으로 더 적은 자산이 필요합니다. 일반형 200만 원·서민형 400만 원 비과세, 초과분 9.9% 분리과세 적용."
+    ],
+    "mistakes": [
+      "배당률 8% 이상의 고배당 ETF만 보고 자산 규모를 작게 산정하는 경우 (실제는 ROC·커버드콜 한계 있음)",
+      "세금 빼지 않은 \"세전 배당\" 기준으로 계산하는 경우",
+      "ISA 활용 가능 여부를 확인 안 하는 경우",
+      "달성 자산이 있어도 인플레이션으로 실질 구매력이 줄어드는 점을 놓치는 경우"
+    ],
+    "exampleTitle": "월 100만 원 시나리오",
+    "exampleBody": "30년 후 은퇴 가정 시 인플레이션 3% 적용 → 30년 후 월 100만 원 ≈ 현재 가치 41만 원 수준. 따라서 \"미래 가치 월 100만 원\"이 아니라 \"미래 시점 실질 100만 원\"을 목표로 한다면 인플레이션 보정 후 자산 규모는 더 커야 합니다.",
+    "who": [
+      "은퇴 후 배당 현금흐름 목표가 있는 분",
+      "배당 ETF 자산 규모를 처음 계산해보는 분"
+    ],
+    "caution": "배당률 8% 이상은 일반적으로 커버드콜 ETF·고위험 카테고리이므로 단순 \"배당률\"로 자산 규모를 계산하면 위험합니다. 평균 배당률 4~5%로 보수적으로 산정하시는 것이 안전합니다.",
+    "faqs": [
+    {
+      "question": "ISA에 담으면 자산이 얼마나 적게 필요한가요?",
+      "answer": "ISA 일반형 200만 원·서민형 400만 원까지 비과세 + 초과분 9.9% 분리과세이므로 일반 계좌 대비 약 5~10% 적은 자산으로 같은 세후 배당이 가능합니다."
+    },
+    {
+      "question": "배당률 6%는 현실적인 가정인가요?",
+      "answer": "고배당 ETF·리츠·커버드콜 ETF 분산 포트폴리오에서 가능한 수준입니다. 다만 \"배당의 지속성\"을 함께 봐야 하고, 일반 배당주 + 배당성장주 분산 포트폴리오는 평균 배당률 3~4%가 더 현실적입니다."
+    },
+    {
+      "question": "월 10만 원 목표라면 자산이 얼마나 필요한가요?",
+      "answer": "월 10만 원 = 1/10 규모로 약 3,500만 원(배당률 4%)·2,400만 원(6%)·1,800만 원(8%) 수준입니다. 첫 배당 목표로 잡기 좋은 단계입니다."
+    }
+    ],
+    "related": [
+      { "label": "배당 투자 기초", "href": "/info/guide/dividend-basics" },
+      { "label": "배당주 분류", "href": "/info/guide/dividend-king-vs-aristocrat" },
+      { "label": "월배당 ETF 세금", "href": "/info/guide/monthly-dividend-tax" }
+    ],
+    "calculators": [
+      { "label": "배당 계산기", "href": "/cal/calculator" },
+      { "label": "복리 계산기", "href": "/cal/compound" },
+      { "label": "FIRE 계산기", "href": "/cal/fire" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "dsr-blocked-solutions": {
+    "slug": "dsr-blocked-solutions",
+    "title": "DSR 때문에 대출이 안 나올 때 — 한도 늘리는 5가지 방법",
+    "description": "DSR 40% 한도 때문에 추가 대출이 막혔을 때 활용 가능한 5가지 방법(소득 인정·금리·기간·기존 대출 상환·정책상품)을 BlueDino가 정리한 가이드.",
+    "badge": "DSR 해결",
+    "hero": "DSR 40%(2금융권 50%) 한도에 걸려 추가 대출이 막혔을 때 \"포기\"하기 전에 시도해볼 수 있는 5가지 방법이 있습니다. 본인 사례에 맞는 방법을 골라보세요.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "주담대 + 신용대출 + 마이너스통장이 합쳐져 DSR이 한도에 걸리면 \"여기까지가 최대인가\" 싶지만, 실제로는 5가지 정도의 한도 늘리는 옵션이 있습니다.",
+    "conceptTitle": "DSR 한도 늘리는 5가지 방법",
+    "conceptBody": [
+      "1) 소득 인정액 늘리기: 부부 합산 소득 적용·성과급·임대 수익을 추가 인정받기. 2) 금리 낮은 상품으로 갈아타기: 같은 원금이어도 금리가 낮으면 연 원리금이 줄어 DSR이 회복. 3) 만기 늘리기: 30년 → 40년으로 늘리면 연 원리금이 줄어 DSR이 낮아짐.",
+      "4) 기존 대출 일부 상환: 마이너스통장 한도 축소·신용대출 일부 상환으로 DSR 산정 부담 줄이기. 5) 정책상품 활용: 디딤돌·보금자리·청년 전용 등 일부 정책상품은 DSR 산정에서 제외되거나 완화됨."
+    ],
+    "mistakes": [
+      "마이너스통장 한도를 사용 안 한다고 DSR에서 빠진다고 오해하는 경우 (실제는 한도 전액 기준)",
+      "신용대출의 \"10년 환산 분할\"을 1년 만기로 계산해 DSR을 잘못 추정하는 경우",
+      "정책상품 자격이 있는데 시중은행 일반 상품으로만 알아보는 경우",
+      "맞벌이인데 단독 소득으로만 신청해 한도가 작게 나오는 경우"
+    ],
+    "exampleTitle": "연봉 6000만 원·주담대 2.5억 시나리오",
+    "exampleBody": "연봉 6000만·DSR 한도 2400만 원. 주담대 2.5억·30년 시 연 원리금 약 1500만 원·DSR 25%. 추가 신용대출 5천만 원 신청 시 10년 환산 연 원리금 약 770만 원·DSR 합계 38%로 한도 안. 만약 신용대출이 1억이면 연 환산 1540만 원·DSR 51%로 한도 초과.",
+    "who": [
+      "DSR 한도에 걸려 추가 대출이 막힌 분",
+      "주담대 + 신용대출 동시 신청을 검토하는 분",
+      "정책상품 자격 여부를 확인하려는 분"
+    ],
+    "caution": "각 방법은 본인 신용·소득·상품 자격에 따라 적용 가능 여부가 다릅니다. 은행 상담 시 본인 사례 기준으로 정확한 한도와 조건을 확인하시는 것이 안전합니다.",
+    "faqs": [
+    {
+      "question": "마이너스통장 한도를 줄이면 DSR이 즉시 회복되나요?",
+      "answer": "네. DSR은 한도 전액 기준으로 산정되므로 한도 축소가 즉시 반영됩니다. 사용 안 하는 마이너스통장은 한도를 줄이거나 해지하시면 신규 대출 가능 한도가 늘어납니다."
+    },
+    {
+      "question": "맞벌이 부부 합산 소득은 어떻게 적용되나요?",
+      "answer": "주담대의 경우 부부 합산 소득 적용이 가능한 상품이 많습니다. 신용대출은 개인별 소득 기준이 일반적이므로 상품별로 확인해야 합니다."
+    },
+    {
+      "question": "정책상품 중 DSR 완화가 가장 큰 건?",
+      "answer": "특례보금자리(한시)·청년 전세대출 일부는 DSR 산정에서 제외되거나 한도가 완화됩니다. 본인 자격에 따라 시중은행 일반 상품 대비 큰 한도 차이가 발생할 수 있습니다."
+    }
+    ],
+    "related": [
+      { "label": "DSR 40% 규제 상세", "href": "/info/guide/dsr-strict-rules-detail" },
+      { "label": "주담대 갈아타기 시점", "href": "/info/guide/mortgage-refinancing-when" },
+      { "label": "생애최초 정책상품", "href": "/info/guide/first-home-loan-products" }
+    ],
+    "calculators": [
+      { "label": "DSR 계산기", "href": "/cal/dsr" },
+      { "label": "주담대 계산기", "href": "/cal/mortgage" },
+      { "label": "대출이자 계산기", "href": "/cal/loan-interest" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "fixed-vs-variable-rate": {
+    "slug": "fixed-vs-variable-rate",
+    "title": "고정금리 vs 변동금리 — 어떤 게 유리할까",
+    "description": "주담대 고정금리와 변동금리의 차이를 본인의 현금흐름 안정성·금리 전망·갈아타기 계획 기준으로 비교한 BlueDino 가이드.",
+    "badge": "고정 vs 변동",
+    "hero": "고정금리는 \"안정성\", 변동금리는 \"금리 하락 수혜\"가 핵심 차별점입니다. 본인의 현금흐름과 금리 전망에 따라 어느 쪽이 유리한지 달라집니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "주담대 받을 때 고정금리·변동금리·혼합형(5년 고정+변동) 중 어느 걸 골라야 할지 헷갈리는 분이 많습니다. 답은 본인 현금흐름과 갈아타기 계획에 달려 있습니다.",
+    "conceptTitle": "3가지 금리 유형 비교",
+    "conceptBody": [
+      "1) 고정금리: 만기까지 같은 금리. 일반적으로 변동금리보다 0.3~0.5%p 높지만 매월 부담이 일정. 2) 변동금리: 6개월·1년 단위로 조정. 단기 금리가 낮을 때 유리하지만 금리 상승 시 매월 부담 증가. 3) 혼합형(5년 고정+변동): 처음 5년은 고정·이후 변동. 갈아타기 가능성을 열어두는 절충형.",
+      "결정 기준: 1) 현금흐름 안정성 우선 → 고정금리. 2) 5년 안에 갈아타기 계획이 있다면 → 혼합형. 3) 금리 하락 전망에 베팅 → 변동금리. 다만 금리 전망 자체가 어려워 \"본인 현금흐름 안정성\"을 기준으로 결정하는 것이 안전합니다."
+    ],
+    "mistakes": [
+      "단기 금리만 비교하고 \"5년 후 금리 변화\"를 예상하지 않는 경우",
+      "혼합형의 5년 고정 종료 후 변동 폭을 미리 시뮬레이션 안 하는 경우",
+      "갈아타기 계획이 명확히 있는데도 고정금리 30년으로 묶는 경우",
+      "변동금리의 +1%p, +2%p 시나리오를 점검 안 하는 경우"
+    ],
+    "exampleTitle": "잔액 4억·30년 시뮬레이션",
+    "exampleBody": "잔액 4억·30년·고정 4.5% 시 월 상환 약 202만 원·총이자 약 327만 원/연. 변동 4.0% 시 월 약 191만 원·총이자 약 290만 원/연이지만 +1%p 인상 시 월 약 215만 원으로 매월 24만 원 증가. 본인 가계 예산이 24만 원 변동을 견딜 수 있는지 점검 후 결정.",
+    "who": [
+      "주담대 신청 직전 금리 유형을 정해야 하는 분",
+      "갈아타기를 5년 안에 계획 중인 분",
+      "금리 변동성에 대한 위험 감수 성향을 점검하려는 분"
+    ],
+    "caution": "금리 전망 자체가 어렵습니다. \"본인이 +1~2%p 인상을 견딜 수 있는가\"를 기준으로 결정하시는 것이 가장 안전합니다.",
+    "faqs": [
+    {
+      "question": "고정금리가 안전한 만큼 비싼 건가요?",
+      "answer": "네. 일반적으로 0.3~0.5%p 높습니다. 다만 30년 누적으로 보면 \"변동금리 평균\"이 고정금리보다 낮을 수도 높을 수도 있어 단순 비교가 어렵습니다."
+    },
+    {
+      "question": "혼합형은 5년 후 어떻게 되나요?",
+      "answer": "5년 고정 종료 후 변동금리로 자동 전환됩니다. 보통 시중 변동금리와 거의 같은 수준으로 적용되며, 그 시점에 갈아타기를 검토할 수 있습니다."
+    },
+    {
+      "question": "한국은행 금리 인하 전망이 있어도 고정이 좋을 수 있나요?",
+      "answer": "본인의 현금흐름 안정성이 더 중요한 분이라면 그렇습니다. 금리 인하가 100% 확정된 것이 아니고, 인하 폭도 예상보다 작을 수 있어 \"확정된 안정성\"이 더 큰 가치일 수 있습니다."
+    }
+    ],
+    "related": [
+      { "label": "주담대 갈아타기", "href": "/info/guide/mortgage-refinancing-when" },
+      { "label": "DSR 규제", "href": "/info/guide/dsr-strict-rules-detail" }
+    ],
+    "calculators": [
+      { "label": "주담대 계산기", "href": "/cal/mortgage" },
+      { "label": "대출이자 계산기", "href": "/cal/loan-interest" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "credit-loan-vs-mortgage-priority": {
+    "slug": "credit-loan-vs-mortgage-priority",
+    "title": "신용대출 먼저 갚을까, 주담대 먼저 갚을까",
+    "description": "신용대출과 주담대를 동시에 가지고 있을 때 어느 쪽을 먼저 갚는 게 유리한지 금리·DSR·세제 혜택 기준으로 BlueDino가 정리한 가이드.",
+    "badge": "대출 상환 우선순위",
+    "hero": "여유자금이 생겼을 때 신용대출과 주담대 중 어느 쪽을 먼저 갚을지 결정할 때는 \"금리 + DSR + 세제 혜택\" 3가지를 함께 봐야 합니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "신용대출 5천 + 주담대 3억이 있는 상태에서 여유자금 2천만 원이 생겼을 때 \"어느 쪽을 먼저 갚는 게 이득인지\" 헷갈리는 분이 많습니다.",
+    "conceptTitle": "상환 우선순위 결정 기준",
+    "conceptBody": [
+      "1) 금리: 일반적으로 신용대출(5~7%)이 주담대(3~4.5%)보다 높아 신용대출 우선 상환이 유리. 같은 1천만 원 상환으로 신용대출 7%면 연 70만 원, 주담대 4%면 연 40만 원 절감.",
+      "2) DSR 회복: 신용대출 상환 시 DSR이 더 빨리 회복. 추가 대출 한도가 필요한 분에게 유리. 3) 세제 혜택: 주담대 이자는 일부 \"장기주택저당차입금 이자상환액 소득공제\"(연 한도 600~1800만 원) 가능. 신용대출은 세제 혜택 없음."
+    ],
+    "mistakes": [
+      "주담대 \"30년 잔존 부담\"이 커 보여 주담대 먼저 갚는 경우 (금리 차이 때문에 신용대출이 우선)",
+      "신용대출 중도상환수수료가 작은데도 \"수수료 부담\"을 이유로 갚지 않는 경우",
+      "주담대 소득공제 혜택을 모르고 갚아 세제 혜택을 놓치는 경우"
+    ],
+    "exampleTitle": "신용대출 5천만 원 vs 주담대 3억 비교",
+    "exampleBody": "여유자금 2천만 원·신용대출 잔액 5천(금리 6%)·주담대 잔액 3억(금리 4%) 가정. 신용대출 2천만 원 상환 → 연 이자 절감 약 120만 원. 주담대 2천만 원 상환 → 연 이자 절감 약 80만 원. 신용대출 상환이 연 40만 원 더 유리.",
+    "who": [
+      "신용대출 + 주담대 동시 보유한 분",
+      "여유자금이 생겨 상환 우선순위를 정해야 하는 분"
+    ],
+    "caution": "신용대출 중도상환수수료(보통 0~2%)와 주담대 중도상환수수료(0~1.2%)를 확인하시고, 세제 혜택 구간도 함께 봐야 정확한 비교가 가능합니다.",
+    "faqs": [
+    {
+      "question": "주담대 소득공제는 누구나 받을 수 있나요?",
+      "answer": "근로자 본인 명의·1주택 보유·전용면적 85㎡ 이하·취득 당시 기준시가 5억 원 이하 등 조건이 있습니다. 본인 케이스에 해당하는지 국세청 홈택스에서 확인하시면 됩니다."
+    },
+    {
+      "question": "마이너스통장도 신용대출처럼 우선 상환해야 하나요?",
+      "answer": "사용 중인 부분은 신용대출과 동일하게 금리가 적용되므로 사용 부분 우선 상환이 유리합니다. 한도 미사용분은 한도 자체를 줄이는 것이 DSR 회복에 도움이 됩니다."
+    },
+    {
+      "question": "주담대 중도상환수수료가 있어도 갚는 게 유리한 경우는?",
+      "answer": "기존 주담대 금리가 5% 이상으로 높고 잔존 기간이 5년 이상 남았으며, 새로 받을 대출이 없는 경우라면 중도상환수수료를 부담하더라도 갚는 게 유리할 수 있습니다."
+    }
+    ],
+    "related": [
+      { "label": "DSR 해결 방법", "href": "/info/guide/dsr-blocked-solutions" },
+      { "label": "주담대 갈아타기", "href": "/info/guide/mortgage-refinancing-when" }
+    ],
+    "calculators": [
+      { "label": "DSR 계산기", "href": "/cal/dsr" },
+      { "label": "대출이자 계산기", "href": "/cal/loan-interest" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "us-stock-dividend-tax-filing": {
+    "slug": "us-stock-dividend-tax-filing",
+    "title": "미국주식 배당세 신고 — 종합소득세 합산 기준과 절차",
+    "description": "미국주식 배당의 미국 원천징수 15% + 한국 배당소득세 합산 구조와 종합소득세 신고 기준(연 2000만 원 초과)을 BlueDino가 정리한 가이드.",
+    "badge": "미국주식 배당세",
+    "hero": "미국주식 배당은 \"미국에서 15% 원천징수 + 한국 배당소득세 추가 정산\" 구조입니다. 연 2000만 원을 넘으면 종합소득세 합산 신고가 필요해 5월 신고 절차를 미리 알아두시면 좋습니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "미국주식 배당은 자동으로 세금이 빠진다고 알려진 분이 많지만, 연 2000만 원을 넘으면 종합소득세 합산이 필요해 추가 신고가 발생합니다.",
+    "conceptTitle": "미국주식 배당세 구조",
+    "conceptBody": [
+      "1) 미국 원천징수 15%: 미국 IRS가 자동으로 빼고 입금. 2) 한국 배당소득세 0.4% 추가: 한국 증권사가 14%(미국 15% 인정) - 14% = 0%이지만 지방세 포함 추가 정산. 결과적으로 총 15.4%. 3) 연 2000만 원 초과 시 종합소득세 합산: 누진세율(최대 45%) 적용 가능.",
+      "신고 시기: 매년 5월 1일~31일 종합소득세 신고 기간에 함께 신고. 미신고 시 가산세(20%) + 납부불성실 가산세(연 환산 약 9%) 부과. 홈택스 \"종합소득세 신고\" 메뉴에서 미국주식 배당 항목 자동 불러오기 가능."
+    ],
+    "mistakes": [
+      "미국주식 배당이 \"자동 정산\"이라고 생각해 종합소득세 합산을 누락하는 경우",
+      "연 2000만 원 기준이 \"미국주식 배당만\"이 아니라 \"국내+해외 금융소득 합계\"임을 모르는 경우",
+      "미국 원천징수 15%를 \"한국 추가 세금 없음\"으로 오해하는 경우",
+      "5월 신고 기한을 놓쳐 가산세를 부담하는 경우"
+    ],
+    "exampleTitle": "연 배당 3000만 원 시나리오",
+    "exampleBody": "미국주식 배당 연 3000만 원 가정. 미국 원천징수 450만 원·한국 추가 0.4% 약 12만 원 = 자동 빠진 세금 462만 원. 연 2000만 원 초과 1000만 원에 대해 종합소득세 합산 → 본인 종합소득 4000만 원이라 누진세율 약 24% 적용 시 추가 부담 약 80~120만 원 발생.",
+    "who": [
+      "미국 직접 ETF·개별주에서 연 배당이 큰 분",
+      "금융소득(국내+해외)이 연 2000만 원에 근접한 분"
+    ],
+    "caution": "종합소득세 합산 위험을 줄이려면 ISA·연금계좌의 국내 상장 해외 ETF 활용이나 ETF 분산이 도움이 됩니다.",
+    "faqs": [
+    {
+      "question": "미국주식 배당세는 자동인가요?",
+      "answer": "미국 원천징수 15%는 자동이지만 종합소득세 합산은 본인이 5월에 신고해야 합니다. 자동으로 처리되지 않으니 주의하세요."
+    },
+    {
+      "question": "ISA에 미국주식을 담으면 배당세가 면제되나요?",
+      "answer": "ISA에는 미국 직접 주식을 담을 수 없습니다(국내 상장 해외 ETF만 가능). 국내 상장 해외 ETF는 ISA 비과세 한도 안에서 절세가 가능합니다."
+    },
+    {
+      "question": "연 2000만 원 기준은 부부 합산인가요?",
+      "answer": "개인별 기준입니다. 부부 각자 연 2000만 원까지는 분리과세이고, 그 이상은 본인 종합소득세에 합산됩니다."
+    }
+    ],
+    "related": [
+      { "label": "해외주식 세금 기초", "href": "/info/guide/us-stock-tax-basics" },
+      { "label": "해외주식 양도세 절세", "href": "/info/guide/us-stock-tax-saving" },
+      { "label": "월배당 ETF 세금", "href": "/info/guide/monthly-dividend-tax" }
+    ],
+    "calculators": [
+      { "label": "해외주식 양도세 계산기", "href": "/cal/capital-gains" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "isa-which-etf": {
+    "slug": "isa-which-etf",
+    "title": "ISA에 어떤 ETF를 담으면 좋을까 — 카테고리별 추천 기준",
+    "description": "ISA 계좌에 담을 ETF를 카테고리별(국내·해외·배당·테마) 선택 기준으로 BlueDino가 정리한 가이드. 절세 효과 + 분산 + 운용 보수 균형 잡는 방법.",
+    "badge": "ISA ETF 선택",
+    "hero": "ISA에 어떤 ETF를 담느냐에 따라 5년 후 세후 자산이 크게 달라집니다. 절세 효과 + 분산 + 운용 보수 3가지 기준으로 ETF를 고르시면 됩니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "ISA를 만들었는데 어떤 ETF를 담아야 할지 헷갈리는 분이 많습니다. ISA 한도(연 2000만 원·5년 1억 원)를 어떻게 채워야 효율적일지 카테고리별로 정리했습니다.",
+    "conceptTitle": "ISA ETF 선택 기준",
+    "conceptBody": [
+      "1) 절세 효과 큰 ETF 우선: 분배금이 많은 배당 ETF·고배당 ETF가 ISA 비과세 한도 활용에 효과적. 일반 계좌 15.4% → ISA 9.9% 절세. 2) 운용 보수 낮은 인덱스 ETF: KODEX 200·TIGER 미국S&P500처럼 보수 0.05~0.30%인 ETF가 장기 누적 효과 큼.",
+      "3) 글로벌 분산: 국내 ETF 50% + 해외 ETF 50% 비율이 일반적. 4) 테마 ETF는 비중 작게: 반도체·2차전지·AI 같은 테마 ETF는 변동성이 크므로 ISA 한도의 10~20% 이내로 제한."
+    ],
+    "mistakes": [
+      "한 ETF에 ISA 한도를 모두 몰아넣어 분산이 부족한 경우",
+      "운용 보수 0.5% 이상의 액티브 펀드를 ISA에 담아 보수 부담이 큰 경우",
+      "ISA 안에 미국 직접 ETF를 담으려고 시도하는 경우 (불가능 — 국내 상장만)",
+      "테마 ETF 비중이 50% 이상이라 ISA가 \"테마 ETF 모음\"이 되는 경우"
+    ],
+    "exampleTitle": "ISA 1억 원 포트폴리오 예시",
+    "exampleBody": "ISA 1억 원 가정. 보수적 비중: KODEX 200(20%) + TIGER 미국S&P500(20%) + KODEX 미국 배당 ETF(20%) + TIGER 미국 나스닥100(15%) + KODEX 코스피 200 고배당(10%) + 테마 ETF(15%, 반도체·AI 등). 평균 운용 보수 약 0.15%·평균 배당률 약 2.5%.",
+    "who": [
+      "ISA를 막 가입한 분",
+      "기존 ISA에 어떤 ETF가 좋을지 점검하려는 분"
+    ],
+    "caution": "ISA 비과세 한도(일반 200만·서민 400만)는 \"운용 수익\" 기준이라 배당 + 자본차익을 합산해 채우는 방식입니다. 적극 활용하시면 절세 효과가 큽니다.",
+    "faqs": [
+    {
+      "question": "ISA에 미국 ETF를 담을 수 있나요?",
+      "answer": "미국 직접 ETF(SCHD·VOO 등)는 ISA에 못 담습니다. 국내 상장 해외 ETF(TIGER 미국S&P500·KODEX 미국 나스닥100 등)만 가능합니다."
+    },
+    {
+      "question": "ISA 안에서 매매를 자주 해도 되나요?",
+      "answer": "가능합니다. ISA 안의 자산 매매로 발생한 자본차익도 비과세 한도 안에서는 비과세입니다. 다만 단기 매매가 잦으면 본업이 흐트러질 수 있어 \"적립식 + 리밸런싱\" 정도가 일반적입니다."
+    },
+    {
+      "question": "ISA 만기 5년 동안 같은 ETF만 담아야 하나요?",
+      "answer": "아닙니다. 만기 동안 매매가 자유롭고, 비중 조정도 자유롭습니다. 다만 비과세 한도는 \"누적 운용 수익\"이라 잦은 매매 시 한도가 빨리 채워질 수 있습니다."
+    }
+    ],
+    "related": [
+      { "label": "ISA 계좌 기초", "href": "/info/guide/isa-basics" },
+      { "label": "ISA 절세 효과", "href": "/info/guide/isa-benefits" },
+      { "label": "ISA vs 일반 계좌 비교", "href": "/info/guide/isa-vs-general-account" }
+    ],
+    "calculators": [
+      { "label": "ISA 절세 효과 계산기", "href": "/cal/isa-tax-savings" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "pension-early-withdrawal": {
+    "slug": "pension-early-withdrawal",
+    "title": "연금저축 중도해지 — 손해는 얼마나 될까",
+    "description": "연금저축을 만 55세 전에 중도해지할 때 부과되는 기타소득세 16.5%와 받았던 세액공제 환급금 회수 구조를 BlueDino가 정리한 가이드.",
+    "badge": "연금저축 해지",
+    "hero": "연금저축은 만 55세 이후 연금 수령으로 인출해야 절세 효과를 누릴 수 있습니다. 중도해지하면 기타소득세 16.5%가 부과되어 받았던 세액공제를 거의 다 토해내는 구조입니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "급한 자금이 필요해 연금저축을 해지하려는데 \"얼마나 손해인지\" 헷갈리는 분이 많습니다. 핵심은 \"기타소득세 16.5%\"와 \"세액공제 환급분 회수\" 두 단계로 손실이 발생합니다.",
+    "conceptTitle": "중도해지 시 손실 구조",
+    "conceptBody": [
+      "중도해지 시 부과되는 세금: \"세액공제 받은 납입 원금 + 운용 수익\"에 대해 기타소득세 16.5%(지방세 포함). 즉 본인이 받았던 세액공제(13.2~16.5%)와 거의 같은 비율을 토해내는 구조입니다.",
+      "추가로: 세액공제 받지 않은 \"비과세 납입분\"은 면세 인출 가능. 운용 수익은 그동안 \"이연 비과세\"였던 것이 한 번에 16.5%로 과세. 결과적으로 5년 운용했다면 약 3~5%의 절세 효과만 남고 나머지는 회수."
+    ],
+    "mistakes": [
+      "\"세액공제만 받았으면 이득\"이라고 생각하는 경우 (실제는 16.5% 회수)",
+      "중도해지 전에 \"부분 인출\" 옵션이 있는지 확인 안 하는 경우",
+      "급한 자금이 필요할 때 연금저축 담보대출(연금담보대출)을 검토 안 하는 경우",
+      "이미 5년 이상 운용한 경우 운용 수익에 대한 세금 부담을 누락하는 경우"
+    ],
+    "exampleTitle": "5년 납입 3000만 원·운용 수익 500만 원 시뮬레이션",
+    "exampleBody": "5년 납입 3000만 원 + 운용 수익 500만 원 = 평가액 3500만 원. 중도해지 시 기타소득세 = 3500 × 16.5% = 약 578만 원. 그동안 받았던 세액공제 환급액(연 600만 원 × 5년 × 13.2%) = 396만 원. 순손실 약 182만 원 + 그동안 받은 환급금 거의 회수.",
+    "who": [
+      "연금저축 가입 후 자금이 급한 분",
+      "연금저축 가입을 고민 중인 분",
+      "연금담보대출 검토하려는 분"
+    ],
+    "caution": "중도해지 외에도 1) 연금담보대출(저금리), 2) 부분 인출(특정 조건 시) 옵션이 있어 해지 전에 검토하시는 것이 안전합니다.",
+    "faqs": [
+    {
+      "question": "연금저축 담보대출은 어떤 조건인가요?",
+      "answer": "보통 평가금액의 50~70% 한도, 금리는 시중 신용대출보다 낮은 편(5~6%대)입니다. 해지보다 손실이 훨씬 적어 단기 자금 부족 시 우선 검토할 만한 옵션입니다."
+    },
+    {
+      "question": "비과세 납입(세액공제 한도 초과분)은 면세 인출 가능한가요?",
+      "answer": "네. 한도(연 600만 원) 초과 납입분은 세액공제를 받지 않은 부분이라 \"비과세 납입\"으로 분류되어 중도 인출 시 세금이 부과되지 않습니다."
+    },
+    {
+      "question": "만 55세 이후 연금 수령은 어떻게 다른가요?",
+      "answer": "만 55세 이후 \"연금 형태\"로 10년 이상 분할 수령하면 연금소득세(3.3~5.5%)만 적용되어 16.5% 대비 큰 절세가 됩니다. 그래서 가능한 한 만 55세까지 유지하시는 것이 유리합니다."
+    }
+    ],
+    "related": [
+      { "label": "연금저축과 IRP 차이", "href": "/info/guide/pension-vs-irp" },
+      { "label": "연금저축 가이드", "href": "/info/guide/pension" },
+      { "label": "연봉별 IRP 환급액", "href": "/info/guide/irp-tax-deduction-by-salary" }
+    ],
+    "calculators": [
+      { "label": "연금저축 세액공제 계산기", "href": "/cal/pension-tax-credit" },
+      { "label": "퇴직소득세 계산기", "href": "/cal/retirement-tax" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "pension-when-to-receive": {
+    "slug": "pension-when-to-receive",
+    "title": "연금 수령은 몇 살부터 유리할까 — 만 55세 vs 60세 vs 65세",
+    "description": "연금저축·IRP 연금 수령 시점을 만 55세·60세·65세로 비교한 BlueDino 가이드. 절세 효과와 누적 수령액 시뮬레이션.",
+    "badge": "연금 수령 시점",
+    "hero": "연금저축·IRP는 만 55세 이후 연금 수령이 가능하지만 \"무조건 빠를수록 좋다\"가 아닙니다. 절세 효과와 수령 시점에 따라 누적 수령액이 달라집니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "연금저축·IRP를 만 55세부터 받을지, 60세 또는 65세까지 미룰지 결정해야 하는 시점이 다가오면 \"어느 쪽이 더 유리한지\" 헷갈립니다. 핵심은 본인의 생활비 + 다른 자산 + 연금소득세 구조입니다.",
+    "conceptTitle": "연금 수령 시점별 차이",
+    "conceptBody": [
+      "1) 만 55세 수령: 연금소득세 5.5%(지방세 포함). 가장 빠른 수령. 단점: 운용 기간 짧음. 2) 만 60세 수령: 연금소득세 4.4%. 5년 추가 운용으로 평가금액 증가. 3) 만 65세 수령: 연금소득세 3.3%. 가장 낮은 세율 + 10년 추가 운용.",
+      "결정 기준: 1) 본인 생활비를 다른 자산으로 충당 가능하다면 → 늦게 받기 유리. 2) 종합소득세 합산 가능성을 보고 \"분리과세\" 유지하려면 빠르게 받기. 3) 운용 수익률이 연금소득세보다 높다고 가정한다면 늦게 받기."
+    ],
+    "mistakes": [
+      "단순히 \"빨리 받으면 좋다\"고 생각하는 경우 (실제는 운용 기간 단축으로 평가금액 작음)",
+      "연금소득세 외 종합소득세 합산 가능성을 점검 안 하는 경우",
+      "연금 수령액이 연 1200만 원 초과 시 종합소득세 합산이 가능하다는 점을 모르는 경우",
+      "본인 다른 자산(예금·주식·부동산) 인출 순서를 함께 설계 안 하는 경우"
+    ],
+    "exampleTitle": "55세 vs 65세 누적 수령액 비교",
+    "exampleBody": "만 55세 평가금액 5억·연 6% 수익률·매년 5천만 원 인출 가정. 만 55세 시작·25년 인출 = 누적 12.5억(세전). 만 65세 시작·15년 인출 = 누적 평가금액 약 8.95억·연 인출 약 7천만 원·15년 약 10.5억(세전). 단순 누적은 55세가 많지만 운용 수익률에 따라 65세가 더 클 수도 있음.",
+    "who": [
+      "연금저축·IRP 만 55세 도래 직전인 분",
+      "연금 수령 시점을 정해야 하는 분"
+    ],
+    "caution": "연금 수령 시점은 본인의 다른 자산·생활비·세제 구조에 따라 결정하시는 것이 적절합니다. 한 번 시작하면 변경이 어려우므로 신중히 검토하세요.",
+    "faqs": [
+    {
+      "question": "연금소득세 분리과세 한도는?",
+      "answer": "연 1200만 원까지 연금소득세 분리과세(3.3~5.5%) 적용. 1200만 원 초과 시 종합소득세 합산 또는 16.5% 분리과세 중 선택 가능."
+    },
+    {
+      "question": "55세에 부분 수령 후 60세부터 본격 수령 가능한가요?",
+      "answer": "가능합니다. 만 55세 이후라면 인출 일정·금액을 자유롭게 조정할 수 있고, 부분 수령 → 본격 수령 식의 단계적 인출도 자주 활용됩니다."
+    },
+    {
+      "question": "퇴직금을 IRP로 받았는데 수령 시점은 언제가 좋나요?",
+      "answer": "퇴직 직후가 만 55세 이상이라면 즉시 또는 일부 운용 후 수령 가능. 만 55세 미만이라면 운용 후 만 55세 이후 시작이 일반적입니다."
+    }
+    ],
+    "related": [
+      { "label": "퇴직금 일시 vs IRP", "href": "/info/guide/retirement-payout-strategies" },
+      { "label": "국민연금 + 사적연금", "href": "/info/guide/national-pension-vs-private" },
+      { "label": "30·40·50대 은퇴 자산 목표", "href": "/info/guide/retirement-by-age" }
+    ],
+    "calculators": [
+      { "label": "FIRE 계산기", "href": "/cal/fire" },
+      { "label": "퇴직소득세 계산기", "href": "/cal/retirement-tax" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "minus-account-credit-impact": {
+    "slug": "minus-account-credit-impact",
+    "title": "마이너스통장 한도가 신용점수에 영향을 줄까",
+    "description": "마이너스통장 보유·사용·한도 변경이 신용점수에 미치는 영향을 NICE·KCB 신용평가사 기준으로 BlueDino가 정리한 가이드.",
+    "badge": "마이너스통장 신용",
+    "hero": "마이너스통장은 \"한도만 보유\"해도 신용점수에 영향을 줍니다. 다만 영향의 크기와 방향은 사용 여부·한도·신용평가사에 따라 다릅니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "마이너스통장을 만들었는데 \"안 쓰면 괜찮은지\"·\"한도만 키워도 신용점수가 떨어지는지\" 헷갈리는 분이 많습니다.",
+    "conceptTitle": "마이너스통장이 신용점수에 미치는 영향",
+    "conceptBody": [
+      "1) 한도 보유만으로도 영향: NICE·KCB 모두 \"마이너스통장 한도 전액\"을 보유 부채로 간주. 한도 5천만 원 보유 = 5천만 원 신용대출 보유와 비슷한 영향. 2) 사용 시 추가 영향: 사용 잔액이 클수록 신용점수에 부정적. 3) 한도 축소·해지 시 회복: 신용점수가 빠르게 회복.",
+      "다만 \"신규 신용대출 신청\"보다는 영향이 작은 편이고, 1년 이상 안정적으로 사용한 마이너스통장은 신용 이력으로 긍정 작용할 수도 있습니다."
+    ],
+    "mistakes": [
+      "\"한도만 보유하면 영향 없다\"고 오해하는 경우",
+      "여러 은행에 마이너스통장 한도를 분산 보유해 신용점수가 점진적으로 낮아지는 경우",
+      "마이너스통장을 \"비상금 통장\"으로 활용하면서 매월 사용·반납을 반복해 신용점수에 영향을 주는 경우",
+      "주담대 신청 시 마이너스통장 한도 축소를 안 하고 DSR 한도가 부족해지는 경우"
+    ],
+    "exampleTitle": "한도 5천 보유·사용 0원 시나리오",
+    "exampleBody": "마이너스통장 한도 5천만 원 보유·사용 0원 가정. NICE 신용점수 영향: 약 5~15점 하락. 보유 1년 이상 안정 사용 시: 약간 회복. 신규 주담대 신청 시: DSR 산정에서 5천만 원 신용대출과 동일하게 부담 산정.",
+    "who": [
+      "마이너스통장을 새로 만들려는 분",
+      "주담대 신청 직전인 분",
+      "신용점수가 잘 안 오르는 이유를 점검하려는 분"
+    ],
+    "caution": "마이너스통장은 편리하지만 \"한도만 보유해도 부담\"이라는 점을 기억하시고, 사용 안 하는 한도는 축소 또는 해지를 검토하시는 것이 좋습니다.",
+    "faqs": [
+    {
+      "question": "마이너스통장과 신용대출 중 신용점수에 더 영향이 큰 건?",
+      "answer": "신규 신청 시 신용대출이 약간 더 큰 영향을 주는 편이지만, 보유 후 시간이 지나면 비슷해집니다. 보유 한도 자체는 동일하게 부담으로 산정됩니다."
+    },
+    {
+      "question": "마이너스통장 해지하면 신용점수가 바로 회복되나요?",
+      "answer": "보통 1~2개월 안에 회복됩니다. 다만 \"오랜 기간 안정 사용한 신용 이력\"이 사라지는 효과도 있어 회복 폭이 예상보다 작을 수 있습니다."
+    },
+    {
+      "question": "한도만 줄이면 점수가 회복되나요?",
+      "answer": "네. 한도 축소는 즉시 신용점수에 반영되어 회복됩니다. 사용 안 하는 한도는 축소하시는 것이 효율적입니다."
+    }
+    ],
+    "related": [
+      { "label": "DSR 해결 방법", "href": "/info/guide/dsr-blocked-solutions" },
+      { "label": "신용대출 vs 주담대 우선상환", "href": "/info/guide/credit-loan-vs-mortgage-priority" }
+    ],
+    "calculators": [
+      { "label": "DSR 계산기", "href": "/cal/dsr" },
+      { "label": "대출이자 계산기", "href": "/cal/loan-interest" }
+    ],
+    "publishedAt": "2026-04-27",
+    "updatedAt": "2026-04-27"
+  },
+  "dividend-rate-vs-growth": {
+    "slug": "dividend-rate-vs-growth",
+    "title": "배당률 vs 배당성장률 — 왜 성장률을 봐야 할까",
+    "description": "현재 배당률이 높은 종목보다 배당성장률이 높은 종목이 장기 누적 배당으로 이익이 큰 이유를 BlueDino가 실제 투자 판단에 필요한 기준 중심으로 정리한 가이드.",
+    "badge": "배당률 vs 성장률",
+    "hero": "단순히 배당률이 높은 종목이 \"항상 좋은 배당주\"는 아닙니다. 배당성장률이 높은 종목은 5~10년 후 누적 배당이 훨씬 커질 수 있어 장기 투자에서 더 유리한 경우가 많습니다.",
+    "questionTitle": "이런 질문이 많습니다",
+    "questionBody": "배당주를 고를 때 \"배당률 5%인 A종목\"과 \"배당률 2.5%지만 매년 10%씩 인상되는 B종목\" 중 어느 게 좋은지 헷갈리는 분이 많습니다. 답은 본인의 투자 기간에 달려 있습니다.",
+    "conceptTitle": "배당성장률의 복리 효과",
+    "conceptBody": [
+      "예: A종목 배당률 5%·성장률 0%, B종목 배당률 2.5%·성장률 10%. 10년 후 누적 배당: A는 50%(50%/원금), B는 약 39.9%(연 2.5% × 1.1^10 = 약 6.5% × 10년 평균). 다만 B는 11년차부터 A를 추월하기 시작하고 20년차에는 약 100%로 A의 두 배에 가까워짐.",
+      "또 배당성장 종목은 \"기업이 매출·이익을 안정적으로 늘리고 있다\"는 신호로, 주가도 함께 상승하는 경우가 많아 자본차익까지 더해진 총수익률은 더 큰 차이가 발생합니다."
+    ],
+    "mistakes": [
+      "현재 배당률만 보고 종목을 고르는 경우",
+      "배당성장률을 1~2년 자료로만 보는 경우 (실제는 10년 이상 추세를 봐야 함)",
+      "배당성장 종목을 \"배당률이 낮다\"는 이유로 배제하는 경우",
+      "본인 투자 기간(5년 이내 vs 20년 이상)을 고려 안 하는 경우"
+    ],
+    "exampleTitle": "P&G(PG) vs AT&T(T) 비교",
+    "exampleBody": "P&G(PG): 배당률 약 2.5%·연속 인상 67년·성장률 약 5%/년. AT&T(T): 배당률 약 6~7%·성장률 0% 또는 마이너스. 5년 단기 누적은 AT&T가 크지만 15~20년 누적은 P&G가 압도. 또 P&G는 주가 상승까지 더해져 총수익률 차이가 더 큽니다.",
+    "who": [
+      "장기 투자자(10년 이상)",
+      "배당주 첫 진입 시 종목 선택 기준이 헷갈리는 분",
+      "은퇴 자산을 배당으로 키우려는 분"
+    ],
+    "caution": "배당성장률은 과거 자료입니다. 미래에도 같은 속도로 인상될지 보장이 없으므로 \"배당의 지속성\"(배당성향·잉여현금흐름)을 함께 보셔야 합니다.",
+    "faqs": [
+    {
+      "question": "배당성장률은 어디서 확인하나요?",
+      "answer": "한국 종목은 NICE·KIS 등 신용평가사 자료, 미국 종목은 Seeking Alpha·Dividend.com·각 회사 IR 자료에서 5~10년 배당 성장률을 확인할 수 있습니다."
+    },
+    {
+      "question": "배당성장률 몇 % 이상이 좋은 기준인가요?",
+      "answer": "S&P 500 평균 배당성장률이 약 5~7%이므로 7% 이상이면 평균 이상이고, 10% 이상이면 강한 배당성장 종목입니다. 배당킹·배당귀족 카테고리도 좋은 참고 기준입니다."
+    },
+    {
+      "question": "배당률과 배당성장률 둘 다 높은 종목은 없나요?",
+      "answer": "있지만 드뭅니다. 보통 둘 사이에는 트레이드오프가 있어 \"배당률 4%·성장률 5~7%\"가 균형 잡힌 상위 영역입니다. 배당킹·배당귀족 중에 이런 종목이 자주 발견됩니다."
+    }
+    ],
+    "related": [
+      { "label": "배당주 분류 가이드", "href": "/info/guide/dividend-king-vs-aristocrat" },
+      { "label": "배당 성장 투자", "href": "/info/guide/dividend-growth" },
+      { "label": "고배당 ETF 위험", "href": "/info/guide/high-dividend-etf-risks" }
+    ],
+    "calculators": [
+      { "label": "배당 계산기", "href": "/cal/calculator" },
+      { "label": "복리 계산기", "href": "/cal/compound" }
     ],
     "publishedAt": "2026-04-27",
     "updatedAt": "2026-04-27"

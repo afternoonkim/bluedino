@@ -1,0 +1,61 @@
+import type { Metadata } from "next";
+import Script from "next/script";
+import PensionTaxCreditClient from "./PensionTaxCreditClient";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
+
+const canonicalPath = "/cal/pension-tax-credit";
+const pageUrl = `https://bluedino.kr${canonicalPath}`;
+const pageTitle = "연금저축 세액공제 계산기 | BlueDino";
+const pageDescription = "연금저축계좌 납입액에 대한 세액공제 환급액을 연봉별 세액공제율(16.5% / 13.2%) 기준으로 계산";
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: canonicalPath },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "연금저축 세액공제 계산기",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  description: pageDescription,
+  url: pageUrl,
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 3, name: "연금저축 세액공제 계산기", item: pageUrl },
+  ],
+};
+
+export default function Page() {
+  return (
+    <>
+      <Script id="pension-tax-credit-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(structuredData) } } />
+      <Script id="pension-tax-credit-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
+      <PensionTaxCreditClient />
+      <div className="bd-container-narrow bd-section">
+        <PageTrustFooter pageKind="연금저축 세액공제 계산기" updatedAt="2026-04-27" />
+      </div>
+    </>
+  );
+}

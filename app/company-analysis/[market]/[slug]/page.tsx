@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
+import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
 import AdBlock from "@/components/ad/AdBlock";
 import ShareAndCite from "@/components/share/ShareAndCite";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import TradingViewStockChart from "@/components/company-analysis/TradingViewStockChart";
+import CompanyAnalysisUpdateNotice from "@/components/company-analysis/CompanyAnalysisUpdateNotice";
 import {
   getCompanyAnalysisRoutes,
   getCompanyArticle,
@@ -18,7 +22,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 type PageProps = { params: Promise<{ market: string; slug: string }> };
 
 export function generateStaticParams() {
-  return getCompanyAnalysisRoutes();
+  return getCompanyAnalysisRoutes().filter(({ market, slug }) => {
+    const article = getCompanyArticle(market, slug);
+    if (!article) return false;
+
+    const ticker = article.ticker.toUpperCase();
+    return Boolean(COMPANY_CUSTOM_NOTES[ticker]) || getCompanyIndices(article.ticker).length > 0;
+  });
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -188,6 +198,8 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
             companyNameKo={currentArticle.companyNameKo}
           />
 
+          <CompanyAnalysisUpdateNotice updatedAt={currentArticle.updatedAt} />
+
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">한줄 결론</h2>
             <p className="bd-text-main mt-4">{currentArticle.quickConclusion}</p>
@@ -255,6 +267,11 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                   ))}
                 </div>
               </section>
+
+              <PageTrustFooter
+                updatedAt={currentArticle.updatedAt}
+                pageKind={`${currentMarketLabel} 분석`}
+              />
 
               <ShareAndCite
                 url={`/company-analysis/${currentArticle.market}/${currentArticle.slug}`}

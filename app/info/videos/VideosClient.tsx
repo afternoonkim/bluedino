@@ -135,6 +135,9 @@ export default function VideosClient() {
                 페이지입니다. 채널별로 정리해 필요한 영상을 찾고, 관심 있는 원문 영상으로
                 바로 이동할 수 있게 구성했습니다.
               </p>
+              <p className="bd-text-sub mt-3">
+                영상은 보조 학습 자료이며, 투자 판단 전에는 관련 가이드와 공식 자료를 함께 확인해 주세요.
+              </p>
               <p className="bd-text-sub mt-3">최신 수집 시각 {fetchedAt || "-"}</p>
             </div>
 
@@ -214,10 +217,7 @@ export default function VideosClient() {
             <h2 className="bd-title-md">영상을 불러오지 못했습니다</h2>
             <p className="bd-text-main mt-3">{error}</p>
             <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">
-              <div>확인할 항목</div>
-              <div className="mt-2">1. .env.local 에 YOUTUBE_API_KEY 추가</div>
-              <div>2. lib/youtube/channel-config.ts 의 채널 ID 수정</div>
-              <div>3. 개발 서버 재시작</div>
+              <div>잠시 후 다시 시도해 주세요. 문제가 계속되면 문의 페이지를 통해 알려주세요.</div>
             </div>
           </section>
         ) : filteredItems.length === 0 ? (

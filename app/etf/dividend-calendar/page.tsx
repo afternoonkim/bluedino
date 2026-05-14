@@ -3,8 +3,22 @@ import { getEtfDividendCalendar, isFmpConfigured } from "@/lib/etf/fmp";
 import { EmptyState, formatDate, formatPercent, InfoNotice, NavPills, PageHero, StatBox } from "@/components/etf/EtfUi";
 
 export const metadata: Metadata = {
-  title: "ETF 배당 캘린더",
-  description: "BlueDino가 추적하는 대표 ETF의 예정 배당 일정을 ex-date, 지급일, 배당수익률 기준으로 정리한 페이지입니다.",
+  title: "ETF 배당 캘린더 | 미국 ETF 배당 일정 확인",
+  description: "대표 미국 ETF의 예정 배당 일정, 배당락일, 지급일, 배당수익률을 한 화면에서 확인할 수 있는 ETF 배당 캘린더입니다.",
+  alternates: { canonical: "/etf/dividend-calendar" },
+  openGraph: {
+    title: "ETF 배당 캘린더 | 미국 ETF 배당 일정 확인",
+    description: "대표 미국 ETF의 예정 배당 일정, 배당락일, 지급일, 배당수익률을 한 화면에서 확인할 수 있는 ETF 배당 캘린더입니다.",
+    url: "https://bluedino.kr/etf/dividend-calendar",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ETF 배당 캘린더 | 미국 ETF 배당 일정 확인",
+    description: "대표 미국 ETF의 예정 배당 일정, 배당락일, 지급일, 배당수익률을 한 화면에서 확인할 수 있는 ETF 배당 캘린더입니다.",
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -15,12 +29,12 @@ export default async function EtfDividendCalendarPage() {
       <div className="bd-page">
         <div className="bd-container space-y-8">
           <PageHero
-            badge="BlueDino Dividend Calendar"
+            badge="ETF 배당 캘린더"
             title="ETF 배당 캘린더"
-            description="배당 일정 데이터를 서버 캐시에 저장한 뒤 방문자에게 재사용하는 구조의 ETF 배당 캘린더입니다."
+            description="대표 미국 ETF의 배당락일, 기준일, 지급일을 한 화면에서 확인할 수 있는 ETF 배당 캘린더입니다."
             actions={<NavPills />}
           />
-          <InfoNotice>현재는 FMP_API_KEY가 설정되지 않아 배당 일정을 불러오지 못하고 있습니다. 환경변수를 설정하면 자동으로 캘린더가 채워집니다.</InfoNotice>
+          <InfoNotice>현재 ETF 배당 일정을 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.</InfoNotice>
         </div>
       </div>
     );
@@ -39,24 +53,24 @@ export default async function EtfDividendCalendarPage() {
     <div className="bd-page">
       <div className="bd-container space-y-8">
         <PageHero
-          badge="BlueDino Dividend Calendar"
+          badge="ETF 배당 캘린더"
           title="ETF 배당 캘린더"
-          description="향후 예정된 ETF 배당 일정을 ex-date, record date, payment date 기준으로 빠르게 확인할 수 있는 메뉴입니다."
+          description="주요 ETF의 예정 배당락일, 기준일, 지급일, 배당금을 한곳에서 확인할 수 있습니다."
           actions={<NavPills />}
         />
 
         <section className="grid gap-4 md:grid-cols-3">
           <StatBox label="이번 캘린더" value={thisMonth} sub="다가오는 ETF 일정" />
           <StatBox label="예정 이벤트" value={`${events.length}건`} sub="대표 ETF만 필터링" />
-          <StatBox label="캐시 정책" value="6시간" sub="API 호출 절감용" />
+          <StatBox label="확인 항목" value="배당 일정" sub="배당락일·지급일 중심" />
         </section>
 
         <InfoNotice>
-          FMP의 Dividends Calendar API는 시장 전체 배당 이벤트를 제공하며, 이 페이지는 그중 BlueDino가 추적하는 ETF만 추려서 보여줍니다. 이렇게 하면 한 번의 API 응답을 여러 사용자에게 재사용할 수 있어 호출량을 크게 줄일 수 있습니다.
+          이 페이지는 BlueDino가 추적하는 주요 ETF의 배당 일정을 모아 보여줍니다. 배당락일과 지급일이 가까운 ETF를 확인하고, 월별 현금흐름을 점검할 때 참고해 보세요.
         </InfoNotice>
 
         {events.length === 0 ? (
-          <EmptyState title="표시할 배당 일정이 없습니다" description="현재 추적 중인 ETF의 예정 배당 일정이 없거나 API 응답이 비어 있습니다." />
+          <EmptyState title="표시할 배당 일정이 없습니다" description="현재 확인 가능한 예정 배당 일정이 없습니다. 잠시 후 다시 확인해 주세요." />
         ) : (
           <section className="bd-card-soft overflow-hidden">
             <div className="overflow-x-auto">
@@ -65,9 +79,9 @@ export default async function EtfDividendCalendarPage() {
                   <tr>
                     <th className="px-4 py-4">ETF</th>
                     <th className="px-4 py-4">카테고리</th>
-                    <th className="px-4 py-4">Ex-Date</th>
-                    <th className="px-4 py-4">Record Date</th>
-                    <th className="px-4 py-4">Payment Date</th>
+                    <th className="px-4 py-4">배당락일</th>
+                    <th className="px-4 py-4">기준일</th>
+                    <th className="px-4 py-4">지급일</th>
                     <th className="px-4 py-4">배당금</th>
                     <th className="px-4 py-4">배당수익률</th>
                     <th className="px-4 py-4">빈도</th>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   title: { default: "BlueDino", template: "%s | BlueDino" },
   description:
-    "투자 계산기와 데이터 기반 투자 정보 플랫폼 BlueDino. 배당, FIRE, 양도세, 절세계좌 정보를 한곳에서 쉽게 확인하세요.",
+    "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
   robots: { index: true, follow: true },
   other: {
     "google-adsense-account": "ca-pub-5407950462485150",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BlueDino 투자 계산기 플랫폼",
     description:
-      "복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산 등 투자 계산을 쉽게 할 수 있는 플랫폼",
+      "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
     url: "https://bluedino.kr",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BlueDino 투자 계산기 플랫폼",
     description:
-      "복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산 등 투자 계산을 쉽게 할 수 있는 플랫폼",
+      "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
   },
   alternates: {
     canonical: "/",
@@ -47,10 +47,6 @@ const organizationSchema = {
   url: "https://bluedino.kr",
   email: "afternoonkim93@gmail.com",
   description: "개인 투자자와 예비 투자자를 위한 금융 계산기 및 설명형 가이드를 제공하는 정보 사이트",
-  founder: {
-    "@type": "Person",
-    name: "BlueDino 운영자",
-  },
 };
 
 const websiteSchema = {

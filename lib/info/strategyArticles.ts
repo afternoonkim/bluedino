@@ -5,7 +5,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "tax-efficient-investing",
     badge: "절세계좌 전략",
     title: "절세계좌 활용 투자전략 어떻게 짜야 할까",
-    description: "ISA, 연금저축, IRP를 어떤 순서와 역할로 활용하면 좋은지 사용자 관점에서 쉽게 정리한 투자 전략 가이드",
+    description: "ISA, 연금저축, IRP를 어떤 순서와 역할로 활용하면 좋은지 초보 투자자도 이해하기 쉽게 쉽게 정리한 투자 전략 가이드",
     hero:
       "같은 상품에 투자해도 어떤 계좌에 담느냐에 따라 실제 손에 남는 금액은 달라집니다. 절세계좌 전략은 더 높은 수익률을 찾는 기술이라기보다, 같은 수익을 얻었을 때 덜 새어나가게 만드는 구조를 만드는 일에 가깝습니다.",
     introQuestion: "ISA, 연금저축, IRP 중 무엇부터 시작해야 하나요?",
@@ -70,7 +70,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "retirement-income",
     badge: "은퇴 현금흐름",
     title: "은퇴 후 생활비 전략 어떻게 준비해야 할까",
-    description: "은퇴 자산 규모보다 더 중요한 월 생활비 기준과 인출 구조를 사용자 관점에서 풀어낸 은퇴 현금흐름 전략 가이드",
+    description: "은퇴 자산 규모보다 더 중요한 월 생활비 기준과 인출 구조를 초보 투자자도 이해하기 쉽게 풀어낸 은퇴 현금흐름 전략 가이드",
     hero:
       "은퇴 전략은 얼마를 모을지보다, 그 돈이 매달 어떤 방식으로 생활비를 만들어줄지를 생각하는 과정에 가깝습니다. 자산은 많은데 현금흐름이 불안정하면 은퇴 생활은 생각보다 더 불편할 수 있습니다.",
     introQuestion: "은퇴 준비는 몇 억을 모아야 하는지가 가장 중요할까요?",
@@ -594,7 +594,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "single-investor",
     badge: "1인 가구 투자전략",
     title: "1인 가구 투자전략 어떻게 짜야 할까",
-    description: "사회 초년생부터 1인 가구로 살아가는 분들이 비상금·고정지출·장기 자산 형성을 어떻게 균형 있게 배분할지 사용자 관점으로 정리한 투자전략 가이드",
+    description: "사회 초년생부터 1인 가구로 살아가는 분들이 비상금·고정지출·장기 자산 형성을 어떻게 균형 있게 배분할지 실제 투자 판단에 필요한 기준 중심으로 정리한 투자전략 가이드",
     hero:
       "1인 가구는 고정지출이 가족 단위보다 비중이 크고, 한 명의 소득이 끊기면 즉시 영향을 받는 구조입니다. 그래서 1인 가구 투자전략은 \"수익률을 더 올리기\"보다 \"무슨 일이 생겨도 무너지지 않을 자금 구조\"를 먼저 만드는 일에서 출발합니다.",
     introQuestion: "1인 가구는 어디서부터 투자를 시작해야 하나요?",
@@ -661,7 +661,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "couple-no-kids",
     badge: "신혼부부·딩크족 전략",
     title: "신혼부부·딩크족 투자전략 어떻게 세워야 할까",
-    description: "자녀 계획이 없는 신혼부부·딩크족이 두 사람의 소득을 합쳐 자산을 빠르게 쌓는 투자전략을 사용자 관점으로 정리한 BlueDino 가이드",
+    description: "자녀 계획이 없는 신혼부부·딩크족이 두 사람의 소득을 합쳐 자산을 빠르게 쌓는 투자전략을 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 가이드",
     hero:
       "맞벌이 신혼부부와 딩크족은 \"두 사람 소득의 합산 효과\"를 극대화할 수 있는 시기입니다. 자녀 양육비 부담이 없는 만큼 같은 연령대 가정 대비 5~10년 빠르게 자산 형성이 가능하지만, 이 기회를 단기 소비로 흘려보내는 경우도 자주 있어 처음에 구조를 잘 잡는 것이 중요합니다.",
     introQuestion: "딩크족은 자녀가 있는 가정과 투자전략이 어떻게 달라야 하나요?",
@@ -728,7 +728,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "high-income-investor",
     badge: "고소득자 투자전략",
     title: "고소득자 투자전략 — 절세와 분산을 동시에",
-    description: "연봉·사업소득이 높은 고소득자가 종합소득세 누진을 피하고 자산을 분산해 운용하는 투자전략을 사용자 관점으로 정리한 BlueDino 가이드",
+    description: "연봉·사업소득이 높은 고소득자가 종합소득세 누진을 피하고 자산을 분산해 운용하는 투자전략을 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 가이드",
     hero:
       "고소득자(연 소득 1억 원 이상)는 같은 수익률이어도 \"절세 + 분산 + 자산 보호\"의 세 축을 함께 봐야 세후 자산 누적 곡선이 크게 달라집니다. 단순 저축률을 올리는 것보다 자금이 새는 곳을 막는 일이 중요한 시기입니다.",
     introQuestion: "고소득자는 일반 직장인과 투자전략이 어떻게 달라야 하나요?",
@@ -863,7 +863,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "debt-while-investing",
     badge: "대출 + 투자 병행",
     title: "빚 갚으면서 투자전략 — 대출과 투자 동시에 어떻게",
-    description: "주담대·신용대출이 있는 상태에서 빚 갚기와 투자를 어떻게 병행해야 자산이 가장 빠르게 늘어날지 사용자 관점으로 정리한 BlueDino 투자전략",
+    description: "주담대·신용대출이 있는 상태에서 빚 갚기와 투자를 어떻게 병행해야 자산이 가장 빠르게 늘어날지 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 투자전략",
     hero:
       "주담대 4억·신용대출 5천이 있는 상태에서 투자도 하고 싶다면 \"빚 갚기 vs 투자\" 중 어느 쪽이 우선인지부터 판단하셔야 합니다. 대출 금리와 투자 기대 수익률을 비교해 우선순위를 정한 후, 두 가지를 동시에 진행하는 비율을 만드시면 됩니다.",
     introQuestion: "대출이 있을 때 투자를 시작해도 될까요?",
@@ -931,7 +931,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "pre-retirement-investor",
     badge: "은퇴 5~10년 전 전략",
     title: "은퇴 5~10년 전 투자전략 — 50대 자산 점검과 인출 준비",
-    description: "은퇴 5~10년을 앞둔 50대가 자산 비중 조정과 인출 시점 분산, 절세 계좌 인출 순서를 사용자 관점으로 정리한 BlueDino 투자전략",
+    description: "은퇴 5~10년을 앞둔 50대가 자산 비중 조정과 인출 시점 분산, 절세 계좌 인출 순서를 실제 투자 판단에 필요한 기준 중심으로 정리한 BlueDino 투자전략",
     hero:
       "은퇴 5~10년 전은 \"자산 형성\"에서 \"인출 준비\"로 무게중심이 옮겨가는 시기입니다. 시장이 한 번 크게 흔들려도 회복할 시간이 5~10년이라 30~40대처럼 위험 자산 비중을 그대로 가져가면 회복 타이밍을 놓칠 수 있습니다.",
     introQuestion: "은퇴 5~10년 전부터 무엇을 해야 하나요?",
@@ -1067,7 +1067,7 @@ export const strategyArticles: Record<string, StrategyArticle> = {
     slug: "first-housing-investor",
     badge: "내 집 마련 + 투자",
     title: "첫 내 집 마련과 투자 병행 전략",
-    description: "첫 주담대를 받고 내 집을 마련하면서 동시에 ETF·절세계좌 투자를 병행하는 BlueDino 투자전략. 사용자 관점으로 자금 분리·우선순위·자동이체 구조를 정리합니다.",
+    description: "첫 주담대를 받고 내 집을 마련하면서 동시에 ETF·절세계좌 투자를 병행하는 BlueDino 투자전략. 실제 투자 판단에 필요한 기준 중심으로 자금 분리·우선순위·자동이체 구조를 정리합니다.",
     hero:
       "첫 내 집을 마련한 직후가 가장 자산 형성이 더디게 느껴지는 시기입니다. 주담대 원리금·관리비·이사 비용이 한꺼번에 들어가는 만큼 \"투자는 잠시 미뤄야 하나\" 고민하지만, 절세계좌 한도와 시간의 가치를 고려하면 작게라도 병행하시는 것이 유리합니다.",
     introQuestion: "주담대 받자마자 투자를 시작해도 될까요?",

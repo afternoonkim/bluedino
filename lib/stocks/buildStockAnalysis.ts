@@ -522,7 +522,7 @@ export async function buildStockAnalysis(rawTicker: string): Promise<StockAnalys
         missingData: [],
         sourceMode: "unknown",
       },
-      reason: "FMP API 키가 설정되지 않았습니다. .env.local 또는 배포 환경변수를 확인해주세요.",
+      reason: "현재 기업 데이터를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.",
     };
   }
 

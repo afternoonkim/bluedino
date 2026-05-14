@@ -20,6 +20,11 @@ import {
   PlaySquare,
   Building2,
   Landmark,
+  Coins,
+  Home,
+  PiggyBank,
+  Receipt,
+  Factory,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -102,61 +107,9 @@ export default function Sidebar({
         </div>
 
         <div className="flex-1 space-y-6 overflow-y-auto p-4">
+          {/* 1) 계산기 — 대표 계산기 모음 */}
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="절세계좌 · 대출 · 배당" collapsed={collapsed} storageKey="finance">
-              <SidebarItem
-                href="/finance"
-                label="금융 가이드 메인"
-                icon={Landmark}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/company-analysis"
-                label="기업분석"
-                icon={Building2}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/investment/account-tax"
-                label="계좌별 세금정보"
-                icon={FileSpreadsheet}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/investment/account-tax-step"
-                label="절세계좌 활용순서"
-                icon={TrendingUp}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/guide"
-                label="투자 기초 가이드"
-                icon={BookOpen}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/strategy"
-                label="투자전략"
-                icon={ChartCandlestick}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/blog"
-                label="블로그 최신글"
-                icon={Rss}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/info/videos"
-                label="경제 유튜버 모아보기"
-                icon={PlaySquare}
-                collapsed={collapsed}
-              />
-            </SidebarGroup>
-          </div>
-
-          <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="대표 계산기" collapsed={collapsed} storageKey="calculators">
+            <SidebarGroup title="계산기" collapsed={collapsed} storageKey="calculators">
               <SidebarItem
                 href="/cal/calculator"
                 label="배당 계산기"
@@ -177,49 +130,199 @@ export default function Sidebar({
               />
               <SidebarItem
                 href="/cal/capital-gains"
-                label="해외주식 양도세 계산기"
+                label="해외주식 양도세"
                 icon={DollarSign}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/retirement-tax"
-                label="퇴직소득세 계산기"
+                label="퇴직소득세"
                 icon={Briefcase}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/salary-net"
-                label="연봉 실수령액 계산기"
+                label="연봉 실수령액"
                 icon={Wallet}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/dsr"
                 label="DSR 계산기"
-                icon={Landmark}
+                icon={Receipt}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/ltv"
                 label="LTV 계산기"
-                icon={Building2}
+                icon={Home}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/loan-interest"
                 label="대출이자 계산기"
-                icon={DollarSign}
+                icon={Coins}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/cal/mortgage"
                 label="주담대 계산기"
-                icon={Briefcase}
+                icon={Building2}
                 collapsed={collapsed}
               />
             </SidebarGroup>
           </div>
 
+          {/* 2) 절세·계좌 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="절세 · 계좌" collapsed={collapsed} storageKey="taxAccount">
+              <SidebarItem
+                href="/finance"
+                label="금융 가이드 메인"
+                icon={Landmark}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/isa"
+                label="ISA"
+                icon={PiggyBank}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/irp"
+                label="IRP"
+                icon={PiggyBank}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/pension"
+                label="연금저축"
+                icon={PiggyBank}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/cma"
+                label="CMA"
+                icon={Wallet}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/parking"
+                label="파킹통장"
+                icon={Wallet}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/info/investment/account-tax"
+                label="계좌별 세금정보"
+                icon={FileSpreadsheet}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/info/investment/account-tax-step"
+                label="절세계좌 활용순서"
+                icon={TrendingUp}
+                collapsed={collapsed}
+              />
+            </SidebarGroup>
+          </div>
+
+          {/* 3) 대출·부동산 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="대출 · 부동산" collapsed={collapsed} storageKey="loanRealty">
+              <SidebarItem
+                href="/finance/loan-basics"
+                label="대출 기초"
+                icon={Landmark}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/credit-loan"
+                label="신용대출"
+                icon={Coins}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/finance/mortgage-loan"
+                label="주담대"
+                icon={Home}
+                collapsed={collapsed}
+              />
+            </SidebarGroup>
+          </div>
+
+          {/* 4) 투자 기초·전략 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="투자 기초 · 전략" collapsed={collapsed} storageKey="invest">
+              <SidebarItem
+                href="/info/guide"
+                label="투자 기초 가이드"
+                icon={BookOpen}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/info/strategy"
+                label="투자 전략"
+                icon={ChartCandlestick}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/industry"
+                label="산업 · 테마 가이드"
+                icon={Factory}
+                collapsed={collapsed}
+              />
+            </SidebarGroup>
+          </div>
+
+          {/* 5) 기업분석 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="기업분석" collapsed={collapsed} storageKey="company">
+              <SidebarItem
+                href="/company-analysis"
+                label="기업분석 메인"
+                icon={Building2}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/company-analysis/korea"
+                label="국내기업"
+                icon={Building2}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/company-analysis/global"
+                label="해외기업"
+                icon={Building2}
+                collapsed={collapsed}
+              />
+            </SidebarGroup>
+          </div>
+
+          {/* 외부 자료 — 별도 그룹, 기본 접힘 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup
+              title="외부 자료"
+              collapsed={collapsed}
+              storageKey="external"
+              defaultOpen={false}
+            >
+              <SidebarItem
+                href="/info/blog"
+                label="추천 금융 가이드"
+                icon={Rss}
+                collapsed={collapsed}
+              />
+              <SidebarItem
+                href="/info/videos"
+                label="경제 유튜버 모아보기"
+                icon={PlaySquare}
+                collapsed={collapsed}
+              />
+            </SidebarGroup>
+          </div>
+
+          {/* 기타 — 사이트 정보, 기본 접힘 */}
           <div onClick={closeMobileSidebar}>
             <SidebarGroup title="기타" collapsed={collapsed} storageKey="etc" defaultOpen={false}>
               <SidebarItem

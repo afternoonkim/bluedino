@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "기업분석 | 국내기업·해외기업 주가 전망과 투자 체크포인트 | BlueDino",
     description:
-      "국내기업과 해외기업의 사업 구조, 성장성, 리스크, 주가 관전 포인트를 사용자 관점에서 쉽게 정리합니다.",
+      "국내기업과 해외기업의 사업 구조, 성장성, 리스크, 주가 관전 포인트를 초보 투자자도 이해하기 쉽게 정리합니다.",
     url: `${BASE_URL}/company-analysis`,
     siteName: "BlueDino",
     locale: "ko_KR",

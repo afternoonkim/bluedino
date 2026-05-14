@@ -38,7 +38,7 @@ export const companyAnalysisMarkets: CompanyAnalysisMarketConfig[] = [
     title: "국내기업 분석",
     shortTitle: "국내기업",
     description:
-      "국내 주요 상장기업 500개의 사업 구조, 실적 흐름, 성장 포인트와 리스크를 사용자 관점에서 정리한 기업분석 모음입니다.",
+      "국내 주요 상장기업 500개의 사업 구조, 실적 흐름, 성장 포인트와 리스크를 초보 투자자도 이해하기 쉽게 정리한 기업분석 모음입니다.",
     intro:
       "국내기업 분석은 단순히 오늘 주가가 올랐는지보다 매출이 어디서 나오고, 어떤 산업 변화가 기업 가치에 영향을 주는지 먼저 확인해야 합니다. BlueDino는 국내 주요 기업 500개를 사업 구조, 실적 변수, 리스크, 투자 체크포인트 중심으로 정리합니다.",
     badge: "국내 주요 500개",
@@ -49,7 +49,7 @@ export const companyAnalysisMarkets: CompanyAnalysisMarketConfig[] = [
     title: "해외기업 분석",
     shortTitle: "해외기업",
     description:
-      "미국주식 주요 기업 1,000개의 사업 모델, 성장성, 경쟁 구도, 밸류에이션 부담과 장기 투자 체크포인트를 사용자 관점에서 정리한 기업분석 모음입니다.",
+      "미국주식 주요 기업 1,000개의 사업 모델, 성장성, 경쟁 구도, 밸류에이션 부담과 장기 투자 체크포인트를 초보 투자자도 이해하기 쉽게 정리한 기업분석 모음입니다.",
     intro:
       "해외기업 분석은 기업의 성장성뿐 아니라 환율, 글로벌 경쟁 구도, 금리, 규제, 산업 사이클까지 함께 봐야 합니다. BlueDino는 미국주식 주요 1,000개 기업을 처음 보는 사용자도 핵심 사업과 투자 전 확인할 부분을 빠르게 이해할 수 있도록 정리합니다.",
     badge: "미국주식 주요 1,000개",
@@ -5378,7 +5378,7 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
   const seoTitle = isKorea
     ? `${seed.companyNameKo}(${seed.ticker}) 주가 전망 | ${seed.sector} 기업분석과 투자 체크포인트`
     : `${seed.companyNameKo}(${seed.ticker}) 주가 전망 | 미국주식 ${seed.sector} 기업분석`;
-  const metaDescription = `${seed.companyNameKo}(${seed.ticker}) 기업분석입니다. ${seed.sector} 사업 구조, 성장 포인트, 실적 확인 지표, 주가 리스크와 투자 전 체크포인트를 사용자 관점에서 정리했습니다.`;
+  const metaDescription = `${seed.companyNameKo}(${seed.ticker}) 기업분석입니다. ${seed.sector} 사업 구조, 성장 포인트, 실적 확인 지표, 주가 리스크와 투자 전 체크포인트를 초보 투자자도 이해하기 쉽게 정리했습니다.`;
   const summaryFn = pickVariant(SUMMARY_OPENERS, seed.ticker);
   const summary = summaryFn(seed.companyNameKo, seed.ticker, seed.sector, marketLabel);
   const quickConclusionFn = pickVariant(QUICK_CONCLUSION_OPENERS, seed.ticker, 7);
@@ -5430,7 +5430,7 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
         const baseBody = [
           `${opener} ${seed.companyNameKo}는 ${seed.sector} 영역에서 사업을 전개하는 ${marketLabel}으로, 투자자는 이 기업이 어떤 고객에게 어떤 제품과 서비스를 팔고 있는지부터 확인해야 합니다.`,
           `특히 ${theme} 흐름 안에서 ${seed.companyNameKo}가 단순 테마에 묶여 움직이는 기업인지, 실제 매출과 이익을 만드는 기업인지 구분하는 것이 중요합니다. 같은 업종이라도 고객사 구성, 가격 결정력, 기술 장벽, 원가 구조에 따라 실적 민감도는 크게 달라질 수 있습니다.`,
-          `사용자 관점에서는 "유명한 기업인가"보다 "실적이 반복적으로 쌓일 수 있는 구조인가"가 더 중요합니다. 매출원이 특정 고객이나 특정 제품에 과도하게 집중되어 있다면 성장성이 커 보여도 변동성이 커질 수 있습니다.`,
+          `실제 투자 판단에서는 "유명한 기업인가"보다 "실적이 반복적으로 쌓일 수 있는 구조인가"가 더 중요합니다. 매출원이 특정 고객이나 특정 제품에 과도하게 집중되어 있다면 성장성이 커 보여도 변동성이 커질 수 있습니다.`,
         ];
         return {
           title: `${seed.companyNameKo} 사업 구조 핵심 정리`,

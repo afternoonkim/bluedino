@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdBlock from "@/components/ad/AdBlock";
 import ShareAndCite from "@/components/share/ShareAndCite";
+import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { getFinanceCategory } from "@/lib/finance/config";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { getFinanceEntry, getRelatedEntries } from "@/lib/finance/content";
@@ -86,7 +87,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
     dateModified: "2026-04-27",
     author: {
       "@type": "Person",
-      name: "afternoonkim (BlueDino 운영자)",
+      name: "afternoonkim",
       url: "https://bluedino.kr/info/etc/about",
     },
     publisher: {
@@ -176,6 +177,11 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
                   </div>
                 </section>
               )}
+
+              <PageTrustFooter
+                updatedAt="2026-04-27"
+                pageKind={`${category.shortTitle} 질문 가이드`}
+              />
 
               <ShareAndCite
                 url={`${category.basePath}/${encodeURIComponent(entry.slug)}`}

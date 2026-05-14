@@ -1,5 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+const canonical = "/info/etc/editorial-policy";
+const title = "콘텐츠 운영 원칙 | BlueDino";
+const description =
+  "BlueDino가 금융 계산기와 투자 가이드를 어떤 기준으로 정리하고, 이용자가 정보를 어떻게 확인하면 좋은지 안내합니다.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+    title,
+    description,
+    url: `https://bluedino.kr${canonical}`,
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
 export default function EditorialPolicyPage() {
   return (
     <div className="bd-page">

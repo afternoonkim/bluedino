@@ -418,7 +418,7 @@ export async function GET() {
       {
         ok: false,
         message:
-          "NAVER_BLOG_RSS_URL 환경변수가 없습니다. 예: https://rss.blog.naver.com/블로그아이디.xml",
+          "현재 블로그 글을 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.",
         items: [],
       },
       { status: 500 }

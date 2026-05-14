@@ -1,7 +1,7 @@
 import Script from "next/script";
 
-// AdSense 재심사 대비: 승인될 때까지 코드 레벨에서 강제 비활성화.
-// 재심사 통과 후 이 상수를 false로 바꾸고 NEXT_PUBLIC_ADSENSE_ENABLED=true를 설정하세요.
+// 광고 노출은 환경변수와 코드 레벨 스위치가 모두 허용될 때만 활성화됩니다.
+// NEXT_PUBLIC_ADSENSE_ENABLED=true와 광고 클라이언트/슬롯 값이 설정된 경우에만 렌더링됩니다.
 const FORCE_DISABLE_ADS = true;
 
 const ADSENSE_ENABLED =

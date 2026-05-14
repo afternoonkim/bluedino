@@ -3,8 +3,22 @@ import type { Metadata } from "next";
 import StockSearchForm from "@/components/stocks/StockSearchForm";
 
 export const metadata: Metadata = {
-  title: "미국 기업분석",
-  description: "미국 상장 기업의 현재 주가, 재무 흐름, 핵심 지표를 바탕으로 BlueDino 정량 점수를 확인할 수 있는 기업분석 페이지입니다.",
+  title: "미국 기업분석 | 주가·재무지표·정량 점수 확인",
+  description: "미국 상장 일반 기업의 현재 주가, 재무 흐름, 핵심 지표를 바탕으로 BlueDino 정량 점수를 확인할 수 있는 기업분석 페이지입니다.",
+  alternates: { canonical: "/stocks" },
+  openGraph: {
+    title: "미국 기업분석 | 주가·재무지표·정량 점수 확인",
+    description: "미국 상장 일반 기업의 현재 주가, 재무 흐름, 핵심 지표를 바탕으로 BlueDino 정량 점수를 확인할 수 있는 기업분석 페이지입니다.",
+    url: "https://bluedino.kr/stocks",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "미국 기업분석 | 주가·재무지표·정량 점수 확인",
+    description: "미국 상장 일반 기업의 현재 주가, 재무 흐름, 핵심 지표를 바탕으로 BlueDino 정량 점수를 확인할 수 있는 기업분석 페이지입니다.",
+  },
 };
 
 const popularTickers = ["AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "PLTR", "SOFI"];

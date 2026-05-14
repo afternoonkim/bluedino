@@ -3,14 +3,14 @@ import Script from "next/script";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BlueDino 소개 · 운영자",
+  title: "BlueDino 소개",
   description:
-    "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개, 편집 원칙, 운영 방향 안내.",
+    "BlueDino가 제공하는 금융 계산기, 투자 가이드, 세금·대출 정보의 목적과 활용 방법을 안내합니다.",
   alternates: { canonical: "/info/etc/about" },
   openGraph: {
-    title: "BlueDino 소개 · 운영자",
+    title: "BlueDino 소개",
     description:
-      "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개, 편집 원칙, 운영 방향 안내.",
+      "BlueDino가 제공하는 금융 계산기, 투자 가이드, 세금·대출 정보의 목적과 활용 방법을 안내합니다.",
     url: "https://bluedino.kr/info/etc/about",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -18,60 +18,41 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BlueDino 소개 · 운영자",
+    title: "BlueDino 소개",
     description:
-      "두 아이를 키우며 5년간 직접 투자와 세금을 공부해 자가·ISA·해외주식을 운용 중인 개인 투자자 afternoonkim이 운영하는 금융 정보 사이트 BlueDino의 소개.",
+      "BlueDino가 제공하는 금융 계산기, 투자 가이드, 세금·대출 정보의 목적과 활용 방법을 안내합니다.",
   },
 };
 
-const personSchema = {
+const aboutSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "afternoonkim",
-  alternateName: "BlueDino 운영자",
+  "@type": "AboutPage",
+  name: "BlueDino 소개",
   url: "https://bluedino.kr/info/etc/about",
-  email: "afternoonkim93@gmail.com",
-  jobTitle: "금융 정보 사이트 운영자",
-  description:
-    "두 아이를 키우는 평범한 직장인이자 개인 투자자로, 결혼 이후 약 5년간 직접 가계부·절세계좌·ETF·배당 구조를 공부하며 자가 마련과 순자산 1억 원 이상을 달성한 뒤, 그 경험을 바탕으로 BlueDino의 투자 계산기와 금융 가이드를 운영하는 사람.",
-  knowsAbout: [
-    "복리 투자",
-    "배당 투자",
-    "ETF",
-    "ISA 계좌",
-    "연금저축",
-    "IRP",
-    "양도소득세",
-    "퇴직소득세",
-    "FIRE",
-    "자산배분",
-  ],
-  worksFor: {
+  about: {
     "@type": "Organization",
     name: "BlueDino",
     url: "https://bluedino.kr",
+    description:
+      "개인 투자자가 금융 계산과 투자 판단을 더 쉽게 이해할 수 있도록 돕는 금융 정보 사이트",
   },
-  sameAs: [
-    "https://blog.naver.com/issue_item",
-    "https://github.com/afternoonkim",
-  ],
 };
 
 export default function AboutPage() {
   return (
     <div className="bd-page">
       <Script
-        id="about-person-jsonld"
+        id="about-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
       <div className="bd-container-narrow bd-section">
         <section className="bd-card bd-card-padding">
-          <span className="bd-badge">About BlueDino</span>
+          <span className="bd-badge">BlueDino 소개</span>
           <h1 className="bd-title-lg mt-4">BlueDino 소개</h1>
           <p className="bd-text-main mt-4">
-            BlueDino는 개인 투자자와 예비 투자자가 자주 마주치는 숫자와 개념을 한곳에서 이해할 수 있도록 만든 금융 정보 사이트입니다.
-            단순 계산기 모음이 아니라, 계산 결과를 어떻게 해석해야 하는지까지 연결해 주는 구조를 핵심으로 운영하고 있습니다.
+            BlueDino는 개인 투자자가 금융 계산과 투자 판단을 더 쉽게 이해할 수 있도록 만든 금융 정보 사이트입니다.
+            계산 결과만 보여주는 데서 끝나지 않고, 그 숫자를 어떻게 읽고 자신의 상황에 적용할지까지 함께 안내합니다.
           </p>
           <p className="bd-text-sub mt-3">
             배당, 복리, FIRE, 양도세, 절세계좌, 대출 같은 주제는 용어가 어렵고 서로 연결되는 부분이 많아 처음 보면 헷갈리기 쉽습니다.
@@ -100,13 +81,13 @@ export default function AboutPage() {
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">누가 운영하나요</h2>
+          <h2 className="bd-title-md">BlueDino 운영 배경</h2>
           <div className="mt-4 grid gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <div className="text-sm font-semibold text-white">운영자</div>
+              <div className="text-sm font-semibold text-white">BlueDino를 만든 이유</div>
               <p className="bd-text-sub mt-3">
-                BlueDino는 <span className="font-semibold text-white">afternoonkim</span>이 개인 자격으로
-                운영하는 금융 정보 사이트입니다. 아래는 제가 이 사이트를 만들게 된 배경을 1인칭으로 정리한 소개입니다.
+                BlueDino는 실제 투자와 가계 재무를 공부하며 겪은 시행착오를 바탕으로 만들어졌습니다.
+                아래 내용은 사이트를 시작하게 된 배경을 보조 설명으로 정리한 것입니다.
               </p>
               <p className="bd-text-sub mt-3">
                 저는 두 아이를 키우고 있는 평범한 직장인이자 개인 투자자입니다. 결혼을 시작할 때 모아둔 자금이 거의 없어서,
@@ -133,7 +114,7 @@ export default function AboutPage() {
                 문의: <span className="font-semibold text-cyan-300">afternoonkim93@gmail.com</span>
               </p>
               <p className="bd-text-sub mt-3">
-                운영자 블로그:{" "}
+                관련 블로그:{" "}
                 <a
                   href="https://blog.naver.com/issue_item"
                   target="_blank"
@@ -174,7 +155,7 @@ export default function AboutPage() {
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-slate-300 leading-7">
               <li>
-                주제 선정: 운영자가 투자 커뮤니티와 실제 이용자 문의에서 자주 반복되는 질문을 수집해
+                주제 선정: 투자 커뮤니티와 실제 이용자가 자주 궁금해하는 질문을 모아
                 우선순위를 매깁니다.
               </li>
               <li>

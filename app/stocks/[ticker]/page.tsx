@@ -35,14 +35,50 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       analysis?.profile?.companyName ||
       normalizedTicker;
 
+    const title = `${normalizedTicker} 기업분석 | ${companyName} 주가·재무지표`;
+    const description = `${companyName}의 현재 주가, 핵심 재무지표, 재무 추이, BlueDino 점수를 한 페이지에서 확인할 수 있습니다.`;
+    const canonical = `/stocks/${normalizedTicker}`;
+
     return {
-      title: `${normalizedTicker} 기업분석 | ${companyName} 주가·재무지표`,
-      description: `${companyName}의 현재 주가, 핵심 재무지표, 재무 추이, BlueDino 점수를 한 페이지에서 확인할 수 있습니다.`,
+      title,
+      description,
+      alternates: { canonical },
+      openGraph: {
+        title,
+        description,
+        url: `https://bluedino.kr${canonical}`,
+        siteName: "BlueDino",
+        locale: "ko_KR",
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
     };
   } catch {
+    const title = `${normalizedTicker} 기업분석 | BlueDino`;
+    const description = `${normalizedTicker} 미국 기업의 주가와 재무지표를 확인할 수 있습니다.`;
+    const canonical = `/stocks/${normalizedTicker}`;
+
     return {
-      title: `${normalizedTicker} 기업분석 | BlueDino`,
-      description: `${normalizedTicker} 미국 기업의 주가와 재무지표를 확인할 수 있습니다.`,
+      title,
+      description,
+      alternates: { canonical },
+      openGraph: {
+        title,
+        description,
+        url: `https://bluedino.kr${canonical}`,
+        siteName: "BlueDino",
+        locale: "ko_KR",
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
     };
   }
 }
