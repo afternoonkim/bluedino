@@ -109,67 +109,55 @@ export default function Sidebar({
         <div className="flex-1 space-y-6 overflow-y-auto p-4">
           {/* 1) 계산기 — 대표 계산기 모음 */}
           <div onClick={closeMobileSidebar}>
-            <SidebarGroup title="계산기" collapsed={collapsed} storageKey="calculators">
-              <SidebarItem
-                href="/cal/calculator"
-                label="배당 계산기"
-                icon={Calculator}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/compound"
-                label="복리 계산기"
-                icon={ChartColumnBig}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/fire"
-                label="FIRE 계산기"
-                icon={Flame}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/capital-gains"
-                label="해외주식 양도세"
-                icon={DollarSign}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/retirement-tax"
-                label="퇴직소득세"
-                icon={Briefcase}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/salary-net"
-                label="연봉 실수령액"
-                icon={Wallet}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/dsr"
-                label="DSR 계산기"
-                icon={Receipt}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/ltv"
-                label="LTV 계산기"
-                icon={Home}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/loan-interest"
-                label="대출이자 계산기"
-                icon={Coins}
-                collapsed={collapsed}
-              />
-              <SidebarItem
-                href="/cal/mortgage"
-                label="주담대 계산기"
-                icon={Building2}
-                collapsed={collapsed}
-              />
+            <SidebarGroup title="투자 계산기" collapsed={collapsed} storageKey="calc-invest">
+              <SidebarItem href="/cal/calculator" label="배당 계산기" icon={Calculator} collapsed={collapsed} />
+              <SidebarItem href="/cal/compound" label="복리 계산기" icon={ChartColumnBig} collapsed={collapsed} />
+              <SidebarItem href="/cal/fire" label="FIRE 계산기" icon={Flame} collapsed={collapsed} />
+              <SidebarItem href="/cal/retirement-target" label="은퇴 필요 자금" icon={PiggyBank} collapsed={collapsed} />
+              <SidebarItem href="/cal/child-education-fund" label="자녀 교육비" icon={BookOpen} collapsed={collapsed} />
+              <SidebarItem href="/cal/pension-payout" label="연금 수령액" icon={PiggyBank} collapsed={collapsed} />
+            </SidebarGroup>
+          </div>
+
+          {/* 절세·예적금 계산기 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="절세·예적금 계산기" collapsed={collapsed} storageKey="calc-tax">
+              <SidebarItem href="/cal/isa-tax-savings" label="ISA 절세 효과" icon={PiggyBank} collapsed={collapsed} />
+              <SidebarItem href="/cal/irp-tax-credit" label="IRP 세액공제" icon={PiggyBank} collapsed={collapsed} />
+              <SidebarItem href="/cal/pension-tax-credit" label="연금저축 세액공제" icon={PiggyBank} collapsed={collapsed} />
+              <SidebarItem href="/cal/youth-leap-account" label="청년도약계좌" icon={PiggyBank} collapsed={collapsed} />
+              <SidebarItem href="/cal/capital-gains" label="해외주식 양도세" icon={DollarSign} collapsed={collapsed} />
+              <SidebarItem href="/cal/retirement-tax" label="퇴직소득세" icon={Briefcase} collapsed={collapsed} />
+              <SidebarItem href="/cal/salary-net" label="연봉 실수령액" icon={Wallet} collapsed={collapsed} />
+              <SidebarItem href="/cal/deposit-interest" label="예금 이자" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/cal/installment-savings" label="적금 이자" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/cal/parking-account" label="파킹통장 이자" icon={Wallet} collapsed={collapsed} />
+              <SidebarItem href="/cal/cma-interest" label="CMA 이자" icon={Wallet} collapsed={collapsed} />
+            </SidebarGroup>
+          </div>
+
+          {/* 대출·부동산 계산기 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="대출·부동산 계산기" collapsed={collapsed} storageKey="calc-loan">
+              <SidebarItem href="/cal/dsr" label="DSR 계산기" icon={Receipt} collapsed={collapsed} />
+              <SidebarItem href="/cal/ltv" label="LTV 계산기" icon={Home} collapsed={collapsed} />
+              <SidebarItem href="/cal/mortgage" label="주담대 계산기" icon={Building2} collapsed={collapsed} />
+              <SidebarItem href="/cal/loan-interest" label="대출이자 계산기" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/cal/home-affordability" label="주택 구매 가능 금액" icon={Home} collapsed={collapsed} />
+              <SidebarItem href="/cal/loan-refinance-saving" label="대출 갈아타기 절감액" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/cal/prepayment-fee" label="중도상환수수료" icon={Receipt} collapsed={collapsed} />
+              <SidebarItem href="/cal/jeonse-loan-interest" label="전세대출 이자" icon={Home} collapsed={collapsed} />
+              <SidebarItem href="/cal/jeonse-vs-monthly" label="월세 vs 전세" icon={Home} collapsed={collapsed} />
+              <SidebarItem href="/cal/car-installment" label="자동차 할부" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/cal/credit-card-installment" label="신용카드 할부" icon={Receipt} collapsed={collapsed} />
+            </SidebarGroup>
+          </div>
+
+          {/* 생활·재무 설계 계산기 */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="생활·재무 설계 계산기" collapsed={collapsed} storageKey="calc-life" defaultOpen={false}>
+              <SidebarItem href="/cal/emergency-fund" label="비상금 필요 금액" icon={Wallet} collapsed={collapsed} />
+              <SidebarItem href="/cal/monthly-budget" label="월 지출 예산" icon={Wallet} collapsed={collapsed} />
             </SidebarGroup>
           </div>
 
@@ -251,7 +239,7 @@ export default function Sidebar({
             </SidebarGroup>
           </div>
 
-          {/* 4) 투자 기초·전략 */}
+          {/* 4) 투자 기초·전략·산업 */}
           <div onClick={closeMobileSidebar}>
             <SidebarGroup title="투자 기초 · 전략" collapsed={collapsed} storageKey="invest">
               <SidebarItem
@@ -262,16 +250,36 @@ export default function Sidebar({
               />
               <SidebarItem
                 href="/info/strategy"
-                label="투자 전략"
+                label="투자 전략 (상황별 11)"
                 icon={ChartCandlestick}
                 collapsed={collapsed}
               />
               <SidebarItem
                 href="/industry"
-                label="산업 · 테마 가이드"
+                label="산업 · 테마 (14)"
                 icon={Factory}
                 collapsed={collapsed}
               />
+            </SidebarGroup>
+          </div>
+
+          {/* 산업·테마 상세 (자주 검색되는 키워드 위주) */}
+          <div onClick={closeMobileSidebar}>
+            <SidebarGroup title="산업·테마 관련주" collapsed={collapsed} storageKey="industry-hub" defaultOpen={false}>
+              <SidebarItem href="/industry/semiconductor" label="반도체 관련주" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/ai" label="AI 관련주" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/ev-battery" label="2차전지 관련주" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/dividend-stocks" label="배당주" icon={Coins} collapsed={collapsed} />
+              <SidebarItem href="/industry/biotech" label="바이오 관련주" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/financial" label="금융주" icon={Landmark} collapsed={collapsed} />
+              <SidebarItem href="/industry/automotive" label="자동차 관련주" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/k-content" label="K-콘텐츠" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/power-infra" label="전력 인프라" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/aerospace" label="우주항공" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/nuclear" label="원전·원자력" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/robotics" label="로봇" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/data-center" label="데이터센터" icon={Factory} collapsed={collapsed} />
+              <SidebarItem href="/industry/cybersecurity" label="사이버보안" icon={Factory} collapsed={collapsed} />
             </SidebarGroup>
           </div>
 
@@ -308,7 +316,7 @@ export default function Sidebar({
               defaultOpen={false}
             >
               <SidebarItem
-                href="/info/blog"
+                href="/info/recommended-guides"
                 label="추천 금융 가이드"
                 icon={Rss}
                 collapsed={collapsed}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import IsaTaxSavingsClient from "./IsaTaxSavingsClient";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
+import CalculatorReferenceBox, { RelatedCalculatorLinks } from "../components/CalculatorReferenceBox";
 
 const canonicalPath = "/cal/isa-tax-savings";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
@@ -54,6 +55,8 @@ export default function Page() {
       <Script id="isa-tax-savings-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <IsaTaxSavingsClient />
       <div className="bd-container-narrow bd-section">
+        <CalculatorReferenceBox sources={[{ label: "국세청 ISA 과세 안내", href: "https://www.nts.go.kr" }, { label: "금융위원회 개인종합자산관리계좌 안내", href: "https://www.fsc.go.kr" }, { label: "금융투자협회 ISA 상품 안내", href: "https://www.kofia.or.kr" }]} />
+        <RelatedCalculatorLinks links={[{ label: "청년도약계좌 계산기", href: "/cal/youth-leap-account" }, { label: "청년미래적금 계산기", href: "/cal/youth-future-savings" }, { label: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit" }, { label: "IRP 세액공제 계산기", href: "/cal/irp-tax-credit" }]} />
         <PageTrustFooter pageKind="ISA 절세 효과 계산기" updatedAt="2026-04-27" />
       </div>
     </>

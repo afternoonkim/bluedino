@@ -74,6 +74,6 @@ export async function GET(req: Request) {
     return NextResponse.json<StockApiSuccess>(result);
   } catch (error) {
     console.error("Stock quote API failed", error);
-    return jsonError("request_failed", "외부 시세 데이터 요청 중 문제가 발생했습니다.", 500);
+    return jsonError("request_failed", "현재 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.", 500);
   }
 }

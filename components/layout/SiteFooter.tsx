@@ -47,7 +47,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} BlueDino Platform. All rights reserved.
           </div>
           <div className="text-xs text-slate-500">
-            운영 문의: <span className="text-slate-300">afternoonkim93@gmail.com</span>
+            문의: <span className="text-slate-300">afternoonkim93@gmail.com</span>
           </div>
         </div>
       </div>

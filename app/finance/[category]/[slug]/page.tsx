@@ -86,8 +86,8 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
     datePublished: "2025-01-01",
     dateModified: "2026-04-27",
     author: {
-      "@type": "Person",
-      name: "afternoonkim",
+      "@type": "Organization",
+      name: "BlueDino 편집팀",
       url: "https://bluedino.kr/info/etc/about",
     },
     publisher: {

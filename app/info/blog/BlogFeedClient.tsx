@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ExternalLink, FileText, RefreshCcw, Search, Sparkles } from "lucide-react";
 
@@ -67,7 +68,7 @@ export default function BlogFeedClient() {
   const [totalParsed, setTotalParsed] = useState(0);
   const [returnedCount, setReturnedCount] = useState(0);
 
-  async function loadFeed() {
+  const loadFeed = useCallback(async () => {
     setLoading(true);
     setError("");
     setBrokenThumbs({});
@@ -93,11 +94,15 @@ export default function BlogFeedClient() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
-    loadFeed();
-  }, []);
+    const timer = window.setTimeout(() => {
+      void loadFeed();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [loadFeed]);
 
   const currentChildCategories = useMemo(() => {
     if (activeParentCategory === "전체") return ["전체"];
@@ -194,7 +199,7 @@ export default function BlogFeedClient() {
 
             <button
               type="button"
-              onClick={loadFeed}
+              onClick={() => void loadFeed()}
               className="bd-button-secondary gap-2"
             >
               <RefreshCcw size={16} />
@@ -306,13 +311,13 @@ export default function BlogFeedClient() {
                 >
                   <div className="relative h-52 overflow-hidden border-b border-slate-800">
                     {showImage ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={item.thumbnail as string}
                         alt={item.title}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover"
+                        unoptimized
                         onError={() =>
                           setBrokenThumbs((prev) => ({
                             ...prev,

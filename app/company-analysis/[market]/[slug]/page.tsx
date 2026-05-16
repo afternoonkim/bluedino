@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import { INDEX_DATA_UPDATED_AT } from "@/lib/company-analysis/companyMetadata";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
-import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
 import AdBlock from "@/components/ad/AdBlock";
 import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import TradingViewStockChart from "@/components/company-analysis/TradingViewStockChart";
 import CompanyAnalysisUpdateNotice from "@/components/company-analysis/CompanyAnalysisUpdateNotice";
 import {
-  getCompanyAnalysisRoutes,
+  getSitemapCompanyAnalysisRoutes,
   getCompanyArticle,
   getCompanyMarketConfig,
   getRelatedCompanyArticles,
@@ -21,14 +21,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 type PageProps = { params: Promise<{ market: string; slug: string }> };
 
-export function generateStaticParams() {
-  return getCompanyAnalysisRoutes().filter(({ market, slug }) => {
-    const article = getCompanyArticle(market, slug);
-    if (!article) return false;
+function getAnalysisLevel(article: { ticker: string; indices: unknown[] }) {
+  const hasManualCommentary = Boolean(COMPANY_CUSTOM_NOTES[article.ticker.toUpperCase()]);
+  if (hasManualCommentary) return "상세 분석" as const;
+  if (article.indices.length > 0) return "기본 분석" as const;
+  return "데이터 요약" as const;
+}
 
-    const ticker = article.ticker.toUpperCase();
-    return Boolean(COMPANY_CUSTOM_NOTES[ticker]) || getCompanyIndices(article.ticker).length > 0;
-  });
+export function generateStaticParams() {
+  return getSitemapCompanyAnalysisRoutes();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -48,11 +49,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: `${market.title} | BlueDino` };
   }
 
+  const analysisLevel = getAnalysisLevel(article);
+  const isIndexable = analysisLevel !== "데이터 요약";
+
   return {
     title: `${article.seoTitle} | BlueDino`,
     description: article.metaDescription,
     keywords: article.keywords,
-    alternates: { canonical: `/company-analysis/${article.market}/${article.slug}` },
+    robots: isIndexable ? undefined : { index: false, follow: true, googleBot: { index: false, follow: true } },
+    alternates: isIndexable ? { canonical: `/company-analysis/${article.market}/${article.slug}` } : undefined,
     openGraph: {
       title: `${article.seoTitle} | BlueDino`,
       description: article.metaDescription,
@@ -91,6 +96,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
   const currentArticle = article;
 
   const relatedArticles = getRelatedCompanyArticles(currentArticle, 4);
+  const analysisLevel = getAnalysisLevel(currentArticle);
   const currentMarketLabel = currentArticle.market === "korea" ? "국내기업" : "해외기업";
 
   const articleSchema = {
@@ -164,10 +170,21 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
               </Link>
               <span className="bd-badge">{currentArticle.badge}</span>
             </div>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">현재 페이지: {analysisLevel}</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">상세 분석: 수기 코멘트 포함</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기본 분석: 주요 지수·분류 정보 포함</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">데이터 요약: 내부 검색용 참고 정보</span>
+            </div>
             <h1 className="bd-title-xl mt-4">
               {currentArticle.companyNameKo}({currentArticle.ticker}) 주가 전망과 기업분석
             </h1>
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
+            {analysisLevel === "데이터 요약" ? (
+              <p className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
+                이 페이지는 내부 검색과 비교를 돕기 위한 데이터 요약입니다. 더 깊은 판단이 필요하다면 상세 분석 배지가 있는 기업과 공식 공시 자료를 함께 확인해 주세요.
+              </p>
+            ) : null}
             <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-400">
               <span className="rounded-full border border-slate-700 px-3 py-1">{currentArticle.exchange}</span>
               <span className="rounded-full border border-slate-700 px-3 py-1">{currentArticle.subSector}</span>
@@ -318,6 +335,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                           </span>
                         ))}
                       </div>
+                      <p className="mt-3 text-xs leading-5 text-slate-500">지수 편입 정보는 {INDEX_DATA_UPDATED_AT} 기준 수동 정리 자료이며, 기준일 이후 변경될 수 있습니다.</p>
                     </div>
                   )}
                   <div>

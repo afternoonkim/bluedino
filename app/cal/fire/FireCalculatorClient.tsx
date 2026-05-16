@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   CartesianGrid,
   Line,
@@ -14,6 +14,9 @@ import * as htmlToImage from "html-to-image";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 
+type FireMode = "lean" | "base" | "fat";
+type FireAccountType = "general" | "isa" | "pension" | "custom";
+
 type ChartRow = {
   age: number;
   year: number;
@@ -22,9 +25,21 @@ type ChartRow = {
   phase: "accum" | "retire";
 };
 
+type FireSummary = {
+  currentYear: number;
+  fireAge: number | null;
+  fireYear: number | null;
+  targetAtRetire: number;
+  expenseAtRetireAnnual: number;
+  finalAssetAtEnd: number;
+  depletionAge: number | null;
+  totalTaxPaid: number;
+  okAtEnd: boolean;
+};
+
 export default function FireCalculatorPage() {
-  const format = (n: number) => Math.floor(n).toLocaleString("ko-KR");
-  const unformat = (s: string) => Number(String(s).replace(/,/g, ""));
+  const format = useCallback((n: number) => Math.floor(n).toLocaleString("ko-KR"), []);
+  const unformat = useCallback((s: string) => Number(String(s).replace(/,/g, "")), []);
 
   // ===== 입력값 =====
   const [currentAge, setCurrentAge] = useState(30);
@@ -40,10 +55,8 @@ export default function FireCalculatorPage() {
   const [inflationRate, setInflationRate] = useState(2.5); // 연 인플레
 
   const [showTable, setShowTable] = useState(false);
-  const [captureMode, setCaptureMode] = useState(false);
-
   // Lean/Fat FIRE (생활비 배수)
-  const [fireMode, setFireMode] = useState<"lean" | "base" | "fat">("base");
+  const [fireMode, setFireMode] = useState<FireMode>("base");
   const lifestyleMultiplier = useMemo(() => {
     if (fireMode === "lean") return 0.8;
     if (fireMode === "fat") return 1.3;
@@ -52,9 +65,7 @@ export default function FireCalculatorPage() {
 
   // ===== 세금 반영(배당 계산기 스타일과 동일) =====
   const [taxEnabled, setTaxEnabled] = useState(true);
-  const [accountType, setAccountType] = useState<
-    "general" | "isa" | "pension" | "custom"
-  >("general");
+  const [accountType, setAccountType] = useState<FireAccountType>("general");
   const [customTaxRate, setCustomTaxRate] = useState(0);
 
   const formatYAxis = (value: number) => {
@@ -67,42 +78,25 @@ export default function FireCalculatorPage() {
     return value.toString();
   };
 
-  const getTaxRate = () => {
+  const getTaxRate = useCallback(() => {
     if (!taxEnabled) return 0;
     if (accountType === "general") return 15.4;
     if (accountType === "isa") return 9.9;
     if (accountType === "pension") return 0;
     if (accountType === "custom") return customTaxRate;
     return 0;
-  };
+  }, [accountType, customTaxRate, taxEnabled]);
 
   // ===== 결과 =====
-  const [chartData, setChartData] = useState<ChartRow[]>([]);
   const [showChart, setShowChart] = useState(false);
-
-  const [summary, setSummary] = useState<{
-    currentYear: number;
-    fireAge: number | null; // 목표 달성 나이(옵션2)
-    fireYear: number | null; // 목표 달성 연도(옵션2)
-    targetAtRetire: number; // 은퇴시점 목표자산(옵션1)
-    expenseAtRetireAnnual: number; // 은퇴시점 연 생활비(옵션1)
-    finalAssetAtEnd: number; // endAge 시점 자산(옵션5)
-    depletionAge: number | null; // 파산(자산 0 이하) 나이(옵션5)
-    totalTaxPaid: number; // 누적 세금(옵션4)
-    okAtEnd: boolean; // endAge까지 버팀?(옵션5)
-  } | null>(null);
 
   // 이미지 저장 캡처 루트
   const summaryRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLDivElement>(null);
 
-  const calcInflated = (base: number, years: number) => {
-    const inf = inflationRate / 100;
-    return base * Math.pow(1 + inf, years);
-  };
 
   // ===== 핵심 시뮬레이션(옵션 1~5 전부) =====
-  const simulate = () => {
+  const simulationResult = useMemo((): { chartData: ChartRow[]; summary: FireSummary } => {
     const nowYear = new Date().getFullYear();
 
     const startAge = currentAge;
@@ -112,19 +106,11 @@ export default function FireCalculatorPage() {
     const inflation = inflationRate / 100;
     const taxRate = getTaxRate() / 100;
 
-    // ✅ 실질 수익률 계산
-    const realReturn = (1 + nominalReturn) / (1 + inflation) - 1;
-
     const baseMonthlyExpense = unformat(monthlyExpense) * lifestyleMultiplier;
-
     const baseAnnualExpense = baseMonthlyExpense * 12;
 
     let assetNominal = unformat(currentAsset);
-    let assetReal = assetNominal;
-
-    let totalContribution = 0;
     let totalTaxPaid = 0;
-
     let fireAge: number | null = null;
     let fireYear: number | null = null;
     let depletionAge: number | null = null;
@@ -134,53 +120,27 @@ export default function FireCalculatorPage() {
     for (let age = startAge; age <= stopAge; age++) {
       const t = age - startAge;
       const year = nowYear + t;
-
-      const annualExpenseNominal =
-        baseAnnualExpense * Math.pow(1 + inflation, t);
-
-      const targetThisAge =
-        withdrawRate === 0
-          ? Number.POSITIVE_INFINITY
-          : annualExpenseNominal / (withdrawRate / 100);
-
-      // ===== 수익 발생 =====
+      const annualExpenseNominal = baseAnnualExpense * Math.pow(1 + inflation, t);
+      const targetThisAge = withdrawRate === 0 ? Number.POSITIVE_INFINITY : annualExpenseNominal / (withdrawRate / 100);
       const grossGain = assetNominal * nominalReturn;
-
-      // 현실적 단순화:
-      // 자본차익은 과세하지 않고
-      // 연 수익 중 "수익률 일부"에만 과세 (보수적 가정)
-      const taxablePortion = grossGain * 0.5; // 50%만 과세 가정
+      const taxablePortion = grossGain * 0.5;
       const taxOnGain = taxEnabled ? taxablePortion * taxRate : 0;
 
       totalTaxPaid += taxOnGain;
-
       assetNominal = assetNominal + grossGain - taxOnGain;
 
-      // ===== 적립 or 인출 =====
       if (age < retireAge) {
-        const annualSave =
-          unformat(monthlySave) *
-          12 *
-          Math.pow(1 + inflation, t * 0.5); // 저축 일부 인플레 반영
-
+        const annualSave = unformat(monthlySave) * 12 * Math.pow(1 + inflation, t * 0.5);
         assetNominal += annualSave;
-        totalContribution += annualSave;
       } else {
         assetNominal -= annualExpenseNominal;
       }
 
-      // ===== 실질 자산 계산 =====
-      assetReal = assetNominal / Math.pow(1 + inflation, t);
-
-      // ===== FIRE 조기 달성 =====
-      if (age <= retireAge && fireAge === null) {
-        if (assetNominal >= targetThisAge) {
-          fireAge = age;
-          fireYear = year;
-        }
+      if (age <= retireAge && fireAge === null && assetNominal >= targetThisAge) {
+        fireAge = age;
+        fireYear = year;
       }
 
-      // ===== 파산 탐지 =====
       if (assetNominal <= 0 && depletionAge === null) {
         depletionAge = age;
       }
@@ -196,31 +156,20 @@ export default function FireCalculatorPage() {
 
     const last = rows[rows.length - 1];
 
-    setChartData(rows);
-
-    setSummary({
-      currentYear: nowYear,
-      fireAge,
-      fireYear,
-      targetAtRetire: Math.floor(
-        (baseAnnualExpense *
-          Math.pow(1 + inflation, retireAge - currentAge)) /
-          (withdrawRate / 100)
-      ),
-      expenseAtRetireAnnual: Math.floor(
-        baseAnnualExpense * Math.pow(1 + inflation, retireAge - currentAge)
-      ),
-      finalAssetAtEnd: last?.asset ?? 0,
-      depletionAge,
-      totalTaxPaid: Math.floor(totalTaxPaid),
-      okAtEnd: depletionAge === null && (last?.asset ?? 0) > 0,
-    });
-  };
-
-  // 자동 계산 (배당 계산기처럼 입력/슬라이더 변경 시 자동 실행)
-  useEffect(() => {
-    simulate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return {
+      chartData: rows,
+      summary: {
+        currentYear: nowYear,
+        fireAge,
+        fireYear,
+        targetAtRetire: Math.floor((baseAnnualExpense * Math.pow(1 + inflation, retireAge - currentAge)) / (withdrawRate / 100)),
+        expenseAtRetireAnnual: Math.floor(baseAnnualExpense * Math.pow(1 + inflation, retireAge - currentAge)),
+        finalAssetAtEnd: last?.asset ?? 0,
+        depletionAge,
+        totalTaxPaid: Math.floor(totalTaxPaid),
+        okAtEnd: depletionAge === null && (last?.asset ?? 0) > 0,
+      },
+    };
   }, [
     currentAge,
     retireAge,
@@ -231,11 +180,13 @@ export default function FireCalculatorPage() {
     returnRate,
     withdrawRate,
     inflationRate,
-    fireMode,
+    lifestyleMultiplier,
     taxEnabled,
-    accountType,
-    customTaxRate,
+    getTaxRate,
+    unformat,
   ]);
+
+  const { chartData, summary } = simulationResult;
 
   // 이미지 저장
   // ✅ 결과 요약 저장 (차트는 강제 펼침, 표는 닫음)
@@ -393,14 +344,14 @@ export default function FireCalculatorPage() {
             </div>
 
             <div className="grid grid-cols-3 gap-2">
-              {[
+              {([
                 { key: "lean", label: "Lean" },
                 { key: "base", label: "Base" },
                 { key: "fat", label: "Fat" },
-              ].map((m) => (
+              ] satisfies { key: FireMode; label: string }[]).map((m) => (
                 <button
                   key={m.key}
-                  onClick={() => setFireMode(m.key as any)}
+                  onClick={() => setFireMode(m.key)}
                   className={`rounded-2xl p-3 text-sm font-semibold transition ${
                     fireMode === m.key
                       ? "bg-cyan-500 text-slate-950"
@@ -444,15 +395,15 @@ export default function FireCalculatorPage() {
                   계좌 유형
                 </label>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  {[
+                  {([
                     { key: "general", label: "일반계좌", sub: "15.4%" },
                     { key: "isa", label: "ISA", sub: "9.9%" },
                     { key: "pension", label: "연금계좌", sub: "0%" },
                     { key: "custom", label: "직접입력", sub: "" },
-                  ].map((item) => (
+                  ] satisfies { key: FireAccountType; label: string; sub: string }[]).map((item) => (
                     <button
                       key={item.key}
-                      onClick={() => setAccountType(item.key as any)}
+                      onClick={() => setAccountType(item.key)}
                       className={`rounded-2xl p-3 transition ${
                         accountType === item.key
                           ? "bg-cyan-500 text-slate-950"
@@ -613,12 +564,19 @@ export default function FireCalculatorPage() {
                             borderRadius: "16px",
                             color: "#e2e8f0",
                           }}
-                          formatter={(v: any, name: any) => {
-                            if (name === "asset")
-                              return [`${format(v)}원`, "자산"];
-                            if (name === "target")
-                              return [`${format(v)}원`, "목표자산"];
-                            return [v, name];
+                          formatter={(value, name) => {
+                            const numericValue = Number(value ?? 0);
+                            const label = String(name);
+
+                            if (label === "asset") {
+                              return [`${format(numericValue)}원`, "자산"] as [string, string];
+                            }
+
+                            if (label === "target") {
+                              return [`${format(numericValue)}원`, "목표 금액"] as [string, string];
+                            }
+
+                            return [`${format(numericValue)}원`, label] as [string, string];
                           }}
                         />
                         <Line
@@ -784,7 +742,7 @@ function MoneyInput({
   );
 }
 
-function Slider({ label, value, setValue, min, max, step }: any) {
+function Slider({ label, value, setValue, min, max, step }: { label: string; value: number; setValue: (value: number) => void; min: number; max: number; step: number }) {
   return (
     <div className="space-y-2">
       <label className="text-base font-semibold text-white">{label}</label>
@@ -830,72 +788,5 @@ function MiniCard({
       <div className="text-xs text-slate-400">{title}</div>
       <div className={`mt-1 min-w-0 break-all text-[clamp(0.95rem,1.5vw,1rem)] font-bold leading-tight ${toneClass}`}>{value}</div>
     </div>
-  );
-}
-
-function CalculatorInfoSection({
-  title,
-  bullets,
-  examples,
-  faqs,
-}: {
-  title: string;
-  bullets: string[];
-  examples: { q: string; a: string }[];
-  faqs: { q: string; a: string }[];
-}) {
-  return (
-    <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-xl text-slate-100">
-      <h3 className="text-lg font-bold text-white">{title}</h3>
-
-      <div className="mt-4 space-y-6">
-        <div>
-          <div className="font-semibold text-white">계산 가정/기준</div>
-          <ul className="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-            {bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="font-semibold text-white">입력 예시</div>
-          <div className="mt-2 grid gap-3 md:grid-cols-2">
-            {examples.map((ex, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-slate-800 bg-slate-950/50 p-4"
-              >
-                <div className="text-xs text-slate-400">예시 {i + 1}</div>
-                <div className="mt-1 text-sm font-semibold text-white">
-                  {ex.q}
-                </div>
-                <div className="mt-2 text-sm text-slate-300">{ex.a}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <div className="font-semibold text-white">FAQ</div>
-          <div className="mt-2 space-y-3">
-            {faqs.map((f, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-slate-800 bg-slate-950/50 p-4"
-              >
-                <div className="text-sm font-semibold text-white">{f.q}</div>
-                <div className="mt-2 text-sm text-slate-300">{f.a}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm text-amber-200">
-          <b>면책</b> : 본 계산 결과는 참고용이며, 실제 세금/투자 결과는 개인
-          상황 및 제도 변경에 따라 달라질 수 있습니다.
-        </div>
-      </div>
-    </section>
   );
 }

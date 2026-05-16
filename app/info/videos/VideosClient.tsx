@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ExternalLink, RefreshCcw, Search, Youtube } from "lucide-react";
 
 type VideoItem = {
@@ -71,7 +73,7 @@ export default function VideosClient() {
   const [fetchedAt, setFetchedAt] = useState("");
   const [brokenThumbs, setBrokenThumbs] = useState<Record<string, boolean>>({});
 
-  async function loadVideos() {
+  const loadVideos = useCallback(async () => {
     setLoading(true);
     setError("");
     setBrokenThumbs({});
@@ -102,11 +104,15 @@ export default function VideosClient() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
-    loadVideos();
-  }, []);
+    const timer = window.setTimeout(() => {
+      void loadVideos();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [loadVideos]);
 
   const filteredItems = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -171,7 +177,7 @@ export default function VideosClient() {
               />
             </div>
 
-            <button type="button" onClick={loadVideos} className="bd-button-secondary gap-2">
+            <button type="button" onClick={() => void loadVideos()} className="bd-button-secondary gap-2">
               <RefreshCcw size={16} />
               새로고침
             </button>
@@ -215,15 +221,21 @@ export default function VideosClient() {
         ) : error ? (
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">영상을 불러오지 못했습니다</h2>
-            <p className="bd-text-main mt-3">{error}</p>
-            <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">
-              <div>잠시 후 다시 시도해 주세요. 문제가 계속되면 문의 페이지를 통해 알려주세요.</div>
+            <p className="bd-text-main mt-3">현재 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.</p>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              <Link href="/info/guide" className="bd-button-secondary">투자 기초 가이드 보기</Link>
+              <Link href="/finance" className="bd-button-secondary">금융 가이드 보기</Link>
+              <Link href="/cal" className="bd-button-primary">계산기 전체 보기</Link>
             </div>
           </section>
         ) : filteredItems.length === 0 ? (
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">표시할 영상이 없습니다</h2>
-            <p className="bd-text-main mt-3">채널 필터나 검색어를 다시 확인해보세요.</p>
+            <p className="bd-text-main mt-3">채널 필터나 검색어를 다시 확인해보세요. 영상이 보이지 않을 때는 아래 가이드로 먼저 핵심 개념을 확인할 수 있습니다.</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/info/guide" className="bd-button-secondary">투자 기초 가이드</Link>
+              <Link href="/info/strategy" className="bd-button-secondary">투자전략 보기</Link>
+            </div>
           </section>
         ) : (
           <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -240,12 +252,13 @@ export default function VideosClient() {
                 >
                   <div className="relative h-56 overflow-hidden border-b border-slate-800 bg-slate-900">
                     {showThumb ? (
-                      <img
+                      <Image
                         src={item.thumbnail as string}
                         alt={item.title}
-                        className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                        unoptimized
                         onError={() =>
                           setBrokenThumbs((prev) => ({
                             ...prev,

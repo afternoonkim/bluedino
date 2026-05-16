@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 
 const TAX_RATE_LOW = 0.165;
 const TAX_RATE_HIGH = 0.132;
-const IRP_LIMIT = 9_000_000;
 const PENSION_LIMIT = 6_000_000;
 const COMBINED_LIMIT = 9_000_000; // IRP + 연금저축 합산 한도 900만 원 (실제: IRP 단독 900만 원·연금저축 600만 원·합산 시 IRP 한도 적용)
 
@@ -38,6 +37,10 @@ export default function IrpTaxCreditClient() {
           <p className="bd-text-main mt-4">
             IRP(개인형퇴직연금)와 연금저축계좌 납입액에 대한 세액공제 환급액을 함께 계산합니다. 두 계좌 합산 한도 900만 원 안에서 연봉별 세액공제율(16.5% / 13.2%)이 적용됩니다.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">정확도: 제도 기준 반영</span>
+            <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기준: 2026년 5월 현재 공개 자료 기준</span>
+          </div>
         </section>
 
         <section className="bd-card bd-card-padding">
@@ -53,7 +56,7 @@ export default function IrpTaxCreditClient() {
                 step={100}
                 min={0}
               />
-              <span className="mt-2 block text-xs text-slate-400">5,500만 원 이하 16.5% / 초과 13.2% 적용</span>
+              <span className="mt-2 block text-xs text-slate-400">근로소득자 총급여 5,500만 원 이하 또는 사업자·프리랜서 종합소득금액 4,500만 원 이하 16.5% 적용</span>
             </label>
 
             <label className="block">
@@ -103,6 +106,11 @@ export default function IrpTaxCreditClient() {
               <div className="mt-1 text-xs text-slate-400">올해 환급 대상 아님</div>
             </div>
           </div>
+        </section>
+
+        <section className="rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-5 text-sm leading-7 text-cyan-50/90">
+          <p className="font-semibold text-cyan-100">ISA 만기자금 연금계좌 전환도 함께 확인하세요</p>
+          <p className="mt-1">ISA 만기자금을 연금저축 또는 IRP로 전환하면 일반 납입 한도와 별도로 추가 세액공제 가능 금액이 생길 수 있습니다. 실제 적용 조건은 금융사, 세법, 정부 정책 변경에 따라 달라질 수 있습니다.</p>
         </section>
       </div>
     </div>

@@ -90,7 +90,7 @@ async function fetchYoutubeJson<T>(
   const key = getApiKey();
 
   if (!key) {
-    throw new Error("현재 영상 데이터를 불러올 수 없습니다.");
+    throw new Error("YOUTUBE_API_KEY is not configured");
   }
 
   const url = new URL(`${API_BASE}${path}`);
@@ -300,13 +300,12 @@ export async function GET() {
       totalItems: items.length,
     });
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.";
+    console.error("[youtube-videos] API fetch failed", error);
 
     return NextResponse.json(
       {
         ok: false,
-        message,
+        message: "현재 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.",
         items: [],
       },
       { status: 500 }

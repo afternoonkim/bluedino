@@ -213,7 +213,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">숫자로 직접 확인해보기</h2>
+          <h2 className="bd-title-md">함께 보면 좋은 계산기</h2>
           <p className="bd-text-main mt-4">
             전략은 머리로 이해하는 것보다 내 금액과 기간을 넣어보는 것이 훨씬 빠릅니다. 아래 도구를 함께 보면 판단이 더 쉬워집니다.
           </p>
@@ -227,7 +227,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">먼저 보면 이해가 쉬운 기초 가이드</h2>
+          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -241,7 +241,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">이 전략과 함께 보면 좋은 글</h2>
+          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.strategies.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -254,6 +254,15 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           </div>
         </section>
 
+
+        <section className="bd-card-soft bd-card-padding">
+          <h2 className="bd-title-md">처음이라면 이 순서로 보세요</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 개념</Link>
+            <Link href="/info/strategy" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 투자전략 비교</Link>
+            <Link href="/cal" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">3단계: 계산기로 점검</Link>
+          </div>
+        </section>
 
         <ShareAndCite
           url={`/info/strategy/${article.slug}`}

@@ -75,6 +75,10 @@ table {
     @apply text-xl font-semibold text-white md:text-2xl;
   }
 
+  .bd-title-sm {
+    @apply text-lg font-semibold text-white;
+  }
+
   .bd-text-main {
     @apply text-base leading-7 text-slate-200;
   }

@@ -13,7 +13,7 @@ import {
 import AdBlock from "@/components/ad/AdBlock";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
-import { LoanRepaymentType, buildAmortization, formatCurrency, formatPercent, parseMoney } from "../components/loanCalculators";
+import { LoanRepaymentType, buildAmortization, formatCurrency, parseMoney } from "../components/loanCalculators";
 
 export default function LoanInterestCalculatorClient() {
   const [loanAmount, setLoanAmount] = useState("300000000");

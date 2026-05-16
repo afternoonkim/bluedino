@@ -58,7 +58,7 @@ export default function JeonseVsMonthlyClient() {
           <span className="bd-badge">월세 vs 전세 비교 계산기</span>
           <h1 className="bd-title-lg mt-4">월세 vs 전세 — 어느 쪽이 월 부담이 적을까</h1>
           <p className="bd-text-main mt-4">
-            전세는 \"대출 이자 + 자기자본 기회비용\", 월세는 \"월세 + 보증금 기회비용\"으로 총 월 부담을 비교할 수 있습니다. 본인 자금 상황과 기회비용 가정을 입력해 비교해보세요.
+            전세는 대출 이자와 자기자본 기회비용, 월세는 월세와 보증금 기회비용으로 총 월 부담을 비교할 수 있습니다. 본인 자금 상황과 기회비용 가정을 입력해 비교해보세요.
           </p>
         </section>
 

@@ -14,7 +14,7 @@ import {
 import AdBlock from "@/components/ad/AdBlock";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
-import { buildAmortization, formatCurrency, formatNumber, formatPercent, monthlyPayment, parseMoney } from "../components/loanCalculators";
+import { buildAmortization, formatCurrency, formatPercent, monthlyPayment, parseMoney } from "../components/loanCalculators";
 
 const policyPresets = [35, 40, 50, 60];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   LineChart,
   Line,
@@ -24,9 +24,38 @@ type YearRow = {
   dripDividend: number;
 };
 
+type DividendChartRow = {
+  year: number;
+  cash: number;
+  drip: number;
+};
+
+type RoiData = {
+  initialInvestment: number;
+  totalInvested: number;
+  finalDrip: number;
+  finalCash: number;
+  totalDripDividend: number;
+  totalCashDividend: number;
+  totalTax: number;
+  cagrDrip: number;
+  cagrCash: number;
+  taxRatePct: number;
+  priceGrowthRate: number;
+  growthRate: number;
+  yieldRate: number;
+};
+
+type StringInputProps = { label: string; value: string; setValue: (value: string) => void };
+type PriceInputProps = StringInputProps & { format: (value: number) => string; unformat: (value: string) => number };
+type SliderProps = { label: string; value: number; setValue: (value: number) => void; min: number; max: number; step: number };
+type ToggleButtonProps = { label: string; value: boolean; setValue: (value: boolean) => void };
+type ButtonOption = { label: string; value: number };
+type ButtonGroupProps = { label: string; options: ButtonOption[]; selected: number; setSelected: (value: number) => void };
+
 export default function CalculatorPage() {
-  const format = (n: number) => n.toLocaleString("ko-KR");
-  const unformat = (s: string) => Number(String(s ?? "").replace(/,/g, "")) || 0;
+  const format = useCallback((n: number) => n.toLocaleString("ko-KR"), []);
+  const unformat = useCallback((s: string) => Number(String(s ?? "").replace(/,/g, "")) || 0, []);
 
   const [shares, setShares] = useState("100");
   const [price, setPrice] = useState("50000");
@@ -44,17 +73,8 @@ export default function CalculatorPage() {
   const [monthlyAmount, setMonthlyAmount] = useState("1000000");
   const [wholeShareOnly, setWholeShareOnly] = useState(false);
 
-  const [chartData, setChartData] = useState<any[]>([]);
-  const [tableRows, setTableRows] = useState<YearRow[]>([]);
-
-  const [targetDividend, setTargetDividend] = useState("10000000");
-
   const [targetEnabled, setTargetEnabled] = useState(false);
   const [targetMonthlyDividend, setTargetMonthlyDividend] = useState("1000000");
-
-  const [roiData, setRoiData] = useState<any>(null);
-
-  const [debouncedTrigger, setDebouncedTrigger] = useState(0);
 
   const [customTaxRate, setCustomTaxRate] = useState(0);
 
@@ -69,7 +89,7 @@ export default function CalculatorPage() {
     return value.toString();
   };
 
-  const getTaxRate = () => {
+  const getTaxRate = useCallback(() => {
     if (!taxEnabled) return 0;
 
     if (accountType === "general") return 15.4;
@@ -78,18 +98,18 @@ export default function CalculatorPage() {
     if (accountType === "custom") return customTaxRate;
 
     return 0;
-  };
+  }, [accountType, customTaxRate, taxEnabled]);
 
   const initialInvestment = useMemo(() => {
     return unformat(shares) * unformat(price);
-  }, [shares, price]);
+  }, [shares, price, unformat]);
 
   const totalInvested = useMemo(() => {
     const monthly = monthlyAdd ? unformat(monthlyAmount) : 0;
     return initialInvestment + monthly * 12 * years;
-  }, [initialInvestment, monthlyAdd, monthlyAmount, years]);
+  }, [initialInvestment, monthlyAdd, monthlyAmount, years, unformat]);
 
-  const simulate = (useDrip: boolean) => {
+  const simulate = useCallback((useDrip: boolean) => {
     let currentShares = unformat(shares);
     let currentPrice = unformat(price);
 
@@ -139,9 +159,9 @@ export default function CalculatorPage() {
     }
 
     return data;
-  };
+  }, [shares, price, yieldRate, years, priceGrowthRate, growthRate, frequency, getTaxRate, monthlyAdd, monthlyAmount, wholeShareOnly, unformat]);
 
-  const calculate = () => {
+  const simulationResult = useMemo(() => {
     const drip = simulate(true);
     const cash = simulate(false);
 
@@ -161,13 +181,13 @@ export default function CalculatorPage() {
     const cagrDrip = Math.pow(lastDrip / base, 1 / years) - 1;
     const cagrCash = Math.pow(lastCash / base, 1 / years) - 1;
 
-    const mergedChart = Array.from({ length: years }, (_, i) => ({
+    const chartData: DividendChartRow[] = Array.from({ length: years }, (_, i) => ({
       year: cash[i].year,
       cash: cash[i].total,
       drip: drip[i].total,
     }));
 
-    const mergedTable: YearRow[] = Array.from({ length: years }, (_, i) => ({
+    const tableRows: YearRow[] = Array.from({ length: years }, (_, i) => ({
       year: cash[i].year,
       cashTotal: cash[i].total,
       cashDividend: cash[i].dividend,
@@ -175,10 +195,7 @@ export default function CalculatorPage() {
       dripDividend: drip[i].dividend,
     }));
 
-    setChartData(mergedChart);
-    setTableRows(mergedTable);
-
-    setRoiData({
+    const roiData: RoiData = {
       initialInvestment,
       totalInvested,
       finalDrip: lastDrip,
@@ -192,35 +209,21 @@ export default function CalculatorPage() {
       priceGrowthRate,
       growthRate,
       yieldRate,
-    });
-  };
+    };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedTrigger((prev) => prev + 1);
-    }, 200);
-
-    return () => clearTimeout(timer);
+    return { chartData, tableRows, roiData };
   }, [
-    shares,
-    price,
-    yieldRate,
     years,
-    growthRate,
+    initialInvestment,
+    totalInvested,
+    getTaxRate,
+    simulate,
     priceGrowthRate,
-    accountType,
-    taxEnabled,
-    frequency,
-    monthlyAdd,
-    monthlyAmount,
-    wholeShareOnly,
-    customTaxRate,
+    growthRate,
+    yieldRate,
   ]);
 
-  useEffect(() => {
-    calculate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedTrigger]);
+  const { chartData, tableRows, roiData } = simulationResult;
 
   const calculateTarget = () => {
     const priceValue = unformat(price);
@@ -704,15 +707,18 @@ export default function CalculatorPage() {
                               width={20}
                               stroke="#94a3b8"
                             />
-                            <Tooltip
-                              contentStyle={{
-                                backgroundColor: "#0f172a",
-                                border: "1px solid #334155",
-                                borderRadius: "16px",
-                                color: "#e2e8f0",
-                              }}
-                              formatter={(v: any) => v.toLocaleString() + "원"}
-                            />
+                           <Tooltip
+                            contentStyle={{
+                              backgroundColor: "#0f172a",
+                              border: "1px solid #334155",
+                              borderRadius: "16px",
+                              color: "#e2e8f0",
+                            }}
+                            formatter={(value) => {
+                              const numericValue = Number(value ?? 0);
+                              return `${numericValue.toLocaleString("ko-KR")}원`;
+                            }}
+                          />
                             <Legend />
                             <Line
                               type="monotone"
@@ -868,7 +874,7 @@ export default function CalculatorPage() {
 
 /* ===== UI 컴포넌트 ===== */
 
-function Input({ label, value, setValue }: any) {
+function Input({ label, value, setValue }: StringInputProps) {
   return (
     <div className="space-y-2">
       <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
@@ -882,7 +888,7 @@ function Input({ label, value, setValue }: any) {
   );
 }
 
-function PriceInput({ label, value, setValue, format, unformat }: any) {
+function PriceInput({ label, value, setValue, format, unformat }: PriceInputProps) {
   return (
     <div className="space-y-2">
       <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
@@ -896,7 +902,7 @@ function PriceInput({ label, value, setValue, format, unformat }: any) {
   );
 }
 
-function Slider({ label, value, setValue, min, max, step }: any) {
+function Slider({ label, value, setValue, min, max, step }: SliderProps) {
   return (
     <div className="space-y-2">
       <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</label>
@@ -921,7 +927,7 @@ function Slider({ label, value, setValue, min, max, step }: any) {
   );
 }
 
-function ToggleButton({ label, value, setValue }: any) {
+function ToggleButton({ label, value, setValue }: ToggleButtonProps) {
   return (
     <div className="flex items-center justify-between py-2 text-slate-200">
       <span className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">{label}</span>
@@ -939,14 +945,14 @@ function ToggleButton({ label, value, setValue }: any) {
   );
 }
 
-function ButtonGroup({ label, options, selected, setSelected }: any) {
+function ButtonGroup({ label, options, selected, setSelected }: ButtonGroupProps) {
   return (
     <div>
       <label className="mb-3 block min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
         {label}
       </label>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-        {options.map((opt: any) => (
+        {options.map((opt) => (
           <button
             key={opt.value}
             onClick={() => setSelected(opt.value)}

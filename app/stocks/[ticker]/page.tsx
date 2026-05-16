@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import StockHero from "@/components/stocks/StockHero";
 import StockPriceChart from "@/components/stocks/StockPriceChart";
@@ -31,8 +31,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const analysis = await buildStockAnalysis(normalizedTicker);
 
+    if (!analysis || analysis.status === "not_found" || analysis.status === "unsupported" || analysis.status === "error" || analysis.status === "partial") {
+      return {
+        title: `${normalizedTicker} 기업분석 | BlueDino`,
+        description: "현재 이 종목은 안정적인 분석 데이터를 제공하기 어려워 검색 색인 대상에서 제외됩니다.",
+        robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+      };
+    }
+
+    const hasEnoughData = Boolean(analysis.profile && analysis.quote);
+    if (!hasEnoughData) {
+      return {
+        title: `${normalizedTicker} 기업분석 | BlueDino`,
+        description: "현재 이 종목은 일부 핵심 데이터가 부족해 검색 색인 대상에서 제외됩니다.",
+        robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+      };
+    }
+
     const companyName =
-      analysis?.profile?.companyName ||
+      analysis.profile?.companyName ||
       normalizedTicker;
 
     const title = `${normalizedTicker} 기업분석 | ${companyName} 주가·재무지표`;
@@ -58,27 +75,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch {
-    const title = `${normalizedTicker} 기업분석 | BlueDino`;
-    const description = `${normalizedTicker} 미국 기업의 주가와 재무지표를 확인할 수 있습니다.`;
-    const canonical = `/stocks/${normalizedTicker}`;
-
     return {
-      title,
-      description,
-      alternates: { canonical },
-      openGraph: {
-        title,
-        description,
-        url: `https://bluedino.kr${canonical}`,
-        siteName: "BlueDino",
-        locale: "ko_KR",
-        type: "article",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-      },
+      title: `${normalizedTicker} 기업분석 | BlueDino`,
+      description: "현재 데이터를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.",
+      robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
     };
   }
 }
@@ -96,6 +96,10 @@ function hasMeaningfulMetrics(
 export default async function StockDetailPage({ params }: PageProps) {
   const { ticker } = await params;
   const normalizedTicker = normalizeTicker(ticker);
+
+  if (ticker !== normalizedTicker) {
+    redirect(`/stocks/${normalizedTicker}`);
+  }
 
   const analysis = await buildStockAnalysis(normalizedTicker);
 

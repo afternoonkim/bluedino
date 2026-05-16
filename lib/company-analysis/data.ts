@@ -5588,30 +5588,87 @@ export const companyAnalysisArticles: CompanyAnalysisArticle[] = [
   ...globalCompanyAnalysisSeeds.map((seed) => buildArticle(seed, "global")),
 ];
 
+const publishedCompanyArticles = companyAnalysisArticles.filter(
+  (article) => article.status === "published",
+);
+
+const companyMarketConfigIndex = new Map<string, CompanyAnalysisMarketConfig>(
+  companyAnalysisMarkets.map((market) => [market.key, market]),
+);
+
+const companyArticlesByMarket = new Map<CompanyAnalysisMarket, CompanyAnalysisArticle[]>();
+const companyArticlesByTicker = new Map<string, CompanyAnalysisArticle[]>();
+const companyArticlesBySector = new Map<string, CompanyAnalysisArticle[]>();
+const companyArticleIndex = new Map<string, CompanyAnalysisArticle>();
+
+function pushToIndex(
+  index: Map<string, CompanyAnalysisArticle[]>,
+  key: string,
+  article: CompanyAnalysisArticle,
+) {
+  const existing = index.get(key);
+  if (existing) {
+    existing.push(article);
+    return;
+  }
+  index.set(key, [article]);
+}
+
+for (const market of companyAnalysisMarkets) {
+  companyArticlesByMarket.set(market.key, []);
+}
+
+for (const article of publishedCompanyArticles) {
+  companyArticleIndex.set(`${article.market}:${article.slug}`, article);
+  companyArticlesByMarket.get(article.market)?.push(article);
+  pushToIndex(companyArticlesByTicker, article.ticker.toUpperCase(), article);
+  pushToIndex(companyArticlesBySector, `${article.market}:${article.sector}`, article);
+}
+
 export function getCompanyMarketConfig(market: string): CompanyAnalysisMarketConfig | undefined {
-  return companyAnalysisMarkets.find((item) => item.key === market);
+  return companyMarketConfigIndex.get(market);
 }
 
 export function getPublishedCompanyArticles(): CompanyAnalysisArticle[] {
-  return companyAnalysisArticles.filter((article) => article.status === "published");
+  return publishedCompanyArticles;
 }
 
 export function getCompanyArticlesByMarket(market: CompanyAnalysisMarket): CompanyAnalysisArticle[] {
-  return getPublishedCompanyArticles().filter((article) => article.market === market);
+  return companyArticlesByMarket.get(market) ?? [];
+}
+
+export function getCompanyArticlesByTicker(ticker: string): CompanyAnalysisArticle[] {
+  return companyArticlesByTicker.get(ticker.toUpperCase()) ?? [];
+}
+
+export function getCompanyArticlesBySector(
+  market: CompanyAnalysisMarket,
+  sector: string,
+): CompanyAnalysisArticle[] {
+  return companyArticlesBySector.get(`${market}:${sector}`) ?? [];
 }
 
 export function getCompanyArticle(
   market: CompanyAnalysisMarket,
   slug: string,
 ): CompanyAnalysisArticle | undefined {
-  return getCompanyArticlesByMarket(market).find((article) => article.slug === slug);
+  return companyArticleIndex.get(`${market}:${slug}`);
 }
 
 export function getCompanyAnalysisRoutes() {
-  return getPublishedCompanyArticles().map((article) => ({
+  return publishedCompanyArticles.map((article) => ({
     market: article.market,
     slug: article.slug,
   }));
+}
+
+export function getSitemapCompanyAnalysisRoutes() {
+  return publishedCompanyArticles
+    .filter((article) => {
+      const ticker = article.ticker.toUpperCase();
+      return Boolean(COMPANY_CUSTOM_NOTES[ticker]) || getCompanyIndices(article.ticker).length > 0;
+    })
+    .map((article) => ({ market: article.market, slug: article.slug }));
 }
 
 function getSectorTokens(sector: string) {
@@ -5664,8 +5721,25 @@ export function getRelatedCompanyArticles(
   currentArticle: CompanyAnalysisArticle,
   limit = 4,
 ): CompanyAnalysisArticle[] {
-  const scoredArticles = getPublishedCompanyArticles()
-    .filter((article) => article.slug !== currentArticle.slug && article.market === currentArticle.market)
+  const sameSectorArticles = companyArticlesBySector.get(`${currentArticle.market}:${currentArticle.sector}`) ?? [];
+  const sameMarketArticles = companyArticlesByMarket.get(currentArticle.market) ?? [];
+  const candidateMap = new Map<string, CompanyAnalysisArticle>();
+
+  for (const article of sameSectorArticles) {
+    if (article.slug !== currentArticle.slug) {
+      candidateMap.set(`${article.market}:${article.slug}`, article);
+    }
+  }
+
+  if (candidateMap.size < limit * 3) {
+    for (const article of sameMarketArticles) {
+      if (article.slug !== currentArticle.slug) {
+        candidateMap.set(`${article.market}:${article.slug}`, article);
+      }
+    }
+  }
+
+  const scoredArticles = Array.from(candidateMap.values())
     .map((article) => ({
       article,
       score: getRelatedIndustryScore(currentArticle, article),

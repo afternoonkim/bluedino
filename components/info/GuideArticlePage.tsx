@@ -188,7 +188,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
     datePublished: publishedAt,
     dateModified: updatedAt,
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: author,
       url: "https://bluedino.kr/info/etc/about",
     },
@@ -478,7 +478,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">직접 확인해보기</h2>
+          <h2 className="bd-title-md">함께 보면 좋은 계산기</h2>
           <p className="bd-text-main mt-4">
             개념을 이해했다면 숫자로 직접 확인해보는 것이 가장 빠릅니다. 아래 계산기에서 내 투자 기간과 금액을 넣어보면 체감이 훨씬 쉬워집니다.
           </p>
@@ -492,7 +492,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">같이 보면 이해가 더 쉬운 글</h2>
+          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -505,6 +505,15 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
             <Link href="/info/guide" className="bd-button-primary">
               투자 기초 가이드 전체 보기
             </Link>
+          </div>
+        </section>
+
+        <section className="bd-card-soft bd-card-padding">
+          <h2 className="bd-title-md">처음이라면 이 순서로 보세요</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 가이드</Link>
+            <Link href="/finance" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 계좌·세금 가이드</Link>
+            <Link href="/cal" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">3단계: 내 금액으로 계산</Link>
           </div>
         </section>
 

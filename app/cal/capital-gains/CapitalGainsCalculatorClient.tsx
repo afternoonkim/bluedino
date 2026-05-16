@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as htmlToImage from "html-to-image";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
@@ -32,11 +32,16 @@ function uid() {
 
 export default function CapitalGainsTaxPage() {
   // ===== utils =====
-  const format = (n: number) => Math.floor(n).toLocaleString("ko-KR");
-  const unformat = (s: string) => Number(String(s ?? "").replace(/,/g, "")) || 0;
+  const format = useCallback((n: number) => Math.floor(n).toLocaleString("ko-KR"), []);
+  const unformat = useCallback(
+    (s: string) => Number(String(s ?? "").replace(/,/g, "")) || 0,
+    [],
+  );
 
-  const clampNumber = (n: number, min: number, max: number) =>
-    Math.min(max, Math.max(min, n));
+  const clampNumber = useCallback(
+    (n: number, min: number, max: number) => Math.min(max, Math.max(min, n)),
+    [],
+  );
 
   // ===== global inputs =====
   const [taxYear, setTaxYear] = useState<number>(new Date().getFullYear());
@@ -88,7 +93,7 @@ export default function CapitalGainsTaxPage() {
   const tableRef = useRef<HTMLDivElement>(null);
 
   // ===== 환율 가져오기 =====
-  const fetchExchangeRate = async () => {
+  const fetchExchangeRate = useCallback(async () => {
     try {
       setFxLoading(true);
       setFxError(null);
@@ -111,14 +116,18 @@ export default function CapitalGainsTaxPage() {
     } finally {
       setFxLoading(false);
     }
-  };
+  },[]);
 
   useEffect(() => {
-    fetchExchangeRate();
-  }, []);
+    const timer = window.setTimeout(() => {
+      void fetchExchangeRate();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [fetchExchangeRate]);
 
   // ===== row 계산 (KRW 환산) =====
-  const rowToKrw = (row: TradeRow) => {
+  const rowToKrw = useCallback((row: TradeRow) => {
     const buy = unformat(row.buy);
     const sell = unformat(row.sell);
     const buyFee = unformat(row.buyFee);
@@ -192,7 +201,7 @@ export default function CapitalGainsTaxPage() {
             : "자동 실패 → 수동/기본값 fallback"
           : "수동 환율 사용",
     };
-  };
+  }, [usdKrw, unformat]);
 
   // ===== 전체 결과 =====
   const result = useMemo(() => {
@@ -261,7 +270,7 @@ export default function CapitalGainsTaxPage() {
       safeTaxRate,
       log,
     };
-  }, [trades, usdKrw, carryLoss, useDeduction, deduction, taxRate]);
+  }, [trades, rowToKrw, carryLoss, useDeduction, deduction, taxRate, unformat, clampNumber]);
 
   // ===== handlers =====
   const updateTrade = (id: string, patch: Partial<TradeRow>) => {
@@ -1069,63 +1078,5 @@ function MiniCard({
       <div className="text-xs text-slate-400">{title}</div>
       <div className={`mt-1 min-w-0 break-all text-[clamp(0.95rem,1.5vw,1rem)] font-bold leading-tight ${toneClass}`}>{value}</div>
     </div>
-  );
-}
-
-function CalculatorInfoSection({
-  title,
-  bullets,
-  examples,
-  faqs,
-}: {
-  title: string;
-  bullets: string[];
-  examples: { q: string; a: string }[];
-  faqs: { q: string; a: string }[];
-}) {
-  return (
-    <section className="mt-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-xl text-slate-100">
-      <h3 className="text-lg font-bold text-white">{title}</h3>
-
-      <div className="mt-4 space-y-6">
-        <div>
-          <div className="font-semibold text-white">계산 가정/기준</div>
-          <ul className="mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1">
-            {bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <div className="font-semibold text-white">입력 예시</div>
-          <div className="mt-2 grid gap-3 md:grid-cols-2">
-            {examples.map((ex, i) => (
-              <div key={i} className="rounded-xl border border-slate-800 bg-slate-950/50 p-4">
-                <div className="text-xs text-slate-400">예시 {i + 1}</div>
-                <div className="mt-1 text-sm font-semibold text-white">{ex.q}</div>
-                <div className="mt-2 text-sm text-slate-300">{ex.a}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <div className="font-semibold text-white">FAQ</div>
-          <div className="mt-2 space-y-3">
-            {faqs.map((f, i) => (
-              <div key={i} className="rounded-xl border border-slate-800 bg-slate-950/50 p-4">
-                <div className="text-sm font-semibold text-white">{f.q}</div>
-                <div className="mt-2 text-sm text-slate-300">{f.a}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm text-amber-200">
-          <b>면책</b> : 본 계산 결과는 참고용이며, 실제 세금/투자 결과는 개인 상황 및 제도 변경에 따라 달라질 수 있습니다.
-        </div>
-      </div>
-    </section>
   );
 }

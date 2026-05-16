@@ -66,7 +66,7 @@ export default function StockPriceChart({ data }: { data: HistoricalPoint[] }) {
               }
               return "";
             }}
-            formatter={(value) => [formatPrice(Number(value)), "종가"]}
+            formatter={(value) => [formatPrice(Number(value ?? 0)), "종가"] as [string, string]}
           />
           <Line
             type="monotone"

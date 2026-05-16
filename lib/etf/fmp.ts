@@ -165,15 +165,6 @@ const getCachedDividendsCalendar = unstable_cache(
   { revalidate: CACHE_WINDOW_SECONDS }
 );
 
-const getCachedCompanyDividends = unstable_cache(
-  async (symbol: string) => {
-    if (!hasApiKey()) return [] as DividendEvent[];
-    return safeFetchFmp<DividendEvent[]>("/dividends", { symbol }, []);
-  },
-  ["fmp-company-dividends"],
-  { revalidate: CACHE_WINDOW_SECONDS }
-);
-
 function normalizeEtfInfo(symbol: string, info: EtfInfo | null): EtfInfo | null {
   if (!info) return null;
   return {

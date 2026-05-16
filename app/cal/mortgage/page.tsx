@@ -2,6 +2,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
 import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
+import CalculatorMetaSections from "../components/CalculatorMetaSections";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import MortgageCalculatorClient from "./MortgageCalculatorClient";
@@ -74,6 +75,13 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <MortgageCalculatorClient />
+      <CalculatorMetaSections
+        accuracyLevel="제도 기준 반영"
+        basisLabel="기준: 2026년 5월 현재 공개 대출 규제와 입력값 기준"
+        officialSources={[{ label: "금융위원회 주택담보대출 제도 안내", href: "https://www.fsc.go.kr" }, { label: "금융감독원 대출 안내", href: "https://www.fss.or.kr" }, { label: "취급 금융회사 대출 상품 설명서", href: "https://portal.kfb.or.kr" }]}
+        relatedCalculators={[{ label: "DSR 계산기", href: "/cal/dsr", description: "상환 부담이 소득 대비 적정한지 확인할 수 있습니다." }, { label: "LTV 계산기", href: "/cal/ltv", description: "담보가치 기준 대출 비율을 비교할 수 있습니다." }, { label: "중도상환수수료 계산기", href: "/cal/prepayment-fee", description: "대출 갈아타기나 조기상환 비용을 계산할 수 있습니다." }]}
+        caution="주담대 실제 한도와 금리는 개인 신용도, 규제지역, 금융회사 심사, 우대금리 충족 여부에 따라 달라질 수 있습니다."
+      />
       <CalculatorResultSeoNote calculator="mortgage" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
       <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />

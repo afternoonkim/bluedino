@@ -11,9 +11,6 @@ import {
   YAxis,
 } from "recharts";
 import * as htmlToImage from "html-to-image";
-import CalculatorSeoContent from "../components/CalculatorSeoContent";
-
-
 type ContributionTiming = "end" | "begin";
 
 type YearRow = {
@@ -77,7 +74,7 @@ function yearsToGoal(params: {
   if (initialAmount >= targetAmount) return 0;
 
   let balance = initialAmount;
-  let monthlyBase = monthlyContribution;
+  const monthlyBase = monthlyContribution;
   const monthlyRate = annualReturnRate / 100 / 12;
   let monthCount = 0;
   const maxMonths = 1200;
@@ -202,7 +199,6 @@ export default function CompoundCalculatorPage() {
   ]);
 
   const referenceTable = useMemo(() => {
-    const monthlyPresets = [30, 50, 100, 200, 300, 500, 700, 1000, 1500, 2500];
     const ratePresets = [4, 6, 8, 10, 12, 15];
     const yearPresets = [5, 10, 15, 20, 25, 30, 40, 50];
 
@@ -477,7 +473,7 @@ export default function CompoundCalculatorPage() {
                             realTotal: "실질 자산",
                           };
 
-                          return [formatCurrency(Number(value)), map[String(name)] || String(name)];
+                          return [formatCurrency(Number(value ?? 0)), map[String(name)] || String(name)] as [string, string];
                         }}
                         labelFormatter={(label, payload) => {
                           const row = payload?.[0]?.payload as YearRow | undefined;

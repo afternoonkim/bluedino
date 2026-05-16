@@ -23,7 +23,7 @@ function getListHref(pathname: string) {
   if (path.startsWith("/stocks")) return "/stocks";
   if (path.startsWith("/etf")) return "/etf/ranking";
 
-  if (path.startsWith("/cal")) return "/cal/calculator";
+  if (path.startsWith("/cal")) return "/cal";
 
   if (path.startsWith("/finance/pension")) {
     return segments.length >= 3 ? "/finance/pension" : "/finance";
@@ -36,7 +36,7 @@ function getListHref(pathname: string) {
 
   if (path.startsWith("/info/guide")) return "/info/guide";
   if (path.startsWith("/info/strategy")) return "/info/strategy";
-  if (path.startsWith("/info/blog")) return "/info/blog";
+  if (path.startsWith("/info/recommended-guides")) return "/info/recommended-guides";
   if (path.startsWith("/info/videos")) return "/info/videos";
   if (path.startsWith("/info/investment")) return "/info/guide";
   if (path.startsWith("/info/etc")) return "/info/guide";
@@ -63,7 +63,7 @@ function getListLabel(pathname: string) {
   if (path.startsWith("/finance")) return "금융 Q&A 목록으로 이동";
   if (path.startsWith("/info/guide")) return "투자 가이드 목록으로 이동";
   if (path.startsWith("/info/strategy")) return "투자 전략 목록으로 이동";
-  if (path.startsWith("/info/blog")) return "추천 금융 가이드로 이동";
+  if (path.startsWith("/info/recommended-guides")) return "추천 금융 가이드로 이동";
   if (path.startsWith("/info/videos")) return "영상 목록으로 이동";
 
   return "목록으로 이동";

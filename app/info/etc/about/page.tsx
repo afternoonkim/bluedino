@@ -60,6 +60,16 @@ export default function AboutPage() {
           </p>
         </section>
 
+        <section className="bd-card-soft bd-card-padding">
+          <h2 className="bd-title-md">정보 검증 방식과 업데이트 기준</h2>
+          <div className="bd-list mt-4">
+            <div className="bd-list-item">세금·제도·계좌 설명은 국세청, 금융위원회, 금융감독원, 국민연금공단, 국민건강보험공단 등 공식 자료를 우선 확인합니다.</div>
+            <div className="bd-list-item">계산기는 공개 산식과 제도 기준을 바탕으로 만들고, 실제 상품별 차이가 큰 항목은 결과 화면에 참고 범위를 함께 표시합니다.</div>
+            <div className="bd-list-item">제도 개정이나 오류 제보가 확인되면 관련 페이지의 수정일을 갱신하고, 계산 기준과 안내 문구를 함께 보완합니다.</div>
+            <div className="bd-list-item">투자 정보는 특정 종목 매수 권유가 아니라 스스로 판단하기 위한 체크포인트와 계산 흐름을 제공하는 데 초점을 둡니다.</div>
+          </div>
+        </section>
+
         <section className="bd-grid-2">
           <article className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">무엇을 제공하나요</h2>

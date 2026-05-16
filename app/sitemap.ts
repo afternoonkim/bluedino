@@ -5,7 +5,7 @@ import { guideArticles } from "@/lib/info/guideArticles";
 import { strategyArticles } from "@/lib/info/strategyArticles";
 import {
   companyAnalysisMarkets,
-  getCompanyAnalysisRoutes,
+  getSitemapCompanyAnalysisRoutes,
   getCompanyArticle,
 } from "@/lib/company-analysis/data";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
@@ -20,6 +20,7 @@ const staticRoutes = [
   "/finance",
   "/info",
   "/company-analysis",
+  "/cal",
   "/stocks",
   "/etf/compare",
   "/etf/dividend-calendar",
@@ -39,7 +40,23 @@ const staticRoutes = [
   "/cal/isa-tax-savings",
   "/cal/jeonse-loan-interest",
   "/cal/jeonse-vs-monthly",
-  // "/info/blog" — 별도 noindex 설정을 적용하는 보조 콘텐츠 페이지
+  "/cal/youth-leap-account",
+  "/cal/youth-future-savings",
+  "/cal/pension-payout",
+  "/cal/deposit-interest",
+  "/cal/installment-savings",
+  "/cal/parking-account",
+  "/cal/cma-interest",
+  "/cal/loan-refinance-saving",
+  "/cal/prepayment-fee",
+  "/cal/home-affordability",
+  "/cal/car-installment",
+  "/cal/credit-card-installment",
+  "/cal/emergency-fund",
+  "/cal/monthly-budget",
+  "/cal/retirement-target",
+  "/cal/child-education-fund",
+  "/info/recommended-guides",
   "/info/guide",
   "/info/investment/account-tax",
   "/info/investment/account-tax-step",
@@ -74,16 +91,7 @@ const industryRoutes = industryHubs.map((hub) => `/industry/${hub.slug}`);
  *
  * 그 외 기업분석 페이지도 라우트는 유지되어 사이트 내부 검색과 관련 종목 링크에서 접근할 수 있습니다.
  */
-const companyDetailRoutes = getCompanyAnalysisRoutes()
-  .filter(({ market, slug }) => {
-    const article = getCompanyArticle(market, slug);
-    if (!article) return false;
-    const tickerUpper = article.ticker.toUpperCase();
-    if (COMPANY_CUSTOM_NOTES[tickerUpper]) return true;
-    if (getCompanyIndices(article.ticker).length > 0) return true;
-    return false;
-  })
-  .map(({ market, slug }) => `/company-analysis/${market}/${slug}`);
+const companyDetailRoutes = getSitemapCompanyAnalysisRoutes().map(({ market, slug }) => `/company-analysis/${market}/${slug}`);
 
 function parseDate(value: string | undefined, fallback: Date) {
   if (!value) return fallback;

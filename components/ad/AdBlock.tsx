@@ -51,7 +51,7 @@ export default function AdBlock({
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
     } catch (error) {
-      console.error("Ad render error:", error);
+      console.error("[ad] render failed", error);
     }
   }, [canRenderAd, resolvedSlot]);
 
@@ -67,7 +67,7 @@ export default function AdBlock({
   }
 
   return (
-    <div className={`my-10 w-full ${className}`}>
+    <div className={`my-10 w-full ${className}`} aria-label={label}>
       <ins
         className={`adsbygoogle block ${formatClass}`}
         style={{ display: "block" }}

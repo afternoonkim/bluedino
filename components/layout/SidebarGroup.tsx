@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useState } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 
 type SidebarGroupProps = {
@@ -19,22 +20,11 @@ export default function SidebarGroup({
   defaultOpen = true,
 }: SidebarGroupProps) {
   const persistKey = `bd:sidebar-group:${storageKey ?? title}`;
+  // 서버 렌더링 결과와 클라이언트 첫 렌더링 결과가 같아야 hydration 오류가 나지 않습니다.
+  // localStorage 값은 초기 렌더링에 직접 반영하지 않고, 사용자가 토글할 때부터 저장합니다.
   const [open, setOpen] = useState<boolean>(defaultOpen);
-  const [hydrated, setHydrated] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const saved = window.localStorage.getItem(persistKey);
-      if (saved === "1") setOpen(true);
-      else if (saved === "0") setOpen(false);
-    } catch {
-      // ignore (private mode)
-    }
-    setHydrated(true);
-  }, [persistKey]);
-
-  const toggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const toggle = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     const next = !open;
     setOpen(next);
@@ -55,7 +45,7 @@ export default function SidebarGroup({
     );
   }
 
-  const isOpen = hydrated ? open : defaultOpen;
+  const isOpen = open;
 
   return (
     <div>

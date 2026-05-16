@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import { useMemo, useState } from "react";
 import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
 type TradingViewStockChartProps = {
@@ -97,14 +98,11 @@ function NaverFallbackChart({
   companyNameKo: string;
 }) {
   const [period, setPeriod] = useState<FallbackPeriod>("day");
-  const [imageFailed, setImageFailed] = useState(false);
+  const [failedImageUrl, setFailedImageUrl] = useState<string | null>(null);
   const code = normalizeKoreaTicker(ticker);
   const chartUrl = getNaverFinanceChartUrl(code, period);
   const quoteHref = getLiveQuoteHref({ ticker: code, exchange: "KOSPI", market: "korea" });
 
-  useEffect(() => {
-    setImageFailed(false);
-  }, [chartUrl]);
 
   return (
     <div className="overflow-hidden">
@@ -130,7 +128,7 @@ function NaverFallbackChart({
       </div>
 
       <div className="flex items-center justify-center bg-[#081124] p-4 md:p-6" style={{ minHeight: "560px" }}>
-        {imageFailed ? (
+        {failedImageUrl === chartUrl ? (
           <div className="max-w-xl text-center">
             <h3 className="text-lg font-bold text-white">차트 이미지를 불러오지 못했습니다</h3>
             <p className="bd-text-main mt-3">
@@ -141,14 +139,15 @@ function NaverFallbackChart({
             </a>
           </div>
         ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={chartUrl}
             alt={`${companyNameKo}(${code}) ${period} 주가 차트`}
+            width={1200}
+            height={720}
             className="h-auto w-full max-w-6xl rounded-2xl bg-white object-contain p-3 shadow-2xl shadow-slate-950/40"
             style={{ maxHeight: "720px" }}
-            loading="lazy"
-            onError={() => setImageFailed(true)}
+            unoptimized
+            onError={() => setFailedImageUrl(chartUrl)}
           />
         )}
       </div>
@@ -168,8 +167,6 @@ function UnifiedTradingViewChart({
   );
   const widgetUrl = useMemo(() => getTradingViewWidgetUrl(symbol), [symbol]);
   const isKorea = market === "korea";
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
   // 국내 종목은 TradingView 무료 임베드에서 KRX 심볼이 거의 모두 차단되어 있어
   // 항상 네이버 정적 차트로 표시. 해외 종목만 TradingView iframe 사용.
   if (isKorea) {
@@ -198,7 +195,6 @@ function UnifiedTradingViewChart({
         }}
       >
         <iframe
-          ref={iframeRef}
           key={symbol}
           title={`${companyNameKo}(${ticker}) 실시간 주가 차트`}
           src={widgetUrl}

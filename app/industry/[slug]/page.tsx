@@ -119,8 +119,8 @@ export default async function IndustryHubPage({ params }: PageProps) {
     datePublished: "2026-04-27",
     dateModified: "2026-04-27",
     author: {
-      "@type": "Person",
-      name: "afternoonkim",
+      "@type": "Organization",
+      name: "BlueDino 편집팀",
       url: "https://bluedino.kr/info/etc/about",
     },
     publisher: {

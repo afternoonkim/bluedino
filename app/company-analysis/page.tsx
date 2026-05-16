@@ -54,8 +54,6 @@ const breadcrumbSchema = {
 };
 
 export default function CompanyAnalysisPage() {
-  const featuredArticles = publishedArticles.slice(0, 3);
-
   return (
     <>
       <Script

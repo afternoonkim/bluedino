@@ -76,7 +76,7 @@ export default function IndustryIndexPage() {
             <span className="bd-badge">산업·테마 가이드</span>
             <h1 className="bd-title-xl mt-4">한국·미국 종목을 산업·테마별로 묶어 비교해 보세요</h1>
             <p className="bd-text-main mt-4">
-              \"반도체 관련주\", \"AI 관련주\", \"배당주\" 같은 검색어로 들어오시면 보통 종목 목록이 한꺼번에 쏟아져 정리하기 어렵습니다. BlueDino 산업·테마 가이드는 같은 \"반도체\"라도 메모리·HBM·파운드리·장비·PCB로 sub-sector를 나누고, 같은 \"AI\"라도 반도체·소프트웨어·인프라·서비스로 가치사슬 단계를 나눠서 비교할 수 있도록 정리했습니다.
+              반도체 관련주, AI 관련주, 배당주 같은 검색어로 들어오시면 보통 종목 목록이 한꺼번에 쏟아져 정리하기 어렵습니다. BlueDino 산업·테마 가이드는 같은 반도체라도 메모리·HBM·파운드리·장비·PCB로 sub-sector를 나누고, 같은 AI라도 반도체·소프트웨어·인프라·서비스로 가치사슬 단계를 나눠서 비교할 수 있도록 정리했습니다.
             </p>
             <p className="bd-text-sub mt-3">
               1,500개 가까운 한국·미국 종목 데이터에서 각 카테고리에 해당하는 종목을 자동 추출하고, customNote(수기 분석)와 주요 지수(KOSPI 200·S&P 500·NASDAQ 100 등) 편입 종목을 우선 노출하도록 정렬했습니다. 종목 카드를 누르시면 해당 종목의 사업 구조와 분기 추적 지표까지 자세히 보실 수 있습니다.
@@ -99,7 +99,7 @@ export default function IndustryIndexPage() {
             </div>
           </section>
 
-          <AdBlock slotKey="inline" label="산업·테마 가이드 인덱스 광고 영역" />
+          <AdBlock slotKey="inline" label="산업·테마 가이드 참고 영역" />
 
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">산업·테마 가이드를 활용하는 방법</h2>

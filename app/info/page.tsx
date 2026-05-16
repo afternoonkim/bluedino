@@ -68,7 +68,7 @@ const quickLinks = [
 ];
 
 const supportLinks = [
-  { label: "추천 금융 가이드 모음", href: "/info/blog" },
+  { label: "추천 금융 가이드 모음", href: "/info/recommended-guides" },
   { label: "영상으로 보는 금융 정보", href: "/info/videos" },
 ];
 

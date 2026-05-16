@@ -2,6 +2,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import CalculatorLandingSection from "../components/CalculatorLandingSection";
 import CalculatorResultSeoNote from "../components/CalculatorResultSeoNote";
+import CalculatorMetaSections from "../components/CalculatorMetaSections";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../components/calculatorLandingData";
 import FireCalculatorClient from "./FireCalculatorClient";
@@ -80,6 +81,17 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <FireCalculatorClient />
+      <CalculatorMetaSections
+        accuracyLevel="참고 시뮬레이션"
+        basisLabel="기준: 입력한 수익률·저축률·생활비 가정 기준"
+        officialSources={[{ label: "금융감독원 통합연금포털", href: "https://100lifeplan.fss.or.kr" }, { label: "국세청 금융소득·연금 과세 안내", href: "https://www.nts.go.kr" }, { label: "국민연금공단 노후준비 자료", href: "https://www.nps.or.kr" }]}
+        relatedCalculators={[
+          { label: "복리 계산기", href: "/cal/compound", description: "은퇴 목표자산까지 누적되는 자산 흐름을 확인합니다." },
+          { label: "배당 계산기", href: "/cal/calculator", description: "은퇴 후 현금흐름을 배당 기준으로 점검합니다." },
+          { label: "연봉 실수령액 계산기", href: "/cal/salary-net", description: "현재 저축 가능 금액을 현실적으로 다시 계산합니다." },
+        ]}
+        caution="FIRE 계산은 장기 수익률과 지출 가정에 크게 좌우됩니다. 실제 은퇴 판단 전에는 세금, 건강보험료, 주거비, 가족 상황, 시장 변동성을 함께 검토해 주세요."
+      />
       <CalculatorResultSeoNote calculator="fire" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
       <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />

@@ -15,6 +15,8 @@ import {
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 
 
+type SalaryCalculationMode = "formulaBased" | "withholdingTable";
+
 type WithholdingRate = 80 | 100 | 120;
 
 type DeductionBreakdown = {
@@ -54,18 +56,12 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-function getSalaryDeductionRate(totalSalary: number) {
-  if (totalSalary <= 5_000_000) return 0.7;
-  if (totalSalary <= 15_000_000) return 0.4 + (5_000_000 / totalSalary) * 0.3;
-  if (totalSalary <= 45_000_000) return 0.15 + (7_500_000 / totalSalary) * 0.25;
-  if (totalSalary <= 100_000_000) return 0.05 + (12_000_000 / totalSalary) * 0.1;
-  return 0.02 + (20_000_000 / totalSalary) * 0.03;
-}
-
 function calcEarnedIncomeDeduction(totalSalary: number) {
-  const rate = getSalaryDeductionRate(totalSalary);
-  const rough = totalSalary * rate;
-  return clamp(rough, 0, 20_000_000);
+  if (totalSalary <= 5_000_000) return totalSalary * 0.7;
+  if (totalSalary <= 15_000_000) return 3_500_000 + (totalSalary - 5_000_000) * 0.4;
+  if (totalSalary <= 45_000_000) return 7_500_000 + (totalSalary - 15_000_000) * 0.15;
+  if (totalSalary <= 100_000_000) return 12_000_000 + (totalSalary - 45_000_000) * 0.05;
+  return 14_750_000 + (totalSalary - 100_000_000) * 0.02;
 }
 
 function calcBasicTax(taxBase: number) {
@@ -80,24 +76,27 @@ function calcBasicTax(taxBase: number) {
 }
 
 function calcTaxCredit(calculatedTax: number, totalSalary: number) {
-  let credit = Math.min(calculatedTax * 0.55, 740_000);
+  const baseCredit = calculatedTax <= 1_300_000
+    ? calculatedTax * 0.55
+    : 715_000 + (calculatedTax - 1_300_000) * 0.3;
 
+  let limit = 740_000;
   if (totalSalary > 33_000_000 && totalSalary <= 70_000_000) {
-    credit = Math.min(credit, 740_000 - (totalSalary - 33_000_000) * 0.008);
+    limit = Math.max(660_000, 740_000 - (totalSalary - 33_000_000) * 0.008);
   } else if (totalSalary > 70_000_000 && totalSalary <= 120_000_000) {
-    credit = Math.min(credit, 660_000 - (totalSalary - 70_000_000) * 0.0032);
+    limit = Math.max(500_000, 660_000 - (totalSalary - 70_000_000) * 0.005);
   } else if (totalSalary > 120_000_000) {
-    credit = Math.min(credit, 500_000 - (totalSalary - 120_000_000) * 0.0025);
+    limit = Math.max(200_000, 500_000 - (totalSalary - 120_000_000) * 0.005);
   }
 
-  return Math.max(0, credit);
+  return Math.max(0, Math.min(baseCredit, limit));
 }
 
 function calcChildTaxCredit(childCount: number) {
   if (childCount <= 0) return 0;
-  if (childCount === 1) return 150_000;
-  if (childCount === 2) return 350_000;
-  return 350_000 + (childCount - 2) * 300_000;
+  if (childCount === 1) return 250_000;
+  if (childCount === 2) return 550_000;
+  return 550_000 + (childCount - 2) * 400_000;
 }
 
 function calculateSalaryNet(params: {
@@ -117,10 +116,11 @@ function calculateSalaryNet(params: {
   const annualNonTaxable = Math.max(0, params.monthlyNonTaxableWon) * 12;
   const monthlyTaxable = Math.max(0, monthlyGross - params.monthlyNonTaxableWon);
 
-  // 참고용 단순 계산
-  const nationalPension = monthlyTaxable * 0.0475;
-  const healthInsurance = monthlyTaxable * 0.03545;
-  const longTermCare = healthInsurance * 0.1295;
+  // 2026년 기준 4대보험 근로자 부담분을 반영한 참고용 계산
+  const pensionBase = clamp(monthlyTaxable, 370_000, 6_370_000);
+  const nationalPension = pensionBase * 0.0475;
+  const healthInsurance = monthlyTaxable * 0.03595;
+  const longTermCare = healthInsurance * 0.1314;
   const employmentInsurance = params.excludeEmploymentInsurance ? 0 : monthlyTaxable * 0.009;
 
   const annualEarnedIncomeDeduction = calcEarnedIncomeDeduction(annualGross);
@@ -241,6 +241,7 @@ export default function SalaryNetCalculatorPage() {
   const [childCount, setChildCount] = useState(0);
   const [withholdingRate, setWithholdingRate] = useState<WithholdingRate>(100);
   const [excludeEmploymentInsurance, setExcludeEmploymentInsurance] = useState(false);
+  const [calculationMode, setCalculationMode] = useState<SalaryCalculationMode>("formulaBased");
 
   const result = useMemo(
     () =>
@@ -292,14 +293,14 @@ export default function SalaryNetCalculatorPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300">
                 <Wallet className="h-4 w-4" />
-                월급 실수령액 빠른 계산
+                월급 실수령액 빠른 계산 · 정확도: 제도 기준 반영
               </div>
               <h1 className="mt-4 text-2xl font-black tracking-tight text-white md:text-3xl">
-                연봉 실수령액 계산기
+                연봉 실수령액 간이 계산기
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400 md:text-[15px]">
                 세전 연봉과 상여금, 부양가족 수, 비과세 금액 등을 넣으면 예상 월 실수령액과 연 실수령액을 빠르게 확인할 수 있습니다.
-                실제 급여명세서와 차이가 있을 수 있으므로 참고용으로 활용해 주세요.
+                국세청 간이세액표를 완전히 재현한 급여명세서 계산기가 아니라 2026년 4대보험 요율과 주요 소득세 공식을 반영한 참고용 계산기입니다.
               </p>
             </div>
 
@@ -312,15 +313,47 @@ export default function SalaryNetCalculatorPage() {
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 월 실수령액</p>
                 <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-cyan-300">{won(result.monthlyNet)}</p>
-                <p className="text-xs text-slate-400">추정치</p>
+                <p className="text-xs text-slate-400">2026년 5월 공개 기준</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 연 실수령액</p>
                 <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-emerald-300">{won(result.annualNet)}</p>
-                <p className="text-xs text-slate-400">추정치</p>
+                <p className="text-xs text-slate-400">2026년 5월 공개 기준</p>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5 text-sm leading-7 text-amber-50/90">
+          <p className="font-semibold text-amber-100">기준: 2026년 5월 현재 공개 자료 기준 · 정확도: 제도 기준 반영</p>
+          <p className="mt-1">실제 적용 조건은 금융사, 세법, 정부 정책 변경과 회사별 급여 처리 방식에 따라 달라질 수 있습니다.</p>
+          <p className="mt-2">계산 방식은 현재 공식을 바탕으로 한 연말정산식 추정 방식과, 추후 국세청 간이세액표 방식으로 분리할 수 있도록 구조를 나누었습니다.</p>
+        </div>
+
+        <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-900/95 p-5">
+          <p className="text-sm font-semibold text-white">계산 방식 선택</p>
+          <p className="mt-2 text-sm leading-6 text-slate-400">현재 화면은 주요 소득세 공식과 4대보험 요율을 반영한 참고 계산입니다. 국세청 간이세액표 방식은 별도 표 데이터 연결 후 사용할 수 있도록 선택 영역을 분리해 두었습니다.</p>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {[
+              { key: "formulaBased" as const, title: "연말정산식 추정 방식", desc: "현재 제공 중인 참고 계산 방식입니다." },
+              { key: "withholdingTable" as const, title: "국세청 간이세액표 방식", desc: "추후 간이세액표 데이터 기준으로 확장할 수 있습니다." },
+            ].map((mode) => (
+              <button
+                key={mode.key}
+                type="button"
+                onClick={() => setCalculationMode(mode.key)}
+                className={`rounded-2xl border px-4 py-4 text-left transition ${calculationMode === mode.key ? "border-cyan-400 bg-cyan-500/10" : "border-slate-800 bg-slate-950/70 hover:border-slate-600"}`}
+              >
+                <span className="block text-sm font-semibold text-white">{mode.title}</span>
+                <span className="mt-1 block text-xs leading-5 text-slate-400">{mode.desc}</span>
+              </button>
+            ))}
+          </div>
+          {calculationMode === "withholdingTable" ? (
+            <p className="mt-3 rounded-2xl border border-amber-400/20 bg-amber-400/5 px-4 py-3 text-sm leading-6 text-amber-100">
+              현재 결과는 아직 간이세액표 직접 조회값이 아니라, 2026년 4대보험 요율과 주요 소득세 공식을 반영한 참고용 결과입니다.
+            </p>
+          ) : null}
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)]">
@@ -501,7 +534,7 @@ export default function SalaryNetCalculatorPage() {
                 </div>
                 <div className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-sm text-slate-400">
                   <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                  참고용 추정 계산
+                  2026년 기준 참고용 계산
                 </div>
               </div>
 

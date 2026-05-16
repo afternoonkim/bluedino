@@ -3,6 +3,8 @@
 // - 종목 분류 태그 (성장주/가치주/배당주/사이클주 등 사용자 검색 키워드)
 // - 종목별 unique 사실(상장일·본사) — 검색엔진이 페이지마다 다른 데이터를 인식하도록.
 
+export const INDEX_DATA_UPDATED_AT = "2026-05";
+
 export type CompanyTagKey =
   | "growth"
   | "value"
@@ -166,6 +168,7 @@ export function getCompanyIndices(ticker: string): CompanyIndexKey[] {
  * Naver 검색에서 사용되는 키워드(성장주, 배당주, AI 테마 등)와 매칭.
  */
 export function getCompanyTags(sector: string, ticker: string): CompanyTagKey[] {
+  void ticker;
   const tags = new Set<CompanyTagKey>();
   const s = sector;
 
