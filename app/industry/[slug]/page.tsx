@@ -12,6 +12,7 @@ import {
 } from "@/lib/industry/config";
 import {
   getPublishedCompanyArticles,
+  getSitemapCompanyAnalysisRoutes,
 } from "@/lib/company-analysis/data";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
 import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
@@ -88,9 +89,12 @@ export default async function IndustryHubPage({ params }: PageProps) {
   if (!hub) notFound();
   const currentHub = hub;
 
-  // 매칭 종목 추출 + 정렬
+  const indexableRouteSet = new Set(
+    getSitemapCompanyAnalysisRoutes().map((route) => `${route.market}:${route.slug}`),
+  );
   const allArticles = getPublishedCompanyArticles();
   const matched = allArticles
+    .filter((a) => indexableRouteSet.has(`${a.market}:${a.slug}`))
     .filter((a) => matchesHub(currentHub, a))
     .map((a) => ({
       market: a.market,
@@ -177,7 +181,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             <p className="bd-text-main mt-4">{currentHub.introBody}</p>
           </section>
 
-          <AdBlock slotKey="inline" label={`${currentHub.shortTitle} 산업 페이지 본문 중간 광고 영역`} />
+          <AdBlock slotKey="inline" label={`${currentHub.shortTitle} 산업 페이지 관련 콘텐츠 영역`} />
 
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">{currentHub.shortTitle}을 비교할 때 봐야 할 핵심 지표</h2>
@@ -192,7 +196,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             <section className="bd-card bd-card-padding">
               <h2 className="bd-title-md">{currentHub.shortTitle} — 국내 주요 종목</h2>
               <p className="bd-text-sub mt-3">
-                customNote(수기 분석)·주요 지수 편입 기준으로 우선 정렬했습니다. 종목명을 누르시면 사업 구조와 분기 추적 지표를 자세히 확인하실 수 있습니다.
+                상세 설명이 있거나 주요 지수에 포함된 종목을 우선 정렬했습니다. 종목명을 누르시면 사업 구조와 분기 추적 지표를 자세히 확인하실 수 있습니다.
               </p>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
                 {koreaMatched.map((m) => (

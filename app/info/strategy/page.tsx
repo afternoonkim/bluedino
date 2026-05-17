@@ -281,7 +281,7 @@ export default function StrategyHubPage() {
           </div>
         </section>
 
-        <AdBlock label="투자전략 중간 광고 영역" format="horizontal" />
+        <AdBlock label="투자전략 중간 관련 콘텐츠 영역" format="horizontal" />
 
         <section id="core-strategy" className="space-y-5">
           <div className="bd-card-soft bd-card-padding">

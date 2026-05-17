@@ -265,7 +265,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
       <div className="bd-page">
         <div className="bd-container-narrow bd-section">
           <section className="bd-card bd-card-padding">
-            <span className="bd-badge">곧 더 자세히 다룰 주제</span>
+            <span className="bd-badge">추가 안내가 필요한 주제</span>
             <h1 className="bd-title-lg mt-4">{category.title}</h1>
             <p className="bd-text-main mt-4">{category.intro}</p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -375,7 +375,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
           </section>
         )}
 
-        <AdBlock slotKey="inline" label={`${category.shortTitle} 질문 목록 중간 광고 영역`} />
+        <AdBlock slotKey="inline" label={`${category.shortTitle} 질문 목록 관련 콘텐츠 영역`} />
 
         <FinanceQuestionList questions={questions} basePath={category.basePath} />
 

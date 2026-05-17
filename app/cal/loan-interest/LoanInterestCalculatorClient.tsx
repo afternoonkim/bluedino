@@ -102,7 +102,7 @@ export default function LoanInterestCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="대출이자 계산기 중단 광고 영역" slotKey="inline" format="horizontal" />
+        <AdBlock label="대출이자 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">잔액과 누적이자 흐름</h2>

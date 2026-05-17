@@ -97,7 +97,7 @@ export default function LtvCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="LTV 계산기 중단 광고 영역" slotKey="inline" format="horizontal" />
+        <AdBlock label="LTV 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">자금 구조 한눈에 보기</h2>

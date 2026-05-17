@@ -25,7 +25,7 @@ function getAnalysisLevel(article: { ticker: string; indices: unknown[] }) {
   const hasManualCommentary = Boolean(COMPANY_CUSTOM_NOTES[article.ticker.toUpperCase()]);
   if (hasManualCommentary) return "상세 분석" as const;
   if (article.indices.length > 0) return "기본 분석" as const;
-  return "데이터 요약" as const;
+  return "요약 정보" as const;
 }
 
 export function generateStaticParams() {
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const analysisLevel = getAnalysisLevel(article);
-  const isIndexable = analysisLevel !== "데이터 요약";
+  const isIndexable = analysisLevel !== "요약 정보";
 
   return {
     title: `${article.seoTitle} | BlueDino`,
@@ -171,18 +171,17 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
               <span className="bd-badge">{currentArticle.badge}</span>
             </div>
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
-              <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">현재 페이지: {analysisLevel}</span>
-              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">상세 분석: 수기 코멘트 포함</span>
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">분석 깊이: {analysisLevel}</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">상세 분석: 사업 구조와 투자 포인트 포함</span>
               <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기본 분석: 주요 지수·분류 정보 포함</span>
-              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">데이터 요약: 내부 검색용 참고 정보</span>
             </div>
             <h1 className="bd-title-xl mt-4">
               {currentArticle.companyNameKo}({currentArticle.ticker}) 주가 전망과 기업분석
             </h1>
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
-            {analysisLevel === "데이터 요약" ? (
+            {analysisLevel === "요약 정보" ? (
               <p className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
-                이 페이지는 내부 검색과 비교를 돕기 위한 데이터 요약입니다. 더 깊은 판단이 필요하다면 상세 분석 배지가 있는 기업과 공식 공시 자료를 함께 확인해 주세요.
+                이 페이지는 핵심 분류와 기본 정보를 빠르게 확인하기 위한 요약형 안내입니다. 더 깊은 판단이 필요하다면 같은 산업의 상세 분석 글과 공식 공시 자료를 함께 확인해 주세요.
               </p>
             ) : null}
             <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-400">
@@ -223,7 +222,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
             <p className="bd-text-sub mt-4">{currentArticle.investorNote}</p>
           </section>
 
-          <AdBlock slotKey="inline" label={`${currentArticle.companyNameKo} 기업분석 본문 중간 광고 영역`} />
+          <AdBlock slotKey="inline" label={`${currentArticle.companyNameKo} 기업분석 본문 관련 콘텐츠 영역`} />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">

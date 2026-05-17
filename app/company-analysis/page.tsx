@@ -6,6 +6,7 @@ import {
   companyAnalysisMarkets,
   getCompanyArticlesByMarket,
   getPublishedCompanyArticles,
+  getSitemapCompanyAnalysisRoutes,
 } from "@/lib/company-analysis/data";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
@@ -27,7 +28,12 @@ export const metadata: Metadata = {
   },
 };
 
-const publishedArticles = getPublishedCompanyArticles();
+const indexableRouteSet = new Set(
+  getSitemapCompanyAnalysisRoutes().map((route) => `${route.market}:${route.slug}`),
+);
+const publishedArticles = getPublishedCompanyArticles().filter((article) =>
+  indexableRouteSet.has(`${article.market}:${article.slug}`),
+);
 
 const itemListSchema = {
   "@context": "https://schema.org",
@@ -90,7 +96,7 @@ export default function CompanyAnalysisPage() {
 
           <section className="bd-grid-2">
             {companyAnalysisMarkets.map((market) => {
-              const count = getCompanyArticlesByMarket(market.key).length;
+              const count = getCompanyArticlesByMarket(market.key).filter((article) => indexableRouteSet.has(`${article.market}:${article.slug}`)).length;
               return (
                 <article key={market.key} className="bd-card bd-card-padding">
                   <div className="flex items-center justify-between gap-3">
@@ -109,7 +115,7 @@ export default function CompanyAnalysisPage() {
             })}
           </section>
 
-          <AdBlock slotKey="inline" label="기업분석 허브 중간 광고 영역" />
+          <AdBlock slotKey="inline" label="기업분석 허브 중간 관련 콘텐츠 영역" />
 
           {/* <section className="bd-section">
             <div>

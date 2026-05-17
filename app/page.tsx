@@ -1,5 +1,28 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import AdBlock from "@/components/ad/AdBlock";
+
+export const metadata: Metadata = {
+  title: "BlueDino | 배당·복리·대출·연금 계산기와 투자 가이드",
+  description:
+    "BlueDino는 배당 계산기, 복리 계산기, FIRE 계산기, DSR·LTV·대출이자 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 한곳에서 확인할 수 있는 금융 정보 사이트입니다.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "BlueDino | 금융 계산기와 투자 가이드",
+    description:
+      "배당, 복리, 연금, 대출, 절세계좌, ETF 투자 정보를 계산기와 쉬운 가이드로 확인해보세요.",
+    url: "https://bluedino.kr",
+    siteName: "BlueDino",
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BlueDino | 금융 계산기와 투자 가이드",
+    description:
+      "배당·복리·연금·대출·ETF 투자 정보를 계산기와 가이드로 쉽게 확인할 수 있습니다.",
+  },
+};
 
 const heroCalculators = [
   {
@@ -213,13 +236,11 @@ export default function HomePage() {
             </div>
 
             <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-white md:text-5xl">
-              배당, 세금, 연금, 대출을 한 번에 보는 금융 툴 플랫폼
+              배당 계산기부터 대출이자 계산기까지 한 번에 보는 금융 계산기
             </h1>
 
             <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-              BlueDino는 투자와 금융 판단을 숫자로 확인할 수 있도록 대표 계산기와
-              설명형 가이드를 함께 제공하는 도구 허브입니다. 계산기로 바로 확인하고,
-              관련 가이드와 최신 콘텐츠로 이어지는 흐름까지 한 화면에서 정리했습니다.
+              BlueDino는 배당 계산기, 복리 계산기, 대출이자 계산기, DSR 계산기, LTV 계산기처럼 자주 쓰는 금융 계산기를 한곳에 모았습니다. 연금저축, IRP, ISA, ETF 투자, 주식 투자 가이드까지 연결해 숫자를 확인한 뒤 바로 개념을 이해할 수 있도록 구성했습니다.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -227,20 +248,20 @@ export default function HomePage() {
                 href="/cal/calculator"
                 className="rounded-xl bg-blue-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-500"
               >
-                대표 계산기 바로가기
+                계산기 모음 보기
               </Link>
               <Link
                 href="/finance"
                 className="rounded-xl border border-slate-700 bg-slate-800 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:bg-slate-700"
               >
-                금융 가이드 보기
+                금융 질문 가이드 보기
               </Link>
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              <StatCard title="대표 계산기" value="6개" sub="홈 전면 배치" />
+              <StatCard title="대표 계산기" value="6개" sub="배당·복리·대출 핵심 도구" />
               <StatCard title="핵심 카테고리" value="4축" sub="배당 · 절세 · 대출 · 콘텐츠" />
-              <StatCard title="이용 흐름" value="쉽게 연결" sub="계산기 → 가이드 → 최신 콘텐츠" />
+              <StatCard title="이용 흐름" value="쉽게 연결" sub="계산기 → 가이드 → 투자전략" />
             </div>
           </div>
         </section>
@@ -325,7 +346,7 @@ export default function HomePage() {
           />
         </section>
 
-        <AdBlock label="홈 상단 광고 영역" />
+        <AdBlock label="홈 상단 보조 콘텐츠 영역" />
 
         <section className="mt-10">
           <SectionHeader
@@ -478,7 +499,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <AdBlock label="홈 중단 광고 영역" />
+        <AdBlock label="홈 중간 관련 콘텐츠 영역" />
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">

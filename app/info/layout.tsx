@@ -16,9 +16,9 @@ export default function InvestmentLayout({ children }: { children: React.ReactNo
         </div>
       </section> */}
 
-      <AdBlock label="투자정보 상단 광고 영역" format="horizontal" />
+      <AdBlock label="투자정보 상단 보조 콘텐츠 영역" format="horizontal" />
       {children}
-      <AdBlock label="투자정보 하단 광고 영역" format="rectangle" />
+      <AdBlock label="투자정보 하단 보조 콘텐츠 영역" format="rectangle" />
     </div>
   );
 }

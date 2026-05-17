@@ -28,7 +28,7 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
       {!useLocalTopBottomAds ? (
         <AdBlock
           slotKey="top"
-          label="전역 상단 광고 영역"
+          label="전역 상단 보조 콘텐츠 영역"
           format="horizontal"
           className="mb-6"
         />
@@ -40,10 +40,10 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
         {showSidebarRail ? (
           <aside className="hidden xl:block">
             <div className="sticky top-24 space-y-4">
-              {/* 광고 영역은 환경변수로 클라이언트와 슬롯 값이 설정된 경우에만 표시됩니다. */}
+              {/* 보조 콘텐츠 블록은 환경변수와 슬롯 값이 설정된 경우에만 표시됩니다. */}
               <AdBlock
                 slotKey="sidebar"
-                label="사이드 광고 영역"
+                label="사이드 보조 콘텐츠 영역"
                 format="rectangle"
                 className="my-0"
               />
@@ -55,7 +55,7 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
       {!useLocalTopBottomAds ? (
         <AdBlock
           slotKey="bottom"
-          label="전역 하단 광고 영역"
+          label="전역 하단 보조 콘텐츠 영역"
           format="rectangle"
           className="mt-8"
         />

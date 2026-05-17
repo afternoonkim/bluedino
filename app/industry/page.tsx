@@ -79,7 +79,7 @@ export default function IndustryIndexPage() {
               반도체 관련주, AI 관련주, 배당주 같은 검색어로 들어오시면 보통 종목 목록이 한꺼번에 쏟아져 정리하기 어렵습니다. BlueDino 산업·테마 가이드는 같은 반도체라도 메모리·HBM·파운드리·장비·PCB로 sub-sector를 나누고, 같은 AI라도 반도체·소프트웨어·인프라·서비스로 가치사슬 단계를 나눠서 비교할 수 있도록 정리했습니다.
             </p>
             <p className="bd-text-sub mt-3">
-              1,500개 가까운 한국·미국 종목 데이터에서 각 카테고리에 해당하는 종목을 자동 추출하고, customNote(수기 분석)와 주요 지수(KOSPI 200·S&P 500·NASDAQ 100 등) 편입 종목을 우선 노출하도록 정렬했습니다. 종목 카드를 누르시면 해당 종목의 사업 구조와 분기 추적 지표까지 자세히 보실 수 있습니다.
+              한국·미국 종목 데이터에서 각 카테고리에 해당하는 종목을 추려내고, 상세 설명이 있거나 주요 지수(KOSPI 200·S&P 500·NASDAQ 100 등)에 포함된 종목을 우선 확인할 수 있도록 정렬했습니다. 종목 카드를 누르시면 해당 종목의 사업 구조와 분기 추적 지표까지 자세히 보실 수 있습니다.
             </p>
           </section>
 
@@ -105,7 +105,7 @@ export default function IndustryIndexPage() {
             <h2 className="bd-title-md">산업·테마 가이드를 활용하는 방법</h2>
             <div className="bd-list mt-5">
               <div className="bd-list-item">관심 산업의 카테고리를 누르면 sub-sector(메모리·HBM·파운드리 등) 단위로 비교가 정리되어 있습니다.</div>
-              <div className="bd-list-item">customNote가 있는 종목(상세분석 배지)은 수기 작성 단락이 있어 사업 구조를 더 자세히 확인하실 수 있습니다.</div>
+              <div className="bd-list-item">상세분석 배지가 있는 종목은 사업 구조와 투자 포인트를 더 자세히 확인하실 수 있습니다.</div>
               <div className="bd-list-item">주요 지수(KOSPI 200·S&P 500 등) 편입 배지로 인지도와 검색 수요를 가늠해 볼 수 있습니다.</div>
               <div className="bd-list-item">종목 비교 후 관련 계산기·전략 가이드로 이어서 본인 투자 판단에 적용해 보세요.</div>
             </div>

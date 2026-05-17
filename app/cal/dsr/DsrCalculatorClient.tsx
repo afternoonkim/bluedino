@@ -143,7 +143,7 @@ export default function DsrCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="DSR 계산기 중단 광고 영역" slotKey="inline" format="horizontal" />
+        <AdBlock label="DSR 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
 
         <section className="bd-card bd-card-padding">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">

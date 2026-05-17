@@ -152,7 +152,7 @@ export default function FinancePage() {
           </div>
         </section>
 
-        <AdBlock slotKey="inline" label="금융 가이드 중간 광고 영역" />
+        <AdBlock slotKey="inline" label="금융 가이드 중간 관련 콘텐츠 영역" />
 
         <section className="bd-section">
           <div>

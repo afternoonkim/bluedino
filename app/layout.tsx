@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "google-adsense-account": "ca-pub-5407950462485150",
   },
   openGraph: {
-    title: "BlueDino 투자 계산기 플랫폼",
+    title: "BlueDino 금융 계산기와 투자 가이드",
     description:
       "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
     url: "https://bluedino.kr",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BlueDino 투자 계산기 플랫폼",
+    title: "BlueDino 금융 계산기와 투자 가이드",
     description:
       "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
   },
@@ -54,7 +54,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "BlueDino",
   url: "https://bluedino.kr",
-  description: "투자 계산기와 금융 가이드를 한곳에서 볼 수 있는 BlueDino",
+  description: "금융 계산기와 투자 가이드를 한곳에서 볼 수 있는 BlueDino",
 };
 
 export default function RootLayout({
@@ -64,7 +64,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head />
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="BlueDino 금융 계산기와 투자 가이드 RSS"
+          href="/rss.xml"
+        />
+      </head>
       <body suppressHydrationWarning>
         <Script
           id="organization-jsonld"

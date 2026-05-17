@@ -15,6 +15,32 @@ import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
+const DEFAULT_UPDATED_AT = "2026-05-17";
+
+const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
+  "/": "2026-05-17",
+  "/finance": "2026-05-17",
+  "/cal": "2026-05-17",
+  "/info": "2026-05-17",
+  "/info/guide": "2026-05-17",
+  "/info/strategy": "2026-05-17",
+  "/info/recommended-guides": "2026-05-17",
+  "/company-analysis": "2026-05-17",
+  "/company-analysis/korea": "2026-05-17",
+  "/company-analysis/global": "2026-05-17",
+  "/industry": "2026-05-17",
+  "/stocks": "2026-05-17",
+  "/etf/compare": "2026-05-17",
+  "/etf/dividend-calendar": "2026-05-17",
+  "/etf/ranking": "2026-05-17",
+  "/info/etc/about": "2026-05-17",
+  "/info/etc/contact": "2026-05-17",
+  "/info/etc/privacy": "2026-05-17",
+  "/info/etc/terms": "2026-05-17",
+  "/info/etc/editorial-policy": "2026-05-17",
+  "/info/etc/methodology": "2026-05-17",
+};
+
 const staticRoutes = [
   "/",
   "/finance",
@@ -85,11 +111,7 @@ const strategyRoutes = Object.keys(strategyArticles).map((slug) => `/info/strate
 const companyMarketRoutes = companyAnalysisMarkets.map((market) => market.basePath);
 const industryRoutes = industryHubs.map((hub) => `/industry/${hub.slug}`);
 /**
- * 기업분석 상세 페이지는 주요 콘텐츠 중심으로 사이트맵 범위를 구성합니다.
- *  - customNote(수기 단락)가 있는 종목
- *  - 주요 지수(KOSPI200/KOSDAQ150/S&P500/NASDAQ100/DJIA) 편입 종목
- *
- * 그 외 기업분석 페이지도 라우트는 유지되어 사이트 내부 검색과 관련 종목 링크에서 접근할 수 있습니다.
+ * 기업분석 상세 페이지는 충분한 설명과 주요 분류 정보가 있는 글만 사이트맵에 포함합니다.
  */
 const companyDetailRoutes = getSitemapCompanyAnalysisRoutes().map(({ market, slug }) => `/company-analysis/${market}/${slug}`);
 
@@ -139,11 +161,11 @@ function resolveLastModified(route: string, fallback: Date): Date {
     }
   }
 
-  return fallback;
+  return parseDate(STATIC_ROUTE_UPDATED_AT[route] ?? DEFAULT_UPDATED_AT, fallback);
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const fallbackDate = parseDate(DEFAULT_UPDATED_AT, new Date("2026-05-17"));
 
   const categoryRoutes = financeCategories.map((category) => category.basePath);
   const financeRoutes = getAllFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
@@ -216,7 +238,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return allRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,
-    lastModified: resolveLastModified(route, now),
+    lastModified: resolveLastModified(route, fallbackDate),
     changeFrequency:
       route === "/"
         ? "weekly"

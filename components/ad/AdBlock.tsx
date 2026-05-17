@@ -17,8 +17,7 @@ interface AdBlockProps {
 }
 
 
-// 광고 노출은 환경변수와 코드 레벨 스위치가 모두 허용될 때만 활성화됩니다.
-// NEXT_PUBLIC_ADSENSE_ENABLED=true와 광고 클라이언트/슬롯 값이 설정된 경우에만 렌더링됩니다.
+// 보조 콘텐츠 블록은 환경변수와 코드 레벨 스위치가 모두 허용될 때만 렌더링됩니다.
 const FORCE_DISABLE_ADS = true;
 
 const ADSENSE_ENABLED =
@@ -37,7 +36,7 @@ export default function AdBlock({
   slotKey = "default",
   format = "auto",
   className = "",
-  label = "광고 영역",
+  label = "본문 보조 영역",
 }: AdBlockProps) {
   const resolvedSlot = slot ?? slotMap[slotKey];
   const isDev = process.env.NODE_ENV === "development";
@@ -51,7 +50,7 @@ export default function AdBlock({
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
     } catch (error) {
-      console.error("[ad] render failed", error);
+      console.error("[content-block] render failed", error);
     }
   }, [canRenderAd, resolvedSlot]);
 

@@ -8,6 +8,7 @@ import {
   companyAnalysisMarkets,
   getCompanyArticlesByMarket,
   getCompanyMarketConfig,
+  getSitemapCompanyAnalysisRoutes,
 } from "@/lib/company-analysis/data";
 import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
@@ -61,8 +62,14 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
     throw new Error("Company analysis market not found");
   }
 
+  const indexableRouteSet = new Set(
+    getSitemapCompanyAnalysisRoutes().map((route) => `${route.market}:${route.slug}`),
+  );
   const articles = getCompanyArticlesByMarket(market.key as CompanyAnalysisMarket);
-  const cardArticles = articles.map((article) => ({
+  const visibleArticles = articles.filter((article) =>
+    indexableRouteSet.has(`${article.market}:${article.slug}`),
+  );
+  const cardArticles = visibleArticles.map((article) => ({
     market: article.market,
     slug: article.slug,
     ticker: article.ticker,
@@ -79,8 +86,8 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: market.title,
-    numberOfItems: articles.length,
-    itemListElement: articles.slice(0, 100).map((article, index) => ({
+    numberOfItems: visibleArticles.length,
+    itemListElement: visibleArticles.slice(0, 100).map((article, index) => ({
       "@type": "ListItem",
       position: index + 1,
       url: `${BASE_URL}/company-analysis/${article.market}/${article.slug}`,
@@ -125,7 +132,7 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
             <p className="bd-text-main mt-4">{market.intro}</p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
               <span className="rounded-full border border-slate-700 px-3 py-1">
-                분석글 {articles.length.toLocaleString("ko-KR")}개
+                분석글 {visibleArticles.length.toLocaleString("ko-KR")}개
               </span>
               <span className="rounded-full border border-slate-700 px-3 py-1">검색 기능 제공</span>
               <span className="rounded-full border border-slate-700 px-3 py-1">사업 구조 중심</span>
@@ -150,9 +157,9 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
             </div>
           </section>
 
-          <AdBlock slotKey="inline" label={`${market.title} 목록 중간 광고 영역`} />
+          <AdBlock slotKey="inline" label={`${market.title} 목록 관련 콘텐츠 영역`} />
 
-          {articles.length > 0 ? (
+          {visibleArticles.length > 0 ? (
             <CompanyAnalysisSearchList
               articles={cardArticles}
               marketTitle={market.title}

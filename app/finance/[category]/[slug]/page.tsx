@@ -136,7 +136,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
             {entry.caution ? <p className="bd-text-sub mt-4">{entry.caution}</p> : null}
           </section>
 
-          <AdBlock slotKey="inline" label={`${entry.title} 본문 중간 광고 영역`} />
+          <AdBlock slotKey="inline" label={`${entry.title} 본문 중간 보조 콘텐츠 영역`} />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">
