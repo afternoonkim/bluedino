@@ -529,7 +529,7 @@ export default function SalaryNetCalculatorPage() {
                 <div>
                   <h2 className="text-xl font-black tracking-tight text-white">월 공제 상세</h2>
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    각 항목별로 얼마나 빠지는지 한눈에 볼 수 있게 정리했습니다.
+                    각 항목별로 얼마나 빠지는지 한눈에 볼 수 있게 비교할 수 있게 구성했습니다.
                   </p>
                 </div>
                 <div className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-sm text-slate-400">
@@ -628,7 +628,7 @@ export default function SalaryNetCalculatorPage() {
                   <p className="text-sm font-semibold text-slate-400">관리 포인트</p>
                   <p className="mt-3 text-xl font-black text-white">{won(result.totalMonthlyDeduction)}</p>
                   <p className="mt-2 text-sm leading-6 text-slate-400">
-                    공제 항목이 큰 편이라면 비과세 항목, 원천징수 비율, 절세계좌 활용 전략을 함께 점검하는 것이 좋습니다.
+                    공제 항목이 큰 편이라면 비과세 항목, 원천징수 비율, 절세계좌 활용 전략을 함께 점검해야 합니다.
                   </p>
                 </div>
               </div>
@@ -721,7 +721,7 @@ export default function SalaryNetCalculatorPage() {
                   </div>
                   <div>
                     <h2 className="text-xl font-black tracking-tight text-white">같이 보면 좋은 계산기</h2>
-                    <p className="mt-1 text-sm text-slate-400">소득과 투자 계획을 함께 보면 더 좋습니다.</p>
+                    <p className="mt-1 text-sm text-slate-400">소득과 투자 계획을 함께 보면 더 적합합니다.</p>
                   </div>
                 </div>
 
@@ -770,12 +770,12 @@ export default function SalaryNetCalculatorPage() {
                 body: "세전 연봉과 상여금, 비과세 금액, 부양가족 수, 원천징수 비율 등을 입력하면 월 과세대상 급여를 계산하고 국민연금, 건강보험, 장기요양보험, 고용보험, 소득세를 순서대로 반영합니다.",
               },
               {
-                title: "이런 경우에 활용하면 좋습니다",
+                title: "이런 경우에 활용하면 적합합니다",
                 body: "이직 제안을 비교할 때, 연봉 협상 전에 실수령액을 가늠할 때, 상여금과 비과세 항목에 따라 체감 월급이 얼마나 달라지는지 보고 싶을 때 유용합니다.",
               },
               {
                 title: "자주 헷갈리는 포인트",
-                body: "같은 연봉이라도 부양가족 수, 비과세 항목, 원천징수 80·100·120% 설정에 따라 월 실수령액은 달라질 수 있습니다. 실제 급여명세서와 차이가 날 수 있다는 점도 함께 봐야 합니다.",
+                body: "같은 연봉이라도 부양가족 수, 비과세 항목, 원천징수 80·100·120% 설정에 따라 월 실수령액은 달라질 수 있습니다. 실제 급여명세서와 차이가 날 수 있다는 점도 같은 기준으로 놓고 확인해야 합니다.",
               },
             ]}
           />

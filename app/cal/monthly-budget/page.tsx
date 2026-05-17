@@ -104,7 +104,7 @@ export default function Page() {
             { label: "복리 계산기", href: "/cal/compound" },
         ]}
         officialSources={["입력한 소득·지출 조건 기준", "개인별 실제 카드·계좌 지출 내역"]}
-        caution={`50/30/20 비율은 미국 표준 기준이며 한국 가계 평균은 주거비 비중이 더 큽니다. 본인 가계부를 1~2개월 작성한 후 실제 비율과 비교해 조정하시는 게 안전합니다.`}
+        caution={`50/30/20 비율은 미국 표준 기준이며 한국 가계 평균은 주거비 비중이 더 큽니다. 본인 가계부를 1~2개월 작성한 후 실제 비율과 비교해 조정하시는 게 부담을 줄일 수 있습니다.`}
       />
       <div className="bd-container-narrow bd-section">
         <PageTrustFooter pageKind="월 지출 예산 계산기 (50/30/20 룰)" updatedAt="2026-04-27" />

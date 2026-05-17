@@ -46,7 +46,7 @@ export default function ContactPage() {
             <div className="bd-list-item">서비스 오류 제보: 어떤 페이지에서 어떤 문제가 발생했는지, 입력값과 함께 적어 주세요.</div>
             <div className="bd-list-item">콘텐츠 수정 제안: 제도 설명이나 문장이 헷갈리는 부분이 있다면 해당 URL과 함께 보내 주세요.</div>
             <div className="bd-list-item">새 기능 제안: 필요한 계산기나 허브 페이지 주제가 있다면 사용 목적까지 적어 주세요.</div>
-            <div className="bd-list-item">협업 문의: 간단한 소개와 목적을 함께 보내 주시면 확인에 도움이 됩니다.</div>
+            <div className="bd-list-item">협업 문의: 간단한 소개와 목적을 함께 보내 주시면 확인에 판단에 보탬이 됩니다.</div>
           </div>
         </section>
 

@@ -12,7 +12,7 @@ export default function StockCompanySummary({ lines }: StockCompanySummaryProps)
       <div className="mb-4">
         <h2 className="text-lg font-semibold text-white md:text-xl">기업 / 산업 이해하기</h2>
         <p className="mt-1 text-sm text-slate-400">
-          이 기업이 어떤 산업에 속해 있고, 투자할 때 무엇을 같이 봐야 하는지 빠르게 정리했습니다.
+          이 기업이 어떤 산업에 속해 있고, 투자할 때 무엇을 같이 봐야 하는지 빠르게 비교할 수 있게 구성했습니다.
         </p>
       </div>
 

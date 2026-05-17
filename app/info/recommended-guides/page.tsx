@@ -97,7 +97,7 @@ export default function RecommendedGuidesPage() {
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">먼저 보면 도움 되는 인기 가이드</h2>
           <p className="bd-text-sub mt-3">
-            ISA·IRP·연금저축·주담대·해외주식 세금처럼 사용자가 가장 자주 검색하는 주제부터 정리했습니다. 제도와 세율은 매년 변경될 수 있으므로 각 글 하단의 최종 업데이트일과 공식 자료 확인 안내를 함께 참고해 주세요.
+            ISA·IRP·연금저축·주담대·해외주식 세금처럼 사용자가 가장 자주 검색하는 주제부터 비교할 수 있게 구성했습니다. 제도와 세율은 매년 변경될 수 있으므로 각 글 하단의 최종 업데이트일과 공식 자료 확인 안내를 함께 참고해 주세요.
           </p>
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {popularGuides.map((g) => (

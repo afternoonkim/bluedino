@@ -53,7 +53,7 @@ export default function LoanInterestCalculatorClient() {
         <CalculatorHero
           badge="대출 계산기"
           title="대출이자 계산기로 월 상환액과 총이자를 함께 비교하세요"
-          description="대출금액, 금리, 기간, 상환방식을 입력하면 월 상환액, 총이자, 예상 상환기간을 한 번에 확인할 수 있습니다. 원리금균등과 원금균등의 차이를 비교하고 중도 추가상환이 실제로 얼마나 효과가 있는지 가늠하기 좋습니다."
+          description="대출금액, 금리, 기간, 상환방식을 입력하면 월 상환액, 총이자, 예상 상환기간을 한 번에 확인할 수 있습니다. 원리금균등과 원금균등의 차이를 비교하고 중도 추가상환이 실제로 얼마나 효과가 있는지 가늠하기 적합합니다."
           tip="대출은 금리보다 총이자와 현금흐름을 같이 봐야 체감 부담을 제대로 읽을 수 있습니다. 월 상환액이 감당 가능한지부터 확인해보세요."
         />
 
@@ -96,7 +96,7 @@ export default function LoanInterestCalculatorClient() {
             </div>
             <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-sm leading-7 text-slate-300">
               {repaymentType === "equal-payment"
-                ? `원리금균등은 월 상환액이 비교적 일정해서 현금흐름 관리가 쉽지만 초기 이자 비중이 높습니다. 추가상환을 넣으면 총이자를 줄이는 효과를 체감하기 좋습니다.`
+                ? `원리금균등은 월 상환액이 비교적 일정해서 현금흐름 관리가 쉽지만 초기 이자 비중이 높습니다. 추가상환을 넣으면 총이자를 줄이는 효과를 체감하기 적합합니다.`
                 : `원금균등은 초반 상환액 부담이 크지만 시간이 갈수록 월 상환액이 줄어들고 총이자가 낮아지는 경향이 있습니다. 소득이 안정적이라면 장기적으로 유리할 수 있습니다.`}
             </div>
           </section>

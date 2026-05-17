@@ -100,7 +100,7 @@ export default function MortgageCalculatorClient() {
               <ResultCard title="필요 초기 현금" value={formatCurrency(result.totalCashNeed)} sub="자기자본 + 취득비용" />
             </div>
             <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-sm leading-7 text-slate-300">
-              주택 구매에서는 대출 가능 여부만큼이나 초기 현금이 얼마나 필요한지가 중요합니다. 취득세, 중개보수, 법무비용 등은 금융사 대출금으로 바로 충당되지 않는 경우가 많아 실제 자금계획에서 따로 준비해야 합니다.
+              주택 구매에서는 대출 가능 여부만큼이나 초기 현금이 얼마나 필요한지가 먼저 볼 기준입니다. 취득세, 중개보수, 법무비용 등은 금융사 대출금으로 바로 충당되지 않는 경우가 많아 실제 자금계획에서 따로 준비해야 합니다.
             </div>
           </section>
         </div>

@@ -106,7 +106,7 @@ export default function ChildEducationFundClient() {
 
       <div className="mt-6 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5 text-sm leading-7 text-amber-50/90">
         <p>ISA는 가입 연령과 소득 요건을 충족해야 활용할 수 있으므로 미성년 자녀 명의로 바로 활용하기는 어려울 수 있습니다. 자녀가 요건을 충족하는 시점에 절세계좌 전략으로 검토해 주세요.</p>
-        <p className="mt-2">미성년 자녀 증여는 10년 단위 증여재산공제 한도를 기준으로 관리해야 합니다. 교육비 목적 자금이라도 증여 시점과 금액 기록을 남겨두는 것이 좋습니다.</p>
+        <p className="mt-2">미성년 자녀 증여는 10년 단위 증여재산공제 한도를 기준으로 관리해야 합니다. 교육비 목적 자금이라도 증여 시점과 금액 기록을 남겨두는 방식이 적합합니다.</p>
       </div>
 
       <div className="mt-6 space-y-6">

@@ -39,7 +39,7 @@ const mainSections = [
     badge: "처음 시작",
     title: "투자 기초 가이드",
     description:
-      "주식, ETF, 배당, 복리, 포트폴리오처럼 투자 전에 먼저 알아두면 좋은 개념을 쉽게 정리했습니다.",
+      "주식, ETF, 배당, 복리, 포트폴리오처럼 투자 전에 먼저 알아두면 좋은 개념을 쉽게 비교할 수 있게 구성했습니다.",
     href: "/info/guide",
   },
   {
@@ -53,7 +53,7 @@ const mainSections = [
     badge: "상황별 판단",
     title: "투자전략 가이드",
     description:
-      "1인 가구, 신혼부부, 자녀가 있는 가정, 은퇴 준비 단계처럼 상황에 따라 달라지는 투자 흐름을 정리했습니다.",
+      "1인 가구, 신혼부부, 자녀가 있는 가정, 은퇴 준비 단계처럼 상황에 따라 달라지는 투자 흐름을 비교할 수 있게 구성했습니다.",
     href: "/info/strategy",
   },
 ];
@@ -95,7 +95,7 @@ export default function InfoHubPage() {
           <span className="bd-badge">투자정보 허브</span>
           <h1 className="bd-title-lg mt-4">계좌·세금·절세·투자 기초를 한곳에서 확인하세요</h1>
           <p className="bd-text-main mt-4">
-            BlueDino 투자정보 허브는 금융 용어가 낯선 분도 필요한 내용을 빠르게 찾을 수 있도록 만든 안내 페이지입니다. ISA, IRP, 연금저축, ETF, 대출, 세금처럼 자주 검색하는 주제를 계산기와 가이드로 연결해 정리했습니다.
+            BlueDino 투자정보 허브는 금융 용어가 낯선 분도 필요한 내용을 빠르게 찾을 수 있도록 만든 안내 페이지입니다. ISA, IRP, 연금저축, ETF, 대출, 세금처럼 자주 검색하는 주제를 계산기와 가이드로 연결해 비교할 수 있게 구성했습니다.
           </p>
           <p className="bd-text-sub mt-3">
             먼저 개념을 읽고, 이후 계산기에 본인 금액과 기간을 입력해 보면 투자 판단에 필요한 숫자를 더 쉽게 이해할 수 있습니다.

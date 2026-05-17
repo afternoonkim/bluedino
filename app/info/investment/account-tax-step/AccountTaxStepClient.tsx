@@ -11,7 +11,7 @@ export default function AccountTaxStepClient() {
           <span className="bd-badge">투자정보</span>
           <h1 className="mt-4 bd-title-lg">절세계좌 활용순서</h1>
           <p className="mt-3 bd-text-sub">
-            연금저축, IRP, ISA를 어떤 순서로 활용하면 절세 효과를 더 체계적으로 챙길 수 있는지 일반적인 우선순위 기준으로 정리했습니다.
+            연금저축, IRP, ISA를 어떤 순서로 활용하면 절세 효과를 더 체계적으로 챙길 수 있는지 일반적인 우선순위 기준으로 비교할 수 있게 구성했습니다.
           </p>
           <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
             소득 수준, 나이, 자금 계획, 기존 계좌 보유 여부에 따라 실제 우선순위는 달라질 수 있으므로 참고용 가이드로 활용해 주세요.
@@ -22,7 +22,7 @@ export default function AccountTaxStepClient() {
           <h2 className="bd-title-md">이 순서가 필요한 이유</h2>
           <div className="bd-list mt-4">
             <div className="bd-list-item">세액공제는 연말정산 체감이 즉시 나타나기 때문에 먼저 챙길 가치가 큽니다.</div>
-            <div className="bd-list-item">ISA는 중장기 투자 계좌로 세후 수익률 관리에 유리해 연금계좌 다음 단계로 연결하기 좋습니다.</div>
+            <div className="bd-list-item">ISA는 중장기 투자 계좌로 세후 수익률 관리에 유리해 연금계좌 다음 단계로 연결하기 적합합니다.</div>
             <div className="bd-list-item">같은 돈을 투자해도 어떤 계좌를 먼저 채우는지에 따라 세후 결과가 달라질 수 있습니다.</div>
           </div>
         </section>

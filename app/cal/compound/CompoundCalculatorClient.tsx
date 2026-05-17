@@ -572,7 +572,7 @@ export default function CompoundCalculatorPage() {
             </div>
             <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-amber-200">
               이 계산기는 참고용 도구입니다. 실제 투자 판단 전에는 본인의 자산
-              배분, 세금 구조, 리스크 허용 범위를 함께 검토하는 것이 좋습니다.
+              배분, 세금 구조, 리스크 허용 범위를 함께 검토하는 방식이 적합합니다.
             </div>
           </div>
         </section>

@@ -207,7 +207,7 @@ export default async function StockDetailPage({ params }: PageProps) {
       {isFinancialSector && (
         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
           금융 업종은 일반 기업과 재무 해석 기준이 다를 수 있습니다. 부채 관련 지표와 밸류에이션은
-          업종 특성을 함께 고려해서 보는 것이 좋습니다.
+          업종 특성을 함께 고려해서 보는 흐름이 현실적입니다.
         </div>
       )}
 

@@ -68,7 +68,7 @@ export function buildCheckpoints(args: {
     cautions.push("현재 주가가 52주 고점권에 가까워 단기 조정 가능성도 염두에 둘 필요가 있습니다.");
   }
   if ((score?.total ?? 0) < 55 && score) {
-    cautions.push("정량 점수가 낮아 추가적인 사업 경쟁력과 성장 지속성을 따로 확인하는 편이 좋습니다.");
+    cautions.push("정량 점수가 낮아 추가적인 사업 경쟁력과 성장 지속성을 따로 확인하는 편이 적합합니다.");
   }
 
   if (positives.length === 0) {

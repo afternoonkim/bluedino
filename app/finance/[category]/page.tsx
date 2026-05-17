@@ -6,6 +6,8 @@ import AdBlock from "@/components/ad/AdBlock";
 import FinanceQuestionList from "@/components/finance/FinanceQuestionList";
 import { financeCategories, getFinanceCategory } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
+import { getFinanceEntry } from "@/lib/finance/content";
+import { isIndexableFinanceEntry } from "@/lib/finance/indexing";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
 
 type PageProps = { params: Promise<{ category: string }> };
@@ -46,7 +48,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
   },
   irp: {
     whyMatters:
-      "IRP(개인형 퇴직연금)는 연말정산 세액공제와 노후 인출까지 같이 보고 운용해야 하는 장기 절세계좌입니다. 같은 1,000만 원을 IRP에 넣었느냐, 일반 계좌에 넣었느냐만으로도 5~15년 뒤 세후 자산이 크게 달라지기 때문에, 연봉별 세액공제 한도와 인출 시 연금소득세·기타소득세 차이를 함께 이해하는 것이 핵심입니다.",
+      "IRP(개인형 퇴직연금)는 연말정산 세액공제와 노후 인출까지 같이 보고 운용해야 하는 장기 절세계좌입니다. 같은 1,000만 원을 IRP에 넣었느냐, 일반 계좌에 넣었느냐만으로도 5~15년 뒤 세후 자산이 크게 달라지기 때문에, 연봉별 세액공제 한도와 인출 시 연금소득세·기타소득세 차이를 함께 이해하는 것이 먼저 볼 지점입니다.",
     searchIntents: [
       "IRP 세액공제 한도 900만 원과 연봉별 환급액이 정확히 얼마인지 확인하고 싶을 때",
       "IRP에 어떤 ETF를 담을 수 있는지, 위험자산 70% 한도가 어떻게 적용되는지 알아볼 때",
@@ -139,7 +141,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
   },
   "loan-basics": {
     whyMatters:
-      "대출은 금리만 비교해서 결정하면 실제 총비용이 기대와 달라지는 경우가 많습니다. 같은 1억 원을 빌려도 금리·기간·상환 방식·중도상환수수료·신용 영향까지 함께 보면 5년 후 남는 돈이 수백만 원 단위로 차이가 납니다. 대출기초 가이드는 처음 대출을 알아보거나 갈아타기를 고민하는 분이 \"무엇을 보고 결정해야 하는지\" 흐름부터 잡을 수 있도록 정리했습니다.",
+      "대출은 금리만 비교해서 결정하면 실제 총비용이 기대와 달라지는 경우가 많습니다. 같은 1억 원을 빌려도 금리·기간·상환 방식·중도상환수수료·신용 영향까지 함께 보면 5년 후 남는 돈이 수백만 원 단위로 차이가 납니다. 대출기초 가이드는 처음 대출을 알아보거나 갈아타기를 고민하는 분이 \"무엇을 보고 결정해야 하는지\" 흐름부터 잡을 수 있도록 비교할 수 있게 구성했습니다.",
     searchIntents: [
       "대출 한도가 어떻게 정해지는지, DSR·LTV가 뭔지 처음 알아볼 때",
       "원리금균등·원금균등·만기일시 상환 방식 차이가 헷갈릴 때",
@@ -278,7 +280,11 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
     );
   }
 
-  const questions = getQuestionsByCategory(category.key as FinanceCategoryKey);
+  const rawQuestions = getQuestionsByCategory(category.key as FinanceCategoryKey);
+  const questions = rawQuestions
+    .map((question) => ({ question, indexable: isIndexableFinanceEntry(getFinanceEntry(category.key as FinanceCategoryKey, question.slug)) }))
+    .sort((a, b) => Number(b.indexable) - Number(a.indexable) || (b.question.searchPriority ?? 0) - (a.question.searchPriority ?? 0))
+    .map((item) => item.question);
   const featured = questions.slice(0, 6);
   const seo = CATEGORY_SEO[category.key as FinanceCategoryKey];
   const baseUrl = `https://bluedino.kr${category.basePath}`;
@@ -370,7 +376,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
               ))}
             </div>
             <p className="bd-text-sub mt-5">
-              위 질문 흐름은 BlueDino를 찾는 사용자의 실제 검색 의도를 정리한 것입니다. 본인 상황과 가장 가까운 질문부터 골라 읽으면 흐름이 빠르게 잡힙니다.
+              비슷한 질문이 많아 보일 때는 본인 상황과 가장 가까운 항목부터 읽어보세요. 세금, 금리, 한도처럼 결과를 바꾸는 조건을 먼저 고르면 탐색 시간이 줄어듭니다.
             </p>
           </section>
         )}
@@ -381,7 +387,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
 
         {seo && (
           <section className="bd-card bd-card-padding">
-            <h2 className="bd-title-md">이런 분에게 특히 도움이 됩니다</h2>
+            <h2 className="bd-title-md">이런 상황이라면 먼저 읽어보세요</h2>
             <div className="bd-list mt-5">
               {seo.whoNeedsThis.map((who) => (
                 <div key={who} className="bd-list-item">{who}</div>
@@ -394,7 +400,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">{category.shortTitle} 질문과 같이 보면 좋은 페이지</h2>
             <p className="bd-text-main mt-4">
-              개념을 이해한 뒤에는 본인 금액·기간을 직접 넣어보거나, 연결된 가이드를 함께 보면 의사결정이 더 단단해집니다.
+              개념을 읽은 뒤에는 본인 금액과 기간을 직접 넣어보세요. 숫자로 비교하면 어떤 조건이 결과를 바꾸는지 더 빠르게 볼 수 있습니다.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {seo.helpers.map((helper) => (
@@ -411,7 +417,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
 
         {seo && seo.related.length > 0 && (
           <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">관련 카테고리도 함께 보세요</h2>
+            <h2 className="bd-title-md">같은 고민에서 이어지는 카테고리</h2>
             <div className="mt-6 flex flex-wrap gap-3">
               {seo.related.map((relKey) => {
                 const rel = financeCategories.find((c) => c.key === relKey);

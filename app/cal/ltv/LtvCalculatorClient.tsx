@@ -91,7 +91,7 @@ export default function LtvCalculatorClient() {
             </div>
             <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-sm leading-7 text-slate-300">
               {result.purchasePossible
-                ? "현재 입력 기준으로는 보유 자금과 대출 가능 금액을 합쳐 자금 구조를 맞출 가능성이 있습니다. 다만 취득세, 중개수수료, 이사비, 잔금 일정 같은 부대비용도 따로 확인하는 것이 안전합니다."
+                ? "현재 입력 기준으로는 보유 자금과 대출 가능 금액을 합쳐 자금 구조를 맞출 가능성이 있습니다. 다만 취득세, 중개수수료, 이사비, 잔금 일정 같은 부대비용도 따로 확인하는 것이 부담을 줄일 수 있습니다."
                 : "현재 입력 기준으로는 자기자본이 부족할 수 있습니다. 대출 규제보다 실제 잔금과 부대비용이 더 큰 변수일 수 있으니 여유 자금까지 같이 계산해보세요."}
             </div>
           </section>

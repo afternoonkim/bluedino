@@ -43,7 +43,7 @@ export default function EditorialPolicyPage() {
 
         <section className="bd-grid-2">
           <article className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">이런 분들에게 도움이 됩니다</h2>
+            <h2 className="bd-title-md">이런 분들에게 판단에 보탬이 됩니다</h2>
             <div className="bd-list mt-4">
               <div className="bd-list-item">투자를 막 시작했지만 계좌, 세금, 수익률 개념이 헷갈리는 분</div>
               <div className="bd-list-item">내 소득과 대출 부담을 숫자로 먼저 확인하고 싶은 분</div>

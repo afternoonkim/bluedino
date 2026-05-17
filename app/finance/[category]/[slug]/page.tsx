@@ -117,7 +117,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
     description: entry.description,
     inLanguage: "ko-KR",
     datePublished: "2025-01-01",
-    dateModified: "2026-04-27",
+    dateModified: entry.updatedAt,
     author: {
       "@type": "Organization",
       name: "BlueDino 편집팀",
@@ -186,6 +186,24 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
                 </section>
               ))}
 
+              {entry.example ? (
+                <section className="bd-card-soft bd-card-padding">
+                  <h2 className="bd-title-md">실제 상황 예시</h2>
+                  <p className="bd-text-main mt-4">{entry.example}</p>
+                </section>
+              ) : null}
+
+              {entry.commonMistakes.length > 0 ? (
+                <section className="bd-card bd-card-padding">
+                  <h2 className="bd-title-md">판단이 흔들리기 쉬운 부분</h2>
+                  <div className="bd-list mt-4">
+                    {entry.commonMistakes.map((item) => (
+                      <div key={item} className="bd-list-item">{item}</div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
               {entry.checklist.length > 0 && (
                 <section className="bd-card-soft bd-card-padding">
                   <h2 className="bd-title-md">{labels.checklist}</h2>
@@ -212,7 +230,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
               )}
 
               <PageTrustFooter
-                updatedAt="2026-04-27"
+                updatedAt={entry.updatedAt}
                 pageKind={`${category.shortTitle} 질문 가이드`}
               />
 
@@ -234,6 +252,19 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
                   ))}
                 </div>
               </section>
+
+              {entry.relatedGuideLinks.length > 0 && (
+                <section className="bd-card-soft bd-card-padding">
+                  <h2 className="bd-title-sm">이어 읽으면 좋은 가이드</h2>
+                  <div className="mt-4 flex flex-col gap-3">
+                    {entry.relatedGuideLinks.map((link) => (
+                      <Link key={link.href} href={link.href} className="bd-button-secondary text-center">
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {relatedEntries.length > 0 && (
                 <section className="bd-card bd-card-padding">

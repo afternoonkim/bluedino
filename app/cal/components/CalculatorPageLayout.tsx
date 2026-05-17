@@ -14,7 +14,7 @@ function buildDefaultInterpretation(title: string) {
     return ["대출 가능 금액만 보지 말고 취득세, 중개보수, 이사비, 비상금까지 함께 남는지 확인하세요.", "DSR·LTV 규제와 금융회사 심사 기준은 실제 한도에 큰 영향을 줍니다.", "금리가 0.5~1%p 오를 때 월 상환액이 감당 가능한지도 함께 비교하세요."];
   }
   if (title.includes("예금") || title.includes("적금") || title.includes("파킹")) {
-    return ["세전 이자와 세후 이자를 구분해서 확인하세요.", "우대금리 조건을 실제로 충족할 수 있는지 확인해야 최종 수령액이 비슷해집니다.", "예금자보호 한도와 중도해지 이율도 함께 확인하는 것이 좋습니다."];
+    return ["세전 이자와 세후 이자를 구분해서 확인하세요.", "우대금리 조건을 실제로 충족할 수 있는지 확인해야 최종 수령액이 비슷해집니다.", "예금자보호 한도와 중도해지 이율도 함께 확인해야 합니다."];
   }
   if (title.includes("배당")) {
     return ["배당금은 배당수익률, 주가, 환율, 세금이 함께 움직이므로 세후 현금흐름 기준으로 보세요.", "배당 재투자 결과는 장기 가정이므로 실제 배당 삭감이나 주가 변동 가능성을 함께 고려해야 합니다.", "월 현금흐름 목표가 있다면 필요한 투자 원금도 함께 비교해 보세요."];
@@ -22,7 +22,7 @@ function buildDefaultInterpretation(title: string) {
   if (title.includes("FIRE") || title.includes("은퇴")) {
     return ["은퇴 가능 시점은 수익률보다 저축률과 생활비 가정에 더 민감하게 달라질 수 있습니다.", "물가상승률을 반영하면 필요한 목표 자산이 커질 수 있습니다.", "비상금, 건강보험료, 주거비처럼 은퇴 후에도 남는 고정비를 따로 점검하세요."];
   }
-  return ["입력값을 바꾸면 결과가 얼마나 달라지는지 비교해 보세요.", "계산 결과는 실제 적용 전 확인해야 할 대략적인 기준점으로 활용하는 것이 좋습니다.", "세금, 금리, 금융회사 조건이 달라지면 최종 금액도 달라질 수 있습니다."];
+  return ["입력값을 바꾸면 결과가 얼마나 달라지는지 비교해 보세요.", "계산 결과는 실제 적용 전 확인해야 할 대략적인 기준점으로 활용하세요.", "세금, 금리, 금융회사 조건이 달라지면 최종 금액도 달라질 수 있습니다."];
 }
 
 function buildDefaultMistakes(title: string) {
@@ -57,6 +57,22 @@ function normalizeCalcKind(title: string) {
   if (title.includes("예금") || title.includes("적금") || title.includes("파킹") || title.includes("CMA")) return "cash";
   if (title.includes("연봉") || title.includes("실수령")) return "salary";
   return "general";
+}
+
+
+function defaultRelatedGuides(title: string) {
+  if (title.includes("DSR") || title.includes("LTV") || title.includes("대출") || title.includes("주담대")) {
+    return [
+      { label: "대출기초 질문 가이드", href: "/finance/loan-basics" },
+      { label: "신용대출 질문 가이드", href: "/finance/credit-loan" },
+      { label: "주택담보대출 질문 가이드", href: "/finance/mortgage-loan" },
+    ];
+  }
+  if (title.includes("ISA")) return [{ label: "ISA 질문 가이드", href: "/finance/isa" }, { label: "계좌별 세금 구조", href: "/info/investment/account-tax" }];
+  if (title.includes("IRP") || title.includes("연금")) return [{ label: "IRP 질문 가이드", href: "/finance/irp" }, { label: "연금저축 질문 가이드", href: "/finance/pension" }, { label: "은퇴 현금흐름 전략", href: "/info/strategy/retirement-income" }];
+  if (title.includes("배당")) return [{ label: "배당 투자 기초", href: "/info/guide/dividend-basics" }, { label: "배당 전략", href: "/info/strategy/dividend" }];
+  if (title.includes("복리") || title.includes("FIRE") || title.includes("은퇴")) return [{ label: "포트폴리오 기초", href: "/info/guide/portfolio-basics" }, { label: "자산배분 전략", href: "/info/strategy/asset-allocation" }];
+  return [{ label: "금융 질문 가이드", href: "/finance" }, { label: "투자 기초 가이드", href: "/info/guide" }];
 }
 
 type CalcHeadingSlot = "when" | "interpretation" | "mistake" | "example" | "faq" | "related";
@@ -236,7 +252,19 @@ export default function CalculatorPageLayout({
           </div>
         </section>
 
-        {/* 7. 공식 참고 기준 */}
+        {/* 7. 관련 가이드 */}
+        <section className="bd-card bd-card-padding">
+          <h2 className="bd-title-md">계산 결과와 함께 읽을 가이드</h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {defaultRelatedGuides(title).map((guide) => (
+              <Link key={guide.href} href={guide.href} className="bd-button-secondary">
+                {guide.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 8. 공식 참고 기준 */}
         <CalculatorReferenceBox sources={resolvedOfficialSources} />
 
         {/* 8. 확인할 점 (1회만) */}

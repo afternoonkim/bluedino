@@ -13,7 +13,7 @@ export default function AccountTaxClient() {
           <h1 className="mt-4 bd-title-lg">계좌별 세금정보</h1>
           <p className="mt-3 bd-text-sub">
             일반계좌, ISA, 연금저축·IRP 등 계좌 유형에 따라 원금 인출, 매매차익,
-            배당·분배금의 과세 방식이 어떻게 달라지는지 한눈에 비교할 수 있도록 정리했습니다.
+            배당·분배금의 과세 방식이 어떻게 달라지는지 한눈에 비교할 수 있도록 비교할 수 있게 구성했습니다.
           </p>
           <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
             세후 수익률을 비교할 때 먼저 확인해두면 좋은 기준표입니다. 단, 실제 세율 적용과 인출 조건은
@@ -68,7 +68,7 @@ export default function AccountTaxClient() {
             <>
               ISA, 연금계좌 활용 시 절세 효과가 있을 수 있지만, 외국납부세액 크레딧 공제 같은 구조 때문에 실제 입금액이 생각과 다르게 느껴질 수 있습니다.
               <br />
-              계좌별 세후 현금흐름을 비교할 때는 단순 세율만이 아니라 실제 수령 시점을 같이 보는 것이 좋습니다.
+              계좌별 세후 현금흐름을 비교할 때는 단순 세율만이 아니라 실제 수령 시점을 같이 보는 흐름이 현실적입니다.
             </>
           }
           rows={[
@@ -99,7 +99,7 @@ export default function AccountTaxClient() {
             <>
               해외주식 직접투자는 일반계좌에서만 가능합니다.
               <br />
-              매도 계획이 있다면 연간 손익 통산과 기본공제, 환율 반영 여부까지 함께 확인하는 것이 좋습니다.
+              매도 계획이 있다면 연간 손익 통산과 기본공제, 환율 반영 여부까지 함께 확인해야 합니다.
             </>
           }
           rows={[["일반계좌", "비과세", 

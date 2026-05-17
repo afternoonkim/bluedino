@@ -220,7 +220,7 @@ export default function StrategyHubPage() {
               <span className="bd-badge">투자전략 가이드</span>
               <h1 className="mt-4 bd-title-xl">투자전략, 내 상황과 인생 단계에 맞게 골라보세요</h1>
               <p className="mt-4 max-w-4xl bd-text-main">
-                투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지부터 정리하는 일에서 시작됩니다. BlueDino는 1인 가구·신혼부부·딩크족·출산가정·자녀를 키우는 가정·고소득자·프리랜서·대출 병행 투자자·첫 내 집 마련·은퇴 5~10년 전·은퇴 후까지 11가지 상황별 투자전략과 절세계좌·자산배분·배당·ETF 핵심 전략을 한눈에 비교할 수 있도록 정리했습니다.
+                투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지부터 정리하는 일에서 시작됩니다. BlueDino는 1인 가구·신혼부부·딩크족·출산가정·자녀를 키우는 가정·고소득자·프리랜서·대출 병행 투자자·첫 내 집 마련·은퇴 5~10년 전·은퇴 후까지 11가지 상황별 투자전략과 절세계좌·자산배분·배당·ETF 핵심 전략을 한눈에 비교할 수 있도록 비교할 수 있게 구성했습니다.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="#life-stage" className="bd-button-primary">

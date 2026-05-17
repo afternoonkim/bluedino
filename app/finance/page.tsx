@@ -113,7 +113,7 @@ export default function FinancePage() {
           <span className="bd-badge">금융 가이드</span>
           <h1 className="bd-title-xl mt-4">절세계좌 · 대출 · 배당 중심 금융 가이드</h1>
           <p className="bd-text-main mt-4">
-            BlueDino의 금융 가이드는 이제 절세계좌, 대출, 배당이라는 세 축을 중심으로 다시 정리했습니다.
+            BlueDino의 금융 가이드는 이제 절세계좌, 대출, 배당이라는 세 축을 중심으로 다시 비교할 수 있게 구성했습니다.
             계좌를 만들지, 대출을 줄일지, 배당 현금흐름을 키울지처럼 실제 돈의 흐름에 바로 연결되는 주제부터 찾아볼 수 있도록 구성했습니다.
           </p>
           <p className="bd-text-sub mt-3">
@@ -159,7 +159,7 @@ export default function FinancePage() {
             <span className="bd-badge">2순위 허브</span>
             <h2 className="bd-title-lg mt-4">대출 판단 · 상환 계획 질문 모음</h2>
             <p className="bd-text-sub mt-3">
-              대출은 금리만이 아니라 한도, 상환 방식, 규제, 갈아타기 조건까지 함께 봐야 하므로 별도 축으로 정리했습니다.
+              대출은 금리만이 아니라 한도, 상환 방식, 규제, 갈아타기 조건까지 함께 봐야 하므로 별도 축으로 비교할 수 있게 구성했습니다.
             </p>
           </div>
           <div className="bd-grid-3">

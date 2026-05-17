@@ -27,7 +27,7 @@ const principles = [
 
 export default function EditorialTrustPanel({
   title = "BlueDino를 이용할 때 알아두면 좋은 점",
-  description = "이 사이트가 어떤 방식으로 정보를 보여주고, 사용자가 어떤 점을 함께 확인하면 좋은지 한눈에 볼 수 있도록 정리했습니다.",
+  description = "이 사이트가 어떤 방식으로 정보를 보여주고, 사용자가 어떤 점을 함께 확인하면 좋은지 한눈에 볼 수 있도록 비교할 수 있게 구성했습니다.",
   compact = false,
 }: EditorialTrustPanelProps) {
   return (

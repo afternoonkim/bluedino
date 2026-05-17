@@ -84,7 +84,7 @@ const categoryCards = [
   {
     title: "절세 · 연금 · 계좌 전략",
     description:
-      "ISA, IRP, 연금저축, 퇴직소득세 등 절세와 계좌 활용 흐름을 한 묶음으로 정리했습니다.",
+      "ISA, IRP, 연금저축, 퇴직소득세 등 절세와 계좌 활용 흐름을 한 묶음으로 비교할 수 있게 구성했습니다.",
     links: [
       { label: "금융 가이드", href: "/finance" },
       { label: "ISA 가이드", href: "/finance/isa" },
@@ -120,7 +120,7 @@ const popularCalculators = [
   {
     rank: "01",
     title: "배당 계산기",
-    description: "월 적립 투자와 재투자까지 반영해 배당 성장 흐름을 보기 좋습니다.",
+    description: "월 적립 투자와 재투자까지 반영해 배당 성장 흐름을 보기 적합합니다.",
     href: "/cal/calculator",
   },
   {
@@ -194,7 +194,7 @@ const recommendedChoices = [
 const guideCards = [
   {
     title: "ETF 투자 기초",
-    description: "ETF의 구조, 장점, 체크 포인트를 처음부터 이해하기 쉽게 정리했습니다.",
+    description: "ETF의 구조, 장점, 체크 포인트를 처음부터 이해하기 쉽게 비교할 수 있게 구성했습니다.",
     href: "/info/guide/etf-basics",
   },
   {
@@ -214,7 +214,7 @@ const guideCards = [
   },
   {
     title: "리스크 관리 기초",
-    description: "수익률만 보지 않고 손실 구간까지 관리하는 기본 원칙을 정리했습니다.",
+    description: "수익률만 보지 않고 손실 구간까지 관리하는 기본 원칙을 비교할 수 있게 구성했습니다.",
     href: "/info/guide/risk-management",
   },
   {
@@ -292,13 +292,13 @@ export default function HomePage() {
               },
               {
                 title: "ISA · IRP · 연금저축 차이가 헷갈려요",
-                description: "절세계좌 3가지의 한도·세액공제율·중도해지 조건을 한 번에 비교한 가이드로 정리했습니다.",
+                description: "절세계좌 3가지의 한도·세액공제율·중도해지 조건을 한 번에 비교한 가이드로 비교할 수 있게 구성했습니다.",
                 href: "/info/guide/pension-vs-irp",
                 tag: "절세 · 계좌",
               },
               {
                 title: "해외주식 세금이 궁금해요",
-                description: "양도세 250만 원 공제·손익통산·환율 반영까지 매년 절세할 수 있는 5가지 방법을 정리했습니다.",
+                description: "양도세 250만 원 공제·손익통산·환율 반영까지 매년 절세할 수 있는 5가지 방법을 비교할 수 있게 구성했습니다.",
                 href: "/info/guide/us-stock-tax-saving",
                 tag: "세금 · 절세",
               },
@@ -338,7 +338,7 @@ export default function HomePage() {
           />
           <FeatureCard
             title="추천 흐름"
-            description="배당, 절세, 대출처럼 실제 사용 목적별로 이어서 눌러볼 수 있는 탐색 흐름을 함께 정리했습니다."
+            description="배당, 절세, 대출처럼 실제 사용 목적별로 이어서 눌러볼 수 있는 탐색 흐름을 함께 비교할 수 있게 구성했습니다."
           />
           <FeatureCard
             title="설명형 구조"
@@ -373,7 +373,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="주제별 바로가기"
             title="카테고리 진입 구조"
-            description="기능이 많아져도 길을 잃지 않도록 사용 목적 기준으로 4개 축을 다시 정리했습니다."
+            description="기능이 많아져도 길을 잃지 않도록 사용 목적 기준으로 4개 축을 다시 비교할 수 있게 구성했습니다."
           />
 
           <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -521,8 +521,8 @@ export default function HomePage() {
           <article className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-xl">
             <SectionHeader
               eyebrow="이용 방법"
-              title="이렇게 활용하면 좋습니다"
-              description="BlueDino를 처음 방문했을 때 가장 빠르게 도움을 받는 흐름을 짧게 정리했습니다."
+              title="이렇게 활용하면 적합합니다"
+              description="BlueDino를 처음 방문했을 때 가장 빠르게 도움을 받는 흐름을 짧게 비교할 수 있게 구성했습니다."
             />
             <div className="mt-6 space-y-3">
               <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-7 text-slate-300">1. 계산기로 내 금액과 기간을 먼저 넣어봅니다.</div>

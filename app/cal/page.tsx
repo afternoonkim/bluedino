@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { calculatorLandingData } from "./components/calculatorLandingData";
 
 const calculatorGroups = [
@@ -22,6 +23,22 @@ const calculatorGroups = [
     title: "대출·주택 계산기",
     description: "DSR, LTV, 주담대, 대출이자, 중도상환수수료처럼 대출 실행 전 확인해야 하는 계산기입니다.",
     slugs: ["loan-interest", "mortgage", "dsr", "ltv", "home-affordability", "prepayment-fee", "loan-refinance-saving", "jeonse-loan-interest", "jeonse-vs-monthly", "car-installment", "credit-card-installment"],
+  },
+];
+
+
+const calculatorHubFaqs = [
+  {
+    question: "처음 방문했다면 어떤 계산기부터 보면 되나요?",
+    answer: "투자 계획은 복리·배당 계산기부터, 대출 계획은 DSR·LTV·대출이자 계산기부터 확인하는 흐름이 적합합니다.",
+  },
+  {
+    question: "계산 결과와 실제 금융회사 조건이 다를 수 있나요?",
+    answer: "그럴 수 있습니다. 계산기는 입력값 기준의 참고 결과이며 실제 금리, 세금, 수수료, 심사 기준은 금융회사와 제도 변경에 따라 달라질 수 있습니다.",
+  },
+  {
+    question: "계산기만 보고 바로 결정해도 되나요?",
+    answer: "계산 결과는 첫 판단 기준으로 쓰고, 연결된 금융 Q&A와 가이드에서 세금·한도·상환 조건을 한 번 더 확인하는 방식이 적합합니다.",
   },
 ];
 
@@ -75,13 +92,34 @@ export const metadata: Metadata = {
 
 export default function CalculatorHubPage() {
   const total = calculatorGroups.reduce((sum, group) => sum + group.slugs.length, 0);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: calculatorHubFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
+      { "@type": "ListItem", position: 2, name: "금융 계산기", item: "https://bluedino.kr/cal" },
+    ],
+  };
+
   return (
     <main className="bd-page">
+      <Script id="calculator-hub-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <Script id="calculator-hub-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="bd-container bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">계산기 전체보기</span>
           <h1 className="bd-title-xl mt-4">금융·투자 계산기 모음</h1>
-          <p className="bd-text-main mt-4 max-w-4xl">배당, 복리, FIRE, 예금·적금, ISA·IRP, DSR·LTV·주담대 계산기까지 자주 쓰는 금융 계산기를 목적별로 정리했습니다. 먼저 계산기로 숫자를 확인하고, 연결된 가이드에서 세금과 제도 조건을 함께 점검해 보세요.</p>
+          <p className="bd-text-main mt-4 max-w-4xl">배당, 복리, FIRE, 예금·적금, ISA·IRP, DSR·LTV·주담대 계산기까지 자주 쓰는 금융 계산기를 목적별로 비교할 수 있게 구성했습니다. 먼저 계산기로 숫자를 확인하고, 연결된 가이드에서 세금과 제도 조건을 함께 점검해 보세요.</p>
           <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-300">
             <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">총 {total}개 계산기</span>
             <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">투자·절세·대출·생활자금</span>
@@ -108,6 +146,36 @@ export default function CalculatorHubPage() {
             </section>
           ))}
         </div>
+
+        <section className="bd-card bd-card-padding mt-8">
+          <h2 className="bd-title-md">계산기를 고를 때 먼저 나눠볼 기준</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 className="text-base font-bold text-white">투자 계획</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-400">배당, 복리, FIRE 계산기는 목표 금액과 기간을 먼저 정한 뒤 월 적립액을 조정할 때 유용합니다.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 className="text-base font-bold text-white">대출 판단</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-400">DSR, LTV, 대출이자 계산기는 가능한 한도보다 실제 상환 부담을 먼저 보는 데 초점을 둡니다.</p>
+            </article>
+            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 className="text-base font-bold text-white">현금관리</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-400">예금, 적금, 파킹통장, CMA 계산기는 세후 이자와 자금 사용 시점을 나누어 비교할 때 적합합니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="bd-card-soft bd-card-padding mt-8">
+          <h2 className="bd-title-md">계산기 전체보기에서 자주 묻는 질문</h2>
+          <div className="mt-6 space-y-4">
+            {calculatorHubFaqs.map((faq) => (
+              <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+                <p className="bd-text-main mt-3">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
-import { getAllFinanceRoutes } from "@/lib/finance/data";
+import { getFinanceEntry } from "@/lib/finance/content";
+import { getIndexableFinanceRoutes } from "@/lib/finance/indexing";
+import type { FinanceCategoryKey } from "@/lib/finance/types";
 import { financeCategories } from "@/lib/finance/config";
 import { guideArticles } from "@/lib/info/guideArticles";
 import { strategyArticles } from "@/lib/info/strategyArticles";
@@ -132,6 +134,15 @@ function getArticleLastModified(article: unknown, fallback: Date): Date {
 }
 
 function resolveLastModified(route: string, fallback: Date): Date {
+
+  if (route.startsWith("/finance/")) {
+    const [, , category, slug] = route.split("/");
+    if (category && slug) {
+      const entry = getFinanceEntry(category as FinanceCategoryKey, decodeURIComponent(slug));
+      if (entry?.updatedAt) return parseDate(entry.updatedAt, fallback);
+    }
+  }
+
   if (route.startsWith("/info/guide/")) {
     const slug = route.slice("/info/guide/".length);
     const article = guideArticles[slug];
@@ -168,7 +179,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const fallbackDate = parseDate(DEFAULT_UPDATED_AT, new Date("2026-05-17"));
 
   const categoryRoutes = financeCategories.map((category) => category.basePath);
-  const financeRoutes = getAllFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
+  const financeRoutes = getIndexableFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
 
   const allRoutes = Array.from(
     new Set([

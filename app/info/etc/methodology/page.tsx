@@ -4,7 +4,7 @@ import Link from "next/link";
 const canonical = "/info/etc/methodology";
 const title = "작성 기준 | BlueDino 금융 계산기·가이드 활용법";
 const description =
-  "BlueDino 계산기와 금융 가이드의 활용 기준, 공식 자료 확인 방법, 투자·세금·대출 정보 이용 시 주의할 점을 정리했습니다.";
+  "BlueDino 계산기와 금융 가이드의 활용 기준, 공식 자료 확인 방법, 투자·세금·대출 정보 이용 시 주의할 점을 비교할 수 있게 구성했습니다.";
 
 export const metadata: Metadata = {
   title,
@@ -30,7 +30,7 @@ export default function MethodologyPage() {
       <div className="bd-container-narrow bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">이용 안내</span>
-          <h1 className="bd-title-lg mt-4">BlueDino 정보는 이렇게 활용하면 좋습니다</h1>
+          <h1 className="bd-title-lg mt-4">BlueDino 정보는 이렇게 활용하면 적합합니다</h1>
           <p className="bd-text-main mt-4">
             이 사이트의 계산기와 가이드는 이해를 돕기 위한 참고 자료입니다.
             숫자를 빠르게 가늠하고 개념을 정리하는 데 도움을 주지만, 실제 조건은 개인 상황과 시점에 따라 달라질 수 있습니다.
@@ -46,7 +46,7 @@ export default function MethodologyPage() {
             <div className="bd-list mt-4">
               <div className="bd-list-item">입력한 금리, 수익률, 세율, 기간이 달라지면 결과도 함께 달라집니다.</div>
               <div className="bd-list-item">대출과 세금은 개인 신용, 소득, 보유 자산, 제도 변경에 따라 실제 값이 달라질 수 있습니다.</div>
-              <div className="bd-list-item">하나의 숫자보다 월 부담, 총이자, 세후 금액, 장기 누적 효과를 함께 보는 것이 좋습니다.</div>
+              <div className="bd-list-item">하나의 숫자보다 월 부담, 총이자, 세후 금액, 장기 누적 효과를 함께 보는 흐름이 현실적입니다.</div>
             </div>
           </article>
 
@@ -65,7 +65,7 @@ export default function MethodologyPage() {
           <div className="bd-list mt-4">
             <div className="bd-list-item">BlueDino는 특정 종목, 계좌, 대출 상품 가입이나 매수·매도를 직접 권유하지 않습니다.</div>
             <div className="bd-list-item">세금과 제도는 바뀔 수 있으니 중요한 결정 전에는 금융회사, 공공기관, 전문가의 최신 안내를 함께 확인하세요.</div>
-            <div className="bd-list-item">정보가 헷갈리거나 수정이 필요해 보이면 문의 페이지를 통해 알려주시면 점검에 도움이 됩니다.</div>
+            <div className="bd-list-item">정보가 헷갈리거나 수정이 필요해 보이면 문의 페이지를 통해 알려주시면 점검에 판단에 보탬이 됩니다.</div>
           </div>
         </section>
 

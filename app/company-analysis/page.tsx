@@ -122,7 +122,7 @@ export default function CompanyAnalysisPage() {
               <span className="bd-badge">먼저 읽기 좋은 글</span>
               <h2 className="bd-title-lg mt-4">대표 기업분석</h2>
               <p className="bd-text-sub mt-3">
-                관심 종목을 처음 확인할 때 사업 구조, 성장 포인트, 리스크를 빠르게 잡을 수 있도록 대표 기업부터 정리했습니다.
+                관심 종목을 처음 확인할 때 사업 구조, 성장 포인트, 리스크를 빠르게 잡을 수 있도록 대표 기업부터 비교할 수 있게 구성했습니다.
               </p>
             </div>
 

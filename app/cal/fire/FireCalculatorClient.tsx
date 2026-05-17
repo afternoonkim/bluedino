@@ -263,7 +263,7 @@ export default function FireCalculatorPage() {
           badge="FIRE 계산기"
           title="경제적 자유 목표 시점을 미리 계산해보세요"
           description="현재 자산, 월 저축액, 기대 수익률, 목표 생활비를 기준으로 FIRE 달성 가능 시점을 가늠할 수 있습니다."
-          tip="예상 수익률은 보수적으로 입력하고, 인플레이션도 함께 고려하는 것이 좋습니다."
+          tip="예상 수익률은 보수적으로 입력하고, 인플레이션도 함께 고려하는 방식이 적합합니다."
         />
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -682,7 +682,7 @@ export default function FireCalculatorPage() {
               body: "현재 자산과 월 저축액을 누적하고, 기대 수익률과 물가상승률을 반영해 자산이 증가하는 흐름을 계산합니다. 동시에 목표 생활비 기준의 필요 자산도 함께 비교합니다.",
             },
             {
-              title: "이런 경우에 활용하면 좋습니다",
+              title: "이런 경우에 활용하면 적합합니다",
               body: "은퇴 목표 연령을 앞당기고 싶은 직장인, 절약률을 높였을 때 얼마나 차이가 나는지 보고 싶은 사용자, 월 생활비 기준으로 FIRE 가능성을 점검하고 싶은 경우에 유용합니다.",
             },
             {

@@ -42,6 +42,10 @@ export type FinanceQuestionItem = {
   sections?: FinanceSection[];
   checklist?: string[];
   relatedCalculatorLinks?: FinanceLinkItem[];
+  relatedGuideLinks?: FinanceLinkItem[];
+  example?: string;
+  commonMistakes?: string[];
+  updatedAt?: string;
   faq?: FinanceFaqItem[];
   keywords?: string[];
   caution?: string;
@@ -59,6 +63,10 @@ export type FinanceQuestionEntry = {
   sections: FinanceSection[];
   checklist: string[];
   relatedCalculatorLinks: FinanceLinkItem[];
+  relatedGuideLinks: FinanceLinkItem[];
+  example: string;
+  commonMistakes: string[];
+  updatedAt: string;
   faq: FinanceFaqItem[];
   keywords: string[];
   caution: string;

@@ -94,11 +94,11 @@ function getSectorFocus(sector?: string | null, industry?: string | null) {
   const i = (industry || "").toLowerCase();
 
   if (i.includes("semiconductor")) {
-    return "투자 관점에서는 AI 수요, 데이터센터 투자, 고객사 확대 여부를 함께 살펴보는 것이 중요합니다.";
+    return "투자 관점에서는 AI 수요, 데이터센터 투자, 고객사 확대 여부를 함께 살펴보는 것이 먼저 볼 기준입니다.";
   }
 
   if (i.includes("software")) {
-    return "투자 관점에서는 매출 성장률, 영업이익률, 구독형 매출 비중과 같은 질적 요소를 함께 보는 것이 좋습니다.";
+    return "투자 관점에서는 매출 성장률, 영업이익률, 구독형 매출 비중과 같은 질적 요소를 함께 보는 흐름이 현실적입니다.";
   }
 
   if (i.includes("internet") || i.includes("content")) {
@@ -106,22 +106,22 @@ function getSectorFocus(sector?: string | null, industry?: string | null) {
   }
 
   if (i.includes("consumer electronics")) {
-    return "투자 관점에서는 제품 판매량, 생태계 확장성, 서비스 매출 비중, 브랜드 충성도를 함께 확인하는 것이 중요합니다.";
+    return "투자 관점에서는 제품 판매량, 생태계 확장성, 서비스 매출 비중, 브랜드 충성도를 함께 확인하는 것이 먼저 볼 기준입니다.";
   }
 
   if (s.includes("financial")) {
-    return "투자 관점에서는 금리 환경, 자산 건전성, 대손 비용, 자본 효율성을 함께 체크하는 것이 중요합니다.";
+    return "투자 관점에서는 금리 환경, 자산 건전성, 대손 비용, 자본 효율성을 함께 체크하는 것이 먼저 볼 기준입니다.";
   }
 
   if (s.includes("technology")) {
-    return "투자 관점에서는 매출 성장성과 수익성, 밸류에이션 부담, 기술 경쟁 우위를 함께 보는 것이 좋습니다.";
+    return "투자 관점에서는 매출 성장성과 수익성, 밸류에이션 부담, 기술 경쟁 우위를 함께 보는 흐름이 현실적입니다.";
   }
 
   if (s.includes("healthcare")) {
     return "투자 관점에서는 연구개발 성과, 제품 상용화 가능성, 규제 리스크를 함께 고려할 필요가 있습니다.";
   }
 
-  return "투자 관점에서는 매출 성장률, 수익성 지표, 밸류에이션 수준을 함께 확인하는 것이 중요합니다.";
+  return "투자 관점에서는 매출 성장률, 수익성 지표, 밸류에이션 수준을 함께 확인하는 것이 먼저 볼 기준입니다.";
 }
 
 export function buildCompanySummary(input: SummaryInput): string[] {

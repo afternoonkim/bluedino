@@ -1,6 +1,6 @@
 import { calculatorLandingData } from "@/app/cal/components/calculatorLandingData";
 import { financeCategories } from "@/lib/finance/config";
-import { getAllFinanceRoutes } from "@/lib/finance/data";
+import { getIndexableFinanceRoutes } from "@/lib/finance/indexing";
 import { getFinanceEntry } from "@/lib/finance/content";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
 import { guideArticles } from "@/lib/info/guideArticles";
@@ -64,7 +64,7 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "금융 계산기 모음 | 배당·복리·대출·연금 계산",
       description:
-        "투자와 대출, 연금 계획에 자주 필요한 계산기를 목적별로 모아 사용 흐름과 함께 정리했습니다.",
+        "투자와 대출, 연금 계획에 자주 필요한 계산기를 목적별로 모아 사용 흐름과 함께 비교할 수 있게 구성했습니다.",
       path: "/cal",
       updatedAt: DEFAULT_UPDATED_AT,
     },
@@ -78,14 +78,14 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "투자 기초 가이드 | ETF·배당·복리·포트폴리오 이해",
       description:
-        "주식과 ETF 투자를 시작하기 전 알아두면 좋은 기본 개념을 사용자 상황 중심으로 정리했습니다.",
+        "주식과 ETF 투자를 시작하기 전 알아두면 좋은 기본 개념을 사용자 상황 중심으로 비교할 수 있게 구성했습니다.",
       path: "/info/guide",
       updatedAt: DEFAULT_UPDATED_AT,
     },
     {
       title: "투자전략 가이드 | 자산배분·배당·하락장 대응",
       description:
-        "투자 목적과 기간에 따라 참고할 수 있는 자산배분, 배당, 은퇴, 하락장 전략을 정리했습니다.",
+        "투자 목적과 기간에 따라 참고할 수 있는 자산배분, 배당, 은퇴, 하락장 전략을 비교할 수 있게 구성했습니다.",
       path: "/info/strategy",
       updatedAt: DEFAULT_UPDATED_AT,
     },
@@ -99,7 +99,7 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "산업·테마 가이드 | 반도체·2차전지·AI 관련주 비교",
       description:
-        "주요 산업과 테마를 사업 구조, 핵심 변수, 관련 기업분석으로 연결해 이해할 수 있게 정리했습니다.",
+        "주요 산업과 테마를 사업 구조, 핵심 변수, 관련 기업분석으로 연결해 이해할 수 있게 비교할 수 있게 구성했습니다.",
       path: "/industry",
       updatedAt: DEFAULT_UPDATED_AT,
     },
@@ -123,16 +123,16 @@ function buildFinanceFeedItems(): RssFeedItem[] {
     updatedAt: DEFAULT_UPDATED_AT,
   }));
 
-  const questionItems = getAllFinanceRoutes().map(({ category, slug }) => {
+  const questionItems = getIndexableFinanceRoutes().map(({ category, slug }) => {
     const entry = getFinanceEntry(category as FinanceCategoryKey, slug);
     return {
       title: entry?.title ?? `${category} 금융 질문`,
       description:
-        entry?.description ??
+        entry?.quickAnswer ??
         entry?.summary ??
-        "금융상품을 선택하기 전에 확인해야 할 조건, 비용, 세금, 현금흐름을 사용자 기준으로 정리했습니다.",
+        "금융상품을 선택하기 전에 확인해야 할 조건, 비용, 세금, 현금흐름을 비교할 수 있게 구성했습니다.",
       path: `/finance/${category}/${slug}`,
-      updatedAt: DEFAULT_UPDATED_AT,
+      updatedAt: entry?.updatedAt ?? DEFAULT_UPDATED_AT,
     };
   });
 
@@ -208,11 +208,13 @@ export function getRssFeedItems(): RssFeedItem[] {
 
   const uniqueItems = Array.from(new Map(items.map((item) => [item.path, item])).values());
 
-  return uniqueItems.sort((a, b) => {
-    const aTime = new Date(a.updatedAt ?? DEFAULT_UPDATED_AT).getTime();
-    const bTime = new Date(b.updatedAt ?? DEFAULT_UPDATED_AT).getTime();
-    return bTime - aTime;
-  });
+  return uniqueItems
+    .sort((a, b) => {
+      const aTime = new Date(a.updatedAt ?? DEFAULT_UPDATED_AT).getTime();
+      const bTime = new Date(b.updatedAt ?? DEFAULT_UPDATED_AT).getTime();
+      return bTime - aTime;
+    })
+    .slice(0, 100);
 }
 
 export function buildRssXml() {
