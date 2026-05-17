@@ -44,6 +44,42 @@ function buildDefaultMistakes(title: string) {
   return ["세전 금액과 세후 금액을 같은 기준으로 비교하지 않는 경우가 많습니다.", "제도성 계산기는 가입 시점, 소득 구간, 상품 약관에 따라 결과가 달라질 수 있습니다.", "월 납입액만 보고 기간, 세금, 수수료, 비상금 조건을 함께 보지 않으면 실제 계획과 차이가 생길 수 있습니다."];
 }
 
+function normalizeCalcKind(title: string) {
+  if (title.includes("DSR")) return "dsr";
+  if (title.includes("LTV")) return "ltv";
+  if (title.includes("주담대") || title.includes("주택담보")) return "mortgage";
+  if (title.includes("대출") || title.includes("이자")) return "loan";
+  if (title.includes("배당")) return "dividend";
+  if (title.includes("복리")) return "compound";
+  if (title.includes("FIRE") || title.includes("은퇴")) return "retirement";
+  if (title.includes("연금") || title.includes("IRP")) return "pension";
+  if (title.includes("ISA")) return "isa";
+  if (title.includes("예금") || title.includes("적금") || title.includes("파킹") || title.includes("CMA")) return "cash";
+  if (title.includes("연봉") || title.includes("실수령")) return "salary";
+  return "general";
+}
+
+type CalcHeadingSlot = "when" | "interpretation" | "mistake" | "example" | "faq" | "related";
+
+function layoutHeading(title: string, slot: CalcHeadingSlot) {
+  const kind = normalizeCalcKind(title);
+  const headings: Record<string, Record<CalcHeadingSlot, string>> = {
+    dsr: { when: "DSR을 먼저 계산해야 하는 순간", interpretation: "DSR 결과에서 확인할 기준", mistake: "DSR 계산에서 자주 빠지는 항목", example: "DSR 입력 예시", faq: "DSR 계산 관련 질문", related: "대출 한도와 함께 볼 계산기" },
+    ltv: { when: "LTV를 확인해야 하는 상황", interpretation: "LTV 결과를 읽는 방법", mistake: "집값 기준을 잘못 잡기 쉬운 부분", example: "LTV 입력 예시", faq: "LTV 계산 관련 질문", related: "주택 자금 계획에 필요한 계산기" },
+    mortgage: { when: "주담대 금액을 따져봐야 하는 경우", interpretation: "주담대 결과에서 봐야 할 숫자", mistake: "주담대 계산에서 놓치기 쉬운 비용", example: "주담대 입력 예시", faq: "주담대 계산 관련 질문", related: "주택 구매 전 같이 볼 계산기" },
+    loan: { when: "대출 부담을 숫자로 봐야 하는 순간", interpretation: "월 상환액과 총이자를 해석하는 법", mistake: "대출 계산에서 자주 빠지는 조건", example: "대출 입력 예시", faq: "대출 계산 관련 질문", related: "대출 판단에 필요한 계산기" },
+    dividend: { when: "배당 현금흐름을 확인해야 하는 경우", interpretation: "세후 배당금과 월 현금흐름 보는 법", mistake: "배당 계산에서 과대평가하기 쉬운 부분", example: "배당 입력 예시", faq: "배당 계산 관련 질문", related: "투자 현금흐름을 같이 볼 계산기" },
+    compound: { when: "복리 효과를 비교해볼 상황", interpretation: "복리 결과가 커지는 지점", mistake: "복리 계산에서 낙관적으로 잡기 쉬운 가정", example: "복리 입력 예시", faq: "복리 계산 관련 질문", related: "장기 투자 계획에 필요한 계산기" },
+    retirement: { when: "은퇴 목표를 숫자로 잡아야 할 때", interpretation: "목표 자산과 생활비를 함께 보는 법", mistake: "은퇴 계산에서 빠뜨리기 쉬운 지출", example: "은퇴 목표 입력 예시", faq: "은퇴 계산 관련 질문", related: "노후 자금 계획에 필요한 계산기" },
+    pension: { when: "연금·세액공제를 확인해야 하는 경우", interpretation: "환급액과 장기 자금을 함께 보는 법", mistake: "연금 계산에서 유지기간을 놓치는 부분", example: "연금 입력 예시", faq: "연금 계산 관련 질문", related: "절세계좌와 같이 볼 계산기" },
+    isa: { when: "ISA 절세 효과를 따져봐야 할 때", interpretation: "세후 수익 차이를 읽는 법", mistake: "ISA 계산에서 만기 조건을 빼먹는 부분", example: "ISA 입력 예시", faq: "ISA 계산 관련 질문", related: "절세 투자에 필요한 계산기" },
+    cash: { when: "현금성 자금을 어디에 둘지 비교할 때", interpretation: "세후 이자와 기간을 함께 보는 법", mistake: "금리 조건을 잘못 읽기 쉬운 부분", example: "현금관리 입력 예시", faq: "이자 계산 관련 질문", related: "단기 자금 관리에 필요한 계산기" },
+    salary: { when: "연봉과 실제 월급을 비교해야 할 때", interpretation: "실수령액을 읽는 기준", mistake: "급여 계산에서 빠지기 쉬운 공제", example: "연봉 입력 예시", faq: "실수령액 계산 관련 질문", related: "월 예산과 현금흐름 계산기" },
+    general: { when: "이 계산기를 활용하면 좋은 상황", interpretation: "계산 결과를 읽는 기준", mistake: "계산할 때 자주 놓치는 부분", example: "입력값 예시", faq: "자주 묻는 질문", related: "함께 확인하면 좋은 계산기" },
+  };
+  return headings[kind]?.[slot] ?? headings.general[slot];
+}
+
 export type CalcLayoutProps = {
   /** SEO H1 + 페이지 제목 */
   title: string;
@@ -51,20 +87,20 @@ export type CalcLayoutProps = {
   hero: string;
   /** 계산기 본체(입력 + 결과 UI) — Client Component를 그대로 전달 */
   calcChildren: ReactNode;
-  /** 이 계산기를 써야 하는 상황 (3~4개 bullet) */
+  /** 이 계산기가 필요한 상황 (3~4개 bullet) */
   whenToUse: string[];
   /** 계산 공식 또는 계산 기준 */
   formula: {
     title: string;
     body: string[];
   };
-  /** 실전 예시 2개 */
+  /** 입력값 예시 2개 */
   examples: { title: string; body: string }[];
   /** 자주 묻는 질문 4개 */
   faqs: { question: string; answer: string }[];
   /** 함께 보면 좋은 계산기 3개 */
   relatedCalculators: { label: string; href: string }[];
-  /** 주의사항 — 1회만 표시 */
+  /** 확인할 점 — 1회만 표시 */
   caution: string;
   accuracyLevel?: "공식 산식 기반" | "제도 기준 반영" | "참고 시뮬레이션";
   officialSources?: OfficialSource[];
@@ -75,7 +111,7 @@ export type CalcLayoutProps = {
 
 /**
  * 모든 신규 계산기 페이지에 동일하게 적용되는 사용자 친화형 금융 계산기 레이아웃.
- * 입력 → 결과 → 사용 상황 → 계산 공식 → 실전 예시 → FAQ → 관련 계산기 → 주의사항(1회) 순서.
+ * 입력 → 결과 → 사용 상황 → 계산 공식 → 입력값 예시 → FAQ → 관련 계산기 → 확인할 점(1회) 순서.
  * 반복 문구를 1회만 노출해 가독성과 신뢰도를 함께 챙긴다.
  */
 export default function CalculatorPageLayout({
@@ -106,7 +142,7 @@ export default function CalculatorPageLayout({
           <h1 className="bd-title-lg mt-4">{title}</h1>
           <p className="bd-text-main mt-4">{hero}</p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">정확도: {resolvedAccuracy}</span>
+            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">계산 방식: {resolvedAccuracy}</span>
             <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">{resolvedBasisLabel}</span>
           </div>
         </section>
@@ -116,7 +152,7 @@ export default function CalculatorPageLayout({
 
         {/* 2. 사용 상황 */}
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">이 계산기를 써야 하는 상황</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "when")}</h2>
           <div className="bd-list mt-5">
             {whenToUse.map((item) => (
               <div key={item} className="bd-list-item">
@@ -138,7 +174,7 @@ export default function CalculatorPageLayout({
 
         {/* 3-1. 결과 해석법 */}
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">결과 해석법</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "interpretation")}</h2>
           <div className="bd-list mt-5">
             {(resultInterpretation ?? buildDefaultInterpretation(title)).map((item) => (
               <div key={item} className="bd-list-item">{item}</div>
@@ -146,9 +182,9 @@ export default function CalculatorPageLayout({
           </div>
         </section>
 
-        {/* 3-2. 자주 틀리는 부분 */}
+        {/* 3-2. 계산할 때 자주 놓치는 부분 */}
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 틀리는 부분</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "mistake")}</h2>
           <div className="bd-list mt-5">
             {(commonMistakes ?? buildDefaultMistakes(title)).map((item) => (
               <div key={item} className="bd-list-item">{item}</div>
@@ -156,9 +192,9 @@ export default function CalculatorPageLayout({
           </div>
         </section>
 
-        {/* 4. 실전 예시 */}
+        {/* 4. 입력값 예시 */}
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">실전 예시</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "example")}</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {examples.map((ex) => (
               <article
@@ -174,7 +210,7 @@ export default function CalculatorPageLayout({
 
         {/* 5. 자주 묻는 질문 */}
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 묻는 질문</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "faq")}</h2>
           <div className="mt-6 space-y-4">
             {faqs.map((faq) => (
               <article
@@ -190,7 +226,7 @@ export default function CalculatorPageLayout({
 
         {/* 6. 함께 보면 좋은 계산기 */}
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 계산기</h2>
+          <h2 className="bd-title-md">{layoutHeading(title, "related")}</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {relatedCalculators.map((r) => (
               <Link key={r.href} href={r.href} className="bd-button-secondary">
@@ -203,10 +239,10 @@ export default function CalculatorPageLayout({
         {/* 7. 공식 참고 기준 */}
         <CalculatorReferenceBox sources={resolvedOfficialSources} />
 
-        {/* 8. 주의사항 (1회만) */}
+        {/* 8. 확인할 점 (1회만) */}
         <section className="rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5">
           <div className="text-xs font-semibold uppercase tracking-wide text-amber-200">
-            주의사항
+            확인할 점
           </div>
           <p className="mt-2 text-sm leading-7 text-amber-50/90">{caution}</p>
           <p className="mt-2 text-sm leading-7 text-amber-50/90">실제 적용 조건은 금융사, 세법, 정부 정책 변경에 따라 달라질 수 있습니다.</p>

@@ -30,6 +30,21 @@ export type StrategyArticle = {
 };
 
 
+
+function getStrategyPageLabels(article: StrategyArticle) {
+  const text = `${article.slug} ${article.title} ${article.badge}`;
+  if (/배당|income|현금흐름/i.test(text)) {
+    return { intro: "배당 전략을 세우기 전 먼저 정할 기준", mistakes: "배당 투자에서 흔들리기 쉬운 지점", suitable: "배당 전략을 검토해볼 만한 경우", caution: "배당 계획 전 확인할 부분", faq: "배당 전략 관련 질문", calculators: "배당 현금흐름을 숫자로 확인하기", guides: "배당 투자와 함께 볼 기초 글", strategies: "같이 비교할 투자전략", sequence: "현금흐름 전략은 이 순서로 보세요" };
+  }
+  if (/은퇴|retirement|fire/i.test(text)) {
+    return { intro: "은퇴 계획을 세우기 전 먼저 정할 기준", mistakes: "은퇴 준비에서 놓치기 쉬운 지출", suitable: "은퇴 전략을 먼저 검토해볼 만한 경우", caution: "은퇴 계획 전 확인할 부분", faq: "은퇴 전략 관련 질문", calculators: "목표 자산을 숫자로 확인하기", guides: "은퇴 준비와 함께 볼 기초 글", strategies: "같이 비교할 투자전략", sequence: "은퇴 준비는 이 순서로 보세요" };
+  }
+  if (/자산배분|포트폴리오|allocation|etf/i.test(text)) {
+    return { intro: "포트폴리오를 짜기 전 먼저 정할 기준", mistakes: "자산배분에서 흔들리기 쉬운 지점", suitable: "이 전략을 검토해볼 만한 경우", caution: "비중을 정하기 전 확인할 부분", faq: "포트폴리오 전략 관련 질문", calculators: "투자 기간과 목표 금액 확인하기", guides: "자산배분과 함께 볼 기초 글", strategies: "함께 비교할 투자전략", sequence: "포트폴리오는 이 순서로 점검하세요" };
+  }
+  return { intro: "처음 계획할 때 먼저 정해야 할 기준", mistakes: "실행 중 흔들리기 쉬운 지점", suitable: "이 전략을 먼저 검토해볼 만한 경우", caution: "실행 전 꼭 확인할 점", faq: "자주 묻는 질문", calculators: "계산기로 현실성 확인하기", guides: "관련 기초 가이드", strategies: "함께 비교할 투자전략", sequence: "처음이라면 이 순서로 보세요" };
+}
+
 function uniqueStrategyLinks(links: StrategyLinkItem[]) {
   const seen = new Set<string>();
   return links.filter((link) => {
@@ -90,6 +105,7 @@ function getAutoStrategyLinks(article: StrategyArticle) {
 
 export default function StrategyArticlePage({ article }: { article: StrategyArticle }) {
   const autoLinks = getAutoStrategyLinks(article);
+  const labels = getStrategyPageLabels(article);
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -148,7 +164,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">처음 볼 때 많이 헷갈리는 부분</h2>
+          <h2 className="bd-title-md">{labels.intro}</h2>
           <h3 className="mt-4 text-lg font-semibold text-white">{article.introQuestion}</h3>
           <p className="bd-text-main mt-4">{article.introAnswer}</p>
         </section>
@@ -167,7 +183,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">실수하기 쉬운 부분</h2>
+          <h2 className="bd-title-md">{labels.mistakes}</h2>
           <div className="bd-list mt-5">
             {article.mistakes.map((item) => (
               <div key={item} className="bd-list-item">
@@ -185,7 +201,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         <AdBlock />
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">이런 분들에게 잘 맞습니다</h2>
+          <h2 className="bd-title-md">{labels.suitable}</h2>
           <div className="bd-list mt-5">
             {article.suitableFor.map((item) => (
               <div key={item} className="bd-list-item">
@@ -196,12 +212,12 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">알아두면 좋은 점</h2>
+          <h2 className="bd-title-md">{labels.caution}</h2>
           <p className="bd-text-main mt-4">{article.caution}</p>
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 묻는 질문</h2>
+          <h2 className="bd-title-md">{labels.faq}</h2>
           <div className="mt-6 space-y-4">
             {article.faqs.map((faq) => (
               <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
@@ -213,9 +229,9 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 계산기</h2>
+          <h2 className="bd-title-md">{labels.calculators}</h2>
           <p className="bd-text-main mt-4">
-            전략은 머리로 이해하는 것보다 내 금액과 기간을 넣어보는 것이 훨씬 빠릅니다. 아래 도구를 함께 보면 판단이 더 쉬워집니다.
+            전략은 좋은 말보다 숫자로 확인할 때 더 현실적으로 보입니다. 투자 기간, 목표 금액, 월 납입액을 직접 넣어보면 유지 가능한 계획인지 더 빨리 판단할 수 있습니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.calculators.map((item) => (
@@ -227,7 +243,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
+          <h2 className="bd-title-md">{labels.guides}</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -241,7 +257,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
+          <h2 className="bd-title-md">{labels.strategies}</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.strategies.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -256,7 +272,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
 
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">처음이라면 이 순서로 보세요</h2>
+          <h2 className="bd-title-md">{labels.sequence}</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 개념</Link>
             <Link href="/info/strategy" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 투자전략 비교</Link>

@@ -6,11 +6,11 @@ export type IndustryHub = {
   slug: string;
   /** 메뉴/카드용 짧은 제목 */
   shortTitle: string;
-  /** SEO·H1 제목 */
+  /** 페이지 제목 */
   title: string;
   /** 메타 description */
   description: string;
-  /** 검색 의도에 매칭되는 키워드 (Naver 키워드 매칭용) */
+  /** 사용자가 실제로 검색하는 관련 표현 */
   keywords: string[];
   /** 페이지 hero 도입 문장 */
   heroIntro: string;

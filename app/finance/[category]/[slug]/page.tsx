@@ -13,6 +13,37 @@ import type { FinanceCategoryKey } from "@/lib/finance/types";
 
 type PageProps = { params: Promise<{ category: string; slug: string }> };
 
+function getFinanceToneLabels(categoryKey: FinanceCategoryKey) {
+  if (categoryKey === "loan-basics" || categoryKey === "credit-loan" || categoryKey === "mortgage-loan") {
+    return {
+      quick: "대출 실행 전 핵심 정리",
+      checklist: "신청 전에 확인할 항목",
+      faq: "대출 판단에서 자주 나오는 질문",
+      calculators: "월 상환액과 한도를 같이 볼 계산기",
+      related: "같은 주제로 이어서 볼 질문",
+    };
+  }
+
+  if (categoryKey === "cma" || categoryKey === "parking") {
+    return {
+      quick: "현금관리 기준으로 먼저 보면",
+      checklist: "계좌를 고르기 전 체크할 항목",
+      faq: "현금관리 계좌를 고를 때 자주 묻는 질문",
+      calculators: "이자와 생활비를 같이 볼 계산기",
+      related: "함께 비교하면 좋은 질문",
+    };
+  }
+
+  return {
+    quick: "계좌를 만들기 전 핵심 정리",
+    checklist: "가입·유지 전에 확인할 항목",
+    faq: "절세계좌를 볼 때 자주 묻는 질문",
+    calculators: "세금과 장기 자금을 같이 볼 계산기",
+    related: "같은 계좌에서 이어서 볼 질문",
+  };
+}
+
+
 export async function generateStaticParams() {
   return getAllFinanceRoutes();
 }
@@ -61,7 +92,9 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
   const entry = getFinanceEntry(category.key as FinanceCategoryKey, decodedSlug);
   if (!entry) notFound();
 
-  const relatedEntries = getRelatedEntries(category.key as FinanceCategoryKey, entry.slug, 6);
+  const categoryKey = category.key as FinanceCategoryKey;
+  const labels = getFinanceToneLabels(categoryKey);
+  const relatedEntries = getRelatedEntries(categoryKey, entry.slug, 6);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -131,7 +164,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
           </section>
 
           <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">결론 먼저</h2>
+            <h2 className="bd-title-md">{labels.quick}</h2>
             <p className="bd-text-main mt-4">{entry.quickAnswer}</p>
             {entry.caution ? <p className="bd-text-sub mt-4">{entry.caution}</p> : null}
           </section>
@@ -155,7 +188,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
 
               {entry.checklist.length > 0 && (
                 <section className="bd-card-soft bd-card-padding">
-                  <h2 className="bd-title-md">체크포인트</h2>
+                  <h2 className="bd-title-md">{labels.checklist}</h2>
                   <div className="bd-list mt-4">
                     {entry.checklist.map((item) => (
                       <div key={item} className="bd-list-item">{item}</div>
@@ -166,7 +199,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
 
               {entry.faq.length > 0 && (
                 <section className="bd-card bd-card-padding">
-                  <h2 className="bd-title-md">자주 묻는 질문</h2>
+                  <h2 className="bd-title-md">{labels.faq}</h2>
                   <div className="mt-6 space-y-4">
                     {entry.faq.map((faq) => (
                       <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5">
@@ -192,7 +225,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
 
             <aside className="space-y-6">
               <section className="bd-card bd-card-padding">
-                <h2 className="bd-title-sm">함께 보면 좋은 계산기</h2>
+                <h2 className="bd-title-sm">{labels.calculators}</h2>
                 <div className="mt-4 flex flex-col gap-3">
                   {entry.relatedCalculatorLinks.map((link) => (
                     <Link key={link.href} href={link.href} className="bd-button-secondary text-center">
@@ -204,7 +237,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
 
               {relatedEntries.length > 0 && (
                 <section className="bd-card bd-card-padding">
-                  <h2 className="bd-title-sm">관련 질문</h2>
+                  <h2 className="bd-title-sm">{labels.related}</h2>
                   <div className="mt-4 flex flex-col gap-3">
                     {relatedEntries.map((related) => (
                       <Link key={related.slug} href={`${category.basePath}/${encodeURIComponent(related.slug)}`} className="rounded-2xl border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm leading-6 text-slate-200 transition hover:border-cyan-500/30 hover:bg-slate-900">

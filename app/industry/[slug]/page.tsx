@@ -196,7 +196,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             <section className="bd-card bd-card-padding">
               <h2 className="bd-title-md">{currentHub.shortTitle} — 국내 주요 종목</h2>
               <p className="bd-text-sub mt-3">
-                상세 설명이 있거나 주요 지수에 포함된 종목을 우선 정렬했습니다. 종목명을 누르시면 사업 구조와 분기 추적 지표를 자세히 확인하실 수 있습니다.
+                사업 설명이 충분하거나 주요 지수에 포함된 종목을 우선 정렬했습니다. 종목명을 누르시면 사업 구조와 분기 추적 지표를 자세히 확인하실 수 있습니다.
               </p>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
                 {koreaMatched.map((m) => (
@@ -209,7 +209,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
                       <span className="text-base font-semibold text-white">{m.companyNameKo}</span>
                       <span className="text-xs text-slate-400">({m.ticker})</span>
                       {m.hasCustomNote && (
-                        <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">상세분석</span>
+                        <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">사업·실적 설명</span>
                       )}
                       {m.indices.map((idx) => (
                         <span key={`${m.ticker}-${idx}`} className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-200">
@@ -238,7 +238,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
                       <span className="text-base font-semibold text-white">{m.companyNameKo}</span>
                       <span className="text-xs text-slate-400">({m.ticker})</span>
                       {m.hasCustomNote && (
-                        <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">상세분석</span>
+                        <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">사업·실적 설명</span>
                       )}
                       {m.indices.slice(0, 2).map((idx) => (
                         <span key={`${m.ticker}-${idx}`} className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-200">

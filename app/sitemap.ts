@@ -187,7 +187,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * 주요 콘텐츠와 일반 콘텐츠의 중요도에 따라 사이트맵 priority를 구분합니다.
    * - 1.0  : 메인 페이지
    * - 0.9  : 주요 가이드/전략/금융/계산기 페이지
-   * - 0.8  : 기업분석 중 customNote(수기 단락)가 있는 종목
+   * - 0.8  : 기업분석 중 기업별 고유 설명가 있는 종목
    * - 0.7  : 기업분석 중 KOSPI200/S&P500 등 주요 지수 편입 종목
    * - 0.5  : 기본 기업분석 페이지
    * - 0.4  : 기타 정적 페이지
@@ -220,7 +220,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (market && slug) {
         const article = getCompanyArticle(market, slug);
         if (article) {
-          // customNote가 있으면 높은 중요도로 설정
+          // 기업별 고유 설명이 있으면 높은 중요도로 설정
           const ticker = article.ticker.toUpperCase();
           if (COMPANY_CUSTOM_NOTES[ticker]) return 0.8;
           // 주요 지수 편입 종목은 중간 중요도로 설정

@@ -1,6 +1,6 @@
 // 기업분석 본문 차별화 데이터.
 // - tickerHash()로 종목별 결정적 변형(intro/마무리 문구)을 선택해 700개 페이지가 동일 패턴이 되지 않도록 한다.
-// - COMPANY_CUSTOM_NOTES에는 시가총액·검색량 상위 종목에 대해 수기로 작성한 짧은 단락을 넣어
+// - COMPANY_CUSTOM_NOTES에는 시가총액·검색량 상위 종목에 대해 기업별 고유 설명 단락을 넣어
 //   해당 종목 글이 다른 종목과 구분되도록 한다 (Naver C-Rank·Google scaled-content 페널티 회피).
 
 export function tickerHash(ticker: string): number {
@@ -84,8 +84,8 @@ export const SUMMARY_OPENERS: ((
 ];
 
 /**
- * 시가총액·검색량 상위 종목에 대한 수기 작성 단락.
- * buildArticle에서 sections[0].body[0] 앞에 prepend되어 자동 생성 본문보다 먼저 노출.
+ * 시가총액·검색량 상위 종목에 대한 기업별 고유 설명 단락.
+ * buildArticle에서 sections[0].body[0] 앞에 prepend되어 공통 구조 본문보다 먼저 노출.
  *
  * 가이드라인:
  *  - 4~6문장, 250~400자
@@ -755,7 +755,7 @@ export function getSectorSpecificParagraphs(
       title: `${companyNameKo} 같은 통신 종목 해석 가이드`,
       body: [
         `통신 종목은 가입자당 매출(ARPU), 5G 침투율, 마케팅비 안정화가 분기 실적의 핵심 변수입니다. 통신 본업의 성장 여력은 제한적이지만, 인프라 투자가 다시 매출에 들어오는 "내부 사이클"이 있어 안정 배당주 성격이 강합니다.`,
-        `최근 키워드는 통신 외 영역(데이터센터·IDC·AI·B2B 클라우드)의 매출 다각화 속도입니다. 신사업 매출 비중이 어느 정도인지, 본업 마진을 갉아먹지 않는 구조인지를 같이 보시는 게 좋습니다.`,
+        `최근 키워드는 통신 외 영역(데이터센터·IDC·AI·B2B 클라우드)의 매출 다각화 속도입니다. 신사업 매출 비중이 어느 정도인지, 본업 마진을 갉아먹지 않는 구조인지도 함께 살펴보는 편이 좋습니다.`,
       ],
     };
   }

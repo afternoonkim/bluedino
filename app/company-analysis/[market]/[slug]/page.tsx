@@ -23,9 +23,9 @@ type PageProps = { params: Promise<{ market: string; slug: string }> };
 
 function getAnalysisLevel(article: { ticker: string; indices: unknown[] }) {
   const hasManualCommentary = Boolean(COMPANY_CUSTOM_NOTES[article.ticker.toUpperCase()]);
-  if (hasManualCommentary) return "상세 분석" as const;
-  if (article.indices.length > 0) return "기본 분석" as const;
-  return "요약 정보" as const;
+  if (hasManualCommentary) return "사업·실적 중심 정리" as const;
+  if (article.indices.length > 0) return "주요 지표 중심 정리" as const;
+  return "빠른 확인용 정리" as const;
 }
 
 export function generateStaticParams() {
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const analysisLevel = getAnalysisLevel(article);
-  const isIndexable = analysisLevel !== "요약 정보";
+  const isIndexable = analysisLevel !== "빠른 확인용 정리";
 
   return {
     title: `${article.seoTitle} | BlueDino`,
@@ -171,17 +171,17 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
               <span className="bd-badge">{currentArticle.badge}</span>
             </div>
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
-              <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">분석 깊이: {analysisLevel}</span>
-              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">상세 분석: 사업 구조와 투자 포인트 포함</span>
-              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기본 분석: 주요 지수·분류 정보 포함</span>
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">구성: {analysisLevel}</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">사업 구조와 실적 변수 포함</span>
+              <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">주요 지수·분류 정보 포함</span>
             </div>
             <h1 className="bd-title-xl mt-4">
               {currentArticle.companyNameKo}({currentArticle.ticker}) 주가 전망과 기업분석
             </h1>
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
-            {analysisLevel === "요약 정보" ? (
+            {analysisLevel === "빠른 확인용 정리" ? (
               <p className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
-                이 페이지는 핵심 분류와 기본 정보를 빠르게 확인하기 위한 요약형 안내입니다. 더 깊은 판단이 필요하다면 같은 산업의 상세 분석 글과 공식 공시 자료를 함께 확인해 주세요.
+                이 글은 관심 기업을 빠르게 선별하기 위한 기본 안내입니다. 실제 투자 판단 전에는 같은 산업의 다른 기업, 최근 공시, 실적 발표 자료를 함께 확인해 주세요.
               </p>
             ) : null}
             <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-400">

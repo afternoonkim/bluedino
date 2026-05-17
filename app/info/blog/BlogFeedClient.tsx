@@ -358,7 +358,7 @@ export default function BlogFeedClient() {
                     </h2>
 
                     <p className="mt-4 line-clamp-3 text-sm leading-7 text-slate-300">
-                      {item.description || "요약 정보가 없는 게시글입니다."}
+                      {item.description || "소개 문구가 아직 제공되지 않은 게시글입니다."}
                     </p>
 
                     <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-800 pt-4">

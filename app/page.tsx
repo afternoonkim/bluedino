@@ -5,12 +5,12 @@ import AdBlock from "@/components/ad/AdBlock";
 export const metadata: Metadata = {
   title: "BlueDino | 배당·복리·대출·연금 계산기와 투자 가이드",
   description:
-    "BlueDino는 배당 계산기, 복리 계산기, FIRE 계산기, DSR·LTV·대출이자 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 한곳에서 확인할 수 있는 금융 정보 사이트입니다.",
+    "BlueDino는 배당 계산기, 복리 계산기, FIRE 계산기, DSR·LTV·대출이자 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "BlueDino | 금융 계산기와 투자 가이드",
     description:
-      "배당, 복리, 연금, 대출, 절세계좌, ETF 투자 정보를 계산기와 쉬운 가이드로 확인해보세요.",
+      "배당, 복리, 연금, 대출, 절세계좌, ETF 투자 정보를 계산기와 쉬운 가이드로 차근차근 살펴볼 수 있습니다.",
     url: "https://bluedino.kr",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BlueDino | 금융 계산기와 투자 가이드",
     description:
-      "배당·복리·연금·대출·ETF 투자 정보를 계산기와 가이드로 쉽게 확인할 수 있습니다.",
+      "배당·복리·연금·대출·ETF 투자 정보를 계산기와 가이드로 차근차근 살펴볼 수 있습니다.",
   },
 };
 
@@ -181,7 +181,7 @@ const recommendedChoices = [
   },
   {
     label: "절세 고민",
-    title: "ISA·IRP·연금저축 차이가 헷갈린다면 계좌별 세금정보를 먼저 확인해보세요.",
+    title: "ISA·IRP·연금저축 차이가 헷갈린다면 계좌별 세금정보를 먼저 확인할 수 있습니다.",
     href: "/info/investment/account-tax",
   },
   {

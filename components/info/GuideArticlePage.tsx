@@ -137,6 +137,57 @@ function getAutoGuideLinks(article: GuideArticle) {
   };
 }
 
+
+function getGuidePageLabels(article: GuideArticle) {
+  const text = `${article.slug} ${article.title} ${article.badge}`;
+  if (/대출|주담대|dsr|ltv/i.test(text)) {
+    return {
+      detail: "대출 조건을 실제 부담으로 풀어보면",
+      mistakes: "대출에서 계산이 어긋나기 쉬운 부분",
+      who: "이 기준을 먼저 확인하면 좋은 경우",
+      caution: "신청 전 마지막으로 확인할 점",
+      faq: "대출 판단에서 자주 묻는 질문",
+      calculators: "월 상환액과 한도를 숫자로 확인하기",
+      guides: "대출 조건을 비교할 때 이어서 볼 글",
+      sequence: "대출이 처음이라면 이 흐름으로 보세요",
+    };
+  }
+  if (/연금|irp|pension|isa|절세|세금/i.test(text)) {
+    return {
+      detail: "세금과 계좌 구조를 더 구체적으로 보면",
+      mistakes: "절세계좌에서 자주 놓치는 조건",
+      who: "이 글을 먼저 읽으면 좋은 경우",
+      caution: "계좌 개설 전 확인할 점",
+      faq: "절세계좌를 볼 때 자주 묻는 질문",
+      calculators: "세후 금액을 계산기로 확인하기",
+      guides: "같이 비교하면 좋은 절세계좌 글",
+      sequence: "절세계좌가 처음이라면 이 순서로 보세요",
+    };
+  }
+  if (/etf|배당|portfolio|포트폴리오/i.test(text)) {
+    return {
+      detail: "투자 대상을 고를 때 실제로 볼 기준",
+      mistakes: "투자 상품을 고를 때 흔한 착각",
+      who: "이 내용을 먼저 확인하면 좋은 경우",
+      caution: "투자 전 점검할 부분",
+      faq: "투자 가이드에서 자주 묻는 질문",
+      calculators: "수익률과 현금흐름을 숫자로 확인하기",
+      guides: "투자 기준을 잡을 때 이어서 볼 글",
+      sequence: "투자가 처음이라면 이 흐름으로 보세요",
+    };
+  }
+  return {
+    detail: "핵심 기준을 더 구체적으로 보면",
+    mistakes: "읽을 때 놓치기 쉬운 부분",
+    who: "이 글을 먼저 읽으면 좋은 경우",
+    caution: "실행 전 꼭 확인할 점",
+    faq: "자주 묻는 질문",
+    calculators: "내 금액으로 계산해보기",
+    guides: "함께 보면 좋은 가이드",
+    sequence: "처음이라면 이 순서로 보세요",
+  };
+}
+
 function formatDateLabel(input?: string) {
   if (!input) return "";
   const date = new Date(input);
@@ -155,6 +206,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
   const publishedLabel = formatDateLabel(publishedAt);
   const updatedLabel = formatDateLabel(updatedAt);
   const autoLinks = getAutoGuideLinks(article);
+  const labels = getGuidePageLabels(article);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -274,7 +326,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
 
         {article.longContent && article.longContent.length > 0 && (
           <section className="bd-card bd-card-padding">
-            <h2 className="bd-title-md">자세히 살펴보기</h2>
+            <h2 className="bd-title-md">{labels.detail}</h2>
             <div className="mt-4 space-y-4">
               {article.longContent.map((block, index) => {
                 if (block.type === "heading") {
@@ -432,7 +484,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         )}
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 놓치는 부분</h2>
+          <h2 className="bd-title-md">{labels.mistakes}</h2>
           <div className="bd-list mt-4">
             {article.mistakes.map((item) => (
               <div key={item} className="bd-list-item">
@@ -450,7 +502,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         <AdBlock />
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">이런 분들에게 특히 도움이 됩니다</h2>
+          <h2 className="bd-title-md">{labels.who}</h2>
           <div className="bd-list mt-4">
             {article.who.map((item) => (
               <div key={item} className="bd-list-item">
@@ -461,12 +513,12 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">알아두면 좋은 점</h2>
+          <h2 className="bd-title-md">{labels.caution}</h2>
           <p className="bd-text-main mt-4">{article.caution}</p>
         </section>
 
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자주 묻는 질문</h2>
+          <h2 className="bd-title-md">{labels.faq}</h2>
           <div className="mt-6 space-y-4">
             {article.faqs.map((faq) => (
               <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
@@ -478,9 +530,9 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 계산기</h2>
+          <h2 className="bd-title-md">{labels.calculators}</h2>
           <p className="bd-text-main mt-4">
-            개념을 이해했다면 숫자로 직접 확인해보는 것이 가장 빠릅니다. 아래 계산기에서 내 투자 기간과 금액을 넣어보면 체감이 훨씬 쉬워집니다.
+            개념만 읽으면 실제 차이가 작게 느껴질 수 있습니다. 아래 계산기에 금액과 기간을 넣어보면 세금, 복리, 현금흐름이 어떻게 달라지는지 더 현실적으로 볼 수 있습니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.calculators.map((item) => (
@@ -492,7 +544,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">함께 보면 좋은 가이드</h2>
+          <h2 className="bd-title-md">{labels.guides}</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
@@ -509,7 +561,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">처음이라면 이 순서로 보세요</h2>
+          <h2 className="bd-title-md">{labels.sequence}</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 가이드</Link>
             <Link href="/finance" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 계좌·세금 가이드</Link>

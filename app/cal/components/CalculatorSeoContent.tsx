@@ -49,7 +49,7 @@ export default function CalculatorSeoContent({
       </div>
 
       <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm leading-7 text-slate-300">
-        입력한 조건에 따라 결과가 달라지는 참고 계산이므로, 실제 적용 전에는 금융회사·증권사·공공기관의 최신 기준과 개인 조건을 함께 확인해보세요.
+        계산 결과는 입력값을 바탕으로 한 참고값입니다. 금리, 세율, 상품 조건, 개인의 소득·대출 상태에 따라 실제 결과가 달라질 수 있으니 실행 전에는 금융회사 안내와 공공기관의 최신 기준을 함께 확인하세요.
       </div>
     </section>
   );

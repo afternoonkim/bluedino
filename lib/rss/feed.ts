@@ -1,6 +1,7 @@
 import { calculatorLandingData } from "@/app/cal/components/calculatorLandingData";
 import { financeCategories } from "@/lib/finance/config";
-import { getAllFinanceRoutes, getQuestionBySlug } from "@/lib/finance/data";
+import { getAllFinanceRoutes } from "@/lib/finance/data";
+import { getFinanceEntry } from "@/lib/finance/content";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
 import { guideArticles } from "@/lib/info/guideArticles";
 import { strategyArticles } from "@/lib/info/strategyArticles";
@@ -16,7 +17,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 const DEFAULT_UPDATED_AT = "2026-05-17";
 const FEED_TITLE = "BlueDino 금융 계산기와 투자 가이드";
 const FEED_DESCRIPTION =
-  "배당·복리·대출·연금 계산기, 절세계좌 가이드, ETF 투자전략, 산업·기업분석을 사용자 관점에서 정리한 BlueDino 최신 콘텐츠입니다.";
+  "배당·복리·대출·연금 계산기, 절세계좌 가이드, ETF 투자전략, 산업·기업분석을 실제 금융 결정을 앞두고 필요한 기준을 정리한 BlueDino 최신 콘텐츠입니다.";
 
 export type RssFeedItem = {
   title: string;
@@ -56,7 +57,7 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "BlueDino 금융 계산기와 투자 가이드",
       description:
-        "배당 계산기, 복리 계산기, 대출이자 계산기, DSR 계산기, LTV 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 한곳에서 확인할 수 있습니다.",
+        "배당 계산기, 복리 계산기, 대출이자 계산기, DSR 계산기, LTV 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 계산기와 가이드로 함께 살펴볼 수 있습니다.",
       path: "/",
       updatedAt: DEFAULT_UPDATED_AT,
     },
@@ -70,7 +71,7 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "금융 질문 가이드 | ISA·IRP·연금저축·대출 기초 정리",
       description:
-        "처음 금융상품을 비교할 때 헷갈리는 조건, 세금, 한도, 상환 구조를 질문별로 쉽게 확인할 수 있습니다.",
+        "처음 금융상품을 비교할 때 헷갈리는 조건, 세금, 한도, 상환 구조를 질문별로 차근차근 살펴볼 수 있습니다.",
       path: "/finance",
       updatedAt: DEFAULT_UPDATED_AT,
     },
@@ -123,10 +124,13 @@ function buildFinanceFeedItems(): RssFeedItem[] {
   }));
 
   const questionItems = getAllFinanceRoutes().map(({ category, slug }) => {
-    const question = getQuestionBySlug(category as FinanceCategoryKey, slug);
+    const entry = getFinanceEntry(category as FinanceCategoryKey, slug);
     return {
-      title: question?.question ?? `${category} 금융 질문`,
-      description: question?.summary ?? question?.quickAnswer ?? "금융상품을 비교하기 전에 확인하면 좋은 핵심 질문과 주의사항을 정리했습니다.",
+      title: entry?.title ?? `${category} 금융 질문`,
+      description:
+        entry?.description ??
+        entry?.summary ??
+        "금융상품을 선택하기 전에 확인해야 할 조건, 비용, 세금, 현금흐름을 사용자 기준으로 정리했습니다.",
       path: `/finance/${category}/${slug}`,
       updatedAt: DEFAULT_UPDATED_AT,
     };

@@ -5463,7 +5463,7 @@ function buildArticle(seed: CompanySeed, market: CompanyAnalysisMarket): Company
       {
         title: `밸류에이션과 주가 기대치 해석`,
         body: [
-          `${seed.companyNameKo} 주가 전망에서 가장 중요한 부분은 좋은 기업인지와 좋은 가격인지를 분리해서 보는 것입니다. ${getValuationLens(seed.sector)}.`,
+          `${seed.companyNameKo} 주가 전망에서 가장 중요한 부분은 좋은 기업인지, 그리고 지금 가격이 합리적인지를 분리해서 보는 것입니다. ${getValuationLens(seed.sector)}.`,
           `주가는 현재 실적보다 미래 기대를 먼저 반영하는 경우가 많습니다. 이미 높은 성장 기대가 반영된 상태라면 좋은 실적이 나와도 주가 반응이 약할 수 있고, 반대로 기대가 낮아진 상태에서는 작은 개선에도 주가가 민감하게 움직일 수 있습니다.`,
           `따라서 투자자는 목표주가나 단기 전망만 보기보다 동종 기업 대비 이익률, 성장률, 부채 부담, 현금흐름을 비교해야 합니다. 이 과정이 있어야 단순히 "싸 보인다" 또는 "비싸 보인다"는 판단에서 벗어날 수 있습니다.`,
         ],

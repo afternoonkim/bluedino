@@ -86,7 +86,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
         <div>
           <span className="bd-badge">공유 · 인용</span>
           <h2 className="bd-title-md mt-3">
-            이 페이지를 블로그·SNS에서 공유하거나 인용해보세요
+            이 페이지를 블로그·SNS에서 공유하거나 인용하기
           </h2>
         </div>
         <button
@@ -100,8 +100,8 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
 
       <p className="bd-text-sub mt-4">
         {category
-          ? `${category} 콘텐츠를 본인 블로그·SNS에 인용하거나 공유해주시면, 같은 주제를 찾는 다른 분들에게 도움이 됩니다.`
-          : "이 페이지를 본인 블로그·SNS에 인용하거나 공유해주시면 같은 주제를 찾는 다른 분들에게 도움이 됩니다."}
+          ? `${category} 콘텐츠를 본인 블로그·SNS에 인용하거나 공유하면 같은 주제를 찾는 분들이 함께 참고할 수 있습니다.`
+          : "이 페이지를 본인 블로그·SNS에 인용하거나 공유하면 같은 주제를 찾는 분들이 함께 참고할 수 있습니다."}
         {" "}네이버 블로그·X(트위터)·페이스북·스레드·카카오스토리 모두 한 번 클릭으로 공유할 수 있습니다.
       </p>
 

@@ -40,14 +40,69 @@ function isLoanCategory(category: FinanceCategoryKey) {
   return category === "loan-basics" || category === "credit-loan" || category === "mortgage-loan";
 }
 
+const WEAK_SUMMARY_PATTERNS = [
+  "핵심만 정리한 항목",
+  "많이 나오는 질문을 바탕으로",
+  "비슷한 설명이 반복되는 항목",
+  "공통 설명이 남아 있는 항목",
+  "처음 보는 사람에게 설명이 부족한 항목",
+];
+
+const WEAK_ANSWER_PATTERNS = [
+  "대출이 단순히 금리만 비교해서",
+  "CMA 계좌는 현금 보관과 단기 자금 관리에 강점",
+  "파킹통장은 입출금이 자유롭고 비교적 높은 금리를",
+  "다만 소득 수준, 세액공제 활용 여부",
+  "따라서 단순히 혜택만 보고 결정하기보다",
+];
+
+function includesAny(text = "", patterns: string[]) {
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
+function isWeakSummary(summary?: string) {
+  return !summary || includesAny(summary, WEAK_SUMMARY_PATTERNS);
+}
+
+function isWeakAnswer(answer?: string[]) {
+  if (!answer?.length) return false;
+  return answer.length <= 3 && answer.some((line) => includesAny(line, WEAK_ANSWER_PATTERNS));
+}
+
+function questionLens(question: string) {
+  if (/세금|세액공제|절세|비과세|과세/.test(question)) return "세금과 실제로 남는 금액";
+  if (/한도|DSR|DTI|LTV/.test(question)) return "한도보다 감당 가능한 상환액";
+  if (/금리|이자|수익률/.test(question)) return "표면 금리와 실제 체감 수익";
+  if (/가입|조건|누구|가능|서류/.test(question)) return "가입 가능 여부와 준비 서류";
+  if (/해지|인출|출금|중도/.test(question)) return "중간에 꺼낼 때 생기는 비용과 불이익";
+  if (/만기|수령|연장|이전/.test(question)) return "만기 이후 자금 이동 계획";
+  if (/비교|차이|같이|동시에|뭐가 더/.test(question)) return "비슷한 상품과의 역할 차이";
+  if (/ETF|주식|펀드|투자|배당/.test(question)) return "투자 대상과 변동성 관리";
+  if (/신용점수|심사|거절|재직|소득증빙/.test(question)) return "심사에서 보는 소득·신용 조건";
+  if (/상환|원리금|원금균등|만기일시|조기상환/.test(question)) return "상환 방식별 총이자와 월 부담";
+  return "내 돈의 목적과 사용 시점";
+}
+
+function userSituation(question: string, category: FinanceCategoryKey) {
+  if (/안 만들면|꼭|늦지|필요/.test(question)) return "지금 당장 만들어야 하는지 판단하려는 상황";
+  if (/비상금|생활비|월급/.test(question)) return "생활비와 단기자금을 어디에 둘지 정하려는 상황";
+  if (/노후|연금|은퇴/.test(question)) return "노후자금과 장기 현금흐름을 나누려는 상황";
+  if (/갈아타기|대환|이전|옮기/.test(question)) return "기존 상품을 유지할지 옮길지 비교하는 상황";
+  if (/처음|무엇|뭐야|란/.test(question)) return "처음 개념을 잡고 실수 없이 시작하려는 상황";
+  if (isLoanCategory(category)) return "대출 실행 전 월 부담과 조건을 비교하는 상황";
+  return "금융상품을 선택하기 전에 기준을 세우려는 상황";
+}
+
 function genericIntro(category: FinanceCategoryKey, question: string) {
   const name = accountName(category);
+  const lens = questionLens(question);
+  const situation = userSituation(question, category);
 
   if (isLoanCategory(category)) {
-    return `${question} 같은 질문은 대출을 처음 알아보는 사람뿐 아니라 이미 대출을 보유한 사람도 자주 다시 확인합니다. 이유는 ${name}가 단순히 금리만 비교해서 결정할 수 있는 상품이 아니라 한도, 상환 방식, 신용 영향, 규제, 중도상환수수료까지 함께 봐야 하는 구조이기 때문입니다.`;
+    return `${question}을 검색했다면 ${situation}일 가능성이 큽니다. ${name}는 승인 여부만 보는 상품이 아니라 ${lens}, 금리 변동 가능성, 기존 부채와의 관계까지 같이 봐야 실제 부담이 보입니다.`;
   }
 
-  return `${question} 같은 질문은 실제로 ${name}를 처음 만들려는 사람뿐 아니라 이미 보유한 사람도 자주 다시 확인합니다. 이유는 ${name}가 단순한 통장이 아니라 세금, 투자 대상, 유지기간, 인출 규칙, 수령 방식까지 함께 봐야 하는 구조이기 때문입니다.`;
+  return `${question}이 헷갈리는 이유는 ${name}가 이름은 단순해 보여도 ${lens}, 유지기간, 세금 처리 방식이 함께 움직이기 때문입니다. ${situation}이라면 장점보다 먼저 내 돈을 언제까지 묶어둘 수 있는지부터 확인하는 편이 좋습니다.`;
 }
 
 function currentRuleParagraphs(category: FinanceCategoryKey): string[] {
@@ -88,7 +143,7 @@ function currentRuleParagraphs(category: FinanceCategoryKey): string[] {
 
   return [
     "상품 구조, 세제 혜택, 유지기간, 인출 규칙을 함께 봐야 큰 틀이 잡힙니다. 다만 개인 조건과 금융사 정책에 따라 적용 서류와 세부 요건은 달라질 수 있습니다.",
-    "세부 한도, 과세 방식, 제출 서류, 이전 절차는 수시로 바뀔 수 있으므로 실제 개설·이전·해지 전에는 금융회사 안내와 최신 공지를 함께 확인하는 편이 안전합니다.",
+    "세부 한도, 과세 방식, 제출 서류, 이전 절차는 수시로 바뀔 수 있으므로 실제 개설·이전·해지 전에는 현재 적용되는 금융회사 공지와 제도 기준을 함께 확인하는 편이 안전합니다.",
   ];
 }
 
@@ -185,10 +240,18 @@ function topicSections(category: FinanceCategoryKey, question: string, topic: st
   return [
     { title: titleMap[topic] ?? titleMap.general, body: [intro, ...rules] },
     {
-      title: isLoan && topic !== "general" ? "실제 판단 기준을 같이 봐야 합니다" : "질문 하나보다 전체 구조를 같이 보는 편이 좋습니다",
-      body: bodyMap[topic] ?? bodyMap.general,
+      title: isLoan && topic !== "general" ? `${question} 판단 기준` : `${question}에서 놓치기 쉬운 부분`,
+      body: [
+        ...(bodyMap[topic] ?? bodyMap.general),
+        isLoan
+          ? `특히 ${questionLens(question)}을 숫자로 확인하지 않으면 금리가 낮아 보여도 총비용이 커질 수 있습니다.`
+          : `특히 ${questionLens(question)}을 먼저 정하지 않으면 혜택이 있어 보여도 실제 사용 과정에서 불편이 생길 수 있습니다.`,
+      ],
     },
-    ending,
+    {
+      ...ending,
+      title: isLoan ? `${question}을 실제 신청 전에 점검하는 순서` : `${question}을 내 상황에 맞게 판단하는 순서`,
+    },
   ];
 }
 
@@ -267,23 +330,27 @@ function relatedCalculatorLinks(category: FinanceCategoryKey, topic: string): Fi
 function buildFaq(category: FinanceCategoryKey, question: string, topic: string): FinanceFaqItem[] {
   const name = accountName(category);
   const isLoan = isLoanCategory(category);
+  const lens = questionLens(question);
+  const situation = userSituation(question, category);
 
-  const firstAnswer =
-    topic === "tax"
-      ? "핵심은 세전 수익보다 세후 결과를 비교하는 것입니다."
-      : topic === "maturity"
-        ? `${name}는 만기 자체보다 이후 연결 전략이 더 중요할 수 있습니다.`
-        : isLoan
-          ? `${name}는 금리 하나만 보고 결정하기보다 한도, 상환 방식, 신용 영향, 중도상환수수료까지 함께 봐야 실제 부담이 보입니다.`
-          : `${name}는 계좌를 만드는 것보다 목적 자금으로 오래 활용하는 것이 중요합니다.`;
+  const firstAnswer = isLoan
+    ? `${question}은 ${lens}을 중심으로 봐야 합니다. 같은 대출이라도 상환기간, 기존 부채, 금리 유형에 따라 매달 빠져나가는 돈과 총이자가 달라집니다.`
+    : `${question}은 ${lens}을 중심으로 판단하면 이해가 쉽습니다. 단순히 혜택이 있는지보다 내 자금 목적과 유지 가능 기간에 맞는지가 더 중요합니다.`;
 
   const secondAnswer = isLoan
-    ? "내 소득과 기존 부채 기준으로 감당 가능한 월 상환액을 먼저 계산하고, 금리 외에 한도·상환 방식·중도상환수수료까지 함께 확인하는 것이 좋습니다."
-    : "가입 가능 여부, 유지기간을 버틸 수 있는 자금 성격, 그리고 다른 계좌와의 역할 분담을 먼저 확인하는 것이 좋습니다.";
+    ? `${situation}이라면 먼저 월 상환 가능액을 정하고, 그다음 금리·한도·상환 방식·수수료를 비교하는 순서가 좋습니다.`
+    : `${situation}이라면 가입 가능 여부보다 돈의 사용 시점, 중간 인출 가능성, 다른 계좌와의 역할 분담을 먼저 정리하는 편이 좋습니다.`;
+
+  const thirdAnswer = topic === "tax"
+    ? "세금 관련 기준은 제도 변경과 개인 소득 구간에 따라 달라질 수 있습니다. 실제 실행 전에는 금융회사 안내와 국세청 자료를 함께 확인하세요."
+    : topic === "comparison"
+      ? "비교할 때는 수익률 하나만 보지 말고 유동성, 세금, 수수료, 유지기간을 같은 기준으로 놓고 봐야 오해가 줄어듭니다."
+      : "처음에는 완벽한 선택보다 나중에 바꾸기 어려운 조건을 피하는 것이 중요합니다. 해지·이전·상환 조건처럼 되돌리기 어려운 항목을 먼저 확인하세요.";
 
   return [
     { question, answer: firstAnswer },
-    { question: `${name}를 보기 전에 가장 먼저 확인할 것은 무엇인가요?`, answer: secondAnswer },
+    { question: `${name}를 보기 전에 어떤 순서로 확인하면 좋나요?`, answer: secondAnswer },
+    { question: `초보자가 ${name}에서 자주 놓치는 부분은 무엇인가요?`, answer: thirdAnswer },
   ];
 }
 
@@ -310,19 +377,50 @@ function cautionByCategory(category: FinanceCategoryKey): string {
 
 function buildQuickAnswer(category: FinanceCategoryKey, item: FinanceQuestionItem, topic: string): string {
   if (item.quickAnswer) return item.quickAnswer;
-  if (item.answer && item.answer.length > 0) return item.answer[0];
+  if (item.answer && item.answer.length > 0 && !isWeakAnswer(item.answer)) return item.answer[0];
 
   const name = accountName(category);
+  const lens = questionLens(item.question);
 
   if (isLoanCategory(category)) {
-    return `${item.question}에 대한 판단은 금리 하나보다 한도, 상환 방식, 신용 영향, 중도상환수수료까지 함께 봐야 정확해집니다.`;
+    return `${item.question}의 답은 승인 가능 여부보다 ${lens}, 총이자, 월 상환액을 함께 비교할 때 선명해집니다. 금리가 낮아 보여도 기간과 상환 방식이 다르면 실제 부담은 달라질 수 있습니다.`;
   }
 
   if (topic === "tax") {
-    return `${item.question}의 핵심은 세전이 아니라 세후 결과를 기준으로 비교하는 것입니다.`;
+    return `${item.question}은 세전 혜택보다 실제로 손에 남는 금액을 기준으로 봐야 합니다. ${name}의 장점은 조건을 지킬 때 커지므로 유지기간과 인출 계획을 함께 확인하세요.`;
   }
 
-  return `${item.question}은(는) ${name}를 고를 때 실제로 많이 헷갈리는 포인트입니다.`;
+  return `${item.question}은 ${lens}을 기준으로 보면 판단이 쉬워집니다. ${name}의 장점만 보기보다 내 자금 목적, 사용 시점, 다른 계좌와의 역할을 같이 정리하는 것이 좋습니다.`;
+}
+
+function buildSummary(category: FinanceCategoryKey, item: FinanceQuestionItem, topic: string): string {
+  if (!isWeakSummary(item.summary)) return item.summary as string;
+
+  const name = accountName(category);
+  const lens = questionLens(item.question);
+  const situation = userSituation(item.question, category);
+
+  if (isLoanCategory(category)) {
+    return `${item.question}을 판단할 때는 ${lens}을 먼저 잡아야 합니다. ${situation}에서 놓치기 쉬운 금리·한도·상환 조건을 실제 부담 기준으로 정리했습니다.`;
+  }
+
+  if (topic === "tax") {
+    return `${name}의 세금 혜택은 조건을 지킬 때 의미가 커집니다. ${item.question}에서 헷갈리기 쉬운 비과세·세액공제·과세 기준을 세후 금액 중심으로 정리했습니다.`;
+  }
+
+  return `${item.question}은 ${name}를 선택하기 전 자주 막히는 지점입니다. ${situation}에서 ${lens}을 기준으로 어떻게 판단하면 좋은지 정리했습니다.`;
+}
+
+function buildDescription(category: FinanceCategoryKey, item: FinanceQuestionItem, topic: string, categoryTitle: string): string {
+  const lens = questionLens(item.question);
+  if (!isWeakSummary(item.summary)) return item.summary as string;
+  if (isLoanCategory(category)) {
+    return `${item.question}을 ${lens}, 월 상환 부담, 총이자, 신용 영향 기준으로 비교해볼 수 있게 정리한 ${categoryTitle} 안내입니다.`;
+  }
+  if (topic === "tax") {
+    return `${item.question}을 세후 수익, 유지 조건, 인출 계획 기준으로 이해할 수 있게 정리한 ${categoryTitle} 안내입니다.`;
+  }
+  return `${item.question}을 ${lens}, 유지기간, 자금 목적 기준으로 이해할 수 있게 정리한 ${categoryTitle} 안내입니다.`;
 }
 
 export function mergeEntry(category: FinanceCategoryKey, item: FinanceQuestionItem): FinanceQuestionEntry {
@@ -336,13 +434,14 @@ export function mergeEntry(category: FinanceCategoryKey, item: FinanceQuestionIt
   const faq = item.faq ?? buildFaq(category, item.question, topic);
   const caution = item.caution ?? cautionByCategory(category);
   const quickAnswer = buildQuickAnswer(category, item, topic);
-  const summary = item.summary ?? `${item.question}에 대해 실제로 많이 헷갈리는 기준을 먼저 정리한 요약입니다.`;
+  const summary = buildSummary(category, item, topic);
+  const description = buildDescription(category, item, topic, categoryTitle);
 
   return {
     ...item,
     category,
     title: item.question,
-    description: item.summary ?? `${item.question}에 대한 핵심 기준을 정리한 BlueDino ${categoryTitle} 질문 가이드입니다.`,
+    description,
     summary,
     quickAnswer,
     sections,

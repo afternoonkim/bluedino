@@ -54,7 +54,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "BlueDino",
   url: "https://bluedino.kr",
-  description: "금융 계산기와 투자 가이드를 한곳에서 볼 수 있는 BlueDino",
+  description: "복리·배당·대출·연금 계산기와 투자 가이드를 함께 제공하는 BlueDino",
 };
 
 export default function RootLayout({
