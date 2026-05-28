@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 
 export const metadata: Metadata = {
   title: "투자전략 가이드 | 상황별·연령별 맞춤 투자전략 11가지 | BlueDino",
@@ -281,7 +281,7 @@ export default function StrategyHubPage() {
           </div>
         </section>
 
-        <AdBlock label="투자전략 중간 관련 콘텐츠 영역" format="horizontal" />
+        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section id="core-strategy" className="space-y-5">
           <div className="bd-card-soft bd-card-padding">

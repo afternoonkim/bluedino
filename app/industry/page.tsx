@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import { industryHubs } from "@/lib/industry/config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
@@ -99,7 +99,7 @@ export default function IndustryIndexPage() {
             </div>
           </section>
 
-          <AdBlock slotKey="inline" label="산업·테마 가이드 참고 영역" />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">산업·테마 가이드를 활용하는 방법</h2>

@@ -4,7 +4,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import { INDEX_DATA_UPDATED_AT } from "@/lib/company-analysis/companyMetadata";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import TradingViewStockChart from "@/components/company-analysis/TradingViewStockChart";
@@ -222,7 +222,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
             <p className="bd-text-sub mt-4">{currentArticle.investorNote}</p>
           </section>
 
-          <AdBlock slotKey="inline" label={`${currentArticle.companyNameKo} 기업분석 본문 관련 콘텐츠 영역`} />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">

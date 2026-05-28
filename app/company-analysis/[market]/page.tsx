@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import CompanyAnalysisSearchList from "@/components/company-analysis/CompanyAnalysisSearchList";
 import {
   companyAnalysisMarkets,
@@ -157,7 +157,7 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
             </div>
           </section>
 
-          <AdBlock slotKey="inline" label={`${market.title} 목록 관련 콘텐츠 영역`} />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           {visibleArticles.length > 0 ? (
             <CompanyAnalysisSearchList

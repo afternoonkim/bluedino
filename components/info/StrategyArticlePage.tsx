@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Script from "next/script";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import ShareAndCite from "@/components/share/ShareAndCite";
 
@@ -169,7 +169,11 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           <p className="bd-text-main mt-4">{article.introAnswer}</p>
         </section>
 
-        <AdBlock />
+        <AdFitAd
+          variant="middle"
+          label="본문 중간 광고 영역"
+          className="rounded-2xl border border-white/5 bg-slate-950/20 py-4"
+        />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">{article.principlesTitle}</h2>
@@ -197,8 +201,6 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           <h2 className="bd-title-md">{article.exampleTitle}</h2>
           <p className="bd-text-main mt-4">{article.exampleBody}</p>
         </section>
-
-        <AdBlock />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">{labels.suitable}</h2>

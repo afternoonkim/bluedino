@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import CalculatorReferenceBox, { type OfficialSource } from "./CalculatorReferenceBox";
+import AdFitAd from "@/components/ad/AdFitAd";
 
 
 function buildDefaultInterpretation(title: string) {
@@ -165,6 +166,12 @@ export default function CalculatorPageLayout({
 
         {/* 1. 계산기 입력 + 결과 (클라이언트 컴포넌트) */}
         {calcChildren}
+
+        <AdFitAd
+          variant="bottom"
+          label="계산 결과 아래 광고 영역"
+          className="rounded-2xl border border-white/5 bg-slate-950/20 py-4"
+        />
 
         {/* 2. 사용 상황 */}
         <section className="bd-card-soft bd-card-padding">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import FinanceQuestionList from "@/components/finance/FinanceQuestionList";
 import { financeCategories, getFinanceCategory } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
@@ -381,7 +381,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
           </section>
         )}
 
-        <AdBlock slotKey="inline" label={`${category.shortTitle} 질문 목록 관련 콘텐츠 영역`} />
+        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <FinanceQuestionList questions={questions} basePath={category.basePath} />
 

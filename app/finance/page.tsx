@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import { financeCategories } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
 
@@ -152,7 +152,7 @@ export default function FinancePage() {
           </div>
         </section>
 
-        <AdBlock slotKey="inline" label="금융 가이드 중간 관련 콘텐츠 영역" />
+        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-section">
           <div>

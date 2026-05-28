@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import {
   companyAnalysisMarkets,
   getCompanyArticlesByMarket,
@@ -115,7 +115,7 @@ export default function CompanyAnalysisPage() {
             })}
           </section>
 
-          <AdBlock slotKey="inline" label="기업분석 허브 중간 관련 콘텐츠 영역" />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           {/* <section className="bd-section">
             <div>

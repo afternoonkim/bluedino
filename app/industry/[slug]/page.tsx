@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import {
@@ -181,7 +181,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             <p className="bd-text-main mt-4">{currentHub.introBody}</p>
           </section>
 
-          <AdBlock slotKey="inline" label={`${currentHub.shortTitle} 산업 페이지 관련 콘텐츠 영역`} />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">{currentHub.shortTitle}을 비교할 때 봐야 할 핵심 지표</h2>

@@ -3,7 +3,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { getFinanceCategory } from "@/lib/finance/config";
@@ -169,7 +169,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
             {entry.caution ? <p className="bd-text-sub mt-4">{entry.caution}</p> : null}
           </section>
 
-          <AdBlock slotKey="inline" label={`${entry.title} 본문 중간 보조 콘텐츠 영역`} />
+          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">
