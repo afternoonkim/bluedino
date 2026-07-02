@@ -27,14 +27,14 @@ export default function SidebarItem({
         collapsed
           ? `mx-auto h-11 w-11 items-center justify-center rounded-2xl border ${
               active
-                ? "border-blue-400/30 bg-blue-600 text-white shadow-[0_8px_24px_rgba(37,99,235,0.35)] ring-1 ring-blue-300/30"
-                : "border-transparent text-slate-300 hover:border-slate-700 hover:bg-slate-800/90 hover:text-white"
+                ? "border-cyan-400/30 bg-cyan-400 text-slate-950 shadow-[0_8px_24px_rgba(34,211,238,0.20)]"
+                : "border-transparent text-slate-300 hover:border-slate-700 hover:bg-slate-900 hover:text-white"
             }`
           : `${
               active
-                ? "bg-blue-600 text-white shadow-lg"
-                : "text-gray-300 hover:bg-slate-800 hover:text-white"
-            } items-center gap-3 rounded-xl px-3 py-2`
+                ? "bg-cyan-400 text-slate-950"
+                : "text-slate-300 hover:bg-slate-900 hover:text-white"
+            } items-center gap-3 rounded-2xl px-3 py-2.5`
       }`}
     >
       <Icon

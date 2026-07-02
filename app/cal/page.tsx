@@ -1,31 +1,35 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { calculatorLandingData } from "./components/calculatorLandingData";
 
 const calculatorGroups = [
   {
+    tag: "투자",
     title: "투자·자산 계산기",
     description: "배당, 복리, FIRE, 양도세처럼 투자 계획을 세울 때 자주 쓰는 계산기입니다.",
     slugs: ["calculator", "compound", "fire", "capital-gains", "retirement-tax", "pension-payout", "retirement-target"],
   },
   {
+    tag: "절세·연금",
     title: "절세·연금 계산기",
     description: "ISA, IRP, 연금저축, 청년도약계좌처럼 세제와 제도 조건을 함께 확인해야 하는 계산기입니다.",
     slugs: ["isa-tax-savings", "irp-tax-credit", "pension-tax-credit", "youth-leap-account", "youth-future-savings", "salary-net"],
   },
   {
+    tag: "현금관리",
     title: "예금·적금·현금관리 계산기",
     description: "예금 이자, 적금 이자, 파킹통장, CMA, 월 예산처럼 생활 자금 관리에 필요한 계산기입니다.",
     slugs: ["deposit-interest", "installment-savings", "parking-account", "cma-interest", "monthly-budget", "emergency-fund", "child-education-fund"],
   },
   {
+    tag: "대출·주택",
     title: "대출·주택 계산기",
     description: "DSR, LTV, 주담대, 대출이자, 중도상환수수료처럼 대출 실행 전 확인해야 하는 계산기입니다.",
     slugs: ["loan-interest", "mortgage", "dsr", "ltv", "home-affordability", "prepayment-fee", "loan-refinance-saving", "jeonse-loan-interest", "jeonse-vs-monthly", "car-installment", "credit-card-installment"],
   },
 ];
-
 
 const calculatorHubFaqs = [
   {
@@ -92,6 +96,24 @@ export const metadata: Metadata = {
 
 export default function CalculatorHubPage() {
   const total = calculatorGroups.reduce((sum, group) => sum + group.slugs.length, 0);
+  const listItems: TaggedListItem[] = calculatorGroups.flatMap((group) =>
+    group.slugs.flatMap((slug) => {
+      const item = getCalculator(slug);
+      if (!item) return [];
+      return [
+        {
+          title: item.title,
+          href: item.href,
+          description: item.description,
+          badge: group.tag,
+          meta: group.title,
+          tags: [group.tag, group.title.replace(" 계산기", ""), "계산기"],
+          cta: "계산기 열기",
+        },
+      ];
+    }),
+  );
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -118,62 +140,46 @@ export default function CalculatorHubPage() {
       <div className="bd-container bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">계산기 전체보기</span>
-          <h1 className="bd-title-xl mt-4">금융·투자 계산기 모음</h1>
-          <p className="bd-text-main mt-4 max-w-4xl">배당, 복리, FIRE, 예금·적금, ISA·IRP, DSR·LTV·주담대 계산기까지 자주 쓰는 금융 계산기를 목적별로 비교할 수 있게 구성했습니다. 먼저 계산기로 숫자를 확인하고, 연결된 가이드에서 세금과 제도 조건을 함께 점검해 보세요.</p>
-          <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-300">
+          <h1 className="bd-title-xl mt-4">필요한 금융 계산기를 태그로 바로 찾아보세요</h1>
+          <p className="bd-text-main mt-4 max-w-4xl">
+            배당, 복리, FIRE, 예금·적금, ISA·IRP, DSR·LTV·주담대 계산기까지 자주 쓰는 금융 계산기를 한 목록으로 정리했습니다. 카드를 여러 개 펼쳐보지 않아도 태그와 검색으로 원하는 계산기만 빠르게 찾을 수 있습니다.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
             <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">총 {total}개 계산기</span>
             <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">투자·절세·대출·생활자금</span>
           </div>
         </section>
-        <div className="mt-8 space-y-8">
-          {calculatorGroups.map((group) => (
-            <section key={group.title} className="bd-card-soft bd-card-padding">
-              <h2 className="bd-title-md">{group.title}</h2>
-              <p className="bd-text-main mt-3">{group.description}</p>
-              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {group.slugs.map((slug) => {
-                  const item = getCalculator(slug);
-                  if (!item) return null;
-                  return (
-                    <Link key={slug} href={item.href} className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5 transition hover:border-cyan-400/50 hover:bg-cyan-400/10">
-                      <h3 className="text-base font-bold text-white">{item.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-400">{item.description}</p>
-                      <span className="mt-4 inline-flex text-sm font-semibold text-cyan-300">계산기 열기 →</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
-        </div>
 
-        <section className="bd-card bd-card-padding mt-8">
+        <TaggedList
+          title="계산기 목록"
+          description="모바일에서는 태그를 가로로 넘기고, 필요한 키워드를 입력해 계산기를 좁혀볼 수 있습니다."
+          items={listItems}
+          filterTags={calculatorGroups.map((group) => group.tag)}
+          searchPlaceholder="예: 배당, 복리, DSR, 주담대, ISA, 파킹통장"
+          countLabel="계산기"
+        />
+
+        <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">계산기를 고를 때 먼저 나눠볼 기준</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h3 className="text-base font-bold text-white">투자 계획</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">배당, 복리, FIRE 계산기는 목표 금액과 기간을 먼저 정한 뒤 월 적립액을 조정할 때 유용합니다.</p>
-            </article>
-            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h3 className="text-base font-bold text-white">대출 판단</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">DSR, LTV, 대출이자 계산기는 가능한 한도보다 실제 상환 부담을 먼저 보는 데 초점을 둡니다.</p>
-            </article>
-            <article className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
-              <h3 className="text-base font-bold text-white">현금관리</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">예금, 적금, 파킹통장, CMA 계산기는 세후 이자와 자금 사용 시점을 나누어 비교할 때 적합합니다.</p>
-            </article>
+          <div className="bd-list mt-5">
+            <div className="bd-list-item">투자 계획은 목표 금액과 기간을 먼저 정한 뒤 배당·복리·FIRE 계산기로 확인합니다.</div>
+            <div className="bd-list-item">대출 판단은 가능한 한도보다 실제 월 상환 부담을 먼저 보는 것이 부담을 줄이는 데 도움이 됩니다.</div>
+            <div className="bd-list-item">현금관리는 세후 이자, 자금 사용 시점, 금리 적용 한도를 함께 비교하면 선택이 쉬워집니다.</div>
           </div>
         </section>
 
-        <section className="bd-card-soft bd-card-padding mt-8">
+        <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">계산기 전체보기에서 자주 묻는 질문</h2>
-          <div className="mt-6 space-y-4">
+          <div className="mt-5 space-y-3">
             {calculatorHubFaqs.map((faq) => (
-              <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+              <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
                 <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                <p className="bd-text-main mt-3">{faq.answer}</p>
+                <p className="bd-text-main mt-2">{faq.answer}</p>
               </article>
             ))}
+          </div>
+          <div className="mt-6">
+            <Link href="/finance" className="bd-button-secondary">계산 후 금융 가이드 보기</Link>
           </div>
         </section>
       </div>

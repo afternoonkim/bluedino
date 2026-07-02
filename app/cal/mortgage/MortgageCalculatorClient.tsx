@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 import { buildAmortization, formatCurrency, monthlyPayment, parseMoney } from "../components/loanCalculators";
@@ -105,7 +105,7 @@ export default function MortgageCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="주담대 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
+        <AdFitAd variant="bottom" label="주담대 계산기 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">연도별 잔액과 누적이자 흐름</h2>

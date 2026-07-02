@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 import { formatCurrency, formatPercent, parseMoney } from "../components/loanCalculators";
@@ -97,7 +97,7 @@ export default function LtvCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="LTV 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
+        <AdFitAd variant="bottom" label="LTV 계산기 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">자금 구조 한눈에 보기</h2>

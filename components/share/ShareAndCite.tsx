@@ -177,7 +177,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
       </div>
 
       <p className="bd-text-sub mt-6">
-        BlueDino의 모든 콘텐츠는 출처(BlueDino, https://bluedino.kr)를 표기하시면 자유롭게 인용·요약·재가공해 사용하실 수 있습니다. 다만 본문을 그대로 통째로 복사해 게시하시는 것은 SEO 중복 콘텐츠 패널티 측면에서 본인 사이트에도 좋지 않으니, 핵심만 짧게 요약하고 출처 링크를 다는 형태로 사용해주세요.
+        BlueDino의 콘텐츠는 출처(BlueDino, https://bluedino.kr)를 함께 표기하시면 인용·요약에 활용하실 수 있습니다. 본문 전체를 그대로 옮기기보다는 필요한 핵심만 짧게 정리하고 원문 링크를 함께 남기는 방식을 권장합니다.
       </p>
     </section>
   );

@@ -40,7 +40,7 @@ export default function SidebarGroup({
   if (collapsed) {
     return (
       <div>
-        <div className="space-y-2">{children}</div>
+        <div className="space-y-1.5">{children}</div>
       </div>
     );
   }
@@ -53,7 +53,7 @@ export default function SidebarGroup({
         type="button"
         onClick={toggle}
         aria-expanded={isOpen}
-        className="mb-2 flex w-full items-center justify-between rounded-md px-1 py-1 text-xs font-semibold uppercase tracking-wide text-gray-400 transition hover:text-white"
+        className="mb-1 flex w-full items-center justify-between rounded-xl px-2 py-2 text-xs font-semibold tracking-wide text-slate-400 transition hover:bg-slate-900 hover:text-white"
       >
         <span>{title}</span>
         <ChevronDown
@@ -62,7 +62,7 @@ export default function SidebarGroup({
         />
       </button>
 
-      {isOpen ? <div className="space-y-2">{children}</div> : null}
+      {isOpen ? <div className="space-y-1.5">{children}</div> : null}
     </div>
   );
 }

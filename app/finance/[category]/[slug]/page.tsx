@@ -9,9 +9,13 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import { getFinanceCategory } from "@/lib/finance/config";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { getFinanceEntry, getRelatedEntries } from "@/lib/finance/content";
+import { safeDecodeSegment } from "@/lib/route-utils";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
 
 type PageProps = { params: Promise<{ category: string; slug: string }> };
+
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 function getFinanceToneLabels(categoryKey: FinanceCategoryKey) {
   if (categoryKey === "loan-basics" || categoryKey === "credit-loan" || categoryKey === "mortgage-loan") {
@@ -50,11 +54,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: rawCategory, slug: rawSlug } = await params;
-  const category = getFinanceCategory(decodeURIComponent(rawCategory));
+  const category = getFinanceCategory(safeDecodeSegment(rawCategory));
   if (!category) {
     return { title: "질문 가이드 | BlueDino" };
   }
-  const entry = getFinanceEntry(category.key as FinanceCategoryKey, decodeURIComponent(rawSlug));
+  const entry = getFinanceEntry(category.key as FinanceCategoryKey, safeDecodeSegment(rawSlug));
   if (!entry) {
     return { title: `${category.shortTitle} 질문 가이드 | BlueDino` };
   }
@@ -85,10 +89,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function FinanceQuestionPage({ params }: PageProps) {
   const { category: rawCategory, slug: rawSlug } = await params;
-  const category = getFinanceCategory(decodeURIComponent(rawCategory));
+  const category = getFinanceCategory(safeDecodeSegment(rawCategory));
   if (!category) notFound();
 
-  const decodedSlug = decodeURIComponent(rawSlug);
+  const decodedSlug = safeDecodeSegment(rawSlug);
   const entry = getFinanceEntry(category.key as FinanceCategoryKey, decodedSlug);
   if (!entry) notFound();
 
@@ -153,7 +157,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
       <Script id={`finance-breadcrumb-${entry.slug}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="bd-page">
-        <div className="bd-container bd-section">
+        <div className="bd-container-narrow bd-section">
           <section className="bd-card bd-card-padding">
             <div className="flex flex-wrap items-center gap-3">
               <Link href="/finance" className="bd-badge">금융 가이드</Link>

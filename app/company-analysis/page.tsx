@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import AdFitAd from "@/components/ad/AdFitAd";
+import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import {
   companyAnalysisMarkets,
   getCompanyArticlesByMarket,
@@ -60,85 +61,45 @@ const breadcrumbSchema = {
 };
 
 export default function CompanyAnalysisPage() {
+  const marketItems: TaggedListItem[] = companyAnalysisMarkets.map((market) => {
+    const count = getCompanyArticlesByMarket(market.key).filter((article) => indexableRouteSet.has(`${article.market}:${article.slug}`)).length;
+    return {
+      title: market.title,
+      href: market.basePath,
+      description: market.description,
+      badge: market.shortTitle,
+      meta: `분석글 ${count.toLocaleString("ko-KR")}개`,
+      tags: [market.shortTitle, market.key === "korea" ? "국내주식" : "해외주식", "기업분석"],
+      cta: `${market.shortTitle} 보기`,
+    };
+  });
+
   return (
     <>
-      <Script
-        id="company-analysis-itemlist"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-      />
-      <Script
-        id="company-analysis-breadcrumb"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <Script id="company-analysis-itemlist" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <Script id="company-analysis-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="bd-page">
         <div className="bd-container bd-section">
           <section className="bd-card bd-card-padding">
             <span className="bd-badge">기업분석</span>
-            <h1 className="bd-title-xl mt-4">국내기업 · 해외기업 분석</h1>
-            <p className="bd-text-main mt-4">
-              BlueDino 기업분석은 종목 이름만 보고 따라가는 콘텐츠가 아니라, 사용자가 스스로 판단할 수 있도록 사업 구조와 성장 포인트, 리스크를 한 번에 정리하는 메뉴입니다.
+            <h1 className="bd-title-xl mt-4">국내기업·해외기업 분석을 목록으로 찾아보세요</h1>
+            <p className="bd-text-main mt-4 max-w-4xl">
+              종목 이름만 보고 따라가기보다, 기업이 돈을 버는 방식과 성장 포인트, 리스크를 먼저 보는 것이 중요합니다. 기업분석은 국내기업과 해외기업 두 입구로 줄이고, 상세 페이지에서 검색과 태그로 원하는 기업을 찾도록 정리했습니다.
             </p>
-            <p className="bd-text-sub mt-3">
-              주가가 왜 움직이는지, 어떤 숫자와 이슈를 먼저 봐야 하는지, 장기 투자 관점에서 어떤 부분을 조심해야 하는지 중심으로 구성했습니다.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/company-analysis/korea" className="bd-button-primary">
-                국내기업 분석 보기
-              </Link>
-              <Link href="/company-analysis/global" className="bd-button-secondary">
-                해외기업 분석 보기
-              </Link>
-            </div>
           </section>
 
-          <section className="bd-grid-2">
-            {companyAnalysisMarkets.map((market) => {
-              const count = getCompanyArticlesByMarket(market.key).filter((article) => indexableRouteSet.has(`${article.market}:${article.slug}`)).length;
-              return (
-                <article key={market.key} className="bd-card bd-card-padding">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="bd-badge">{market.badge}</span>
-                    <span className="text-sm text-slate-400">분석글 {count}개</span>
-                  </div>
-                  <h2 className="bd-title-md mt-4">{market.title}</h2>
-                  <p className="bd-text-main mt-4">{market.description}</p>
-                  <div className="mt-6">
-                    <Link href={market.basePath} className="bd-button-secondary">
-                      {market.shortTitle} 보러가기
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </section>
+          <TaggedList
+            title="기업분석 분류"
+            description="먼저 국내기업 또는 해외기업을 고른 뒤, 상세 목록에서 기업명·티커·업종 태그로 좁혀보세요."
+            items={marketItems}
+            filterTags={["국내기업", "해외기업", "국내주식", "해외주식"]}
+            searchPlaceholder="예: 국내기업, 해외기업, 미국주식, 코스피"
+            countLabel="분류"
+            showSearch={false}
+          />
 
           <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
-
-          {/* <section className="bd-section">
-            <div>
-              <span className="bd-badge">먼저 읽기 좋은 글</span>
-              <h2 className="bd-title-lg mt-4">대표 기업분석</h2>
-              <p className="bd-text-sub mt-3">
-                관심 종목을 처음 확인할 때 사업 구조, 성장 포인트, 리스크를 빠르게 잡을 수 있도록 대표 기업부터 비교할 수 있게 구성했습니다.
-              </p>
-            </div>
-
-            <div className="bd-grid-3">
-              {featuredArticles.map((article) => (
-                <Link key={article.slug} href={`/company-analysis/${article.market}/${article.slug}`}>
-                  <article className="h-full bd-card bd-card-padding transition hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-slate-900">
-                    <span className="bd-badge">{article.badge}</span>
-                    <h3 className="bd-title-md mt-4">{article.companyNameKo}({article.ticker})</h3>
-                    <p className="bd-text-main mt-4">{article.summary}</p>
-                    <div className="mt-5 text-sm font-semibold text-cyan-300">분석글 보기 →</div>
-                  </article>
-                </Link>
-              ))}
-            </div>
-          </section> */}
 
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">기업분석 글을 볼 때의 기준</h2>
@@ -147,6 +108,10 @@ export default function CompanyAnalysisPage() {
               <div className="bd-list-item">성장 포인트가 실제 실적 개선으로 이어질 수 있는지 살펴봅니다.</div>
               <div className="bd-list-item">좋은 기업이라도 가격 부담과 산업 리스크는 따로 점검합니다.</div>
               <div className="bd-list-item">마지막 판단은 자신의 투자 기간, 현금흐름, 리스크 감당 범위에 맞춰 결정합니다.</div>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/industry" className="bd-button-secondary">산업·테마 먼저 보기</Link>
+              <Link href="/info/strategy" className="bd-button-secondary">투자전략 보기</Link>
             </div>
           </section>
         </div>

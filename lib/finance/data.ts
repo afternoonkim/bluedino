@@ -30,10 +30,15 @@ export function getQuestionBySlug(category: FinanceCategoryKey, slug: string) {
 }
 
 export function getAllFinanceRoutes() {
+  const seen = new Set<string>();
+
   return Object.entries(financeQuestionMap).flatMap(([category, questions]) =>
-    questions.map((item) => ({
-      category,
-      slug: item.slug,
-    }))
+    questions.flatMap((item) => {
+      const routeKey = `${category}/${item.slug}`;
+      if (seen.has(routeKey)) return [];
+
+      seen.add(routeKey);
+      return [{ category: category as FinanceCategoryKey, slug: item.slug }];
+    })
   );
 }

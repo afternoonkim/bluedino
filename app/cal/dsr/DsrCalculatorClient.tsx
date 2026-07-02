@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import AdBlock from "@/components/ad/AdBlock";
+import AdFitAd from "@/components/ad/AdFitAd";
 import CalculatorHero from "../components/CalculatorHero";
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 import { buildAmortization, formatCurrency, formatPercent, monthlyPayment, parseMoney } from "../components/loanCalculators";
@@ -143,7 +143,7 @@ export default function DsrCalculatorClient() {
           </section>
         </div>
 
-        <AdBlock label="DSR 계산기 중간 관련 콘텐츠 영역" slotKey="inline" format="horizontal" />
+        <AdFitAd variant="bottom" label="DSR 계산기 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card bd-card-padding">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">

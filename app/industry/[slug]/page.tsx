@@ -16,10 +16,14 @@ import {
 } from "@/lib/company-analysis/data";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
 import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
+import { safeDecodeSegment } from "@/lib/route-utils";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllIndustrySlugs().map((slug) => ({ slug }));
@@ -27,7 +31,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const hub = getIndustryHub(decodeURIComponent(slug));
+  const hub = getIndustryHub(safeDecodeSegment(slug));
   if (!hub) return { title: "산업·테마 가이드 | BlueDino" };
 
   const url = `${BASE_URL}/industry/${hub.slug}`;
@@ -85,7 +89,7 @@ function rankArticle(article: {
 
 export default async function IndustryHubPage({ params }: PageProps) {
   const { slug } = await params;
-  const hub = getIndustryHub(decodeURIComponent(slug));
+  const hub = getIndustryHub(safeDecodeSegment(slug));
   if (!hub) notFound();
   const currentHub = hub;
 

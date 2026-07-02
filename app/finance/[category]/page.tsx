@@ -8,9 +8,13 @@ import { financeCategories, getFinanceCategory } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
 import { getFinanceEntry } from "@/lib/finance/content";
 import { isIndexableFinanceEntry } from "@/lib/finance/indexing";
+import { safeDecodeSegment } from "@/lib/route-utils";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
 
 type PageProps = { params: Promise<{ category: string }> };
+
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 type CategorySeo = {
   whyMatters: string;
@@ -229,7 +233,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category: rawCategory } = await params;
-  const category = getFinanceCategory(decodeURIComponent(rawCategory));
+  const category = getFinanceCategory(safeDecodeSegment(rawCategory));
   if (!category) {
     return { title: "금융 가이드 | BlueDino" };
   }
@@ -257,7 +261,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function FinanceCategoryPage({ params }: PageProps) {
   const { category: rawCategory } = await params;
-  const categoryKey = decodeURIComponent(rawCategory);
+  const categoryKey = safeDecodeSegment(rawCategory);
   const category = getFinanceCategory(categoryKey);
 
   if (!category) notFound();
@@ -331,7 +335,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bd-container bd-section">
+      <div className="bd-container-narrow bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">{category.badge}</span>
           <h1 className="bd-title-xl mt-4">{category.title}</h1>

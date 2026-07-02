@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AdBlock from "@/components/ad/AdBlock";
 
 export const metadata: Metadata = {
   title: "투자정보 | BlueDino",
@@ -16,9 +15,9 @@ export default function InvestmentLayout({ children }: { children: React.ReactNo
         </div>
       </section> */}
 
-      <AdBlock label="투자정보 상단 보조 콘텐츠 영역" format="horizontal" />
+      
       {children}
-      <AdBlock label="투자정보 하단 보조 콘텐츠 영역" format="rectangle" />
+      
     </div>
   );
 }

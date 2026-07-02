@@ -1,12 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import AdBlock from "@/components/ad/AdBlock";
-
-function shouldUseLocalTopBottomAds(pathname: string) {
-  return pathname === "/" || pathname.startsWith("/cal") || pathname.startsWith("/info");
-}
+import AdFitAd from "@/components/ad/AdFitAd";
 
 function shouldShowSidebarRail(pathname: string) {
   return pathname !== "/" && !pathname.startsWith("/cal");
@@ -15,51 +10,38 @@ function shouldShowSidebarRail(pathname: string) {
 export default function RouteAwareAdShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || "/";
 
-  const { useLocalTopBottomAds, showSidebarRail } = useMemo(
-    () => ({
-      useLocalTopBottomAds: shouldUseLocalTopBottomAds(pathname),
-      showSidebarRail: shouldShowSidebarRail(pathname),
-    }),
-    [pathname],
-  );
-
   return (
     <>
-      {!useLocalTopBottomAds ? (
-        <AdBlock
-          slotKey="top"
-          label="전역 상단 보조 콘텐츠 영역"
-          format="horizontal"
-          className="mb-6"
-        />
-      ) : null}
+      <AdFitAd
+        variant="top"
+        label="페이지 상단 광고 영역"
+        refreshKey={`top-${pathname}`}
+        className="mb-5 mt-0 rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-3"
+      />
 
       <div className="grid items-start gap-8 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="min-w-0">{children}</div>
 
-        {showSidebarRail ? (
+        {shouldShowSidebarRail(pathname) ? (
           <aside className="hidden xl:block">
             <div className="sticky top-24 space-y-4">
-              {/* 보조 콘텐츠 블록은 환경변수와 슬롯 값이 설정된 경우에만 표시됩니다. */}
-              <AdBlock
-                slotKey="sidebar"
-                label="사이드 보조 콘텐츠 영역"
-                format="rectangle"
-                className="my-0"
+              <AdFitAd
+                variant="middle"
+                label="사이드 광고 영역"
+                refreshKey={`side-${pathname}`}
+                className="my-0 rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-4"
               />
             </div>
           </aside>
         ) : null}
       </div>
 
-      {!useLocalTopBottomAds ? (
-        <AdBlock
-          slotKey="bottom"
-          label="전역 하단 보조 콘텐츠 영역"
-          format="rectangle"
-          className="mt-8"
-        />
-      ) : null}
+      <AdFitAd
+        variant="bottom"
+        label="페이지 하단 광고 영역"
+        refreshKey={`bottom-${pathname}`}
+        className="mt-8 rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-4"
+      />
     </>
   );
 }

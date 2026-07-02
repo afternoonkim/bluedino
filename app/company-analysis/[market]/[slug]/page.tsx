@@ -16,10 +16,14 @@ import {
   getRelatedCompanyArticles,
 } from "@/lib/company-analysis/data";
 import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
+import { safeDecodeSegment } from "@/lib/route-utils";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 type PageProps = { params: Promise<{ market: string; slug: string }> };
+
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 function getAnalysisLevel(article: { ticker: string; indices: unknown[] }) {
   const hasManualCommentary = Boolean(COMPANY_CUSTOM_NOTES[article.ticker.toUpperCase()]);
@@ -34,7 +38,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { market: rawMarket, slug: rawSlug } = await params;
-  const market = getCompanyMarketConfig(decodeURIComponent(rawMarket));
+  const market = getCompanyMarketConfig(safeDecodeSegment(rawMarket));
 
   if (!market) {
     return { title: "기업분석 | BlueDino" };
@@ -42,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const article = getCompanyArticle(
     market.key as CompanyAnalysisMarket,
-    decodeURIComponent(rawSlug),
+    safeDecodeSegment(rawSlug),
   );
 
   if (!article) {
@@ -76,7 +80,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
   const { market: rawMarket, slug: rawSlug } = await params;
-  const market = getCompanyMarketConfig(decodeURIComponent(rawMarket));
+  const market = getCompanyMarketConfig(safeDecodeSegment(rawMarket));
 
   if (!market) {
     notFound();
@@ -86,7 +90,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
 
   const article = getCompanyArticle(
     currentMarket.key as CompanyAnalysisMarket,
-    decodeURIComponent(rawSlug),
+    safeDecodeSegment(rawSlug),
   );
 
   if (!article) {
