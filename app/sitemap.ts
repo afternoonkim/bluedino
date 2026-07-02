@@ -105,7 +105,6 @@ const staticRoutes = [
   "/info/etc/methodology",
   "/info/strategy/tax-efficient-investing",
   "/industry",
-  // "/info/videos" — 별도 noindex 설정을 적용하는 보조 영상 페이지
 ];
 
 const guideRoutes = Object.keys(guideArticles).map((slug) => `/info/guide/${slug}`);

@@ -86,7 +86,7 @@ export default function TaggedList({
           <h2 className="bd-title-md">{title}</h2>
           {description ? <p className="bd-text-sub mt-2 max-w-3xl">{description}</p> : null}
         </div>
-        <div className="text-sm text-slate-400">
+        <div className="text-[12px] text-slate-400 md:text-sm">
           {countLabel} {filteredItems.length.toLocaleString("ko-KR")}개 / 전체 {normalizedItems.length.toLocaleString("ko-KR")}개
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function TaggedList({
               key={tag}
               type="button"
               onClick={() => setActiveTag(tag)}
-              className={`shrink-0 rounded-full border px-3.5 py-2 text-sm font-semibold transition ${
+              className={`shrink-0 rounded-full border px-3 py-1.5 text-[12px] font-semibold transition md:px-3.5 md:py-2 md:text-sm ${
                 active
                   ? "border-cyan-300 bg-cyan-300 text-slate-950"
                   : "border-slate-800 bg-slate-950/60 text-slate-300 hover:border-slate-600 hover:text-white"
@@ -132,17 +132,17 @@ export default function TaggedList({
         <ul className="mt-5 divide-y divide-slate-800/80 rounded-2xl border border-slate-800/80 bg-slate-950/35">
           {filteredItems.map((item, index) => (
             <li key={`${item.href}-${item.title}-${index}`}>
-              <Link href={item.href} className="group block px-4 py-4 transition hover:bg-slate-900/80 md:px-5">
+              <Link href={item.href} className="group block px-3 py-3 transition hover:bg-slate-900/80 md:px-5 md:py-4">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       {item.badge ? <span className="bd-badge">{item.badge}</span> : null}
                       {item.meta ? <span className="text-xs font-medium text-slate-500">{item.meta}</span> : null}
                     </div>
-                    <h3 className="mt-2 text-base font-bold leading-7 text-white group-hover:text-cyan-200 md:text-lg">
+                    <h3 className="mt-2 text-[15px] font-bold leading-6 text-white group-hover:text-cyan-200 md:text-lg md:leading-7">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400 md:text-[15px]">
+                    <p className="mt-1.5 line-clamp-2 text-[13px] leading-5 text-slate-400 md:text-[15px] md:leading-6">
                       {item.description}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-1.5">
@@ -153,7 +153,7 @@ export default function TaggedList({
                       ))}
                     </div>
                   </div>
-                  <span className="shrink-0 text-sm font-semibold text-cyan-300 md:pt-9">
+                  <span className="shrink-0 text-[13px] font-semibold text-cyan-300 md:pt-9 md:text-sm">
                     {item.cta ?? "자세히 보기"} →
                   </span>
                 </div>

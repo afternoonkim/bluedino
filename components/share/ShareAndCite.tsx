@@ -54,7 +54,6 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
   const encodedUrl = useMemo(() => encodeURIComponent(absoluteUrl), [absoluteUrl]);
   const encodedTitle = useMemo(() => encodeURIComponent(title), [title]);
 
-  const naverShare = `https://share.naver.com/web/shareView?url=${encodedUrl}&title=${encodedTitle}`;
   const xShare = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
   const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
   const threadsShare = `https://www.threads.net/intent/post?text=${encodedTitle}%20${encodedUrl}`;
@@ -66,7 +65,6 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  // 1.4초 후 "복사됨" 표시 자동 해제
   useEffect(() => {
     if (!copiedKey) return;
     const t = setTimeout(() => setCopiedKey(null), 1400);
@@ -86,7 +84,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
         <div>
           <span className="bd-badge">공유 · 인용</span>
           <h2 className="bd-title-md mt-3">
-            이 페이지를 블로그·SNS에서 공유하거나 인용하기
+            이 페이지 링크를 저장하거나 공유하기
           </h2>
         </div>
         <button
@@ -100,20 +98,12 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
 
       <p className="bd-text-sub mt-4">
         {category
-          ? `${category} 콘텐츠를 본인 블로그·SNS에 인용하거나 공유하면 같은 주제를 찾는 분들이 함께 참고할 수 있습니다.`
-          : "이 페이지를 본인 블로그·SNS에 인용하거나 공유하면 같은 주제를 찾는 분들이 함께 참고할 수 있습니다."}
-        {" "}네이버 블로그·X(트위터)·페이스북·스레드·카카오스토리 모두 한 번 클릭으로 공유할 수 있습니다.
+          ? `${category} 콘텐츠를 나중에 다시 보거나 다른 사람에게 공유할 때 사용할 수 있습니다.`
+          : "이 페이지를 나중에 다시 보거나 다른 사람에게 공유할 때 사용할 수 있습니다."}
+        {" "}X(트위터), 페이스북, 스레드, 카카오스토리 공유와 링크 복사를 지원합니다.
       </p>
 
       <div className="mt-5 flex flex-wrap gap-2">
-        <a
-          href={naverShare}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-200 transition hover:border-emerald-400/60 hover:bg-emerald-400/20"
-        >
-          네이버 블로그 공유
-        </a>
         <a
           href={xShare}
           target="_blank"
@@ -151,12 +141,12 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
       <div className="mt-8">
         <h3 className="text-sm font-semibold text-white">이 페이지를 글에 인용할 때</h3>
         <p className="bd-text-sub mt-2">
-          블로그나 보고서, 글에 본 페이지를 인용하실 때 아래 코드를 그대로 붙여 넣으시면 자동으로 링크가 들어갑니다.
+          글, 보고서, 메모에 본 페이지를 인용할 때 아래 형식 중 필요한 것을 복사해서 사용할 수 있습니다.
         </p>
 
         <div className="mt-4 space-y-3">
           <CitationRow
-            label="네이버 블로그·티스토리(HTML)"
+            label="HTML 링크"
             value={htmlSnippet}
             copied={copiedKey === "html"}
             onCopy={() => handleCopy("html", htmlSnippet)}
@@ -177,7 +167,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
       </div>
 
       <p className="bd-text-sub mt-6">
-        BlueDino의 콘텐츠는 출처(BlueDino, https://bluedino.kr)를 함께 표기하시면 인용·요약에 활용하실 수 있습니다. 본문 전체를 그대로 옮기기보다는 필요한 핵심만 짧게 정리하고 원문 링크를 함께 남기는 방식을 권장합니다.
+        BlueDino의 콘텐츠를 인용·요약할 때는 출처와 원문 링크를 함께 남기는 방식을 권장합니다. 본문 전체를 그대로 옮기기보다는 필요한 핵심만 짧게 정리해 주세요.
       </p>
     </section>
   );

@@ -31,7 +31,7 @@ export default function ClientLayout({
       >
         <Topbar />
 
-        <div className="flex-1 px-3 pb-24 pt-4 md:px-6 md:py-6 lg:px-8 lg:pb-6">
+        <div className="flex-1 px-3 pb-24 pt-3 md:px-6 md:py-6 lg:px-8 lg:pb-6">
           <div className="mx-auto max-w-6xl">
             <RouteNavigationButtons position="top" />
             <RouteAwareAdShell>{children}</RouteAwareAdShell>

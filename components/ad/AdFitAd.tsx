@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useId, useMemo, useRef } from "react";
 
 type AdFitVariant = "top" | "bottom" | "middle";
 
@@ -17,16 +17,11 @@ type AdFitAdProps = {
 const ADFIT_FLAG = process.env.NEXT_PUBLIC_ADFIT_ENABLED;
 const ADFIT_ENABLED = ADFIT_FLAG !== "false";
 
-const ADFIT_BOTTOM_UNIT =
-  process.env.NEXT_PUBLIC_ADFIT_BOTTOM_UNIT ?? "DAN-ObwSZ2YTVLvw1q2f";
+const ADFIT_TOP_UNIT = process.env.NEXT_PUBLIC_ADFIT_TOP_UNIT ?? "DAN-ObwSZ2YTVLvw1q2f";
+const ADFIT_BOTTOM_UNIT = process.env.NEXT_PUBLIC_ADFIT_BOTTOM_UNIT;
+const ADFIT_MIDDLE_UNIT = process.env.NEXT_PUBLIC_ADFIT_MID_UNIT ?? "DAN-awF7TIdYGHrRVXTe";
 
-const ADFIT_MIDDLE_UNIT =
-  process.env.NEXT_PUBLIC_ADFIT_MID_UNIT ?? "DAN-awF7TIdYGHrRVXTe";
-
-const ADFIT_TOP_UNIT =
-  process.env.NEXT_PUBLIC_ADFIT_TOP_UNIT ?? ADFIT_BOTTOM_UNIT;
-
-const adFitSizeMap: Record<AdFitVariant, { width: number; height: number; unit: string }> = {
+const adFitSizeMap: Record<AdFitVariant, { width: number; height: number; unit?: string }> = {
   top: {
     width: 320,
     height: 100,
@@ -44,14 +39,21 @@ const adFitSizeMap: Record<AdFitVariant, { width: number; height: number; unit: 
   },
 };
 
-function hasSameAdUnitInPage(adUnit: string) {
-  if (typeof document === "undefined") {
-    return false;
-  }
+function hasSameAdUnitOutsideCurrent(adUnit: string, currentContainer: HTMLDivElement) {
+  if (typeof document === "undefined") return false;
 
-  return Array.from(document.querySelectorAll(".kakao_ad_area")).some(
-    (node) => node.getAttribute("data-ad-unit") === adUnit,
-  );
+  return Array.from(document.querySelectorAll(".kakao_ad_area")).some((node) => {
+    if (currentContainer.contains(node)) return false;
+    return node.getAttribute("data-ad-unit") === adUnit;
+  });
+}
+
+function appendAdFitScript(target: HTMLElement) {
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://t1.daumcdn.net/kas/static/ba.min.js";
+  script.dataset.adfitLoader = "true";
+  target.appendChild(script);
 }
 
 export default function AdFitAd({
@@ -64,6 +66,7 @@ export default function AdFitAd({
   refreshKey,
 }: AdFitAdProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const reactId = useId();
   const { resolvedUnit, resolvedWidth, resolvedHeight } = useMemo(() => {
     const fallback = adFitSizeMap[variant];
     return {
@@ -73,23 +76,22 @@ export default function AdFitAd({
     };
   }, [height, unit, variant, width]);
 
-  const isConfiguredDuplicate =
-    !unit && variant !== "top" && resolvedUnit === ADFIT_TOP_UNIT;
+  const adSlotKey = `${variant}-${resolvedUnit ?? "none"}-${refreshKey ?? reactId}`;
 
   useEffect(() => {
     const container = containerRef.current;
-
     if (!container) return;
+
     const section = container.closest("section");
     section?.removeAttribute("hidden");
     container.innerHTML = "";
 
-    if (!ADFIT_ENABLED || !resolvedUnit || isConfiguredDuplicate) {
+    if (!ADFIT_ENABLED || !resolvedUnit) {
       section?.setAttribute("hidden", "true");
       return;
     }
 
-    if (hasSameAdUnitInPage(resolvedUnit)) {
+    if (hasSameAdUnitOutsideCurrent(resolvedUnit, container)) {
       section?.setAttribute("hidden", "true");
       return;
     }
@@ -100,33 +102,29 @@ export default function AdFitAd({
     ins.setAttribute("data-ad-unit", resolvedUnit);
     ins.setAttribute("data-ad-width", String(resolvedWidth));
     ins.setAttribute("data-ad-height", String(resolvedHeight));
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://t1.daumcdn.net/kas/static/ba.min.js";
+    ins.setAttribute("data-adfit-slot", adSlotKey);
 
     container.appendChild(ins);
-    container.appendChild(script);
+    appendAdFitScript(container);
 
     return () => {
       container.innerHTML = "";
       section?.removeAttribute("hidden");
     };
-  }, [isConfiguredDuplicate, refreshKey, resolvedHeight, resolvedUnit, resolvedWidth]);
+  }, [adSlotKey, refreshKey, resolvedHeight, resolvedUnit, resolvedWidth]);
 
-  if (!ADFIT_ENABLED || !resolvedUnit || isConfiguredDuplicate) {
-    return null;
-  }
+  if (!ADFIT_ENABLED || !resolvedUnit) return null;
 
   return (
     <section
-      className={`my-8 flex w-full justify-center ${className}`}
+      className={`my-6 flex w-full justify-center ${className}`}
       aria-label={label}
     >
       <div
         ref={containerRef}
         className="flex min-h-[100px] w-full items-center justify-center"
         data-adfit-variant={variant}
+        data-adfit-unit={resolvedUnit}
       />
     </section>
   );

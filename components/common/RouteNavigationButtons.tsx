@@ -37,7 +37,6 @@ function getListHref(pathname: string) {
   if (path.startsWith("/info/guide")) return "/info/guide";
   if (path.startsWith("/info/strategy")) return "/info/strategy";
   if (path.startsWith("/info/recommended-guides")) return "/info/recommended-guides";
-  if (path.startsWith("/info/videos")) return "/info/videos";
   if (path.startsWith("/info/investment")) return "/info/guide";
   if (path.startsWith("/info/etc")) return "/info/guide";
   if (path.startsWith("/info")) return "/info/guide";
@@ -64,7 +63,6 @@ function getListLabel(pathname: string) {
   if (path.startsWith("/info/guide")) return "투자 가이드 목록으로 이동";
   if (path.startsWith("/info/strategy")) return "투자 전략 목록으로 이동";
   if (path.startsWith("/info/recommended-guides")) return "추천 금융 가이드로 이동";
-  if (path.startsWith("/info/videos")) return "영상 목록으로 이동";
 
   return "목록으로 이동";
 }
@@ -82,21 +80,21 @@ export default function RouteNavigationButtons({ position = "top" }: RouteNaviga
 
   const listHref = getListHref(path);
   const listLabel = getListLabel(path);
-  const spacingClass = position === "top" ? "mb-8 md:mb-10" : "mt-10 md:mt-12";
+  const spacingClass = position === "top" ? "mb-5 md:mb-10" : "mt-7 md:mt-12";
 
   return (
     <nav className={`${spacingClass} flex flex-wrap items-center gap-2`} aria-label="페이지 이동 버튼">
       <button
         type="button"
         onClick={() => router.back()}
-        className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:bg-slate-900"
+        className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-3 py-1.5 text-[13px] md:px-4 md:py-2 md:text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:bg-slate-900"
         aria-label="이전 화면으로"
       >
         ← 이전 화면으로
       </button>
       <Link
         href={listHref}
-        className="inline-flex items-center justify-center rounded-full border border-slate-800 bg-slate-900/70 px-4 py-2 text-sm font-semibold text-slate-400 transition hover:border-slate-600 hover:text-slate-100"
+        className="inline-flex items-center justify-center rounded-full border border-slate-800 bg-slate-900/70 px-3 py-1.5 text-[13px] md:px-4 md:py-2 md:text-sm font-semibold text-slate-400 transition hover:border-slate-600 hover:text-slate-100"
       >
         {listLabel}
       </Link>

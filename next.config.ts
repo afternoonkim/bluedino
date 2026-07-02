@@ -4,19 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "ssl.pstatic.net" },
-      { protocol: "https", hostname: "blogfiles.pstatic.net" },
-      { protocol: "https", hostname: "postfiles.pstatic.net" },
-      { protocol: "https", hostname: "i.ytimg.com" },
-      { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
   async redirects() {
     return [
-      {
-        source: "/info/blog",
-        destination: "/info/recommended-guides",
-        permanent: true,
-      },
       {
         source: "/cal/cal/calculator",
         destination: "/cal/calculator",

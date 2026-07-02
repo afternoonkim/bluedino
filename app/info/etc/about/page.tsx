@@ -124,17 +124,6 @@ export default function AboutPage() {
                 문의: <span className="font-semibold text-cyan-300">afternoonkim93@gmail.com</span>
               </p>
               <p className="bd-text-sub mt-3">
-                관련 블로그:{" "}
-                <a
-                  href="https://blog.naver.com/issue_item"
-                  target="_blank"
-                  rel="noopener noreferrer me"
-                  className="font-semibold text-cyan-300 hover:text-cyan-200 underline"
-                >
-                  blog.naver.com/issue_item
-                </a>
-              </p>
-              <p className="bd-text-sub mt-3">
                 GitHub:{" "}
                 <a
                   href="https://github.com/afternoonkim"
