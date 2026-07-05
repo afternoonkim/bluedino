@@ -3,6 +3,8 @@ import Script from "next/script";
 import AdFitAd from "@/components/ad/AdFitAd";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import ShareAndCite from "@/components/share/ShareAndCite";
+import ExpandableCard from "@/components/common/ExpandableCard";
+import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 
 export type StrategyLinkItem = { label: string; href: string };
 export type StrategyFaqItem = { question: string; answer: string };
@@ -163,15 +165,29 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           </div>
         </section>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.intro}</h2>
-          <h3 className="mt-4 text-lg font-semibold text-white">{article.introQuestion}</h3>
-          <p className="bd-text-main mt-4">{article.introAnswer}</p>
-        </section>
+        <DetailPriorityPanel
+          eyebrow={article.badge}
+          title={labels.intro}
+          summary={article.introAnswer}
+          items={[
+            {
+              label: "처음 질문",
+              value: article.introQuestion,
+            },
+            {
+              label: "핵심 원칙",
+              value: article.principles[0] ?? "전략은 수익률보다 유지 가능한 현금흐름과 위험 수준부터 정해야 합니다.",
+            },
+            {
+              label: "접어둔 추가 정보",
+              value: "실수, 예시, FAQ, 관련 계산기는 아래 카드에서 필요한 것만 펼쳐보세요.",
+            },
+          ]}
+        />
 
         <AdFitAd
           variant="middle"
-          label="본문 중간 광고 영역"
+          label="본문 중간 스폰서 배너"
           className="rounded-2xl border border-white/5 bg-slate-950/20 py-4"
         />
 
@@ -186,41 +202,52 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           </div>
         </section>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.mistakes}</h2>
-          <div className="bd-list mt-5">
+        <ExpandableCard
+          title={labels.mistakes}
+          summary="핵심 전략을 읽은 뒤 실제 실행 전에 점검하면 좋은 부분입니다."
+        >
+          <div className="bd-list">
             {article.mistakes.map((item) => (
               <div key={item} className="bd-list-item">
                 {item}
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{article.exampleTitle}</h2>
-          <p className="bd-text-main mt-4">{article.exampleBody}</p>
-        </section>
+        <ExpandableCard
+          title={article.exampleTitle}
+          summary="숫자와 상황을 넣어 생각해보고 싶은 분만 펼쳐서 확인하세요."
+        >
+          <p className="bd-text-main">{article.exampleBody}</p>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.suitable}</h2>
-          <div className="bd-list mt-5">
+        <ExpandableCard
+          title={labels.suitable}
+          summary="내 상황에 맞는 전략인지 빠르게 대조할 수 있는 보조 체크입니다."
+          variant="soft"
+        >
+          <div className="bd-list">
             {article.suitableFor.map((item) => (
               <div key={item} className="bd-list-item">
                 {item}
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.caution}</h2>
-          <p className="bd-text-main mt-4">{article.caution}</p>
-        </section>
+        <ExpandableCard
+          title={labels.caution}
+          summary="세금·수수료·위험처럼 실행 전에 확인해야 할 추가 안내입니다."
+        >
+          <p className="bd-text-main">{article.caution}</p>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.faq}</h2>
-          <div className="mt-6 space-y-4">
+        <ExpandableCard
+          title={labels.faq}
+          summary="비슷한 고민이 있을 때만 펼쳐서 확인하세요."
+        >
+          <div className="space-y-4">
             {article.faqs.map((faq) => (
               <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <h3 className="text-base font-semibold text-white">{faq.question}</h3>
@@ -228,12 +255,15 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.calculators}</h2>
-          <p className="bd-text-main mt-4">
-            전략은 좋은 말보다 숫자로 확인할 때 더 현실적으로 보입니다. 투자 기간, 목표 금액, 월 납입액을 직접 넣어보면 유지 가능한 계획인지 더 빨리 판단할 수 있습니다.
+        <ExpandableCard
+          title={labels.calculators}
+          summary="계획이 현실적인지 숫자로 확인하고 싶을 때 펼쳐보세요."
+          variant="soft"
+        >
+          <p className="bd-text-main">
+            전략은 좋은 말보다 숫자로 확인할 때 더 현실적으로 보입니다. 투자 기간, 목표 금액, 월 납입액을 직접 넣어보면 유지 가능한 계획인지 빠르게 가늠할 수 있습니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {autoLinks.calculators.map((item) => (
@@ -242,11 +272,14 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
               </Link>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.guides}</h2>
-          <div className="mt-6 flex flex-wrap gap-3">
+        <ExpandableCard
+          title={labels.guides}
+          summary="개념을 더 확인하고 싶은 분을 위한 관련 글입니다."
+          variant="soft"
+        >
+          <div className="flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
@@ -256,11 +289,14 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
               투자 기초 가이드 전체 보기
             </Link>
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.strategies}</h2>
-          <div className="mt-6 flex flex-wrap gap-3">
+        <ExpandableCard
+          title={labels.strategies}
+          summary="다른 전략과 비교해서 결정하고 싶을 때 확인하세요."
+          variant="soft"
+        >
+          <div className="flex flex-wrap gap-3">
             {autoLinks.strategies.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
@@ -270,17 +306,19 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
               금융 가이드 보기
             </Link>
           </div>
-        </section>
+        </ExpandableCard>
 
-
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.sequence}</h2>
-          <div className="mt-5 grid gap-3 md:grid-cols-3">
+        <ExpandableCard
+          title={labels.sequence}
+          summary="처음 방문한 사용자가 다음에 볼 순서를 정리했습니다."
+          variant="soft"
+        >
+          <div className="grid gap-3 md:grid-cols-3">
             <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 개념</Link>
             <Link href="/info/strategy" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 투자전략 비교</Link>
             <Link href="/cal" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">3단계: 계산기로 점검</Link>
           </div>
-        </section>
+        </ExpandableCard>
 
         <ShareAndCite
           url={`/info/strategy/${article.slug}`}

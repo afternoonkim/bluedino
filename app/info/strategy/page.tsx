@@ -90,7 +90,7 @@ export default function StrategyHubPage() {
           countLabel="전략"
         />
 
-        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+        <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card-soft bd-card-padding">
           <h2 className="bd-title-md">전략이 어렵다면 기초부터 연결해보세요</h2>

@@ -6,13 +6,13 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/cma-interest";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "CMA 이자 계산기 | BlueDino";
-const pageDescription = "CMA 예치금·연 금리·보유 일수로 일별 평균 이자와 총 누적 세후 이자를 계산하는 BlueDino 계산기.";
+const pageTitle = "CMA 이자 계산기 | 하루 이자·월 이자·세후 수익 바로 확인 | BlueDino";
+const pageDescription = "CMA 이자 계산기입니다. 예치금, 연 금리, 보유일수를 넣어 하루 이자, 월 이자, 세후 수익을 바로 계산하고 파킹통장과 비교할 수 있습니다.";
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: ["CMA 이자 계산기", "CMA 금리", "RP형 CMA", "투자 대기자금 이자"],
+  keywords: ["CMA 이자 계산기", "CMA 계좌 이자 계산기", "CMA 이자계산기", "CMA 이자 계산", "CMA 이자 계산 예시", "CMA 금리", "RP형 CMA", "투자 대기자금 이자"],
   alternates: { canonical: canonicalPath },
   openGraph: {
     title: pageTitle,
@@ -71,8 +71,8 @@ export default function Page() {
       <Script id="cma-interest-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(faqSchema) } } />
       <Script id="cma-interest-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <CalculatorPageLayout
-        title={`CMA 이자 계산기`}
-        hero={`증권사 CMA(RP형·MMF형·발행어음형) 계좌의 일별 이자 계산을 보유 기간 기준으로 합산합니다. 보통 매일 이자가 붙어 매월 입금되는 구조입니다.`}
+        title={`CMA 이자 계산기 - 하루 이자와 세후 수익 바로 확인`}
+        hero={`예치금과 금리, 보유일수만 넣으면 CMA 계좌의 하루 이자와 세후 이자를 바로 계산할 수 있습니다. 파킹통장과 비교하기 쉽도록 기간별 누적 이자 기준으로 보여줍니다.`}
         calcChildren={<CmaInterestClient />}
         whenToUse={[
             "주식·ETF 매수 대기 자금을 일반 통장 대신 CMA에 보관 시 받을 이자를 확인할 때",

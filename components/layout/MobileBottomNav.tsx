@@ -14,7 +14,7 @@ const navItems = [
 function isActivePath(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   if (href === "/info") {
-    return pathname.startsWith("/info") || pathname.startsWith("/company-analysis") || pathname.startsWith("/industry") || pathname.startsWith("/stocks") || pathname.startsWith("/etf");
+    return pathname.startsWith("/info") || pathname.startsWith("/topics") || pathname.startsWith("/company-analysis") || pathname.startsWith("/industry") || pathname.startsWith("/stocks") || pathname.startsWith("/etf");
   }
   return pathname === href || pathname.startsWith(`${href}/`);
 }

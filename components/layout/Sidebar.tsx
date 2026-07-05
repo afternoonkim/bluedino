@@ -14,6 +14,7 @@ const mainNav = [
 ];
 
 const quickLinks = [
+  { href: "/topics", label: "많이 찾는 주제" },
   { href: "/company-analysis", label: "기업분석" },
   { href: "/industry", label: "산업·테마" },
   { href: "/info/guide", label: "투자 기초" },
@@ -23,7 +24,7 @@ const quickLinks = [
 function isActivePath(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   if (href === "/info") {
-    return pathname.startsWith("/info") || pathname.startsWith("/company-analysis") || pathname.startsWith("/industry") || pathname.startsWith("/stocks") || pathname.startsWith("/etf");
+    return pathname.startsWith("/info") || pathname.startsWith("/topics") || pathname.startsWith("/company-analysis") || pathname.startsWith("/industry") || pathname.startsWith("/stocks") || pathname.startsWith("/etf");
   }
   return pathname === href || pathname.startsWith(`${href}/`);
 }

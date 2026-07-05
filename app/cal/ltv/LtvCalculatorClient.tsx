@@ -97,7 +97,7 @@ export default function LtvCalculatorClient() {
           </section>
         </div>
 
-        <AdFitAd variant="bottom" label="LTV 계산기 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+        <AdFitAd variant="bottom" label="LTV 계산기 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card bd-card-padding">
           <h2 className="bd-title-md">자금 구조 한눈에 보기</h2>

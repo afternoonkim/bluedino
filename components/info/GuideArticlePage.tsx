@@ -3,6 +3,8 @@ import Script from "next/script";
 import AdFitAd from "@/components/ad/AdFitAd";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import ShareAndCite from "@/components/share/ShareAndCite";
+import ExpandableCard from "@/components/common/ExpandableCard";
+import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 
 type LinkItem = { label: string; href: string };
 type FaqItem = { question: string; answer: string };
@@ -306,14 +308,29 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
           </div>
         </section>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{article.questionTitle}</h2>
-          <p className="bd-text-main mt-4">{article.questionBody}</p>
-        </section>
+        <DetailPriorityPanel
+          eyebrow={article.badge}
+          title={article.questionTitle}
+          summary={article.questionBody}
+          items={[
+            {
+              label: "먼저 볼 기준",
+              value: article.conceptBody[0] ?? "핵심 개념을 먼저 확인한 뒤 필요한 보조 정보만 펼쳐보세요.",
+            },
+            {
+              label: "내 상황 점검",
+              value: article.who[0] ?? "내 상황에 해당되는지 확인한 뒤 계산기나 관련 가이드로 이동하세요.",
+            },
+            {
+              label: "접어둔 추가 정보",
+              value: "실수, 예시, FAQ, 관련 글은 아래 카드에 접어두었습니다.",
+            },
+          ]}
+        />
 
         <AdFitAd
           variant="middle"
-          label="본문 중간 광고 영역"
+          label="본문 중간 스폰서 배너"
           className="rounded-2xl border border-white/5 bg-slate-950/20 py-4"
         />
 
@@ -329,9 +346,12 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
         </section>
 
         {article.longContent && article.longContent.length > 0 && (
-          <section className="bd-card bd-card-padding">
-            <h2 className="bd-title-md">{labels.detail}</h2>
-            <div className="mt-4 space-y-4">
+          <ExpandableCard
+            title={labels.detail}
+            summary="핵심 개념을 읽은 뒤 더 깊게 확인할 내용입니다."
+            defaultOpen={false}
+          >
+            <div className="space-y-4">
               {article.longContent.map((block, index) => {
                 if (block.type === "heading") {
                   return (
@@ -484,44 +504,56 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
                 );
               })}
             </div>
-          </section>
+          </ExpandableCard>
         )}
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.mistakes}</h2>
-          <div className="bd-list mt-4">
+        <ExpandableCard
+          title={labels.mistakes}
+          summary="실수하기 쉬운 부분은 필요할 때 펼쳐서 확인하세요."
+        >
+          <div className="bd-list">
             {article.mistakes.map((item) => (
               <div key={item} className="bd-list-item">
                 {item}
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{article.exampleTitle}</h2>
-          <p className="bd-text-main mt-4">{article.exampleBody}</p>
-        </section>
+        <ExpandableCard
+          title={article.exampleTitle}
+          summary="내 상황과 비교할 때만 펼쳐서 볼 수 있는 예시입니다."
+          variant="soft"
+        >
+          <p className="bd-text-main">{article.exampleBody}</p>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.who}</h2>
-          <div className="bd-list mt-4">
+        <ExpandableCard
+          title={labels.who}
+          summary="본인에게 해당되는지 빠르게 확인할 수 있는 보조 항목입니다."
+        >
+          <div className="bd-list">
             {article.who.map((item) => (
               <div key={item} className="bd-list-item">
                 {item}
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.caution}</h2>
-          <p className="bd-text-main mt-4">{article.caution}</p>
-        </section>
+        <ExpandableCard
+          title={labels.caution}
+          summary="실행 전 확인이 필요한 주의사항입니다."
+          variant="soft"
+        >
+          <p className="bd-text-main">{article.caution}</p>
+        </ExpandableCard>
 
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">{labels.faq}</h2>
-          <div className="mt-6 space-y-4">
+        <ExpandableCard
+          title={labels.faq}
+          summary="추가 질문은 필요한 분만 펼쳐서 읽도록 접었습니다."
+        >
+          <div className="space-y-4">
             {article.faqs.map((faq) => (
               <div key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <h3 className="text-base font-semibold text-white">{faq.question}</h3>
@@ -529,11 +561,14 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
               </div>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.calculators}</h2>
-          <p className="bd-text-main mt-4">
+        <ExpandableCard
+          title={labels.calculators}
+          summary="계산기 이동 링크는 필요할 때만 펼쳐서 사용할 수 있습니다."
+          variant="soft"
+        >
+          <p className="bd-text-main">
             개념만 읽으면 실제 차이가 작게 느껴질 수 있습니다. 아래 계산기에 금액과 기간을 넣어보면 세금, 복리, 현금흐름이 어떻게 달라지는지 더 현실적으로 볼 수 있습니다.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -543,11 +578,14 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
               </Link>
             ))}
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.guides}</h2>
-          <div className="mt-6 flex flex-wrap gap-3">
+        <ExpandableCard
+          title={labels.guides}
+          summary="관련 글은 필요한 경우에만 펼쳐서 이동할 수 있습니다."
+          variant="soft"
+        >
+          <div className="flex flex-wrap gap-3">
             {autoLinks.guides.map((item) => (
               <Link key={item.href} href={item.href} className="bd-button-secondary">
                 {item.label}
@@ -560,21 +598,27 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
               투자 기초 가이드 전체 보기
             </Link>
           </div>
-        </section>
+        </ExpandableCard>
 
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">{labels.sequence}</h2>
-          <div className="mt-5 grid gap-3 md:grid-cols-3">
+        <ExpandableCard
+          title={labels.sequence}
+          summary="처음 들어온 사용자를 위한 탐색 순서입니다."
+          variant="soft"
+        >
+          <div className="grid gap-3 md:grid-cols-3">
             <Link href="/info/guide" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">1단계: 투자 기초 가이드</Link>
             <Link href="/finance" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">2단계: 계좌·세금 가이드</Link>
             <Link href="/cal" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm font-semibold text-slate-200 hover:border-cyan-400/50">3단계: 내 금액으로 계산</Link>
           </div>
-        </section>
+        </ExpandableCard>
 
         {article.sources && article.sources.length > 0 && (
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">참고 자료</h2>
-            <p className="bd-text-sub mt-3">
+          <ExpandableCard
+            title="참고 자료"
+            summary="원문 확인이 필요한 분을 위해 출처를 접어두었습니다."
+            variant="soft"
+          >
+            <p className="bd-text-sub">
               본문 근거로 참고한 공식 자료·공개 보고서 목록입니다. 제도와 세율은 변경될 수 있으므로, 실제 실행 전에 원문을 다시 확인하는 것을 권장합니다.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
@@ -591,7 +635,7 @@ export default function GuideArticlePage({ article }: { article: GuideArticle })
                 </li>
               ))}
             </ul>
-          </section>
+          </ExpandableCard>
         )}
 
         <ShareAndCite

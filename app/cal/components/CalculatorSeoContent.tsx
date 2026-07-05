@@ -1,3 +1,5 @@
+import ExpandableCard from "@/components/common/ExpandableCard";
+
 type SeoSection = {
   title: string;
   body: string;
@@ -32,25 +34,32 @@ export default function CalculatorSeoContent({
         </div>
       )}
 
-      <div className={`${heading || intro ? "mt-8" : ""} grid gap-4 md:grid-cols-2`}>
-        {sections.map((section) => (
-          <article
+      <div className={`${heading || intro ? "mt-8" : ""} space-y-4`}>
+        {sections.map((section, index) => (
+          <ExpandableCard
             key={section.title}
-            className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5"
+            title={section.title}
+            summary={index === 0 ? undefined : "보강 설명은 필요한 경우에만 펼쳐서 확인하세요."}
+            defaultOpen={index === 0}
+            variant={index % 2 === 0 ? "solid" : "soft"}
           >
-            <h3 className="text-base font-semibold text-white">
-              {section.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-300">
+            <p className="text-sm leading-7 text-slate-300">
               {section.body}
             </p>
-          </article>
+          </ExpandableCard>
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm leading-7 text-slate-300">
-        계산 결과는 입력값을 바탕으로 한 참고값입니다. 금리, 세율, 상품 조건, 개인의 소득·대출 상태에 따라 실제 결과가 달라질 수 있으니 실행 전에는 금융회사 안내와 공공기관의 최신 기준을 함께 확인하세요.
-      </div>
+      <ExpandableCard
+        title="계산 전 마지막 확인"
+        summary="실제 적용 조건이 달라질 수 있는 부분을 접어두었습니다."
+        className="mt-8"
+        variant="soft"
+      >
+        <p className="text-sm leading-7 text-slate-300">
+          계산 결과는 입력값을 바탕으로 한 참고값입니다. 금리, 세율, 상품 조건, 개인의 소득·대출 상태에 따라 실제 결과가 달라질 수 있으니 실행 전에는 금융회사 안내와 공공기관의 최신 기준을 확인하세요.
+        </p>
+      </ExpandableCard>
     </section>
   );
 }

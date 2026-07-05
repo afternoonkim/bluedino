@@ -4,18 +4,20 @@ import Script from "next/script";
 import AdFitAd from "@/components/ad/AdFitAd";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { industryHubs } from "@/lib/industry/config";
+import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
+import ContentBundlePanel from "@/components/growth/ContentBundlePanel";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 export const metadata: Metadata = {
-  title: "산업·테마 가이드 | 반도체·2차전지·AI·배당주 관련주 정리 | BlueDino",
+  title: "관련주 정리 | 미국 2차전지·반도체 장비·헬스케어 관련주 | BlueDino",
   description:
-    "한국·미국 종목을 반도체, 2차전지, AI, 배당주, 바이오, 금융, 자동차, K-콘텐츠 등 산업·테마별로 묶어 비교하는 BlueDino 산업 가이드",
+    "미국 2차전지 관련주, 미국 반도체 장비주, 헬스케어 관련주, AI 관련주를 산업 단계와 대표 기업 기준으로 비교하는 BlueDino 관련주 가이드입니다.",
   keywords: ["산업별 관련주", "테마별 관련주", "반도체 관련주", "AI 관련주", "2차전지 관련주", "배당주", "바이오 관련주", "금융주", "자동차 관련주"],
   alternates: { canonical: "/industry" },
   openGraph: {
-    title: "산업·테마 가이드 | BlueDino",
-    description: "한국·미국 종목을 산업·테마별로 묶어 비교하는 BlueDino 산업 가이드입니다.",
+    title: "관련주 정리 | BlueDino",
+    description: "미국 2차전지·반도체 장비·헬스케어·AI 관련주를 산업 단계별로 비교합니다.",
     url: `${BASE_URL}/industry`,
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -80,11 +82,25 @@ export default function IndustryIndexPage() {
         <div className="bd-container bd-section">
           <section className="bd-card bd-card-padding">
             <span className="bd-badge">산업·테마 가이드</span>
-            <h1 className="bd-title-xl mt-4">관련주를 산업·테마별 목록으로 비교해 보세요</h1>
+            <h1 className="bd-title-xl mt-4">미국 2차전지·반도체 장비·헬스케어 관련주를 한곳에서 비교하세요</h1>
             <p className="bd-text-main mt-4 max-w-4xl">
-              반도체 관련주, AI 관련주, 배당주처럼 검색어로 들어오면 종목이 너무 많이 보여서 판단이 어렵습니다. 그래서 산업·테마 페이지는 카드 대신 목록형으로 바꾸고, 핵심 태그를 눌러 필요한 테마만 남기도록 정리했습니다.
+              관련주 검색은 종목이 많을수록 더 피곤해집니다. BlueDino는 미국 2차전지, 반도체 장비, 헬스케어, AI처럼 검색 유입 신호가 있는 테마를 산업 단계와 실적 변수 기준으로 나눠 보여줍니다.
             </p>
           </section>
+
+          <ContentBundlePanel
+            slugs={["theme-stock-map", "dividend-cashflow"]}
+            title="관련주와 기업분석으로 이어지는 묶음"
+            description="미국 2차전지, 반도체 장비, 헬스케어처럼 유입 가능성이 보인 테마를 산업 페이지와 기업분석으로 이어지게 묶었습니다."
+            compact
+          />
+
+          <SearchDemandPanel
+            keys={["theme-stocks", "company-check"]}
+            title="관련주 페이지를 볼 때 먼저 나눌 흐름"
+            description="관련주 검색은 종목을 많이 보여주는 것보다 미국·국내, 산업 단계, 실적 변수를 먼저 나눠야 비교가 쉬워집니다."
+            compact
+          />
 
           <TaggedList
             title="산업·테마 목록"
@@ -95,7 +111,7 @@ export default function IndustryIndexPage() {
             countLabel="테마"
           />
 
-          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+          <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">산업·테마 가이드를 활용하는 방법</h2>
@@ -113,6 +129,7 @@ export default function IndustryIndexPage() {
               <Link href="/info/strategy" className="bd-button-secondary">투자 전략</Link>
               <Link href="/info/guide" className="bd-button-secondary">투자 기초 가이드</Link>
               <Link href="/cal/calculator" className="bd-button-secondary">배당 계산기</Link>
+              <Link href="/topics/theme-stock-map" className="bd-button-secondary">관련주 묶음</Link>
               <Link href="/finance" className="bd-button-primary">금융 가이드 메인</Link>
             </div>
           </section>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import Script from "next/script";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { calculatorLandingData } from "./components/calculatorLandingData";
+import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
+import ContentBundlePanel from "@/components/growth/ContentBundlePanel";
 
 const calculatorGroups = [
   {
@@ -81,12 +83,12 @@ function getCalculator(slug: string) {
 }
 
 export const metadata: Metadata = {
-  title: "계산기 전체보기 | 금융·투자·대출 계산기 모음 | BlueDino",
-  description: "배당 계산기, 복리 계산기, FIRE 계산기, ISA 절세 계산기, DSR·LTV·주담대 계산기까지 BlueDino의 금융 계산기를 한곳에서 확인할 수 있습니다.",
+  title: "금융 계산기 모음 | CMA·파킹통장·배당·DSR 계산기 | BlueDino",
+  description: "CMA 이자 계산기, 파킹통장 금리 계산기, 배당 계산기, 청년도약계좌, DSR·LTV·주담대 계산기를 목적별로 바로 찾을 수 있습니다.",
   alternates: { canonical: "/cal" },
   openGraph: {
-    title: "계산기 전체보기 | BlueDino",
-    description: "투자, 절세, 예금·적금, 대출·주택 계산기를 목적별로 모아 확인할 수 있습니다.",
+    title: "금융 계산기 모음 | BlueDino",
+    description: "CMA·파킹통장·배당·절세·대출 계산기를 목적별로 모아 확인할 수 있습니다.",
     url: "https://bluedino.kr/cal",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -140,15 +142,29 @@ export default function CalculatorHubPage() {
       <div className="bd-container bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">계산기 전체보기</span>
-          <h1 className="bd-title-xl mt-4">필요한 금융 계산기를 태그로 바로 찾아보세요</h1>
+          <h1 className="bd-title-xl mt-4">CMA 이자·파킹통장 금리·배당·대출 계산기를 바로 찾으세요</h1>
           <p className="bd-text-main mt-4 max-w-4xl">
-            배당, 복리, FIRE, 예금·적금, ISA·IRP, DSR·LTV·주담대 계산기까지 자주 쓰는 금융 계산기를 한 목록으로 정리했습니다. 카드를 여러 개 펼쳐보지 않아도 태그와 검색으로 원하는 계산기만 빠르게 찾을 수 있습니다.
+            사용자가 많이 찾는 계산기를 현금관리, 배당, 절세·연금, 대출·주택으로 나눴습니다. 먼저 계산기를 열어 숫자를 확인하고, 필요한 경우에만 관련 질문과 가이드로 이어가면 됩니다.
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
             <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">총 {total}개 계산기</span>
             <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">투자·절세·대출·생활자금</span>
           </div>
         </section>
+
+        <ContentBundlePanel
+          slugs={["cma-parking-cash", "dividend-cashflow", "retirement-tax-accounts"]}
+          title="계산기에서 바로 이어지는 콘텐츠 묶음"
+          description="숫자를 넣어본 뒤에 조건·세금·주의사항을 다시 찾지 않도록 관련 계산기와 가이드를 같은 흐름으로 묶었습니다."
+          compact
+        />
+
+        <SearchDemandPanel
+          keys={["cash-calculators"]}
+          title="먼저 강화할 계산기 흐름"
+          description="CMA, 파킹통장, 배당, 청년도약계좌처럼 사용자가 금액을 바로 넣어보는 계산기를 상단 흐름으로 묶었습니다."
+          compact
+        />
 
         <TaggedList
           title="계산기 목록"
@@ -164,7 +180,7 @@ export default function CalculatorHubPage() {
           <div className="bd-list mt-5">
             <div className="bd-list-item">투자 계획은 목표 금액과 기간을 먼저 정한 뒤 배당·복리·FIRE 계산기로 확인합니다.</div>
             <div className="bd-list-item">대출 판단은 가능한 한도보다 실제 월 상환 부담을 먼저 보는 것이 부담을 줄이는 데 도움이 됩니다.</div>
-            <div className="bd-list-item">현금관리는 세후 이자, 자금 사용 시점, 금리 적용 한도를 함께 비교하면 선택이 쉬워집니다.</div>
+            <div className="bd-list-item">현금관리는 세후 이자, 자금 사용 시점, 금리 적용 한도를 비교한 뒤 CMA·파킹통장 묶음에서 계좌 조건까지 이어서 확인합니다.</div>
           </div>
         </section>
 

@@ -6,13 +6,13 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/credit-card-installment";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "신용카드 할부 이자 계산기 | BlueDino";
-const pageDescription = "결제 금액·할부 개월·연 환산 수수료율로 월 부담·총 수수료·할부 회차별 스케줄을 계산하는 BlueDino 신용카드 할부 계산기.";
+const pageTitle = "신용카드 이자 계산기 | 할부 수수료·월 청구액 바로 계산 | BlueDino";
+const pageDescription = "신용카드 이자 계산기입니다. 결제금액, 할부 개월, 수수료율을 넣어 월 청구액, 총 할부 수수료, 회차별 부담을 확인하세요.";
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: ["신용카드 할부 이자 계산기", "신용카드 할부 수수료", "할부 개월 비교", "카드 할부 부담"],
+  keywords: ["신용카드 이자 계산기", "신용카드 할부 이자 계산기", "신용카드 할부 수수료", "할부 개월 비교", "카드 할부 부담"],
   alternates: { canonical: canonicalPath },
   openGraph: {
     title: pageTitle,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "신용카드 할부 이자 계산기",
+  name: "신용카드 이자 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: pageDescription,
@@ -60,7 +60,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
     { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
-    { "@type": "ListItem", position: 3, name: "신용카드 할부 이자 계산기", item: pageUrl },
+    { "@type": "ListItem", position: 3, name: "신용카드 이자 계산기", item: pageUrl },
   ],
 };
 
@@ -71,8 +71,8 @@ export default function Page() {
       <Script id="credit-card-installment-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(faqSchema) } } />
       <Script id="credit-card-installment-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <CalculatorPageLayout
-        title={`신용카드 할부 이자 계산기`}
-        hero={`고액 결제 시 신용카드 할부를 선택하면 매월 부담은 줄어들지만 수수료가 발생합니다. 결제 금액·할부 개월·연 환산 수수료율로 매월 부담과 총 수수료를 계산해 잔액 기준 차감 스케줄까지 확인할 수 있습니다.`}
+        title={`신용카드 이자 계산기 - 할부 수수료와 월 청구액 확인`}
+        hero={`결제금액과 할부 개월, 수수료율을 넣으면 월별 청구액과 총 할부 수수료를 바로 확인할 수 있습니다. 무이자·부분 무이자와 비교하기 전에 실제 부담을 먼저 계산해보세요.`}
         calcChildren={<CreditCardInstallmentClient />}
         whenToUse={[
             "큰 금액을 신용카드 할부로 결제하기 전 월 부담을 미리 알아볼 때",

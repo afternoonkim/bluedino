@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import AdFitAd from "@/components/ad/AdFitAd";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
+import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
 import {
   companyAnalysisMarkets,
   getCompanyArticlesByMarket,
@@ -13,15 +14,15 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
 export const metadata: Metadata = {
-  title: "기업분석 | 국내기업·해외기업 주가 전망과 투자 체크포인트 | BlueDino",
+  title: "기업분석 | 원자현미경·쌍용C&E·제넥신 주가 체크포인트 | BlueDino",
   description:
-    "국내기업과 해외기업의 사업 구조, 성장성, 리스크, 주가 관전 포인트를 초보 투자자도 이해하기 쉽게 정리한 BlueDino 기업분석 허브입니다.",
-  keywords: ["기업분석", "국내기업 분석", "해외기업 분석", "주가 전망", "투자 체크포인트"],
+    "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 정리합니다. 원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 검색 유입이 있는 기업도 빠르게 찾을 수 있습니다.",
+  keywords: ["기업분석", "국내기업 분석", "해외기업 분석", "주가 전망", "원자현미경 주가", "쌍용C&E 주가", "제넥신 주가 전망"],
   alternates: { canonical: "/company-analysis" },
   openGraph: {
-    title: "기업분석 | 국내기업·해외기업 주가 전망과 투자 체크포인트 | BlueDino",
+    title: "기업분석 | 주가 변수와 실적 체크포인트 | BlueDino",
     description:
-      "국내기업과 해외기업의 사업 구조, 성장성, 리스크, 주가 관전 포인트를 초보 투자자도 이해하기 쉽게 정리합니다.",
+      "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 검색과 태그로 확인합니다.",
     url: `${BASE_URL}/company-analysis`,
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -83,11 +84,18 @@ export default function CompanyAnalysisPage() {
         <div className="bd-container bd-section">
           <section className="bd-card bd-card-padding">
             <span className="bd-badge">기업분석</span>
-            <h1 className="bd-title-xl mt-4">국내기업·해외기업 분석을 목록으로 찾아보세요</h1>
+            <h1 className="bd-title-xl mt-4">주가 전망을 찾기 전에 사업 구조와 실적 변수를 먼저 확인하세요</h1>
             <p className="bd-text-main mt-4 max-w-4xl">
-              종목 이름만 보고 따라가기보다, 기업이 돈을 버는 방식과 성장 포인트, 리스크를 먼저 보는 것이 중요합니다. 기업분석은 국내기업과 해외기업 두 입구로 줄이고, 상세 페이지에서 검색과 태그로 원하는 기업을 찾도록 정리했습니다.
+              원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 검색으로 들어온 사용자가 바로 확인할 수 있도록 국내·해외 기업분석을 목록으로 정리했습니다. 종목 이름보다 먼저 매출 구조, 실적 변수, 관련 산업을 확인하세요.
             </p>
           </section>
+
+          <SearchDemandPanel
+            keys={["company-check", "theme-stocks"]}
+            title="개별 종목을 보기 전에 함께 볼 흐름"
+            description="주가 전망 키워드로 들어온 사용자가 바로 이탈하지 않도록, 기업분석은 산업·테마와 실적 체크포인트로 이어지게 구성했습니다."
+            compact
+          />
 
           <TaggedList
             title="기업분석 분류"
@@ -99,7 +107,7 @@ export default function CompanyAnalysisPage() {
             showSearch={false}
           />
 
-          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+          <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">기업분석 글을 볼 때의 기준</h2>

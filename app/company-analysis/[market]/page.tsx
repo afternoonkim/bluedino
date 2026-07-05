@@ -161,7 +161,7 @@ export default async function CompanyAnalysisMarketPage({ params }: PageProps) {
             </div>
           </section>
 
-          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+          <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           {visibleArticles.length > 0 ? (
             <CompanyAnalysisSearchList

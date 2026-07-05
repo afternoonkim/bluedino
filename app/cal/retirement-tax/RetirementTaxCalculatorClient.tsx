@@ -137,8 +137,8 @@ export default function RetirementTaxCalculatorPage() {
       <div className="bd-container space-y-8">
         <CalculatorHero
           badge="퇴직소득세 계산기"
-          title="퇴직금에서 실제 세금이 얼마나 빠지는지 확인하세요"
-          description="근속기간과 퇴직급여를 기준으로 퇴직소득세 구조를 이해하고 예상 실수령액을 확인할 수 있습니다."
+          title="퇴직소득세 세율 계산기로 퇴직금 실수령액을 확인하세요"
+          description="근속기간과 퇴직급여를 넣으면 예상 퇴직소득세와 지방소득세, 실수령액을 바로 확인할 수 있습니다."
           tip="정확한 금액은 실제 지급 방식과 세법 적용 기준에 따라 달라질 수 있습니다."
         />
         {/* 헤더 카드 */}
@@ -151,7 +151,7 @@ export default function RetirementTaxCalculatorPage() {
                 </div>
                 <h1 className="text-xl font-extrabold tracking-tight text-white">
                   {/* 퇴직소득세 간편 계산기{" "} */}
-                  <span className="text-slate-400">2025년 기준 퇴직소득세 간편 계산기</span>
+                  <span className="text-slate-400">퇴직소득세 세율 계산기</span>
                 </h1>
               </div>
               <p className="mt-2 text-sm text-slate-300">

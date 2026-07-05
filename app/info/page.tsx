@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
+import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 
@@ -117,6 +118,13 @@ export default function InfoHubPage() {
             금융 정보가 많아질수록 메뉴를 늘리는 것보다, 큰 목적을 고르고 태그로 좁혀보는 편이 더 편합니다. 이 페이지에서는 가이드, 전략, 기업분석, 산업·테마로 이어지는 주요 입구만 정리했습니다.
           </p>
         </section>
+
+        <SearchDemandPanel
+          keys={["theme-stocks", "company-check", "account-guides"]}
+          title="투자정보에서 이어서 보기 좋은 주제"
+          description="관련주, 기업분석, 계좌 질문은 서로 끊어져 보이면 이해가 어렵습니다. 산업·테마에서 시작해 기업분석과 계좌 가이드로 이어지도록 정리했습니다."
+          compact
+        />
 
         <TaggedList
           title="투자정보 주요 입구"

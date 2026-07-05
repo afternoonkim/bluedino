@@ -4,6 +4,8 @@ import AdFitAd from "@/components/ad/AdFitAd";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { financeCategories } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
+import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
+import ContentBundlePanel from "@/components/growth/ContentBundlePanel";
 
 export const metadata: Metadata = {
   title: "금융 질문 가이드 | ISA·IRP·연금저축·대출·CMA | BlueDino",
@@ -99,6 +101,20 @@ export default function FinancePage() {
           </div>
         </section>
 
+        <ContentBundlePanel
+          slugs={["cma-parking-cash", "retirement-tax-accounts", "dividend-cashflow"]}
+          title="금융 질문에서 이어지는 분야별 묶음"
+          description="CMA·파킹통장, IRP·연금저축, 배당 현금흐름처럼 사용자가 이어서 확인할 주제를 질문과 계산기 기준으로 묶었습니다."
+          compact
+        />
+
+        <SearchDemandPanel
+          keys={["account-guides", "cash-calculators"]}
+          title="계좌 질문과 계산기를 함께 보는 흐름"
+          description="ISA·IRP 같은 계좌 질문은 짧은 답변으로 시작하고, CMA·파킹통장처럼 숫자가 필요한 주제는 계산기로 이어지도록 묶었습니다."
+          compact
+        />
+
         <TaggedList
           title="금융 질문 카테고리"
           description="태그를 누르면 해당 분류만 남고, 검색어를 입력하면 제목·설명 기준으로 다시 좁혀집니다."
@@ -108,7 +124,7 @@ export default function FinancePage() {
           countLabel="카테고리"
         />
 
-        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+        <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <TaggedList
           title="배당·현금흐름으로 이어서 보기"
@@ -126,6 +142,8 @@ export default function FinancePage() {
             <Link href="/info/investment/account-tax-step" className="bd-button-secondary">절세계좌 활용순서</Link>
             <Link href="/cal/dsr" className="bd-button-secondary">DSR 계산기</Link>
             <Link href="/cal/loan-interest" className="bd-button-secondary">대출이자 계산기</Link>
+            <Link href="/topics/cma-parking-cash" className="bd-button-secondary">CMA·파킹통장 묶음</Link>
+            <Link href="/topics/retirement-tax-accounts" className="bd-button-secondary">IRP·연금 묶음</Link>
             <Link href="/cal/calculator" className="bd-button-primary">배당 계산기</Link>
           </div>
         </section>

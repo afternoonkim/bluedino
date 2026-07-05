@@ -296,8 +296,8 @@ export default function CalculatorPage() {
       <div className="bd-container space-y-8">
         <CalculatorHero
           badge="배당 계산기"
-          title="배당 수익과 재투자 효과를 한눈에 비교하세요"
-          description="BlueDino 배당 계산기는 보유 주식 수, 주가, 배당수익률, 투자 기간을 바탕으로 예상 배당 흐름과 재투자 시 자산 변화까지 빠르게 확인할 수 있도록 도와줍니다."
+          title="배당 계산기로 세후 배당금과 월 현금흐름을 바로 확인하세요"
+          description="보유 수량, 주당 배당금, 배당수익률, 세율을 넣으면 세후 배당금과 월 배당 현금흐름을 빠르게 확인할 수 있습니다. 재투자 효과까지 비교해 배당 목표를 현실적으로 잡아보세요."
           tip="세전보다 세후 기준이 더 먼저 볼 기준입니다. 계좌 유형과 세율 설정을 함께 확인해보세요."
         />
 

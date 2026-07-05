@@ -7,10 +7,10 @@ import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../component
 import RetirementTaxCalculatorClient from "./RetirementTaxCalculatorClient";
 
 export const metadata: Metadata = {
-  title: "퇴직소득세 계산기 | 퇴직금 세금 계산 | BlueDino",
+  title: "퇴직소득세 세율 계산기 | 퇴직금 세금·실수령액 바로 확인 | BlueDino",
   description:
-    "퇴직금 수령 시 발생하는 퇴직소득세를 계산할 수 있는 퇴직소득세 계산기입니다. 근속연수와 퇴직급여를 기준으로 예상 세액을 확인할 수 있습니다.",
-  keywords: ["퇴직소득세 계산기",
+    "퇴직소득세 세율 계산기입니다. 근속연수와 퇴직급여를 넣어 예상 세금, 지방소득세, 퇴직금 실수령액을 바로 확인하세요.",
+  keywords: ["퇴직소득세 세율 계산기", "퇴직소득세 계산기",
     "퇴직금 세금 계산",
     "퇴직소득 계산기",
     "retirement tax calculator",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     canonical: "/cal/retirement-tax",
   },
   openGraph: {
-    title: "퇴직소득세 계산기 | 퇴직금 세금 계산 | BlueDino",
+    title: "퇴직소득세 세율 계산기 | 퇴직금 세금·실수령액 바로 확인 | BlueDino",
     description:
-      "퇴직금 수령 시 발생하는 퇴직소득세를 계산할 수 있는 퇴직소득세 계산기입니다. 근속연수와 퇴직급여를 기준으로 예상 세액을 확인할 수 있습니다.",
+      "근속연수와 퇴직급여를 넣어 예상 세금, 지방소득세, 퇴직금 실수령액을 바로 확인하세요.",
     url: "https://bluedino.kr/cal/retirement-tax",
     siteName: "BlueDino",
     type: "website",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "퇴직소득세 계산기 | 퇴직금 세금 계산 | BlueDino",
+    title: "퇴직소득세 세율 계산기 | 퇴직금 세금·실수령액 바로 확인 | BlueDino",
     description:
-      "퇴직금 수령 시 발생하는 퇴직소득세를 계산할 수 있는 퇴직소득세 계산기입니다. 근속연수와 퇴직급여를 기준으로 예상 세액을 확인할 수 있습니다.",
+      "근속연수와 퇴직급여를 넣어 예상 세금, 지방소득세, 퇴직금 실수령액을 바로 확인하세요.",
   },
 };
 
@@ -45,7 +45,7 @@ const structuredData = {
   name: "퇴직소득세 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
-  description: "퇴직금 수령 시 발생하는 퇴직소득세를 계산할 수 있는 퇴직소득세 계산기입니다. 근속연수와 퇴직급여를 기준으로 예상 세액을 확인할 수 있습니다.",
+  description: "근속연수와 퇴직급여를 넣어 예상 세금, 지방소득세, 퇴직금 실수령액을 바로 확인할 수 있습니다.",
   url: "https://bluedino.kr/cal/retirement-tax",
 };
 

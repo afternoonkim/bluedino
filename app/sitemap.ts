@@ -12,6 +12,7 @@ import {
 } from "@/lib/company-analysis/data";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
 import { industryHubs } from "@/lib/industry/config";
+import { contentBundles } from "@/lib/growth/contentBundles";
 import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
 import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
@@ -24,6 +25,7 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/finance": "2026-05-17",
   "/cal": "2026-05-17",
   "/info": "2026-05-17",
+  "/topics": "2026-07-05",
   "/info/guide": "2026-05-17",
   "/info/strategy": "2026-05-17",
   "/info/recommended-guides": "2026-05-17",
@@ -47,6 +49,7 @@ const staticRoutes = [
   "/",
   "/finance",
   "/info",
+  "/topics",
   "/company-analysis",
   "/cal",
   "/stocks",
@@ -111,6 +114,7 @@ const guideRoutes = Object.keys(guideArticles).map((slug) => `/info/guide/${slug
 const strategyRoutes = Object.keys(strategyArticles).map((slug) => `/info/strategy/${slug}`);
 const companyMarketRoutes = companyAnalysisMarkets.map((market) => market.basePath);
 const industryRoutes = industryHubs.map((hub) => `/industry/${hub.slug}`);
+const topicBundleRoutes = contentBundles.map((bundle) => `/topics/${bundle.slug}`);
 /**
  * 기업분석 상세 페이지는 충분한 설명과 주요 분류 정보가 있는 글만 사이트맵에 포함합니다.
  */
@@ -158,6 +162,15 @@ function resolveLastModified(route: string, fallback: Date): Date {
     }
   }
 
+
+  if (route.startsWith("/topics/")) {
+    const slug = route.slice("/topics/".length);
+    const bundle = contentBundles.find((item) => item.slug === slug);
+    if (bundle) {
+      return parseDate(bundle.updatedAt, fallback);
+    }
+  }
+
   if (route.startsWith("/company-analysis/")) {
     const [, , market, slug] = route.split("/");
     if (market && slug && market !== "korea" && market !== "global") {
@@ -190,6 +203,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...companyMarketRoutes,
       ...companyDetailRoutes,
       ...industryRoutes,
+      ...topicBundleRoutes,
     ]),
   );
 
@@ -212,7 +226,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ) {
       return 0.9;
     }
-    if (route === "/finance" || route.startsWith("/cal/")) return 0.9;
+    if (route === "/finance" || route === "/topics" || route.startsWith("/topics/") || route.startsWith("/cal/")) return 0.9;
     if (route.startsWith("/finance/")) return 0.85;
 
     if (route.startsWith("/company-analysis")) {

@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import AdFitAd from "@/components/ad/AdFitAd";
 import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
+import ExpandableCard from "@/components/common/ExpandableCard";
+import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 import { getFinanceCategory } from "@/lib/finance/config";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
 import { getFinanceEntry, getRelatedEntries } from "@/lib/finance/content";
@@ -45,6 +47,35 @@ function getFinanceToneLabels(categoryKey: FinanceCategoryKey) {
     calculators: "세금과 장기 자금을 같이 볼 계산기",
     related: "같은 계좌에서 이어서 볼 질문",
   };
+}
+
+
+function buildFinancePriorityItems(entry: {
+  checklist: string[];
+  commonMistakes: string[];
+  caution?: string;
+}, categoryKey: FinanceCategoryKey) {
+  const categoryHint =
+    categoryKey === "loan-basics" || categoryKey === "credit-loan" || categoryKey === "mortgage-loan"
+      ? "월 상환액, DSR, 중도상환수수료처럼 실제 부담을 먼저 확인하세요."
+      : categoryKey === "cma" || categoryKey === "parking"
+        ? "광고 금리보다 내 금액에 적용되는 세후 이자와 출금 편의성을 먼저 확인하세요."
+        : "세금 혜택보다 유지 기간, 중도해지, 내 현금흐름을 먼저 확인하세요.";
+
+  return [
+    {
+      label: "먼저 확인",
+      value: entry.checklist[0] ?? categoryHint,
+    },
+    {
+      label: "헷갈리기 쉬운 부분",
+      value: entry.commonMistakes[0] ?? categoryHint,
+    },
+    {
+      label: "추가 정보 위치",
+      value: "예시, 체크리스트, FAQ, 관련 계산기는 아래 접힌 카드에 정리했습니다.",
+    },
+  ];
 }
 
 
@@ -167,62 +198,93 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
             <p className="bd-text-main mt-4">{entry.summary}</p>
           </section>
 
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">{labels.quick}</h2>
-            <p className="bd-text-main mt-4">{entry.quickAnswer}</p>
-            {entry.caution ? <p className="bd-text-sub mt-4">{entry.caution}</p> : null}
-          </section>
+          <DetailPriorityPanel
+            eyebrow={category.shortTitle}
+            title={labels.quick}
+            summary={entry.quickAnswer}
+            items={buildFinancePriorityItems(entry, categoryKey)}
+            note={entry.caution}
+          />
 
-          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+          <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">
-              {entry.sections.map((section) => (
-                <section key={section.title} className="bd-card bd-card-padding">
-                  <h2 className="bd-title-md">{section.title}</h2>
-                  <div className="mt-4 space-y-4">
+              {entry.sections.map((section, sectionIndex) => {
+                const content = (
+                  <div className="space-y-4">
                     {section.body.map((paragraph, index) => (
                       <p key={`${section.title}-${index}`} className="bd-text-main">
                         {paragraph}
                       </p>
                     ))}
                   </div>
-                </section>
-              ))}
+                );
+
+                if (sectionIndex === 0) {
+                  return (
+                    <section key={section.title} className="bd-card bd-card-padding">
+                      <h2 className="bd-title-md">{section.title}</h2>
+                      <div className="mt-4">{content}</div>
+                    </section>
+                  );
+                }
+
+                return (
+                  <ExpandableCard
+                    key={section.title}
+                    title={section.title}
+                    summary="핵심을 읽은 뒤 더 자세히 보고 싶은 분만 펼쳐보세요."
+                    variant={sectionIndex % 2 === 0 ? "soft" : "solid"}
+                  >
+                    {content}
+                  </ExpandableCard>
+                );
+              })}
 
               {entry.example ? (
-                <section className="bd-card-soft bd-card-padding">
-                  <h2 className="bd-title-md">실제 상황 예시</h2>
-                  <p className="bd-text-main mt-4">{entry.example}</p>
-                </section>
+                <ExpandableCard
+                  title="실제 상황 예시"
+                  summary="비슷한 상황과 비교할 때만 펼쳐서 확인하세요."
+                  variant="soft"
+                >
+                  <p className="bd-text-main">{entry.example}</p>
+                </ExpandableCard>
               ) : null}
 
               {entry.commonMistakes.length > 0 ? (
-                <section className="bd-card bd-card-padding">
-                  <h2 className="bd-title-md">판단이 흔들리기 쉬운 부분</h2>
-                  <div className="bd-list mt-4">
+                <ExpandableCard
+                  title="판단이 흔들리기 쉬운 부분"
+                  summary="가입·해지·투자 판단 전에 실수하기 쉬운 지점입니다."
+                >
+                  <div className="bd-list">
                     {entry.commonMistakes.map((item) => (
                       <div key={item} className="bd-list-item">{item}</div>
                     ))}
                   </div>
-                </section>
+                </ExpandableCard>
               ) : null}
 
               {entry.checklist.length > 0 && (
-                <section className="bd-card-soft bd-card-padding">
-                  <h2 className="bd-title-md">{labels.checklist}</h2>
-                  <div className="bd-list mt-4">
+                <ExpandableCard
+                  title={labels.checklist}
+                  summary="실행 전 필요한 확인 항목만 접어두었습니다."
+                  variant="soft"
+                >
+                  <div className="bd-list">
                     {entry.checklist.map((item) => (
                       <div key={item} className="bd-list-item">{item}</div>
                     ))}
                   </div>
-                </section>
+                </ExpandableCard>
               )}
 
               {entry.faq.length > 0 && (
-                <section className="bd-card bd-card-padding">
-                  <h2 className="bd-title-md">{labels.faq}</h2>
-                  <div className="mt-6 space-y-4">
+                <ExpandableCard
+                  title={labels.faq}
+                  summary="추가 질문은 필요한 경우에만 펼쳐서 읽을 수 있습니다."
+                >
+                  <div className="space-y-4">
                     {entry.faq.map((faq) => (
                       <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5">
                         <h3 className="text-base font-semibold text-white">{faq.question}</h3>
@@ -230,7 +292,7 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
                       </article>
                     ))}
                   </div>
-                </section>
+                </ExpandableCard>
               )}
 
               <PageTrustFooter

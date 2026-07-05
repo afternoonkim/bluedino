@@ -4,6 +4,7 @@ import Script from "next/script";
 import { notFound } from "next/navigation";
 import AdFitAd from "@/components/ad/AdFitAd";
 import FinanceQuestionList from "@/components/finance/FinanceQuestionList";
+import ExpandableCard from "@/components/common/ExpandableCard";
 import { financeCategories, getFinanceCategory } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
 import { getFinanceEntry } from "@/lib/finance/content";
@@ -65,6 +66,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
       "연금저축 + IRP 둘 다 들어야 하는지, 한쪽만 채워도 되는지 헷갈리는 사람",
     ],
     helpers: [
+      { label: "IRP·연금·퇴직세금 묶음", href: "/topics/retirement-tax-accounts" },
       { label: "퇴직소득세 계산기", href: "/cal/retirement-tax" },
       { label: "FIRE 계산기", href: "/cal/fire" },
       { label: "연금저축 vs IRP 가이드", href: "/info/guide/pension-vs-irp" },
@@ -89,6 +91,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
       "10년 이상 운용한 연금저축의 인출 전략을 미리 설계하고 싶은 사람",
     ],
     helpers: [
+      { label: "IRP·연금·퇴직세금 묶음", href: "/topics/retirement-tax-accounts" },
       { label: "복리 계산기", href: "/cal/compound" },
       { label: "퇴직소득세 계산기", href: "/cal/retirement-tax" },
       { label: "연금저축과 IRP 차이 가이드", href: "/info/guide/pension-vs-irp" },
@@ -100,7 +103,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
   },
   cma: {
     whyMatters:
-      "CMA(종합자산관리계좌)는 일반 입출금 통장보다 높은 이자(보통 RP형 기준 연 3% 안팎)를 주는 증권사 현금성 계좌입니다. 비상금·생활비·투자 대기자금처럼 짧게 굴리는 돈을 묶어두기 좋은데, RP형·MMF형·발행어음형의 차이와 예금자보호 적용 여부, 영업일 기준 이자 지급 방식을 모르고 시작하면 기대만큼 이자가 안 들어왔다고 느끼기 쉽습니다.",
+      "CMA(종합자산관리계좌)는 증권사에서 단기 현금을 보관할 때 자주 쓰는 계좌입니다. 비상금·생활비·투자 대기자금처럼 짧게 굴리는 돈을 둘 수 있지만, RP형·MMF형·발행어음형의 차이와 예금자보호 적용 여부, 영업일 기준 이자 지급 방식을 모르고 시작하면 기대한 이자와 실제 입금액이 다르게 느껴질 수 있습니다.",
     searchIntents: [
       "CMA 금리가 실제로 얼마인지, 세후 이자는 얼마나 되는지 확인하고 싶을 때",
       "CMA RP형·MMF형·발행어음형 차이가 헷갈릴 때",
@@ -113,6 +116,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
       "예적금 만기 후 다음 상품 결정 전까지 단기로 자금을 보관하려는 사람",
     ],
     helpers: [
+      { label: "CMA·파킹통장 이자 묶음", href: "/topics/cma-parking-cash" },
       { label: "복리 계산기", href: "/cal/compound" },
       { label: "대출이자 계산기", href: "/cal/loan-interest" },
       { label: "파킹통장 질문 가이드", href: "/finance/parking" },
@@ -123,7 +127,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
   },
   parking: {
     whyMatters:
-      "파킹통장은 단기 보관 자금에 매일 이자를 붙여주는 입출금 자유 통장입니다. 한도, 우대조건, 이자 지급 주기가 은행별로 크게 다르기 때문에 \"금리가 4%다\"는 광고만 보고 결정하면 실제 받는 이자가 기대보다 적게 느껴질 수 있습니다. 파킹통장은 비상금과 생활비, 투자 대기자금을 어디까지 담을지 정한 다음 한도와 우대조건을 같이 보는 것이 현실적입니다.",
+      "파킹통장은 단기 보관 자금에 이자를 붙여주는 입출금 자유 통장입니다. 한도, 우대조건, 이자 지급 주기가 은행별로 크게 다르기 때문에 높은 금리 문구만 보고 결정하면 실제 받는 이자가 기대보다 적게 느껴질 수 있습니다. 파킹통장은 비상금과 생활비, 투자 대기자금을 어디까지 담을지 정한 다음 한도와 우대조건을 같이 보는 것이 현실적입니다.",
     searchIntents: [
       "파킹통장 금리 비교, 한도별 우대 금리가 어떻게 다른지 확인하고 싶을 때",
       "파킹통장 이자가 매일 붙는지, 월별로 정산되는지 차이가 궁금할 때",
@@ -136,6 +140,7 @@ const CATEGORY_SEO: Record<FinanceCategoryKey, CategorySeo> = {
       "예적금 가입을 미루고 있는 동안 자금을 잠깐 보관하려는 사람",
     ],
     helpers: [
+      { label: "CMA·파킹통장 이자 묶음", href: "/topics/cma-parking-cash" },
       { label: "복리 계산기", href: "/cal/compound" },
       { label: "CMA 질문 가이드", href: "/finance/cma" },
     ],
@@ -227,6 +232,42 @@ const RELATED_LABEL: Record<FinanceCategoryKey, string> = {
   "mortgage-loan": "주담대 질문 가이드",
 };
 
+
+const CATEGORY_CTR_META: Partial<Record<FinanceCategoryKey, { title: string; description: string; keywords: string[]; h1: string; hero: string }>> = {
+  isa: {
+    title: "ISA 계좌 몇 개까지 가능할까? 가입조건·비과세 한도 정리 | BlueDino",
+    description:
+      "ISA 계좌 몇 개까지 만들 수 있는지부터 가입 조건, 비과세 한도, 만기, 중도인출, ETF 투자까지 실제 질문 순서대로 확인하세요.",
+    keywords: ["ISA 계좌 몇개", "ISA 계좌 몇 개", "ISA 가입 조건", "ISA 비과세 한도", "ISA ETF"],
+    h1: "ISA 계좌 몇 개까지 가능한지부터 가입 조건까지 바로 확인하세요",
+    hero: "ISA를 처음 알아보는 사용자가 가장 많이 묻는 1인 1계좌, 가입 조건, 비과세 한도, 만기, 중도인출 기준을 질문형으로 정리했습니다. 필요한 질문만 골라 읽을 수 있게 구성했습니다.",
+  },
+  irp: {
+    title: "IRP 계좌 여러 개 가능할까? 세액공제·퇴직금 수령 정리 | BlueDino",
+    description:
+      "IRP 계좌 여러 개 개설 가능 여부, 세액공제, 퇴직금 수령, ETF 투자, 중도해지 세금을 사용자가 실제로 묻는 순서대로 정리했습니다.",
+    keywords: ["IRP 계좌 여러개", "IRP 계좌 여러 개", "IRP 세액공제", "IRP 퇴직금", "IRP ETF"],
+    h1: "IRP 계좌 여러 개 가능한지와 세액공제 기준을 먼저 확인하세요",
+    hero: "IRP는 퇴직금 수령과 연말정산 세액공제가 함께 걸려 있어 처음부터 구조가 복잡하게 느껴질 수 있습니다. 여러 계좌 가능 여부, 납입 한도, 중도해지 부담을 질문별로 나눴습니다.",
+  },
+  cma: {
+    title: "CMA 이자 계산과 계좌 질문 | RP형·MMF형·예금자보호 정리 | BlueDino",
+    description:
+      "CMA 이자 계산, CMA 계좌 이자, RP형·MMF형·발행어음형 차이, 예금자보호 여부와 파킹통장 비교를 질문 중심으로 정리했습니다.",
+    keywords: ["CMA 이자 계산", "CMA 계좌 이자 계산기", "CMA 이자계산기", "CMA 계좌"],
+    h1: "CMA 이자 계산 전에 계좌 유형과 예금자보호 기준을 확인하세요",
+    hero: "CMA는 투자 대기자금이나 단기 여유자금에 자주 쓰이지만, 유형에 따라 위험과 보호 기준이 다릅니다. 이자 계산으로 숫자를 먼저 보고 계좌 조건을 이어서 확인할 수 있게 정리했습니다.",
+  },
+  parking: {
+    title: "파킹통장 금리 계산과 이자 질문 | 우대금리·한도 초과분 정리 | BlueDino",
+    description:
+      "파킹통장 금리계산, 우대금리 한도, 한도 초과분, 이자 지급 주기, CMA 비교를 실제 계좌 선택 흐름에 맞춰 정리했습니다.",
+    keywords: ["파킹통장 금리계산", "파킹통장 금리 계산기", "파킹통장 이자", "파킹통장 한도"],
+    h1: "파킹통장 금리 계산 전에 우대금리 한도와 이자 지급 방식을 확인하세요",
+    hero: "파킹통장은 금리 숫자보다 내 예치금 전체에 적용되는 금리와 한도 초과분이 중요합니다. 계산기와 질문 가이드를 함께 보며 실제 월 이자 기준으로 비교할 수 있게 정리했습니다.",
+  },
+};
+
 export async function generateStaticParams() {
   return financeCategories.map((category) => ({ category: category.key }));
 }
@@ -237,15 +278,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!category) {
     return { title: "금융 가이드 | BlueDino" };
   }
-  const fullTitle = `${category.shortTitle} 질문 가이드 | BlueDino`;
+  const ctrMeta = CATEGORY_CTR_META[category.key as FinanceCategoryKey];
+  const fullTitle = ctrMeta?.title ?? `${category.shortTitle} 질문 가이드 | BlueDino`;
+  const description = ctrMeta?.description ?? category.description;
   const url = `https://bluedino.kr${category.basePath}`;
   return {
     title: fullTitle,
-    description: category.description,
+    description,
+    keywords: ctrMeta?.keywords,
     alternates: { canonical: category.basePath },
     openGraph: {
       title: fullTitle,
-      description: category.description,
+      description,
       url,
       siteName: "BlueDino",
       locale: "ko_KR",
@@ -254,7 +298,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description: category.description,
+      description,
     },
   };
 }
@@ -291,13 +335,14 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
     .map((item) => item.question);
   const featured = questions.slice(0, 6);
   const seo = CATEGORY_SEO[category.key as FinanceCategoryKey];
+  const ctrMeta = CATEGORY_CTR_META[category.key as FinanceCategoryKey];
   const baseUrl = `https://bluedino.kr${category.basePath}`;
 
   const collectionPageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${category.shortTitle} 질문 가이드`,
-    description: category.description,
+    name: ctrMeta?.h1 ?? `${category.shortTitle} 질문 가이드`,
+    description: ctrMeta?.description ?? category.description,
     url: baseUrl,
     inLanguage: "ko-KR",
     isPartOf: { "@type": "WebSite", name: "BlueDino", url: "https://bluedino.kr" },
@@ -338,8 +383,8 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
       <div className="bd-container-narrow bd-section">
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">{category.badge}</span>
-          <h1 className="bd-title-xl mt-4">{category.title}</h1>
-          <p className="bd-text-main mt-4">{category.intro}</p>
+          <h1 className="bd-title-xl mt-4">{ctrMeta?.h1 ?? category.title}</h1>
+          <p className="bd-text-main mt-4">{ctrMeta?.hero ?? category.intro}</p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
             <span className="rounded-full border border-slate-700 px-3 py-1">질문 {questions.length}개</span>
             <span className="rounded-full border border-slate-700 px-3 py-1">초보자 질문 정리</span>
@@ -372,9 +417,12 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
         )}
 
         {seo && seo.searchIntents.length > 0 && (
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">{category.shortTitle} 관련해서 자주 검색하는 질문 흐름</h2>
-            <div className="bd-list mt-5">
+          <ExpandableCard
+            title={`${category.shortTitle} 관련해서 자주 검색하는 질문 흐름`}
+            summary="먼저 많이 보는 질문 목록을 본 뒤, 내 상황과 비슷한 검색 의도만 펼쳐보세요."
+            variant="soft"
+          >
+            <div className="bd-list">
               {seo.searchIntents.map((intent) => (
                 <div key={intent} className="bd-list-item">{intent}</div>
               ))}
@@ -382,28 +430,33 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
             <p className="bd-text-sub mt-5">
               비슷한 질문이 많아 보일 때는 본인 상황과 가장 가까운 항목부터 읽어보세요. 세금, 금리, 한도처럼 결과를 바꾸는 조건을 먼저 고르면 탐색 시간이 줄어듭니다.
             </p>
-          </section>
+          </ExpandableCard>
         )}
 
-        <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+        <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <FinanceQuestionList questions={questions} basePath={category.basePath} />
 
         {seo && (
-          <section className="bd-card bd-card-padding">
-            <h2 className="bd-title-md">이런 상황이라면 먼저 읽어보세요</h2>
-            <div className="bd-list mt-5">
+          <ExpandableCard
+            title="이런 상황이라면 먼저 읽어보세요"
+            summary="질문 목록 아래에 보조로 두었습니다. 내 상황과 맞는지 확인하고 싶을 때 펼쳐보세요."
+          >
+            <div className="bd-list">
               {seo.whoNeedsThis.map((who) => (
                 <div key={who} className="bd-list-item">{who}</div>
               ))}
             </div>
-          </section>
+          </ExpandableCard>
         )}
 
         {seo && seo.helpers.length > 0 && (
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">{category.shortTitle} 질문과 같이 보면 좋은 페이지</h2>
-            <p className="bd-text-main mt-4">
+          <ExpandableCard
+            title={`${category.shortTitle} 질문과 같이 보면 좋은 페이지`}
+            summary="계산기나 관련 글은 필요한 사용자만 펼쳐서 이동할 수 있게 정리했습니다."
+            variant="soft"
+          >
+            <p className="bd-text-main">
               개념을 읽은 뒤에는 본인 금액과 기간을 직접 넣어보세요. 숫자로 비교하면 어떤 조건이 결과를 바꾸는지 더 빠르게 볼 수 있습니다.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -416,13 +469,16 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
                 금융 가이드 메인
               </Link>
             </div>
-          </section>
+          </ExpandableCard>
         )}
 
         {seo && seo.related.length > 0 && (
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">같은 고민에서 이어지는 카테고리</h2>
-            <div className="mt-6 flex flex-wrap gap-3">
+          <ExpandableCard
+            title="같은 고민에서 이어지는 카테고리"
+            summary="비슷한 금융 고민으로 이어지는 페이지와 공식 확인 기준입니다."
+            variant="soft"
+          >
+            <div className="flex flex-wrap gap-3">
               {seo.related.map((relKey) => {
                 const rel = financeCategories.find((c) => c.key === relKey);
                 if (!rel) return null;
@@ -434,7 +490,7 @@ export default async function FinanceCategoryPage({ params }: PageProps) {
               })}
             </div>
             <p className="bd-text-sub mt-5">{seo.outboundReference}</p>
-          </section>
+          </ExpandableCard>
         )}
       </div>
     </div>

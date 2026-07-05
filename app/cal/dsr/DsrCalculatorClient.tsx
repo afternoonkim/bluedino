@@ -143,7 +143,7 @@ export default function DsrCalculatorClient() {
           </section>
         </div>
 
-        <AdFitAd variant="bottom" label="DSR 계산기 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+        <AdFitAd variant="bottom" label="DSR 계산기 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
         <section className="bd-card bd-card-padding">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">

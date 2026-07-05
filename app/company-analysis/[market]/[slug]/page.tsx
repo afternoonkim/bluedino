@@ -9,6 +9,8 @@ import ShareAndCite from "@/components/share/ShareAndCite";
 import PageTrustFooter from "@/components/trust/PageTrustFooter";
 import TradingViewStockChart from "@/components/company-analysis/TradingViewStockChart";
 import CompanyAnalysisUpdateNotice from "@/components/company-analysis/CompanyAnalysisUpdateNotice";
+import ExpandableCard from "@/components/common/ExpandableCard";
+import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 import {
   getSitemapCompanyAnalysisRoutes,
   getCompanyArticle,
@@ -24,6 +26,54 @@ type PageProps = { params: Promise<{ market: string; slug: string }> };
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
+
+
+type CompanyCtrSeo = {
+  title?: string;
+  description?: string;
+  h1Alias?: string;
+  keywords?: string[];
+};
+
+function getCompanyCtrSeo(article: {
+  ticker: string;
+  companyNameKo: string;
+  sector: string;
+  seoTitle: string;
+  metaDescription: string;
+}): CompanyCtrSeo {
+  const ticker = article.ticker.toUpperCase();
+  const overrides: Record<string, CompanyCtrSeo> = {
+    "140860": {
+      title: "원자현미경 주가 | 파크시스템스 주가 전망과 기업분석",
+      description:
+        "원자현미경 주가를 찾는 분을 위해 파크시스템스(140860)의 사업 구조, 반도체·나노계측 장비 수요, 실적 변수와 주가 리스크를 정리했습니다.",
+      h1Alias: "원자현미경 주가로 많이 찾는 파크시스템스",
+      keywords: ["원자현미경 주가", "파크시스템스 주가", "파크시스템스 주가 전망"],
+    },
+    "003410": {
+      title: "쌍용C&E 주가 | 쌍용시멘트 주가 전망과 기업분석",
+      description:
+        "쌍용시멘트 주가, 쌍용C&E 주가를 찾는 분을 위해 시멘트·건자재 업황, 유연탄 가격, 건설 경기와 배당·리스크를 정리했습니다.",
+      h1Alias: "쌍용시멘트 주가로 많이 찾는 쌍용C&E",
+      keywords: ["쌍용시멘트주가", "쌍용C&E 주가", "쌍용 c&e 주가", "쌍용시멘트 주가 전망"],
+    },
+    "095700": {
+      title: "제넥신 주가 전망 | 바이오 신약개발 기업분석",
+      description:
+        "제넥신 주가 전망을 찾는 분을 위해 신약개발 파이프라인, 임상 변수, 현금흐름과 바이오주 리스크를 사용자 관점으로 정리했습니다.",
+      keywords: ["제넥신주가전망", "제넥신 주가", "제넥신 기업분석"],
+    },
+    "004140": {
+      title: "동방 관련주 | 동방 주가와 물류 기업분석",
+      description:
+        "동방 관련주를 찾는 분을 위해 항만하역·물류 사업 구조, 관련 테마, 실적 변수와 주가 리스크를 정리했습니다.",
+      keywords: ["동방 관련주", "동방 주가", "동방 기업분석"],
+    },
+  };
+
+  return overrides[ticker] ?? {};
+}
 
 function getAnalysisLevel(article: { ticker: string; indices: unknown[] }) {
   const hasManualCommentary = Boolean(COMPANY_CUSTOM_NOTES[article.ticker.toUpperCase()]);
@@ -56,15 +106,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const analysisLevel = getAnalysisLevel(article);
   const isIndexable = analysisLevel !== "빠른 확인용 정리";
 
+  const ctrSeo = getCompanyCtrSeo(article);
+  const metaTitle = `${ctrSeo.title ?? article.seoTitle} | BlueDino`;
+  const metaDescription = ctrSeo.description ?? article.metaDescription;
+  const metaKeywords = [...(ctrSeo.keywords ?? []), ...article.keywords];
+
   return {
-    title: `${article.seoTitle} | BlueDino`,
-    description: article.metaDescription,
-    keywords: article.keywords,
+    title: metaTitle,
+    description: metaDescription,
+    keywords: metaKeywords,
     robots: isIndexable ? undefined : { index: false, follow: true, googleBot: { index: false, follow: true } },
     alternates: isIndexable ? { canonical: `/company-analysis/${article.market}/${article.slug}` } : undefined,
     openGraph: {
-      title: `${article.seoTitle} | BlueDino`,
-      description: article.metaDescription,
+      title: metaTitle,
+      description: metaDescription,
       url: `${BASE_URL}/company-analysis/${article.market}/${article.slug}`,
       siteName: "BlueDino",
       locale: "ko_KR",
@@ -72,8 +127,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${article.seoTitle} | BlueDino`,
-      description: article.metaDescription,
+      title: metaTitle,
+      description: metaDescription,
     },
   };
 }
@@ -101,6 +156,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
 
   const relatedArticles = getRelatedCompanyArticles(currentArticle, 4);
   const analysisLevel = getAnalysisLevel(currentArticle);
+  const ctrSeo = getCompanyCtrSeo(currentArticle);
   const currentMarketLabel = currentArticle.market === "korea" ? "국내기업" : "해외기업";
 
   const articleSchema = {
@@ -180,12 +236,26 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
               <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">주요 지수·분류 정보 포함</span>
             </div>
             <h1 className="bd-title-xl mt-4">
-              {currentArticle.companyNameKo}({currentArticle.ticker}) 주가 전망과 기업분석
+              {ctrSeo.h1Alias
+                ? `${ctrSeo.h1Alias}(${currentArticle.ticker}) 주가 전망과 기업분석`
+                : `${currentArticle.companyNameKo}(${currentArticle.ticker}) 주가 전망과 기업분석`}
             </h1>
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
+            {ctrSeo.keywords?.length ? (
+              <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-4">
+                <p className="text-sm font-semibold text-cyan-100">최근 검색 유입이 많은 표현을 기준으로 정리했습니다.</p>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-cyan-100/90">
+                  {ctrSeo.keywords.map((keyword) => (
+                    <span key={keyword} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1">
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             {analysisLevel === "빠른 확인용 정리" ? (
               <p className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
-                이 글은 관심 기업을 빠르게 선별하기 위한 기본 안내입니다. 실제 투자 판단 전에는 같은 산업의 다른 기업, 최근 공시, 실적 발표 자료를 함께 확인해 주세요.
+이 글은 관심 기업을 빠르게 선별하기 위한 기본 안내입니다. 실제 투자 판단 전에는 같은 산업의 다른 기업, 최근 공시, 실적 발표 자료도 확인해 주세요.
               </p>
             ) : null}
             <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-400">
@@ -211,6 +281,27 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
             </div>
           </section>
 
+          <DetailPriorityPanel
+            eyebrow="기업분석 핵심"
+            title="주가보다 먼저 확인할 사업·실적 기준"
+            summary={currentArticle.quickConclusion}
+            items={[
+              {
+                label: "사업 구조",
+                value: currentArticle.sections[0]?.body[0] ?? `${currentArticle.companyNameKo}의 매출 구조와 주요 고객을 먼저 확인하세요.`,
+              },
+              {
+                label: "확인 지표",
+                value: currentArticle.checkpoints[0] ?? "실적 발표에서 매출 성장, 마진, 수주 또는 비용 변화를 확인하세요.",
+              },
+              {
+                label: "주의 변수",
+                value: currentArticle.risks[0] ?? "같은 산업의 경기와 금리, 환율, 규제 변화가 주가에 영향을 줄 수 있습니다.",
+              },
+            ]}
+            note={currentArticle.investorNote}
+          />
+
           <TradingViewStockChart
             ticker={currentArticle.ticker}
             exchange={currentArticle.exchange}
@@ -220,54 +311,71 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
 
           <CompanyAnalysisUpdateNotice updatedAt={currentArticle.updatedAt} />
 
-          <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">한줄 결론</h2>
-            <p className="bd-text-main mt-4">{currentArticle.quickConclusion}</p>
-            <p className="bd-text-sub mt-4">{currentArticle.investorNote}</p>
-          </section>
-
-          <AdFitAd variant="middle" label="본문 중간 광고 영역" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
+          <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-6">
-              {currentArticle.sections.map((section) => (
-                <section key={section.title} className="bd-card bd-card-padding">
-                  <h2 className="bd-title-md">{section.title}</h2>
-                  <div className="mt-4 space-y-4">
-                    {section.body.map((paragraph, index) => (
-                      <p key={`${section.title}-${index}`} className="bd-text-main">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              ))}
+              {currentArticle.sections.map((section, index) =>
+                index === 0 ? (
+                  <section key={section.title} className="bd-card bd-card-padding">
+                    <h2 className="bd-title-md">{section.title}</h2>
+                    <div className="mt-4 space-y-4">
+                      {section.body.map((paragraph, paragraphIndex) => (
+                        <p key={`${section.title}-${paragraphIndex}`} className="bd-text-main">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </section>
+                ) : (
+                  <ExpandableCard
+                    key={section.title}
+                    title={section.title}
+                    summary="한줄 결론과 핵심 내용을 읽은 뒤 더 자세히 보고 싶은 분만 펼쳐보세요."
+                  >
+                    <div className="space-y-4">
+                      {section.body.map((paragraph, paragraphIndex) => (
+                        <p key={`${section.title}-${paragraphIndex}`} className="bd-text-main">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </ExpandableCard>
+                ),
+              )}
 
-              <section className="bd-card-soft bd-card-padding">
-                <h2 className="bd-title-md">투자 전 체크포인트</h2>
-                <div className="bd-list mt-4">
+              <ExpandableCard
+                title="투자 전 체크포인트"
+                summary="매수 여부를 판단하기 전에 확인할 항목만 모았습니다."
+                variant="soft"
+              >
+                <div className="bd-list">
                   {currentArticle.checkpoints.map((item) => (
                     <div key={item} className="bd-list-item">
                       {item}
                     </div>
                   ))}
                 </div>
-              </section>
+              </ExpandableCard>
 
-              <section className="bd-card bd-card-padding">
-                <h2 className="bd-title-md">주의해야 할 리스크</h2>
-                <div className="bd-list mt-4">
+              <ExpandableCard
+                title="주의해야 할 리스크"
+                summary="실적과 주가가 흔들릴 수 있는 변수입니다. 필요한 경우 펼쳐보세요."
+              >
+                <div className="bd-list">
                   {currentArticle.risks.map((risk) => (
                     <div key={risk} className="bd-list-item">
                       {risk}
                     </div>
                   ))}
                 </div>
-              </section>
+              </ExpandableCard>
 
-              <section className="bd-card bd-card-padding">
-                <h2 className="bd-title-md">자주 묻는 질문</h2>
-                <div className="mt-6 space-y-4">
+              <ExpandableCard
+                title="자주 묻는 질문"
+                summary="비슷한 검색 의도가 있을 때만 펼쳐서 확인하세요."
+              >
+                <div className="space-y-4">
                   {currentArticle.faq.map((faq) => (
                     <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5">
                       <h3 className="text-base font-semibold text-white">{faq.question}</h3>
@@ -275,18 +383,21 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                     </article>
                   ))}
                 </div>
-              </section>
+              </ExpandableCard>
 
-              <section className="bd-card-soft bd-card-padding">
-                <h2 className="bd-title-md">관련 태그</h2>
-                <div className="mt-4 flex flex-wrap gap-2">
+              <ExpandableCard
+                title="관련 태그"
+                summary="이 기업이 어떤 테마와 함께 검색되는지 확인할 수 있습니다."
+                variant="soft"
+              >
+                <div className="flex flex-wrap gap-2">
                   {currentArticle.tags.map((tag) => (
                     <span key={tag} className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-sm text-slate-300">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </section>
+              </ExpandableCard>
 
               <PageTrustFooter
                 updatedAt={currentArticle.updatedAt}

@@ -6,13 +6,13 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/car-installment";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "자동차 할부 계산기 | BlueDino";
-const pageDescription = "차량 가격·선수금·할부 금리·할부 개월로 월 할부금·총이자·총 상환액을 계산하는 BlueDino 자동차 할부 계산기.";
+const pageTitle = "중고차 캐피탈 금리 계산기 | 월 할부금·총이자 바로 계산 | BlueDino";
+const pageDescription = "중고차 캐피탈 금리 계산기입니다. 차량 가격, 선수금, 할부금리, 기간을 넣어 월 할부금, 총이자, 총 상환액을 바로 확인하세요.";
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: ["자동차 할부 계산기", "신차 할부 이자", "중고차 할부 계산", "자동차 캐피탈"],
+  keywords: ["중고차 캐피탈 금리 계산기", "자동차 할부 계산기", "신차 할부 이자", "중고차 할부 계산", "자동차 캐피탈", "캐피탈 금리 계산"],
   alternates: { canonical: canonicalPath },
   openGraph: {
     title: pageTitle,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "자동차 할부 계산기",
+  name: "중고차 캐피탈 금리 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: pageDescription,
@@ -60,7 +60,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
     { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
-    { "@type": "ListItem", position: 3, name: "자동차 할부 계산기", item: pageUrl },
+    { "@type": "ListItem", position: 3, name: "중고차 캐피탈 금리 계산기", item: pageUrl },
   ],
 };
 
@@ -71,8 +71,8 @@ export default function Page() {
       <Script id="car-installment-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(faqSchema) } } />
       <Script id="car-installment-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <CalculatorPageLayout
-        title={`자동차 할부 계산기`}
-        hero={`신차·중고차 구매 시 차량 가격·선수금·할부 금리·기간을 입력하면 매월 부담할 할부금과 총이자, 총 상환액을 한 번에 확인합니다.`}
+        title={`중고차 캐피탈 금리 계산기 - 월 할부금과 총이자 확인`}
+        hero={`차량 가격, 선수금, 할부 금리, 기간을 넣으면 매월 납입액과 총이자를 바로 확인할 수 있습니다. 중고차 구매 전 캐피탈 견적이 부담 가능한 수준인지 먼저 계산해보세요.`}
         calcChildren={<CarInstallmentClient />}
         whenToUse={[
             "신차·중고차 구매 전 월 부담을 미리 알아볼 때",

@@ -6,13 +6,13 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/youth-leap-account";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "청년도약계좌 만기 시뮬레이션 계산기 | BlueDino";
-const pageDescription = "신규 가입이 종료된 청년도약계좌 기존 가입자를 위한 5년 만기 예상 계산기. 월 납입액, 가입 당시 소득 구간, 약정 금리와 2025년 확대 기여금 구조를 반영해 만기 예상액을 확인할 수 있습니다.";
+const pageTitle = "청년도약계좌 예상금액 계산기 | 만기수령액·정부기여금 확인 | BlueDino";
+const pageDescription = "청년도약계좌 예상금액 계산기입니다. 월 납입액, 소득 구간, 약정 금리, 정부기여금을 넣어 5년 만기수령액을 바로 확인하세요.";
 
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: ["청년도약계좌 계산기", "청년도약계좌 만기", "정부 매칭 청년 적금", "청년 적금 계산"],
+  keywords: ["청년도약계좌 예상금액 계산기", "청년도약계좌 계산기", "청년도약계좌 만기수령액", "청년도약계좌 만기", "정부기여금 계산", "청년 적금 계산"],
   alternates: { canonical: canonicalPath },
   openGraph: {
     title: pageTitle,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "청년도약계좌 만기 시뮬레이션 계산기",
+  name: "청년도약계좌 예상금액 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: pageDescription,
@@ -60,7 +60,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
     { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
-    { "@type": "ListItem", position: 3, name: "청년도약계좌 만기 시뮬레이션 계산기", item: pageUrl },
+    { "@type": "ListItem", position: 3, name: "청년도약계좌 예상금액 계산기", item: pageUrl },
   ],
 };
 
@@ -71,8 +71,8 @@ export default function Page() {
       <Script id="youth-leap-account-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(faqSchema) } } />
       <Script id="youth-leap-account-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <CalculatorPageLayout
-        title={`청년도약계좌 만기 시뮬레이션 계산기`}
-        hero={`청년도약계좌는 신규 가입이 종료된 정책 금융상품입니다. 기존 가입자가 월 납입액과 가입 당시 소득 구간, 약정 금리를 기준으로 5년 만기 예상액을 확인할 수 있도록 비교할 수 있게 구성했습니다.`}
+        title={`청년도약계좌 예상금액 계산기 - 5년 만기수령액 확인`}
+        hero={`기존 청년도약계좌 가입자가 월 납입액, 소득 구간, 약정 금리, 정부기여금을 기준으로 만기 예상액을 빠르게 확인할 수 있게 구성했습니다.`}
         calcChildren={<YouthLeapClient />}
         whenToUse={[
             "기존 청년도약계좌 가입자가 만기 예상 금액을 미리 확인하고 싶을 때",
