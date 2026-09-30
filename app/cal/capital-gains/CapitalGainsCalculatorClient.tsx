@@ -66,7 +66,7 @@ export default function CapitalGainsTaxPage() {
       sell: "15000",
       buyFee: "0",
       sellFee: "0",
-      fxMode: "auto",
+      fxMode: "manual",
       buyFx: "1350",
       sellFx: "1350",
     },
@@ -303,7 +303,7 @@ export default function CapitalGainsTaxPage() {
         sell: "0",
         buyFee: "0",
         sellFee: "0",
-        fxMode: "auto",
+        fxMode: "manual",
         buyFx: fallback,
         sellFx: fallback,
       },
@@ -501,8 +501,7 @@ export default function CapitalGainsTaxPage() {
             {fxError && <div className="text-xs text-rose-300">{fxError}</div>}
 
             <div className="text-xs text-slate-400">
-              * “자동” 환율은 현재 시점 환율입니다. 실제 신고는 “매수/매도 결제일 환율”이
-              필요할 수 있어요. 아래 거래별 환율 입력을 활용하세요.
+              * 자동 환율은 현재 시점의 참고 환율입니다. 과거 거래를 계산할 때는 거래별 매수·매도 시점 환율을 확인해 “수동”으로 입력하세요.
             </div>
 
             <div className="pt-2">
@@ -633,7 +632,7 @@ export default function CapitalGainsTaxPage() {
                                   : "border border-slate-700 bg-slate-900 text-slate-100 hover:border-slate-600 hover:bg-slate-800"
                               }`}
                             >
-                              자동
+                              현재 환율(참고)
                             </button>
                             <button
                               onClick={() => updateTrade(t.id, { fxMode: "manual" })}
@@ -643,7 +642,7 @@ export default function CapitalGainsTaxPage() {
                                   : "border border-slate-700 bg-slate-900 text-slate-100 hover:border-slate-600 hover:bg-slate-800"
                               }`}
                             >
-                              수동
+                              거래별 환율(권장)
                             </button>
                           </div>
 

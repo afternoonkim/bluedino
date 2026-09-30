@@ -83,14 +83,14 @@ export default function Page() {
       <CapitalGainsCalculatorClient />
       <CalculatorMetaSections
         accuracyLevel="제도 기준 반영"
-        basisLabel="기준: 2026년 5월 현재 공개 세법과 입력값 기준"
+        basisLabel="기준: 2026년 10월 1일 확인한 국세청 공개 세법과 입력값 기준"
         officialSources={[{ label: "국세청 양도소득세 안내", href: "https://www.nts.go.kr" }, { label: "홈택스 세금 신고 안내", href: "https://www.hometax.go.kr" }, { label: "증권사 해외주식 거래·환전 수수료 안내", href: "https://www.kofia.or.kr" }]}
         relatedCalculators={[{ label: "배당 계산기", href: "/cal/calculator", description: "배당소득과 양도차익을 함께 점검할 수 있습니다." }, { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings", description: "국내 절세계좌 활용 가능성을 비교해 볼 수 있습니다." }, { label: "복리 계산기", href: "/cal/compound", description: "세후 수익을 장기 투자 결과로 이어서 계산할 수 있습니다." }]}
-        caution="실제 양도세는 연간 전체 거래 내역, 환율 적용일, 수수료, 기본공제 적용 여부에 따라 달라질 수 있습니다."
+        caution="국세청 안내상 주식 등 양도소득 기본공제는 연 250만원입니다. 실제 세액은 같은 과세기간의 손익통산 범위, 거래별 환율·필요경비, 자산·납세자별 세율에 따라 달라질 수 있으므로 신고 전 국세청 기준을 다시 확인하세요."
       />
       <CalculatorResultSeoNote calculator="capital-gains" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-01" />
     </>
   );
 }

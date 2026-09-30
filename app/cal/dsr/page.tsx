@@ -77,14 +77,14 @@ export default function Page() {
       <DsrCalculatorClient />
       <CalculatorMetaSections
         accuracyLevel="제도 기준 반영"
-        basisLabel="기준: 2026년 5월 현재 공개 대출 규제와 입력값 기준"
+        basisLabel="기준: 2026년 10월 1일 확인한 금융위원회 공개 대출 규제와 입력값 기준"
         officialSources={[{ label: "금융위원회 가계대출·DSR 제도 안내", href: "https://www.fsc.go.kr" }, { label: "금융감독원 금융소비자 정보", href: "https://www.fss.or.kr" }, { label: "취급 금융회사 대출 심사 기준", href: "https://portal.kfb.or.kr" }]}
         relatedCalculators={[{ label: "LTV 계산기", href: "/cal/ltv", description: "담보가치 기준 대출 가능 금액을 함께 확인할 수 있습니다." }, { label: "주담대 계산기", href: "/cal/mortgage", description: "월 상환액과 DSR 부담을 함께 볼 수 있습니다." }, { label: "대출이자 계산기", href: "/cal/loan-interest", description: "대출 조건별 상환액을 상세히 확인할 수 있습니다." }]}
-        caution="DSR은 금융회사 심사 기준, 금리 스트레스 적용, 대출 종류, 소득 인정 방식에 따라 실제 한도와 차이가 날 수 있습니다."
+        caution="금융위원회는 3단계 스트레스 DSR을 2025년 7월 1일부터 시행하고 있습니다. 이 계산기는 사용자가 입력한 실제 금리와 목표 DSR로 상환 부담을 단순 추정하며, 대출유형·지역별 스트레스 금리와 금융회사 심사기준을 자동 적용하지 않으므로 실제 한도와 다를 수 있습니다."
       />
       <CalculatorResultSeoNote calculator="dsr" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-01" />
     </>
   );
 }

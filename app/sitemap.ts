@@ -26,6 +26,8 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/cal": "2026-05-17",
   "/info": "2026-05-17",
   "/topics": "2026-07-05",
+  "/cal/capital-gains": "2026-10-01",
+  "/cal/dsr": "2026-10-01",
   "/info/guide": "2026-05-17",
   "/info/strategy": "2026-05-17",
   "/info/recommended-guides": "2026-05-17",
