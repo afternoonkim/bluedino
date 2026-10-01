@@ -51,7 +51,7 @@ function hasSameAdUnitOutsideCurrent(adUnit: string, currentContainer: HTMLDivEl
 function appendAdFitScript(target: HTMLElement) {
   const script = document.createElement("script");
   script.async = true;
-  script.src = "https://t1.daumcdn.net/kas/static/ba.min.js";
+  script.src = "https://t1.kakaocdn.net/kas/static/ba.min.js";
   script.dataset.adfitLoader = "true";
   target.appendChild(script);
 }
