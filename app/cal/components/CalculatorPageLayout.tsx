@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import CalculatorReferenceBox, { type OfficialSource } from "./CalculatorReferenceBox";
 import AdFitAd from "@/components/ad/AdFitAd";
 import ExpandableCard from "@/components/common/ExpandableCard";
-import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 
 
 function buildDefaultInterpretation(title: string) {
@@ -180,158 +179,68 @@ export default function CalculatorPageLayout({
 }: CalcLayoutProps) {
   const resolvedAccuracy = accuracyLevel ?? (title.includes("예금 이자") || title.includes("복리") ? "공식 산식 기반" : title.includes("청년도약계좌") || title.includes("연봉 실수령") || title.includes("주택 구매") ? "제도 기준 반영" : "참고 시뮬레이션");
   const resolvedOfficialSources = officialSources ?? ["계산기별 입력값과 공개 안내 기준", "금융회사별 상품 설명서 또는 약관"];
-  const resolvedBasisLabel = basisLabel ?? (title.includes("예금 이자") || title.includes("적금 이자") || title.includes("복리") ? "기준: 단순 수식과 입력값 기준" : "기준: 2026년 5월 현재 공개 자료 기준");
+  const resolvedBasisLabel = basisLabel ?? (title.includes("예금 이자") || title.includes("적금 이자") || title.includes("복리") ? "기준: 단순 수식과 입력값 기준" : "기준: 페이지 내 최신 업데이트·공개 자료 기준");
 
   return (
     <div className="bd-page">
-      <div className="bd-container-narrow bd-section">
-        <section className="bd-card bd-card-padding">
+      <div className="bd-container-narrow space-y-7 md:space-y-9">
+        <header className="py-2 md:py-4">
           <span className="bd-badge">금융 계산기</span>
           <h1 className="bd-title-lg mt-4">{title}</h1>
           <p className="bd-text-main mt-4">{hero}</p>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">계산 방식: {resolvedAccuracy}</span>
-            <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">{resolvedBasisLabel}</span>
+          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+            <span>{resolvedAccuracy}</span><span>·</span><span>{resolvedBasisLabel}</span>
           </div>
-        </section>
+        </header>
 
-        <DetailPriorityPanel
-          title="이 페이지는 계산 결과를 먼저 보고, 설명은 나중에 펼쳐보는 구조입니다"
-          summary="긴 설명을 모두 읽지 않아도 됩니다. 먼저 입력값을 넣어 결과를 확인하고, 계산 기준이나 주의사항이 필요할 때 아래 접힌 카드를 열어보세요."
-          items={buildCalculatorQuickItems(title, whenToUse)}
-        />
-
-        {/* 1. 계산기 입력 + 결과 (클라이언트 컴포넌트) */}
+        {/* 계산기는 설명보다 먼저: 검색 유입 사용자가 즉시 입력할 수 있게 배치 */}
         {calcChildren}
 
-        <AdFitAd
-          variant="bottom"
-          label="계산 결과 아래 스폰서 배너"
-          className="rounded-2xl border border-white/5 bg-slate-950/20 py-4"
-        />
+        <AdFitAd variant="bottom" label="계산 결과 아래 스폰서 배너" className="rounded-xl border border-slate-200 bg-white py-4" />
 
-        {/* 2. 사용 상황 — 계산기 사용 판단에 필요한 핵심 내용은 바로 노출 */}
-        <section className="bd-card-soft bd-card-padding">
+        <section className="border-y border-slate-200 bg-white px-1 py-6 md:px-2">
           <h2 className="bd-title-md">{layoutHeading(title, "when")}</h2>
-          <div className="bd-list mt-5">
-            {whenToUse.map((item) => (
-              <div key={item} className="bd-list-item">
-                {item}
-              </div>
-            ))}
+          <div className="bd-list mt-4">
+            {whenToUse.map((item) => <div key={item} className="bd-list-item">{item}</div>)}
           </div>
         </section>
 
-        <ExpandableCard
-          title={formula.title}
-          summary="계산식과 기준은 필요한 분만 펼쳐서 확인할 수 있습니다."
-        >
-          <div className="space-y-3 text-sm leading-7 text-slate-300">
-            {formula.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+        <ExpandableCard title={formula.title} summary="계산식과 기준이 필요할 때 확인하세요.">
+          <div className="space-y-3 text-sm leading-7 text-slate-700">{formula.body.map((p, i) => <p key={i}>{p}</p>)}</div>
+        </ExpandableCard>
+
+        <ExpandableCard title={layoutHeading(title, "interpretation")} summary="결과값을 어떻게 읽어야 하는지 확인합니다." variant="soft">
+          <div className="bd-list">{(resultInterpretation ?? buildDefaultInterpretation(title)).map((item) => <div key={item} className="bd-list-item">{item}</div>)}</div>
+        </ExpandableCard>
+
+        <ExpandableCard title={layoutHeading(title, "mistake")} summary="입력값과 조건에서 자주 생기는 오차를 확인합니다.">
+          <div className="bd-list">{(commonMistakes ?? buildDefaultMistakes(title)).map((item) => <div key={item} className="bd-list-item">{item}</div>)}</div>
+        </ExpandableCard>
+
+        <ExpandableCard title={layoutHeading(title, "example")} summary="비슷한 금액의 예시가 필요할 때 확인하세요." variant="soft">
+          <div className="divide-y divide-slate-200">{examples.map((ex) => <article key={ex.title} className="py-4 first:pt-0 last:pb-0"><h3 className="font-semibold text-slate-950">{ex.title}</h3><p className="mt-2 text-sm leading-7 text-slate-600">{ex.body}</p></article>)}</div>
+        </ExpandableCard>
+
+        <ExpandableCard title={layoutHeading(title, "faq")} summary="계산기 사용 중 자주 묻는 질문입니다.">
+          <div className="divide-y divide-slate-200">{faqs.map((faq) => <article key={faq.question} className="py-4 first:pt-0 last:pb-0"><h3 className="font-semibold text-slate-950">{faq.question}</h3><p className="bd-text-main mt-2">{faq.answer}</p></article>)}</div>
+        </ExpandableCard>
+
+        <ExpandableCard title="계산 결과와 함께 볼 페이지" summary="필요할 때 관련 계산기와 가이드로 이어가세요." variant="soft">
+          <div>
+            <h3 className="font-semibold text-slate-950">{layoutHeading(title, "related")}</h3>
+            <div className="mt-3 flex flex-wrap gap-2">{relatedCalculators.map((r) => <Link key={r.href} href={r.href} className="bd-button-secondary">{r.label}</Link>)}</div>
+            <h3 className="mt-6 font-semibold text-slate-950">관련 가이드</h3>
+            <div className="mt-3 flex flex-wrap gap-2">{defaultRelatedGuides(title).map((guide) => <Link key={guide.href} href={guide.href} className="bd-button-secondary">{guide.label}</Link>)}</div>
           </div>
         </ExpandableCard>
 
-        <ExpandableCard
-          title={layoutHeading(title, "interpretation")}
-          summary="결과값을 어떻게 읽어야 하는지 더 확인하고 싶을 때 펼쳐보세요."
-          variant="soft"
-        >
-          <div className="bd-list">
-            {(resultInterpretation ?? buildDefaultInterpretation(title)).map((item) => (
-              <div key={item} className="bd-list-item">{item}</div>
-            ))}
-          </div>
-        </ExpandableCard>
-
-        <ExpandableCard
-          title={layoutHeading(title, "mistake")}
-          summary="입력값을 넣기 전에 자주 생기는 오차를 줄이는 보조 설명입니다."
-        >
-          <div className="bd-list">
-            {(commonMistakes ?? buildDefaultMistakes(title)).map((item) => (
-              <div key={item} className="bd-list-item">{item}</div>
-            ))}
-          </div>
-        </ExpandableCard>
-
-        <ExpandableCard
-          title={layoutHeading(title, "example")}
-          summary="내 상황과 비슷한 금액으로 비교하고 싶을 때 확인하세요."
-          variant="soft"
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            {examples.map((ex) => (
-              <article
-                key={ex.title}
-                className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5"
-              >
-                <h3 className="text-base font-semibold text-white">{ex.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{ex.body}</p>
-              </article>
-            ))}
-          </div>
-        </ExpandableCard>
-
-        <ExpandableCard
-          title={layoutHeading(title, "faq")}
-          summary="계산기 사용 중 헷갈릴 수 있는 질문을 모았습니다."
-        >
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <article
-                key={faq.question}
-                className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5"
-              >
-                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                <p className="bd-text-main mt-3">{faq.answer}</p>
-              </article>
-            ))}
-          </div>
-        </ExpandableCard>
-
-        <ExpandableCard
-          title="계산 결과와 함께 볼 페이지"
-          summary="관련 계산기와 가이드는 필요할 때만 펼쳐서 이동할 수 있게 정리했습니다."
-          variant="soft"
-        >
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-base font-semibold text-white">{layoutHeading(title, "related")}</h3>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {relatedCalculators.map((r) => (
-                  <Link key={r.href} href={r.href} className="bd-button-secondary">
-                    {r.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-base font-semibold text-white">계산 결과와 함께 읽을 가이드</h3>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {defaultRelatedGuides(title).map((guide) => (
-                  <Link key={guide.href} href={guide.href} className="bd-button-secondary">
-                    {guide.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </ExpandableCard>
-
-        <ExpandableCard
-          title="공식 참고 기준과 확인할 점"
-          summary="정확한 실행 전 확인이 필요한 기준만 따로 모았습니다."
-        >
+        <ExpandableCard title="공식 참고 기준과 확인할 점" summary="실제 적용 전 확인할 기준입니다.">
           <div className="space-y-5">
             <CalculatorReferenceBox sources={resolvedOfficialSources} />
-            <div className="rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5">
-              <div className="text-xs font-semibold uppercase tracking-wide text-amber-200">
-                확인할 점
-              </div>
-              <p className="mt-2 text-sm leading-7 text-amber-50/90">{caution}</p>
-              <p className="mt-2 text-sm leading-7 text-amber-50/90">실제 적용 조건은 금융사, 세법, 정부 정책 변경에 따라 달라질 수 있습니다.</p>
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-5">
+              <div className="text-xs font-bold text-amber-800">확인할 점</div>
+              <p className="mt-2 text-sm leading-7 text-amber-900">{caution}</p>
+              <p className="mt-2 text-sm leading-7 text-amber-900">실제 적용 조건은 금융사, 세법, 정부 정책 변경에 따라 달라질 수 있습니다.</p>
             </div>
           </div>
         </ExpandableCard>

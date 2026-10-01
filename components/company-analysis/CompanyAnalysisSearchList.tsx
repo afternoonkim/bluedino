@@ -147,7 +147,7 @@ export default function CompanyAnalysisSearchList({
         <ul className="mt-5 divide-y divide-slate-800/80 rounded-2xl border border-slate-800/80 bg-slate-950/35">
           {filteredArticles.map((article, index) => (
             <li key={`${article.market}-${article.slug}-${index}`}>
-              <Link href={`/company-analysis/${article.market}/${article.slug}`} className="group block px-4 py-4 transition hover:bg-slate-900/80 md:px-5">
+              <Link href={`/company-analysis/${article.market}/${article.slug}`} className="group block px-4 py-3 transition hover:bg-slate-900/80 md:px-5 md:py-3.5">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
@@ -157,9 +157,8 @@ export default function CompanyAnalysisSearchList({
                     <h3 className="mt-2 text-base font-bold leading-7 text-white group-hover:text-cyan-200 md:text-lg">
                       {article.companyNameKo}({article.ticker})
                     </h3>
-                    <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400 md:text-[15px]">{article.summary}</p>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {article.tags.slice(0, 4).map((tag, tagIndex) => (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {article.tags.slice(0, 2).map((tag, tagIndex) => (
                         <span key={`${article.slug}-${tag}-${tagIndex}`} className="rounded-full border border-slate-800 bg-slate-950/70 px-2.5 py-1 text-[11px] font-semibold text-slate-400">
                           {tag}
                         </span>

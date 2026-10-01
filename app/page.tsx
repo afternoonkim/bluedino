@@ -1,129 +1,68 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
-import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
-import ContentBundlePanel from "@/components/growth/ContentBundlePanel";
+import { Calculator, Landmark, TrendingUp, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "BlueDino | CMA 이자 계산기·파킹통장·배당·관련주 정보",
-  description:
-    "CMA 이자 계산기, 파킹통장 금리 계산기, 배당 계산기, ISA·IRP 질문, 미국 2차전지·반도체 장비·헬스케어 관련주를 빠르게 찾을 수 있습니다.",
+  title: "BlueDino | 금융 계산기·금융가이드·투자정보",
+  description: "CMA 이자, 자동차·신용카드 할부, 파킹통장, 배당금 계산기와 ISA·IRP·대출 가이드를 빠르게 확인하세요.",
   alternates: { canonical: "/" },
-  openGraph: {
-    title: "BlueDino | 금융 계산기와 관련주 정보",
-    description:
-      "CMA·파킹통장·배당 계산기, ISA·IRP 질문, 관련주와 기업분석을 태그형 목록으로 쉽게 찾아볼 수 있습니다.",
-    url: "https://bluedino.kr",
-    siteName: "BlueDino",
-    locale: "ko_KR",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BlueDino | 금융 계산기와 관련주 정보",
-    description:
-      "CMA·파킹통장·배당·연금·관련주 정보를 계산기와 가이드로 바로 확인할 수 있습니다.",
-  },
 };
 
-const mainEntries: TaggedListItem[] = [
-  {
-    title: "계산기 전체보기",
-    href: "/cal",
-    description: "배당, 복리, FIRE, ISA, IRP, DSR, LTV, 주담대 계산기까지 목적별로 바로 찾을 수 있습니다.",
-    badge: "계산기",
-    tags: ["계산기", "투자", "대출", "절세"],
-    cta: "계산기 찾기",
-  },
-  {
-    title: "금융 질문 가이드",
-    href: "/finance",
-    description: "ISA, IRP, 연금저축, CMA, 파킹통장, 신용대출, 주담대 질문을 태그로 좁혀볼 수 있습니다.",
-    badge: "금융가이드",
-    tags: ["금융가이드", "절세계좌", "대출", "현금관리"],
-    cta: "질문 보기",
-  },
-  {
-    title: "투자정보 허브",
-    href: "/info",
-    description: "투자 기초, 투자전략, 기업분석, 산업·테마, ETF 정보로 이어지는 입구입니다.",
-    badge: "투자정보",
-    tags: ["투자정보", "가이드", "기업분석", "ETF"],
-    cta: "정보 찾기",
-  },
-  {
-    title: "기업분석",
-    href: "/company-analysis",
-    description: "국내기업과 해외기업의 사업 구조, 성장 포인트, 리스크를 검색과 태그로 확인할 수 있습니다.",
-    badge: "기업분석",
-    tags: ["기업분석", "국내주식", "해외주식", "산업"],
-    cta: "기업 찾기",
-  },
-];
+const popular = [
+  ["자동차 할부 계산기", "/cal/car-installment", "월 납입액과 총이자 확인"],
+  ["CMA 이자 계산기", "/cal/cma-interest", "하루·월·세후 이자 확인"],
+  ["신용카드 할부 계산기", "/cal/credit-card-installment", "할부 수수료와 월 청구액 확인"],
+  ["파킹통장 이자 계산기", "/cal/parking-account", "구간별 금리 적용 이자 확인"],
+  ["배당금 계산기", "/cal/calculator", "예상 배당금과 현금흐름 확인"],
+  ["청년도약계좌 계산기", "/cal/youth-leap-account", "예상 만기 금액 확인"],
+] as const;
 
-const popularLinks: TaggedListItem[] = [
-  { title: "CMA·파킹통장 이자 묶음", href: "/topics/cma-parking-cash", description: "CMA 이자 계산기, 파킹통장 금리 계산기, 계좌 질문을 한 흐름으로 봅니다.", badge: "현금관리", tags: ["CMA", "파킹통장", "현금관리"], cta: "묶음 보기" },
-  { title: "CMA 이자 계산기", href: "/cal/cma-interest", description: "단기 여유자금과 투자 대기자금의 세후 이자를 바로 확인합니다.", badge: "계산기", tags: ["CMA", "이자", "현금관리"], cta: "계산하기" },
-  { title: "파킹통장 금리 계산기", href: "/cal/parking-account", description: "우대금리 한도와 초과분 금리를 나눠 월 이자를 확인합니다.", badge: "계산기", tags: ["파킹통장", "금리", "현금관리"], cta: "계산하기" },
-  { title: "배당 계산기", href: "/cal/calculator", description: "보유 수량, 배당률, 재투자 조건을 넣어 장기 배당 흐름을 확인합니다.", badge: "계산기", tags: ["배당", "계산기", "현금흐름"], cta: "계산하기" },
-  { title: "관련주 테마 묶음", href: "/topics/theme-stock-map", description: "미국 2차전지, 반도체 장비, 헬스케어 관련주를 산업 단계별로 이어서 봅니다.", badge: "관련주", tags: ["미국주식", "관련주", "산업"], cta: "묶음 보기" },
-  { title: "미국 2차전지 관련주", href: "/industry/us-battery-stocks", description: "미국 배터리·리튬·전기차 기업을 역할별로 비교합니다.", badge: "관련주", tags: ["미국주식", "2차전지", "관련주"], cta: "테마 보기" },
-  { title: "미국 반도체 장비주", href: "/industry/us-semiconductor-equipment", description: "노광·식각·증착·검사 장비 기업을 따로 나눠 확인합니다.", badge: "관련주", tags: ["미국주식", "반도체", "장비"], cta: "테마 보기" },
-  { title: "ISA 질문 가이드", href: "/finance/isa", description: "ISA 가입 조건, 절세 구조, ETF 투자, 만기 활용을 질문 중심으로 정리했습니다.", badge: "절세계좌", tags: ["ISA", "절세계좌", "세금"], cta: "질문 보기" },
-];
+const financeLinks = [["ISA", "/finance/isa"], ["IRP", "/finance/irp"], ["연금저축", "/finance/pension"], ["CMA", "/finance/cma"], ["파킹통장", "/finance/parking"], ["대출", "/finance/loan-basics"]] as const;
 
 export default function HomePage() {
   return (
     <main className="bd-page">
-      <div className="bd-container bd-section">
-        <section className="bd-card bd-card-padding">
-          <span className="bd-badge">BlueDino · 금융 정보 탐색</span>
-          <h1 className="bd-title-xl mt-4">CMA 이자 계산기부터 관련주 정보까지 필요한 것만 바로 찾으세요</h1>
-          <p className="bd-text-main mt-4 max-w-4xl">
-            BlueDino는 사용자가 많이 찾는 CMA 이자, 파킹통장 금리, 배당금, ISA·IRP 질문, 미국 2차전지·반도체 장비 관련주를 계산기와 가이드로 연결합니다. 먼저 필요한 페이지를 열고, 추가 정보는 펼쳐서 확인하세요.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Link href="/cal" className="bd-button-primary">계산기 찾기</Link>
-            <Link href="/finance" className="bd-button-secondary">금융 질문 보기</Link>
-            <Link href="/info" className="bd-button-secondary">투자정보 보기</Link>
+      <div className="bd-container space-y-12 md:space-y-16">
+        <section className="py-6 md:py-12">
+          <p className="text-sm font-bold text-cyan-300">BlueDino</p>
+          <h1 className="mt-3 max-w-3xl text-[32px] font-bold leading-[1.2] tracking-[-0.04em] text-white md:text-[52px]">금융이 궁금할 때,<br className="hidden sm:block" /> 계산하고 확인하세요.</h1>
+          <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 md:text-lg">복잡한 메뉴보다 필요한 행동부터 시작합니다. 내 숫자를 계산하거나, 금융 질문의 답을 찾거나, 투자 정보를 확인하세요.</p>
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            <Link href="/cal" className="group rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm">
+              <Calculator className="h-5 w-5 text-cyan-300" /><div className="mt-4 font-bold text-white">계산하기</div><p className="mt-1 text-sm leading-6 text-slate-400">할부·이자·배당·대출을 내 숫자로 확인</p>
+            </Link>
+            <Link href="/finance" className="group rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm">
+              <Landmark className="h-5 w-5 text-cyan-300" /><div className="mt-4 font-bold text-white">금융 질문 찾기</div><p className="mt-1 text-sm leading-6 text-slate-400">ISA·IRP·CMA·대출 궁금증 해결</p>
+            </Link>
+            <Link href="/info" className="group rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm">
+              <TrendingUp className="h-5 w-5 text-cyan-300" /><div className="mt-4 font-bold text-white">투자정보 보기</div><p className="mt-1 text-sm leading-6 text-slate-400">기업·산업·ETF·투자기초 확인</p>
+            </Link>
           </div>
         </section>
 
-        <TaggedList
-          title="주요 메뉴"
-          description="상단과 하단 메뉴는 최소화하고, 세부 분류는 각 페이지 안에서 태그로 고르는 방식입니다."
-          items={mainEntries}
-          filterTags={["계산기", "금융가이드", "투자정보", "기업분석"]}
-          searchPlaceholder="예: 계산기, ISA, 기업분석, ETF, 대출"
-          countLabel="메뉴"
-          showSearch={false}
-        />
-
-        <ContentBundlePanel
-          title="분야별로 이어서 보는 콘텐츠 묶음"
-          description="검색자가 한 번에 해결하고 싶은 흐름을 기준으로 계산기·질문·가이드·관련주를 함께 묶었습니다."
-          compact
-          limit={4}
-        />
-
-        <SearchDemandPanel compact limit={4} />
-
-        <TaggedList
-          title="자주 찾는 바로가기"
-          description="처음 방문한 사용자가 가장 많이 찾을 만한 계산기와 가이드를 목록으로 모았습니다."
-          items={popularLinks}
-          filterTags={["계산기", "대출", "절세계좌", "가이드", "테마"]}
-          searchPlaceholder="예: 배당, 복리, DSR, ISA, ETF"
-          countLabel="바로가기"
-        />
-
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">사이트를 이렇게 사용하면 편합니다</h2>
-          <div className="bd-list mt-4">
-            <div className="bd-list-item">먼저 분야별 묶음에서 내 목적에 맞는 흐름을 고른 뒤 계산기나 가이드로 이동합니다.</div>
-            <div className="bd-list-item">CMA·파킹통장처럼 숫자가 중요한 주제는 계산 결과를 보고 계좌 질문으로 이어서 확인합니다.</div>
-            <div className="bd-list-item">기업이나 테마가 궁금할 때는 관련주 묶음에서 산업 단계와 기업분석을 함께 비교합니다.</div>
+        <section>
+          <div className="flex items-end justify-between gap-4"><div><h2 className="bd-title-md">많이 찾는 계산기</h2><p className="bd-text-sub mt-2">네이버 검색 유입이 확인된 계산기를 먼저 배치했습니다.</p></div><Link href="/cal" className="hidden text-sm font-semibold text-cyan-300 hover:text-cyan-200 sm:inline-flex">전체보기 →</Link></div>
+          <div className="mt-5 divide-y divide-slate-800 border-y border-slate-800 bg-slate-950/40">
+            {popular.map(([title, href, desc]) => <Link key={href} href={href} className="group flex items-center justify-between gap-4 px-1 py-4 transition hover:bg-slate-900/70 md:px-2"><div><div className="font-semibold text-white group-hover:text-cyan-200">{title}</div><div className="mt-1 text-sm text-slate-400">{desc}</div></div><ArrowRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-cyan-300" /></Link>)}
           </div>
+          <Link href="/cal" className="mt-4 inline-flex text-sm font-semibold text-cyan-300 sm:hidden">계산기 전체보기 →</Link>
+        </section>
+
+        <section>
+          <h2 className="bd-title-md">궁금한 금융 질문이 있나요?</h2>
+          <p className="bd-text-sub mt-2">계좌와 대출처럼 조건이 중요한 주제는 질문별로 바로 찾아보세요.</p>
+          <div className="mt-5 flex flex-wrap gap-2">{financeLinks.map(([label, href]) => <Link key={href} href={href} className="rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:text-cyan-200">{label}</Link>)}</div>
+          <Link href="/finance" className="mt-5 inline-flex text-sm font-semibold text-cyan-300">금융가이드 전체보기 →</Link>
+        </section>
+
+        <section className="border-t border-slate-800 pt-8">
+          <h2 className="bd-title-md">투자 정보를 찾고 있나요?</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <Link href="/company-analysis" className="rounded-xl bg-slate-950/40 p-4 font-semibold text-slate-100 ring-1 ring-slate-800 hover:text-cyan-200">기업분석 <span className="float-right text-slate-500">→</span></Link>
+            <Link href="/industry" className="rounded-xl bg-slate-950/40 p-4 font-semibold text-slate-100 ring-1 ring-slate-800 hover:text-cyan-200">산업·관련주 <span className="float-right text-slate-500">→</span></Link>
+            <Link href="/etf/ranking" className="rounded-xl bg-slate-950/40 p-4 font-semibold text-slate-100 ring-1 ring-slate-800 hover:text-cyan-200">ETF <span className="float-right text-slate-500">→</span></Link>
+          </div>
+          <Link href="/info" className="mt-5 inline-flex text-sm font-semibold text-cyan-300">투자정보 전체보기 →</Link>
         </section>
       </div>
     </main>

@@ -1,203 +1,85 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { calculatorLandingData } from "./components/calculatorLandingData";
-import SearchDemandPanel from "@/components/growth/SearchDemandPanel";
-import ContentBundlePanel from "@/components/growth/ContentBundlePanel";
-
-const calculatorGroups = [
-  {
-    tag: "투자",
-    title: "투자·자산 계산기",
-    description: "배당, 복리, FIRE, 양도세처럼 투자 계획을 세울 때 자주 쓰는 계산기입니다.",
-    slugs: ["calculator", "compound", "fire", "capital-gains", "retirement-tax", "pension-payout", "retirement-target"],
-  },
-  {
-    tag: "절세·연금",
-    title: "절세·연금 계산기",
-    description: "ISA, IRP, 연금저축, 청년도약계좌처럼 세제와 제도 조건을 함께 확인해야 하는 계산기입니다.",
-    slugs: ["isa-tax-savings", "irp-tax-credit", "pension-tax-credit", "youth-leap-account", "youth-future-savings", "salary-net"],
-  },
-  {
-    tag: "현금관리",
-    title: "예금·적금·현금관리 계산기",
-    description: "예금 이자, 적금 이자, 파킹통장, CMA, 월 예산처럼 생활 자금 관리에 필요한 계산기입니다.",
-    slugs: ["deposit-interest", "installment-savings", "parking-account", "cma-interest", "monthly-budget", "emergency-fund", "child-education-fund"],
-  },
-  {
-    tag: "대출·주택",
-    title: "대출·주택 계산기",
-    description: "DSR, LTV, 주담대, 대출이자, 중도상환수수료처럼 대출 실행 전 확인해야 하는 계산기입니다.",
-    slugs: ["loan-interest", "mortgage", "dsr", "ltv", "home-affordability", "prepayment-fee", "loan-refinance-saving", "jeonse-loan-interest", "jeonse-vs-monthly", "car-installment", "credit-card-installment"],
-  },
-];
-
-const calculatorHubFaqs = [
-  {
-    question: "처음 방문했다면 어떤 계산기부터 보면 되나요?",
-    answer: "투자 계획은 복리·배당 계산기부터, 대출 계획은 DSR·LTV·대출이자 계산기부터 확인하는 흐름이 적합합니다.",
-  },
-  {
-    question: "계산 결과와 실제 금융회사 조건이 다를 수 있나요?",
-    answer: "그럴 수 있습니다. 계산기는 입력값 기준의 참고 결과이며 실제 금리, 세금, 수수료, 심사 기준은 금융회사와 제도 변경에 따라 달라질 수 있습니다.",
-  },
-  {
-    question: "계산기만 보고 바로 결정해도 되나요?",
-    answer: "계산 결과는 첫 판단 기준으로 쓰고, 연결된 금융 Q&A와 가이드에서 세금·한도·상환 조건을 한 번 더 확인하는 방식이 적합합니다.",
-  },
-];
-
-const extraCalculatorLabels: Record<string, { title: string; href: string; description: string }> = {
-  "deposit-interest": { title: "예금 이자 계산기", href: "/cal/deposit-interest", description: "예치금, 금리, 기간을 기준으로 만기 이자를 확인합니다." },
-  "installment-savings": { title: "적금 이자 계산기", href: "/cal/installment-savings", description: "월 납입액과 기간을 기준으로 적금 만기액을 계산합니다." },
-  "parking-account": { title: "파킹통장 계산기", href: "/cal/parking-account", description: "금리 적용 한도와 초과분 금리를 나눠 이자를 확인합니다." },
-  "cma-interest": { title: "CMA 이자 계산기", href: "/cal/cma-interest", description: "단기 자금 보관 시 예상 이자를 계산합니다." },
-  "monthly-budget": { title: "월 예산 계산기", href: "/cal/monthly-budget", description: "월 소득을 필수지출, 자유지출, 저축·투자로 나눠 봅니다." },
-  "emergency-fund": { title: "비상금 계산기", href: "/cal/emergency-fund", description: "월 지출 기준으로 적정 비상금 규모를 계산합니다." },
-  "child-education-fund": { title: "자녀 교육비 계산기", href: "/cal/child-education-fund", description: "장기 교육비 목표를 적립식으로 준비하는 흐름을 확인합니다." },
-  "pension-payout": { title: "연금 수령액 계산기", href: "/cal/pension-payout", description: "연금 수령 기간과 나이에 따른 세후 수령액을 가늠합니다." },
-  "retirement-target": { title: "은퇴 목표자금 계산기", href: "/cal/retirement-target", description: "목표 은퇴자산까지 필요한 저축 규모를 계산합니다." },
-  "isa-tax-savings": { title: "ISA 절세 계산기", href: "/cal/isa-tax-savings", description: "예상 순이익 기준 ISA 비과세와 분리과세 효과를 확인합니다." },
-  "irp-tax-credit": { title: "IRP 세액공제 계산기", href: "/cal/irp-tax-credit", description: "소득 기준별 IRP 세액공제 예상액을 계산합니다." },
-  "pension-tax-credit": { title: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit", description: "연금저축 납입액에 따른 세액공제 효과를 확인합니다." },
-  "youth-leap-account": { title: "청년도약계좌 만기 계산기", href: "/cal/youth-leap-account", description: "기존 가입자의 만기 예상액과 정부기여금을 확인합니다." },
-  "youth-future-savings": { title: "청년미래적금 계산기", href: "/cal/youth-future-savings", description: "출시 전 공개 구조를 기준으로 예상 만기액을 시뮬레이션합니다." },
-  "loan-interest": { title: "대출이자 계산기", href: "/cal/loan-interest", description: "대출금, 금리, 기간별 월 상환액과 총이자를 계산합니다." },
-  "mortgage": { title: "주담대 계산기", href: "/cal/mortgage", description: "주택담보대출 월 상환액과 총이자 부담을 확인합니다." },
-  "dsr": { title: "DSR 계산기", href: "/cal/dsr", description: "연소득 대비 연간 원리금 상환 부담을 계산합니다." },
-  "ltv": { title: "LTV 계산기", href: "/cal/ltv", description: "주택가격 기준 대출 가능 비율을 가늠합니다." },
-  "home-affordability": { title: "주택 구매 가능 금액 계산기", href: "/cal/home-affordability", description: "대출 가능 금액과 부대비용, 남겨둘 현금을 함께 봅니다." },
-  "prepayment-fee": { title: "중도상환수수료 계산기", href: "/cal/prepayment-fee", description: "일부 상환금액 기준 예상 수수료를 계산합니다." },
-  "loan-refinance-saving": { title: "대환대출 절감액 계산기", href: "/cal/loan-refinance-saving", description: "갈아타기 전후 이자 절감 가능성을 비교합니다." },
-  "jeonse-loan-interest": { title: "전세대출 이자 계산기", href: "/cal/jeonse-loan-interest", description: "전세대출 금리와 금액 기준 월 이자를 확인합니다." },
-  "jeonse-vs-monthly": { title: "전세 월세 비교 계산기", href: "/cal/jeonse-vs-monthly", description: "전세와 월세의 월 부담을 기회비용까지 비교합니다." },
-  "car-installment": { title: "자동차 할부 계산기", href: "/cal/car-installment", description: "차량 할부 월 납입액과 총비용을 계산합니다." },
-  "credit-card-installment": { title: "신용카드 할부 계산기", href: "/cal/credit-card-installment", description: "무이자·부분 무이자·수수료율별 월 청구액을 확인합니다." },
-};
-
-function getCalculator(slug: string) {
-  const data = calculatorLandingData[slug];
-  if (data) return { title: data.title, href: `/cal/${slug}`, description: data.description };
-  return extraCalculatorLabels[slug];
-}
 
 export const metadata: Metadata = {
-  title: "금융 계산기 모음 | CMA·파킹통장·배당·DSR 계산기 | BlueDino",
-  description: "CMA 이자 계산기, 파킹통장 금리 계산기, 배당 계산기, 청년도약계좌, DSR·LTV·주담대 계산기를 목적별로 바로 찾을 수 있습니다.",
+  title: "금융 계산기 모음 | CMA·할부·파킹통장·배당·대출 계산기 | BlueDino",
+  description: "자동차 할부, CMA 이자, 신용카드 할부, 파킹통장, 배당금, 청년도약계좌, DSR·주담대 계산기를 목적별로 바로 찾을 수 있습니다.",
   alternates: { canonical: "/cal" },
-  openGraph: {
-    title: "금융 계산기 모음 | BlueDino",
-    description: "CMA·파킹통장·배당·절세·대출 계산기를 목적별로 모아 확인할 수 있습니다.",
-    url: "https://bluedino.kr/cal",
-    siteName: "BlueDino",
-    locale: "ko_KR",
-    type: "website",
-  },
 };
 
+const groups = [
+  { tag: "대출·할부", slugs: ["car-installment", "credit-card-installment", "loan-interest", "mortgage", "dsr", "ltv", "home-affordability", "prepayment-fee", "loan-refinance-saving", "jeonse-loan-interest", "jeonse-vs-monthly"] },
+  { tag: "현금관리", slugs: ["cma-interest", "parking-account", "deposit-interest", "installment-savings", "monthly-budget", "emergency-fund"] },
+  { tag: "절세·연금", slugs: ["youth-leap-account", "youth-future-savings", "isa-tax-savings", "irp-tax-credit", "pension-tax-credit", "pension-payout", "retirement-tax", "retirement-target", "salary-net"] },
+  { tag: "투자", slugs: ["calculator", "compound", "fire", "capital-gains", "child-education-fund"] },
+] as const;
+
+const fallback: Record<string, [string, string]> = {
+  "car-installment": ["자동차 할부 계산기", "차량 가격과 할부 조건으로 월 납입액과 총이자를 계산합니다."],
+  "credit-card-installment": ["신용카드 할부 이자 계산기", "할부 개월과 수수료율에 따른 월 청구액과 총수수료를 확인합니다."],
+  "cma-interest": ["CMA 이자 계산기", "예치금과 금리, 기간으로 하루·월·세후 이자를 계산합니다."],
+  "parking-account": ["파킹통장 이자 계산기", "우대금리 한도와 초과 금리를 나눠 예상 이자를 계산합니다."],
+  "deposit-interest": ["예금 이자 계산기", "예치금, 금리, 기간으로 만기 이자를 계산합니다."],
+  "installment-savings": ["적금 이자 계산기", "월 납입액과 기간으로 적금 만기액을 계산합니다."],
+  "monthly-budget": ["월 예산 계산기", "월 소득을 지출과 저축·투자 기준으로 나눠 봅니다."],
+  "emergency-fund": ["비상금 계산기", "월 지출을 기준으로 필요한 비상금 규모를 계산합니다."],
+  "youth-leap-account": ["청년도약계좌 예상금액 계산기", "납입액과 조건에 따른 예상 만기 금액을 확인합니다."],
+  "youth-future-savings": ["청년미래적금 계산기", "공개된 조건을 기준으로 예상 만기액을 시뮬레이션합니다."],
+  "loan-interest": ["대출이자 계산기", "대출금, 금리, 기간별 월 상환액과 총이자를 계산합니다."],
+  "mortgage": ["주담대 계산기", "주택담보대출의 월 상환액과 총이자를 확인합니다."],
+  "dsr": ["DSR 계산기", "연소득 대비 연간 원리금 상환 부담을 계산합니다."],
+  "ltv": ["LTV 계산기", "주택가격 기준 대출 비율을 계산합니다."],
+  "calculator": ["배당금 계산기", "보유 수량과 배당 조건으로 예상 배당금을 계산합니다."],
+  "home-affordability": ["주택 구매 가능 금액 계산기", "보유 자금과 대출 가능 금액을 바탕으로 현실적인 주택 구매 예산을 계산합니다."],
+  "prepayment-fee": ["중도상환수수료 계산기", "대출 잔액과 상환 시점, 수수료율을 기준으로 중도상환수수료를 계산합니다."],
+  "loan-refinance-saving": ["대환대출 절감액 계산기", "기존 대출과 새 대출 조건을 비교해 이자 절감 가능액을 계산합니다."],
+  "jeonse-loan-interest": ["전세대출 이자 계산기", "전세대출 금액과 금리 기준으로 월 이자와 연간 이자 부담을 계산합니다."],
+  "jeonse-vs-monthly": ["전세·월세 비교 계산기", "보증금과 월세, 기회비용을 함께 반영해 전세와 월세 부담을 비교합니다."],
+  "irp-tax-credit": ["IRP 세액공제 계산기", "IRP 납입액과 소득 구간을 기준으로 예상 세액공제 금액을 계산합니다."],
+  "pension-tax-credit": ["연금저축 세액공제 계산기", "연금저축 납입액에 따른 예상 세액공제 금액을 계산합니다."],
+  "pension-payout": ["연금 수령액 계산기", "적립금과 수령 기간을 기준으로 예상 연금 수령액을 계산합니다."],
+  "retirement-tax": ["퇴직연금 세금 계산기", "퇴직연금 수령 방식에 따른 예상 세금 부담을 비교합니다."],
+  "retirement-target": ["은퇴 목표자금 계산기", "은퇴 시점과 목표 생활비를 기준으로 필요한 목표자금을 계산합니다."],
+  "salary-net": ["연봉 실수령액 계산기", "연봉을 기준으로 세금과 사회보험료를 반영한 예상 실수령액을 계산합니다."],
+  "compound": ["복리 계산기", "원금과 수익률, 기간을 기준으로 복리 성장 금액을 계산합니다."],
+  "fire": ["FIRE 은퇴 계산기", "목표 생활비와 자산 규모를 기준으로 경제적 독립 목표를 계산합니다."],
+  "capital-gains": ["해외주식 양도세 계산기", "매매차익과 기본공제를 반영해 예상 양도소득세를 계산합니다."],
+  "child-education-fund": ["자녀 교육비 계산기", "목표 교육비와 준비 기간을 기준으로 필요한 월 저축액을 계산합니다."],
+  "isa-tax-savings": ["ISA 절세 계산기", "예상 투자수익을 기준으로 ISA의 절세 효과를 계산합니다."],
+};
+
+function itemFor(slug: string) {
+  const data = calculatorLandingData[slug];
+  const fb = fallback[slug];
+  if (data) return { title: data.title, description: data.description };
+  if (fb) return { title: fb[0], description: fb[1] };
+  return { title: slug.replaceAll("-", " "), description: "입력값을 바탕으로 필요한 금액을 계산합니다." };
+}
+
+const popular = ["car-installment", "cma-interest", "credit-card-installment", "youth-leap-account", "parking-account", "calculator"];
+
 export default function CalculatorHubPage() {
-  const total = calculatorGroups.reduce((sum, group) => sum + group.slugs.length, 0);
-  const listItems: TaggedListItem[] = calculatorGroups.flatMap((group) =>
-    group.slugs.flatMap((slug) => {
-      const item = getCalculator(slug);
-      if (!item) return [];
-      return [
-        {
-          title: item.title,
-          href: item.href,
-          description: item.description,
-          badge: group.tag,
-          meta: group.title,
-          tags: [group.tag, group.title.replace(" 계산기", ""), "계산기"],
-          cta: "계산기 열기",
-        },
-      ];
-    }),
-  );
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: calculatorHubFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
-      { "@type": "ListItem", position: 2, name: "금융 계산기", item: "https://bluedino.kr/cal" },
-    ],
-  };
-
+  const listItems: TaggedListItem[] = groups.flatMap((group) => group.slugs.map((slug) => { const item = itemFor(slug); return { title: item.title, description: item.description, href: `/cal/${slug}`, badge: group.tag, tags: [group.tag, item.title], cta: "계산하기" }; }));
   return (
     <main className="bd-page">
-      <Script id="calculator-hub-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="calculator-hub-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <div className="bd-container bd-section">
-        <section className="bd-card bd-card-padding">
-          <span className="bd-badge">계산기 전체보기</span>
-          <h1 className="bd-title-xl mt-4">CMA 이자·파킹통장 금리·배당·대출 계산기를 바로 찾으세요</h1>
-          <p className="bd-text-main mt-4 max-w-4xl">
-            사용자가 많이 찾는 계산기를 현금관리, 배당, 절세·연금, 대출·주택으로 나눴습니다. 먼저 계산기를 열어 숫자를 확인하고, 필요한 경우에만 관련 질문과 가이드로 이어가면 됩니다.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">총 {total}개 계산기</span>
-            <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">투자·절세·대출·생활자금</span>
+      <div className="bd-container space-y-10 md:space-y-14">
+        <header className="max-w-3xl py-4 md:py-8">
+          <span className="bd-badge">계산기</span>
+          <h1 className="bd-title-xl mt-4">필요한 숫자부터 바로 계산하세요</h1>
+          <p className="bd-text-main mt-4">할부·이자·배당·대출·절세 계산기를 한곳에 모았습니다. 설명보다 계산을 먼저 할 수 있도록 자주 찾는 도구를 위에 배치했습니다.</p>
+        </header>
+
+        <section>
+          <h2 className="bd-title-md">많이 찾는 계산기</h2>
+          <p className="bd-text-sub mt-2">네이버 검색에서 실제 유입이 확인된 계산기를 우선합니다.</p>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {popular.map((slug) => { const item = itemFor(slug); return <Link key={slug} href={`/cal/${slug}`} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm"><div className="font-bold text-white">{item.title}</div><p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p><div className="mt-4 text-sm font-semibold text-cyan-300">계산하기 →</div></Link>; })}
           </div>
         </section>
 
-        <ContentBundlePanel
-          slugs={["cma-parking-cash", "dividend-cashflow", "retirement-tax-accounts"]}
-          title="계산기에서 바로 이어지는 콘텐츠 묶음"
-          description="숫자를 넣어본 뒤에 조건·세금·주의사항을 다시 찾지 않도록 관련 계산기와 가이드를 같은 흐름으로 묶었습니다."
-          compact
-        />
-
-        <SearchDemandPanel
-          keys={["cash-calculators"]}
-          title="먼저 강화할 계산기 흐름"
-          description="CMA, 파킹통장, 배당, 청년도약계좌처럼 사용자가 금액을 바로 넣어보는 계산기를 상단 흐름으로 묶었습니다."
-          compact
-        />
-
-        <TaggedList
-          title="계산기 목록"
-          description="모바일에서는 태그를 가로로 넘기고, 필요한 키워드를 입력해 계산기를 좁혀볼 수 있습니다."
-          items={listItems}
-          filterTags={calculatorGroups.map((group) => group.tag)}
-          searchPlaceholder="예: 배당, 복리, DSR, 주담대, ISA, 파킹통장"
-          countLabel="계산기"
-        />
-
-        <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">계산기를 고를 때 먼저 나눠볼 기준</h2>
-          <div className="bd-list mt-5">
-            <div className="bd-list-item">투자 계획은 목표 금액과 기간을 먼저 정한 뒤 배당·복리·FIRE 계산기로 확인합니다.</div>
-            <div className="bd-list-item">대출 판단은 가능한 한도보다 실제 월 상환 부담을 먼저 보는 것이 부담을 줄이는 데 도움이 됩니다.</div>
-            <div className="bd-list-item">현금관리는 세후 이자, 자금 사용 시점, 금리 적용 한도를 비교한 뒤 CMA·파킹통장 묶음에서 계좌 조건까지 이어서 확인합니다.</div>
-          </div>
-        </section>
-
-        <section className="bd-card-soft bd-card-padding">
-          <h2 className="bd-title-md">계산기 전체보기에서 자주 묻는 질문</h2>
-          <div className="mt-5 space-y-3">
-            {calculatorHubFaqs.map((faq) => (
-              <article key={faq.question} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
-                <h3 className="text-base font-semibold text-white">{faq.question}</h3>
-                <p className="bd-text-main mt-2">{faq.answer}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-6">
-            <Link href="/finance" className="bd-button-secondary">계산 후 금융 가이드 보기</Link>
-          </div>
-        </section>
+        <TaggedList title="계산기 전체보기" description="목적별로 좁히거나 검색어를 입력해 필요한 계산기를 찾으세요." items={listItems} filterTags={groups.map((g) => g.tag)} searchPlaceholder="예: 자동차 할부, CMA, 배당금, DSR, ISA" countLabel="계산기" />
       </div>
     </main>
   );

@@ -103,6 +103,7 @@ export default function GuidePage() {
           filterTags={guideCategories.map((category) => category.badge)}
           searchPlaceholder="예: ISA, ETF, 배당, 복리, 대출, 세금"
           countLabel="가이드"
+          compactItems
         />
 
         <EditorialTrustPanel compact />

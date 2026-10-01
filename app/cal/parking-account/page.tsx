@@ -6,8 +6,8 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/parking-account";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "파킹통장 금리 계산기 | 우대금리 한도·월 이자 바로 계산 | BlueDino";
-const pageDescription = "파킹통장 금리 계산기입니다. 예치금, 우대금리 한도, 초과분 금리, 보유기간을 넣어 월 이자와 세후 수령액을 바로 확인하세요.";
+const pageTitle = "파킹통장 이자 계산기 | 금리·우대 한도·월 이자 계산 | BlueDino";
+const pageDescription = "파킹통장 이자 계산기입니다. 예치금, 금리, 우대금리 한도, 초과분 금리와 보유기간을 넣어 월 이자와 세후 수령액을 바로 확인하세요.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "파킹통장 금리 계산기",
+  name: "파킹통장 이자 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: pageDescription,
@@ -60,7 +60,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
     { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
-    { "@type": "ListItem", position: 3, name: "파킹통장 금리 계산기", item: pageUrl },
+    { "@type": "ListItem", position: 3, name: "파킹통장 이자 계산기", item: pageUrl },
   ],
 };
 
@@ -71,7 +71,7 @@ export default function Page() {
       <Script id="parking-account-faq-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(faqSchema) } } />
       <Script id="parking-account-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <CalculatorPageLayout
-        title={`파킹통장 금리 계산기 - 우대금리 한도와 월 이자 확인`}
+        title={`파킹통장 이자 계산기 - 금리와 우대 한도별 월 이자 확인`}
         hero={`예치금 전체에 광고 금리가 적용되는지 헷갈릴 때 사용하세요. 우대금리 한도와 초과분 금리를 나눠 월 이자와 세후 수령액을 계산합니다.`}
         calcChildren={<ParkingAccountClient />}
         whenToUse={[

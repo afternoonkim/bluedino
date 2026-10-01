@@ -116,7 +116,7 @@ export default function FinanceQuestionList({
             <li key={`${q.slug}-${index}`}>
               <Link
                 href={`${basePath}/${encodeURIComponent(q.slug)}`}
-                className="group block px-4 py-4 transition hover:bg-slate-900/80 md:px-5"
+                className="group block px-4 py-3 transition hover:bg-slate-900/80 md:px-5 md:py-3.5"
               >
                 <div className="flex items-start gap-3">
                   <span className="mt-1 min-w-7 text-sm font-bold text-cyan-300">{String(index + 1).padStart(2, "0")}</span>
@@ -124,10 +124,9 @@ export default function FinanceQuestionList({
                     <div className="text-[15px] font-semibold leading-7 text-slate-100 transition group-hover:text-cyan-200 md:text-base">
                       {q.question}
                     </div>
-                    {q.summary ? <p className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400">{q.summary}</p> : null}
                     {q.tags.length > 0 ? (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {q.tags.slice(0, 4).map((tag, tagIndex) => (
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {q.tags.slice(0, 2).map((tag, tagIndex) => (
                           <span key={`${q.slug}-${tag}-${tagIndex}`} className="rounded-full border border-slate-800 bg-slate-950/70 px-2.5 py-1 text-[11px] font-semibold text-slate-400">
                             {tag}
                           </span>

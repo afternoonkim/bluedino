@@ -8,9 +8,9 @@ import { buildCalculatorFaqSchema, getCalculatorLandingData } from "../component
 import DividendCalculatorClient from "./DividendCalculatorClient";
 
 export const metadata: Metadata = {
-  title: "배당 계산기 | 세후 배당금·월 배당 현금흐름 바로 계산 | BlueDino",
+  title: "배당금 계산기 | 세후 배당금·월 배당 현금흐름 계산 | BlueDino",
   description:
-    "배당 계산기입니다. 보유 수량, 주당 배당금, 배당수익률, 세율을 넣어 세후 배당금과 월 배당 현금흐름을 바로 확인하세요.",
+    "배당금 계산기입니다. 보유 수량, 주당 배당금, 배당수익률, 세율을 넣어 세후 배당금과 월 배당 현금흐름을 바로 확인하세요.",
   keywords: ["배당 계산기",
     "배당 수익 계산기",
     "배당금 계산기",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/cal/calculator",
   },
   openGraph: {
-    title: "배당 계산기 | 세후 배당금·월 배당 현금흐름 바로 계산 | BlueDino",
+    title: "배당금 계산기 | 세후 배당금·월 배당 현금흐름 계산 | BlueDino",
     description:
       "보유 수량, 주당 배당금, 배당수익률, 세율을 넣어 세후 배당금과 월 배당 현금흐름을 바로 확인하세요.",
     url: "https://bluedino.kr/cal/calculator",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "배당 계산기 | 세후 배당금·월 배당 현금흐름 바로 계산 | BlueDino",
+    title: "배당금 계산기 | 세후 배당금·월 배당 현금흐름 계산 | BlueDino",
     description:
       "보유 수량, 주당 배당금, 배당수익률, 세율을 넣어 세후 배당금과 월 배당 현금흐름을 바로 확인하세요.",
   },
@@ -43,7 +43,7 @@ const faqStructuredData = buildCalculatorFaqSchema("calculator");
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "배당 계산기",
+  name: "배당금 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: "보유 수량, 주당 배당금, 배당수익률, 세율을 넣어 세후 배당금과 월 배당 현금흐름을 바로 확인할 수 있습니다.",

@@ -59,9 +59,6 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
   const threadsShare = `https://www.threads.net/intent/post?text=${encodedTitle}%20${encodedUrl}`;
   const kakaoStoryShare = `https://story.kakao.com/share?url=${encodedUrl}&text=${encodedTitle}`;
 
-  const htmlSnippet = `<a href="${absoluteUrl}" target="_blank" rel="noopener noreferrer">${title} | BlueDino</a>`;
-  const markdownSnippet = `[${title} | BlueDino](${absoluteUrl})`;
-  const plainSnippet = `${title} | BlueDino — ${absoluteUrl}`;
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
@@ -78,11 +75,11 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
   return (
     <section
       className="bd-card-soft bd-card-padding"
-      aria-label="이 페이지 공유하기 및 인용하기"
+      aria-label="이 페이지 공유하기"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <span className="bd-badge">공유 · 인용</span>
+          <span className="bd-badge">공유</span>
           <h2 className="bd-title-md mt-3">
             이 페이지 링크를 저장하거나 공유하기
           </h2>
@@ -138,69 +135,6 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
         </a>
       </div>
 
-      <div className="mt-8">
-        <h3 className="text-sm font-semibold text-white">이 페이지를 글에 인용할 때</h3>
-        <p className="bd-text-sub mt-2">
-          글, 보고서, 메모에 본 페이지를 인용할 때 아래 형식 중 필요한 것을 복사해서 사용할 수 있습니다.
-        </p>
-
-        <div className="mt-4 space-y-3">
-          <CitationRow
-            label="HTML 링크"
-            value={htmlSnippet}
-            copied={copiedKey === "html"}
-            onCopy={() => handleCopy("html", htmlSnippet)}
-          />
-          <CitationRow
-            label="마크다운(GitHub·노션)"
-            value={markdownSnippet}
-            copied={copiedKey === "md"}
-            onCopy={() => handleCopy("md", markdownSnippet)}
-          />
-          <CitationRow
-            label="일반 텍스트(메신저·메일)"
-            value={plainSnippet}
-            copied={copiedKey === "plain"}
-            onCopy={() => handleCopy("plain", plainSnippet)}
-          />
-        </div>
-      </div>
-
-      <p className="bd-text-sub mt-6">
-        BlueDino의 콘텐츠를 인용·요약할 때는 출처와 원문 링크를 함께 남기는 방식을 권장합니다. 본문 전체를 그대로 옮기기보다는 필요한 핵심만 짧게 정리해 주세요.
-      </p>
     </section>
-  );
-}
-
-function CitationRow({
-  label,
-  value,
-  copied,
-  onCopy,
-}: {
-  label: string;
-  value: string;
-  copied: boolean;
-  onCopy: () => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-          {label}
-        </span>
-        <button
-          type="button"
-          onClick={onCopy}
-          className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-200 transition hover:border-cyan-400/60 hover:text-cyan-100"
-        >
-          {copied ? "✓ 복사됨" : "복사"}
-        </button>
-      </div>
-      <pre className="mt-3 overflow-x-auto whitespace-pre-wrap break-all text-xs leading-6 text-slate-300">
-        <code>{value}</code>
-      </pre>
-    </div>
   );
 }

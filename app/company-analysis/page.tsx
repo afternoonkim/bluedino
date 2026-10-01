@@ -105,6 +105,7 @@ export default function CompanyAnalysisPage() {
             searchPlaceholder="예: 국내기업, 해외기업, 미국주식, 코스피"
             countLabel="분류"
             showSearch={false}
+            compactItems
           />
 
           <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />

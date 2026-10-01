@@ -21,6 +21,7 @@ type TaggedListProps = {
   searchPlaceholder?: string;
   countLabel?: string;
   showSearch?: boolean;
+  compactItems?: boolean;
 };
 
 const ALL_TAG = "전체";
@@ -51,6 +52,7 @@ export default function TaggedList({
   searchPlaceholder = "제목, 설명, 태그로 검색해보세요",
   countLabel = "콘텐츠",
   showSearch = true,
+  compactItems = false,
 }: TaggedListProps) {
   const tags = useMemo(() => [ALL_TAG, ...uniqueTextList(filterTags)], [filterTags]);
   const normalizedItems = useMemo(
@@ -132,7 +134,7 @@ export default function TaggedList({
         <ul className="mt-5 divide-y divide-slate-800/80 rounded-2xl border border-slate-800/80 bg-slate-950/35">
           {filteredItems.map((item, index) => (
             <li key={`${item.href}-${item.title}-${index}`}>
-              <Link href={item.href} className="group block px-3 py-3 transition hover:bg-slate-900/80 md:px-5 md:py-4">
+              <Link href={item.href} className={`group block px-3 transition hover:bg-slate-900/80 md:px-5 ${compactItems ? "py-3 md:py-3.5" : "py-3 md:py-4"}`}>
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
@@ -142,11 +144,13 @@ export default function TaggedList({
                     <h3 className="mt-2 text-[15px] font-bold leading-6 text-white group-hover:text-cyan-200 md:text-lg md:leading-7">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 line-clamp-2 text-[13px] leading-5 text-slate-400 md:text-[15px] md:leading-6">
-                      {item.description}
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {item.tags.slice(0, 4).map((tag, tagIndex) => (
+                    {!compactItems ? (
+                      <p className="mt-1.5 line-clamp-2 text-[13px] leading-5 text-slate-400 md:text-[15px] md:leading-6">
+                        {item.description}
+                      </p>
+                    ) : null}
+                    <div className={`${compactItems ? "mt-2" : "mt-3"} flex flex-wrap gap-1.5`}>
+                      {item.tags.slice(0, compactItems ? 2 : 4).map((tag, tagIndex) => (
                         <span key={`${item.href}-${tag}-${tagIndex}`} className="rounded-full border border-slate-800 bg-slate-950/70 px-2.5 py-1 text-[11px] font-semibold text-slate-400">
                           {tag}
                         </span>

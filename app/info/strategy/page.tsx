@@ -88,6 +88,7 @@ export default function StrategyHubPage() {
           filterTags={filterTags}
           searchPlaceholder="예: 1인 가구, 신혼부부, 은퇴, 절세계좌, 배당, 대출"
           countLabel="전략"
+          compactItems
         />
 
         <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />

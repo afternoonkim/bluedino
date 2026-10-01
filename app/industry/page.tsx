@@ -109,6 +109,7 @@ export default function IndustryIndexPage() {
             filterTags={["반도체", "AI", "2차전지", "배당", "바이오", "금융", "자동차", "K-콘텐츠"]}
             searchPlaceholder="예: 반도체, AI, 데이터센터, 배당, 바이오, 금융"
             countLabel="테마"
+            compactItems
           />
 
           <AdFitAd variant="middle" label="본문 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />

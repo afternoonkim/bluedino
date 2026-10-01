@@ -49,15 +49,15 @@ export default function ContentBundlePanel({
               ))}
             </div>
             <h3 className="mt-3 text-base font-bold leading-6 text-white md:text-lg">{bundle.title}</h3>
-            <p className="bd-text-main mt-2">{compact ? bundle.userNeed : bundle.summary}</p>
+            {!compact ? <p className="bd-text-main mt-2">{bundle.summary}</p> : null}
             <div className="mt-4 grid gap-2">
               {bundle.sections.flatMap((section) => section.links).slice(0, compact ? 3 : 4).map((link) => (
-                <Link key={`${bundle.slug}-${link.href}`} href={link.href} className="group rounded-2xl border border-slate-800 bg-slate-950/65 px-3 py-3 transition hover:border-cyan-400/35 hover:bg-slate-900/90">
+                <Link key={`${bundle.slug}-${link.href}`} href={link.href} className={`group rounded-2xl border border-slate-800 bg-slate-950/65 px-3 transition hover:border-cyan-400/35 hover:bg-slate-900/90 ${compact ? "py-2.5" : "py-3"}`}>
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-sm font-bold text-slate-100 group-hover:text-cyan-200">{link.label}</span>
                     <span className="text-xs font-semibold text-cyan-300">보기 →</span>
                   </div>
-                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-400">{link.description}</p>
+                  {!compact ? <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-400">{link.description}</p> : null}
                 </Link>
               ))}
             </div>
