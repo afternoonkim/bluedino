@@ -41,10 +41,10 @@ export default function YouthFutureSavingsClient() {
   return (
     <section className="bd-card bd-card-padding">
       <h2 className="bd-title-md">청년미래적금 예상 수령액 계산기</h2>
-      <p className="bd-text-sub mt-3">2026년 6월 출시 예정인 청년미래적금의 기본금리 5%, 기관별 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 가정해 3년 만기 예상액을 계산합니다.</p>
+      <p className="bd-text-sub mt-3">2026년 출시된 청년미래적금의 기본금리 5%, 기관별 최대 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 반영해 3년 만기 예상액을 계산합니다.</p>
       <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
         <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">정확도: 참고 시뮬레이션</span>
-        <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기준: 2026년 5월 현재 공개 자료 기준</span>
+        <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기준: 2026년 10월 금융위원회 공개 자료</span>
       </div>
 
       <div className="mt-6 grid gap-5 md:grid-cols-4">
@@ -56,7 +56,7 @@ export default function YouthFutureSavingsClient() {
 
       <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 text-sm leading-7 text-cyan-50">
         <p className="font-semibold text-white">기본 예시: 기본금리 5% + 우대금리 3%p = 최종 적용금리 {result.finalRate.toFixed(1)}%</p>
-        <p className="mt-2 font-semibold text-cyan-100">출시 전 공개된 구조를 기준으로 한 예상 시뮬레이션입니다.</p>
+        <p className="mt-2 font-semibold text-cyan-100">공식 출시 후 공개된 상품 구조를 기준으로 한 예상 시뮬레이션입니다.</p>
         <p className="mt-2">월 50만 원, 3년 납입, 금리 8% 기준으로 일반형은 약 2,138만 원, 우대형은 약 2,255만 원 수준을 기대 시나리오로 참고할 수 있습니다. 실제 만기액은 우대금리 충족 여부와 정부기여금 지급 방식에 따라 달라질 수 있습니다.</p>
       </div>
 
@@ -67,7 +67,7 @@ export default function YouthFutureSavingsClient() {
         <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-cyan-300">3년 만기 예상액</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.finalAmount)} 원</div></div>
       </div>
 
-      <p className="mt-6 text-sm leading-7 text-slate-400">청년미래적금은 출시 전후 세부 조건, 취급 금융사, 월 납입 한도, 우대금리, 비과세 요건이 달라질 수 있습니다. 실제 적용 조건은 금융사, 세법, 정부 정책 변경에 따라 달라질 수 있습니다.</p>
+      <p className="mt-6 text-sm leading-7 text-slate-400">청년미래적금은 월 최대 50만 원, 3년 만기 상품입니다. 실제 적용 금리는 금융사별 우대조건 충족 여부에 따라 달라지며, 가입 자격·정부기여금·비과세 요건은 신청 시점의 공식 안내를 확인해야 합니다.</p>
     </section>
   );
 }

@@ -5,8 +5,8 @@ import PageTrustFooter from "@/components/trust/PageTrustFooter";
 
 const canonicalPath = "/cal/youth-future-savings";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "청년미래적금 계산기 | 2026년 출시 예정 청년 적금 예상액 | BlueDino";
-const pageDescription = "2026년 6월 출시 예정인 청년미래적금의 기본금리 5%, 기관별 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 반영해 3년 만기 예상액을 계산하는 참고용 계산기입니다.";
+const pageTitle = "청년미래적금 계산기 | 2026 가입 일정·3년 만기 예상액 | BlueDino";
+const pageDescription = "2026년 출시된 청년미래적금의 기본금리 5%, 기관별 최대 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 반영해 3년 만기 예상액을 계산합니다.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -36,7 +36,7 @@ export default function Page() {
           <section className="bd-card bd-card-padding">
             <span className="bd-badge">청년미래적금</span>
             <h1 className="bd-title-lg mt-4">청년미래적금 계산기</h1>
-            <p className="bd-text-main mt-4">청년도약계좌 종료 이후 새롭게 관심을 받을 수 있는 청년미래적금의 만기 예상액을 미리 가늠해보는 페이지입니다. 기본금리 5%에 기관별 우대금리 2~3%p가 더해지는 구조와 일반형·우대형 정부기여금 차이를 함께 확인할 수 있습니다.</p>
+            <p className="bd-text-main mt-4">2026년 6월 22일 출시된 청년미래적금의 만기 예상액을 가늠하는 페이지입니다. 기본금리 5%에 기관별 최대 우대금리 2~3%p가 더해지는 구조와 일반형·우대형 정부기여금 차이를 함께 확인할 수 있습니다.</p>
           </section>
           <YouthFutureSavingsClient />
           <section className="bd-card-soft bd-card-padding">
@@ -49,9 +49,9 @@ export default function Page() {
           </section>
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">공식 참고 기준</h2>
-            <p className="bd-text-main mt-3">출시 전 공개된 구조를 기준으로 한 예상 시뮬레이션입니다. 실제 금리, 우대 조건, 정부기여금 지급 방식은 출시 시점의 공식 안내를 확인해 주세요.</p>
+            <p className="bd-text-main mt-3">금융위원회가 2026년 5~6월 확정·공개한 상품 구조를 기준으로 한 시뮬레이션입니다. 2차 가입신청은 2026년 10월 7~16일(토·일·공휴일 제외)이며, 심사 통과자는 11월 16~27일(토·일 제외) 계좌개설 일정이 안내됐습니다. 실제 우대금리 충족 여부와 가입 자격은 신청 금융사와 공식 안내를 확인해 주세요.</p>
             <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm font-semibold text-slate-200">
-              <a href="https://www.fsc.go.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">금융위원회 청년 자산형성 지원 정책 안내 ↗</a>
+              <a href="https://www.fsc.go.kr/no010101/87820" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">금융위원회 2026년 2차 가입 일정 안내 ↗</a>
               <a href="https://www.kinfa.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">서민금융진흥원 청년 금융지원 안내 ↗</a>
               <a href="https://portal.kfb.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">취급 금융회사 상품 설명서 ↗</a>
             </div>
@@ -67,7 +67,7 @@ export default function Page() {
           </section>
         </div>
       </main>
-      <div className="bd-container-narrow bd-section"><PageTrustFooter pageKind="청년미래적금 계산기" updatedAt="2026-05-16" /></div>
+      <div className="bd-container-narrow bd-section"><PageTrustFooter pageKind="청년미래적금 계산기" updatedAt="2026-10-02" /></div>
     </>
   );
 }
