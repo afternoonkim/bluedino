@@ -8,15 +8,10 @@ export type TrustReference = {
 };
 
 type PageTrustFooterProps = {
-  /** 마지막 업데이트일 (ISO 또는 사람이 읽는 형태) */
   updatedAt?: string;
-  /** 콘텐츠 기준 시점 — 예: "2026년 1월 기준". 미지정 시 updatedAt에서 자동 생성 */
   asOf?: string;
-  /** 참고 자료 출처 목록 */
   references?: TrustReference[];
-  /** 페이지 종류에 따른 짧은 카테고리 라벨 — 예: "ISA 가이드", "주담대 계산기" */
   pageKind?: string;
-  /** 추가 안내 (선택) — 페이지별 특수 안내가 필요할 때 */
   extraNote?: string;
 };
 
@@ -44,12 +39,6 @@ function formatAsOfYear(input?: string): string {
   return `${d.getFullYear()}년 기준`;
 }
 
-/**
- * 모든 핵심 페이지(가이드·전략·금융 질문·계산기·산업 허브) 하단에 동일하게 들어가는
- * 신뢰 푸터. 마지막 업데이트일·콘텐츠 기준 시점·참고 자료 출처·계산 기준·공식 확인 안내·
- * 투자 권유 아님 문구·작성자/검토 기준을 한 카드 안에 묶어 페이지마다 반복되는 메시지를
- * 일관되게 한 번만 노출한다.
- */
 export default function PageTrustFooter({
   updatedAt,
   asOf,
@@ -60,99 +49,68 @@ export default function PageTrustFooter({
   const updatedLabel = formatKoreanDate(updatedAt);
   const asOfLabel = asOf ?? formatAsOfYear(updatedAt);
   const refs = references && references.length > 0 ? references : DEFAULT_REFERENCES;
-  const kind = pageKind ?? "BlueDino 콘텐츠";
+  const kind = pageKind ?? "정보";
 
   return (
-    <section
-      className="bd-card-soft bd-card-padding"
-      aria-label="콘텐츠 신뢰 정보"
-    >
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="bd-badge">신뢰 정보</span>
-        <span className="text-xs text-slate-400">
-          이 {kind}는 BlueDino 기준에 따라 작성·검토했습니다.
-        </span>
-      </div>
-
-      <div className="mt-5 grid gap-5 md:grid-cols-2">
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-            업데이트
-          </div>
-          <div className="mt-2 text-sm leading-7 text-slate-200">
+    <details className="bd-card-soft group" aria-label="출처와 정보 이용 안내">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 outline-none focus-visible:ring-2 focus-visible:ring-blue-300/50 md:px-5 [&::-webkit-details-marker]:hidden">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span className="text-sm font-semibold text-slate-200">출처·업데이트·이용 안내</span>
             {updatedLabel ? (
-              <>
-                마지막 업데이트:{" "}
-                <time dateTime={updatedAt} className="font-semibold text-white">
-                  {updatedLabel}
-                </time>
-              </>
-            ) : (
-              <span className="text-slate-300">최근 정기 검수 완료.</span>
-            )}
+              <time dateTime={updatedAt} className="text-xs text-slate-500">최근 업데이트 {updatedLabel}</time>
+            ) : null}
           </div>
-          {asOfLabel ? (
-            <div className="mt-2 text-xs leading-6 text-slate-400">
-              본문은 {asOfLabel}으로 작성되었습니다. 세율·한도·금리 같은 제도성 수치는 공식 안내를 함께 확인해 주세요.
-            </div>
-          ) : null}
+          <p className="mt-1 text-xs leading-5 text-slate-500">{kind}의 기준과 참고 출처가 필요할 때 확인하세요.</p>
         </div>
+        <span className="shrink-0 text-xs font-semibold text-slate-400 group-open:text-slate-200">
+          <span className="group-open:hidden">보기</span>
+          <span className="hidden group-open:inline">접기</span>
+        </span>
+      </summary>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-            참고 출처
+      <div className="border-t border-slate-800 px-4 pb-5 pt-4 md:px-5">
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            <h3 className="text-xs font-semibold text-slate-400">정보 기준</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              {updatedLabel ? <>마지막 업데이트: <span className="font-semibold text-white">{updatedLabel}</span></> : "최근 정기 검수 완료"}
+            </p>
+            {asOfLabel ? (
+              <p className="mt-1 text-xs leading-5 text-slate-500">본문은 {asOfLabel}입니다. 세율·한도·금리처럼 바뀔 수 있는 수치는 공식 안내를 함께 확인해 주세요.</p>
+            ) : null}
           </div>
-          <ul className="mt-2 space-y-1 text-sm leading-7 text-slate-200">
-            {refs.map((r) => (
-              <li key={r.label} className="truncate">
-                {r.url ? (
-                  <a
-                    href={r.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-cyan-300 underline-offset-4 hover:underline"
-                  >
-                    {r.label}
-                  </a>
-                ) : (
-                  <span>{r.label}</span>
-                )}
-              </li>
-            ))}
-          </ul>
+
+          <div>
+            <h3 className="text-xs font-semibold text-slate-400">참고 출처</h3>
+            <ul className="mt-2 space-y-1 text-sm leading-6 text-slate-300">
+              {refs.map((r) => (
+                <li key={r.label}>
+                  {r.url ? (
+                    <a href={r.url} target="_blank" rel="noreferrer noopener" className="text-blue-200 underline-offset-4 hover:underline">
+                      {r.label}
+                    </a>
+                  ) : (
+                    <span>{r.label}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-4 border-t border-slate-800 pt-4 text-xs leading-5 text-slate-400">
+          <p>이 정보는 특정 금융상품 가입이나 종목 매수·매도를 권유하지 않습니다. 실제 적용 전에는 금융회사·공공기관 등 최신 자료를 다시 확인해 주세요.</p>
+          {extraNote ? <p className="mt-1">{extraNote}</p> : null}
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs text-slate-500">
+          <Link href="/info/etc/about" className="hover:text-slate-200">BlueDino 편집팀</Link>
+          <Link href="/info/etc/methodology" className="hover:text-slate-200">작성 기준</Link>
+          <Link href="/info/etc/editorial-policy" className="hover:text-slate-200">편집 원칙</Link>
+          <Link href="/info/etc/contact" className="hover:text-slate-200">오류 제보</Link>
         </div>
       </div>
-
-      <div className="mt-5 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5">
-        <div className="text-xs font-semibold uppercase tracking-wide text-amber-200">
-          확인하고 활용해 주세요
-        </div>
-        <ul className="mt-2 space-y-1 text-sm leading-7 text-amber-50/90">
-          <li>이 글은 특정 금융상품 가입이나 종목 매수·매도를 권유하지 않습니다.</li>
-          <li>세율·한도·금리·정책 조건은 시점·개인 상황에 따라 달라질 수 있습니다.</li>
-          <li>실제 실행 전에는 금융회사·세무 전문가·공공기관 자료로 한 번 더 확인해 주세요.</li>
-          {extraNote ? <li>{extraNote}</li> : null}
-        </ul>
-      </div>
-
-      <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-slate-400">
-        <span>작성·검토 기준:</span>
-        <Link href="/info/etc/about" className="text-cyan-300 hover:text-cyan-200 underline-offset-4 hover:underline">
-          BlueDino 편집팀
-        </Link>
-        <span>·</span>
-        <Link href="/info/etc/methodology" className="text-cyan-300 hover:text-cyan-200 underline-offset-4 hover:underline">
-          작성 기준
-        </Link>
-        <span>·</span>
-        <Link href="/info/etc/editorial-policy" className="text-cyan-300 hover:text-cyan-200 underline-offset-4 hover:underline">
-          편집 원칙
-        </Link>
-        <span>·</span>
-        <Link href="/info/etc/contact" className="text-cyan-300 hover:text-cyan-200 underline-offset-4 hover:underline">
-          오류 제보
-        </Link>
-      </div>
-    </section>
+    </details>
   );
 }
