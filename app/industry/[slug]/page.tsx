@@ -64,7 +64,7 @@ function getIndustryCtrSeo(hub: IndustryHub): IndustryCtrSeo | undefined {
         "헬스케어 관련주를 제약, 바이오, 의료기기, 진단, 서비스 기업으로 나눠 비교합니다. 임상 기대감과 실제 매출 기업을 구분해 확인하세요.",
       keywords: ["헬스케어 관련주", "바이오 관련주", "제약 관련주", "의료기기 관련주", "미국 헬스케어 관련주"],
       h1: "헬스케어 관련주를 제약·바이오·의료기기로 나눠 보세요",
-      searchNote: "헬스케어 관련주는 범위가 넓어 CTR이 낮아지기 쉽습니다. 제약, 임상 바이오, 의료기기, 서비스 기업을 나눠 보면 검색 의도와 페이지 내용이 더 잘 맞습니다.",
+      searchNote: "헬스케어 관련주는 범위가 넓습니다. 제약, 임상 바이오, 의료기기, 서비스 기업을 나눠 보면 각 기업의 차이를 이해하기 쉽습니다.",
     },
     "ev-battery": {
       title: "2차전지 관련주 정리 | 배터리·소재·전기차 기업 비교",
@@ -290,8 +290,8 @@ export default async function IndustryHubPage({ params }: PageProps) {
 
           {ctrSeo ? (
             <ExpandableCard
-              title="검색 표현과 페이지에서 다루는 범위"
-              summary="같은 테마가 여러 표현으로 검색될 때 헷갈리지 않도록 범위를 접어두었습니다."
+              title="함께 쓰이는 표현과 다루는 범위"
+              summary="같은 테마가 여러 표현으로 불릴 때 헷갈리지 않도록 범위를 정리했습니다."
               variant="soft"
             >
               <p className="bd-text-main">{ctrSeo.searchNote}</p>

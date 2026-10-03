@@ -84,21 +84,21 @@ export default function IndustryIndexPage() {
             <span className="bd-badge">산업·테마 가이드</span>
             <h1 className="bd-title-xl mt-4">미국 2차전지·반도체 장비·헬스케어 관련주를 한곳에서 비교하세요</h1>
             <p className="bd-text-main mt-4 max-w-4xl">
-              관련주 검색은 종목이 많을수록 더 피곤해집니다. BlueDino는 미국 2차전지, 반도체 장비, 헬스케어, AI처럼 검색 유입 신호가 있는 테마를 산업 단계와 실적 변수 기준으로 나눠 보여줍니다.
+              관련주가 많을수록 먼저 산업 안에서 어떤 역할을 하는 기업인지 나눠보는 편이 이해하기 쉽습니다. 미국 2차전지, 반도체 장비, 헬스케어, AI 테마를 산업 단계와 실적 변수 기준으로 살펴보세요.
             </p>
           </section>
 
           <ContentBundlePanel
             slugs={["theme-stock-map", "dividend-cashflow"]}
-            title="관련주와 기업분석으로 이어지는 묶음"
-            description="미국 2차전지, 반도체 장비, 헬스케어처럼 유입 가능성이 보인 테마를 산업 페이지와 기업분석으로 이어지게 묶었습니다."
+            title="관련주와 기업분석 함께 보기"
+            description="미국 2차전지, 반도체 장비, 헬스케어 같은 테마를 산업 페이지와 기업분석으로 이어서 확인할 수 있습니다."
             compact
           />
 
           <SearchDemandPanel
             keys={["theme-stocks", "company-check"]}
-            title="관련주 페이지를 볼 때 먼저 나눌 흐름"
-            description="관련주 검색은 종목을 많이 보여주는 것보다 미국·국내, 산업 단계, 실적 변수를 먼저 나눠야 비교가 쉬워집니다."
+            title="관련주를 볼 때 먼저 나눌 기준"
+            description="미국·국내 구분, 산업 단계, 실적 변수를 먼저 나누면 여러 종목을 비교하기 쉬워집니다."
             compact
           />
 

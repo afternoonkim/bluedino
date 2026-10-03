@@ -16,7 +16,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 export const metadata: Metadata = {
   title: "기업분석 | 원자현미경·쌍용C&E·제넥신 주가 체크포인트 | BlueDino",
   description:
-    "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 정리합니다. 원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 검색 유입이 있는 기업도 빠르게 찾을 수 있습니다.",
+    "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 정리합니다. 원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 자주 찾는 기업도 빠르게 확인할 수 있습니다.",
   keywords: ["기업분석", "국내기업 분석", "해외기업 분석", "주가 전망", "원자현미경 주가", "쌍용C&E 주가", "제넥신 주가 전망"],
   alternates: { canonical: "/company-analysis" },
   openGraph: {
@@ -86,14 +86,14 @@ export default function CompanyAnalysisPage() {
             <span className="bd-badge">기업분석</span>
             <h1 className="bd-title-xl mt-4">주가 전망을 찾기 전에 사업 구조와 실적 변수를 먼저 확인하세요</h1>
             <p className="bd-text-main mt-4 max-w-4xl">
-              원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 검색으로 들어온 사용자가 바로 확인할 수 있도록 국내·해외 기업분석을 목록으로 정리했습니다. 종목 이름보다 먼저 매출 구조, 실적 변수, 관련 산업을 확인하세요.
+              원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 자주 찾는 기업을 국내·해외 목록에서 바로 확인할 수 있습니다. 종목 이름보다 먼저 매출 구조, 실적 변수, 관련 산업을 살펴보세요.
             </p>
           </section>
 
           <SearchDemandPanel
             keys={["company-check", "theme-stocks"]}
             title="개별 종목을 보기 전에 함께 볼 흐름"
-            description="주가 전망 키워드로 들어온 사용자가 바로 이탈하지 않도록, 기업분석은 산업·테마와 실적 체크포인트로 이어지게 구성했습니다."
+            description="기업을 볼 때는 주가만 보지 말고 관련 산업과 실적 체크포인트를 함께 확인해보세요."
             compact
           />
 

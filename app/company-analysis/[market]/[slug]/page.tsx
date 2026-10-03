@@ -243,7 +243,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
             <p className="bd-text-main mt-4">{currentArticle.summary}</p>
             {ctrSeo.keywords?.length ? (
               <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-4">
-                <p className="text-sm font-semibold text-cyan-100">최근 검색 유입이 많은 표현을 기준으로 정리했습니다.</p>
+                <p className="text-sm font-semibold text-cyan-100">함께 많이 찾는 표현입니다.</p>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-cyan-100/90">
                   {ctrSeo.keywords.map((keyword) => (
                     <span key={keyword} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1">
@@ -373,7 +373,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
 
               <ExpandableCard
                 title="자주 묻는 질문"
-                summary="비슷한 검색 의도가 있을 때만 펼쳐서 확인하세요."
+                summary="궁금한 질문이 있다면 펼쳐서 확인하세요."
               >
                 <div className="space-y-4">
                   {currentArticle.faq.map((faq) => (
@@ -387,7 +387,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
 
               <ExpandableCard
                 title="관련 태그"
-                summary="이 기업이 어떤 테마와 함께 검색되는지 확인할 수 있습니다."
+                summary="이 기업과 함께 살펴볼 만한 관련 주제입니다."
                 variant="soft"
               >
                 <div className="flex flex-wrap gap-2">
@@ -453,7 +453,7 @@ export default async function CompanyAnalysisDetailPage({ params }: PageProps) {
                     </div>
                   )}
                   <div>
-                    <div className="text-slate-500">투자자 검색 분류</div>
+                    <div className="text-slate-500">관련 분류</div>
                     <div className="mt-2 flex flex-wrap justify-end gap-1">
                       {currentArticle.classificationLabels.map((label) => (
                         <span key={`side-tag-${label}`} className="rounded-full border border-slate-700 bg-slate-950/60 px-2 py-0.5 text-xs text-slate-300">

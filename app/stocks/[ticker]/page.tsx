@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${normalizedTicker} 종목 조회 | 주가와 재무지표 확인 | BlueDino`,
     description:
-      "개별 종목 조회 화면은 실시간 데이터 상태에 따라 내용이 달라질 수 있어 검색 색인 대상에서 제외하고, 종목 확인용 도구로 제공합니다.",
+      "개별 종목의 현재 주가와 재무지표를 확인할 수 있습니다. 실시간 데이터 상태에 따라 제공되는 정보 범위가 달라질 수 있습니다.",
     robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
   };
 }
