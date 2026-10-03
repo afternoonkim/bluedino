@@ -8,26 +8,26 @@ type EditorialTrustPanelProps = {
 
 const principles = [
   {
-    title: "숫자보다 해석을 먼저 제공합니다",
-    body: "계산 결과 자체보다 그 숫자가 실제 의사결정에서 어떤 의미인지 이해할 수 있도록 설명형 문단과 연결 가이드를 함께 제공합니다.",
+    title: "계산 결과는 판단의 출발점으로 활용하세요",
+    body: "숫자만 보기보다 그 결과가 내 상황에서 어떤 의미인지 관련 설명과 함께 확인하는 것이 좋습니다.",
   },
   {
-    title: "광고보다 사용성을 우선합니다",
-    body: "필요한 계산과 정보 확인이 먼저 끝나도록, 읽기 흐름을 해치지 않는 선에서 안내와 광고 배치를 조정합니다.",
+    title: "필요한 정보부터 먼저 확인할 수 있습니다",
+    body: "계산기와 핵심 안내를 먼저 보고, 더 자세한 내용은 관련 가이드에서 이어서 확인할 수 있습니다.",
   },
   {
-    title: "특정 상품 가입을 직접 유도하지 않습니다",
-    body: "BlueDino는 특정 종목, 계좌, 대출 상품의 가입·매수·매도를 직접 권유하지 않고, 비교와 이해를 돕는 참고 도구에 집중합니다.",
+    title: "특정 상품을 정답처럼 제시하지 않습니다",
+    body: "BlueDino는 특정 종목, 계좌, 대출 상품의 가입·매수·매도를 직접 권유하지 않고 비교와 이해를 돕는 참고 정보를 제공합니다.",
   },
   {
-    title: "정책 변경 가능성을 함께 안내합니다",
-    body: "세금과 제도는 바뀔 수 있으므로, 공식 기관과 금융회사의 최신 안내를 최종 확인 대상으로 명시하고 있습니다.",
+    title: "세금과 제도는 최신 내용을 다시 확인하세요",
+    body: "세금, 금리, 지원제도는 바뀔 수 있으므로 실제 실행 전에는 공식 기관과 금융회사의 최신 안내를 함께 확인하세요.",
   },
 ];
 
 export default function EditorialTrustPanel({
   title = "BlueDino를 이용할 때 알아두면 좋은 점",
-  description = "이 사이트가 어떤 방식으로 정보를 보여주고, 사용자가 어떤 점을 함께 확인하면 좋은지 한눈에 볼 수 있도록 비교할 수 있게 구성했습니다.",
+  description = "계산 결과와 금융 정보를 활용할 때 함께 확인하면 좋은 기준을 정리했습니다.",
   compact = false,
 }: EditorialTrustPanelProps) {
   return (
@@ -52,10 +52,10 @@ export default function EditorialTrustPanel({
 
       <div className="mt-6 flex flex-wrap gap-3">
         <Link href="/info/etc/about" className="bd-button-primary">
-          소개 보기
+          BlueDino 소개
         </Link>
         <Link href="/info/etc/editorial-policy" className="bd-button-secondary">
-          이 사이트는 누구에게 도움이 될까
+          정보 제공 원칙
         </Link>
         <Link href="/info/etc/methodology" className="bd-button-secondary">
           정보 활용 안내

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const links = [
   ["소개", "/info/etc/about"], ["문의", "/info/etc/contact"], ["개인정보처리방침", "/info/etc/privacy"],
-  ["이용약관", "/info/etc/terms"], ["콘텐츠 운영 원칙", "/info/etc/editorial-policy"], ["작성 기준", "/info/etc/methodology"],
+  ["이용약관", "/info/etc/terms"], ["정보 제공 원칙", "/info/etc/editorial-policy"], ["정보 활용 안내", "/info/etc/methodology"],
 ] as const;
 
 export default function SiteFooter() {
@@ -20,7 +20,7 @@ export default function SiteFooter() {
             {links.map(([label, href]) => <Link key={href} href={href} className="text-xs font-medium text-slate-500 transition hover:text-slate-200">{label}</Link>)}
           </div>
         </div>
-        <div className="mt-6 border-t border-slate-100 pt-5 text-xs text-slate-400">© {new Date().getFullYear()} BlueDino</div>
+        <div className="mt-6 border-t border-slate-800 pt-5 text-xs text-slate-400">© {new Date().getFullYear()} BlueDino</div>
       </div>
     </footer>
   );

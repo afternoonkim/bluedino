@@ -17,8 +17,8 @@ function pickBundles(slugs?: string[], limit?: number): ContentBundle[] {
 }
 
 export default function ContentBundlePanel({
-  title = "분야별로 이어서 보는 콘텐츠 묶음",
-  description = "계산기 하나, 관련주 하나에서 끝나지 않도록 사용자가 다음으로 궁금해할 계산기·가이드·산업 페이지를 같은 흐름으로 묶었습니다.",
+  title = "이어서 확인해보세요",
+  description = "관련 계산기와 가이드, 산업 정보를 한곳에서 이어서 확인할 수 있습니다.",
   slugs,
   limit,
   compact = false,
@@ -34,7 +34,7 @@ export default function ContentBundlePanel({
           <h2 className="bd-title-md">{title}</h2>
           <p className="bd-text-sub mt-2 max-w-3xl">{description}</p>
         </div>
-        <Link href="/topics" className="bd-button-secondary shrink-0">묶음 전체보기</Link>
+        <Link href="/topics" className="bd-button-secondary shrink-0">관련 정보 보기</Link>
       </div>
 
       <div className={`mt-6 grid gap-4 ${compact ? "md:grid-cols-2" : "lg:grid-cols-2"}`}>
@@ -63,7 +63,7 @@ export default function ContentBundlePanel({
             </div>
             <div className="mt-4">
               <Link href={`/topics/${bundle.slug}`} className="bd-button-primary w-full justify-center text-center">
-                이 흐름으로 보기
+                관련 정보 보기
               </Link>
             </div>
           </article>

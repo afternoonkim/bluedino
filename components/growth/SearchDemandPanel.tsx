@@ -17,8 +17,8 @@ function pickClusters(keys?: SearchDemandCluster["key"][], limit?: number) {
 }
 
 export default function SearchDemandPanel({
-  title = "BlueDino가 더 집중해서 정리할 주제",
-  description = "많이 찾는 계산기, 관련주, 계좌 질문을 큰 흐름으로 묶었습니다. 필요한 주제를 먼저 고른 뒤 상세 페이지에서 계산기와 가이드를 이어서 확인하세요.",
+  title = "함께 확인하면 좋은 주제",
+  description = "궁금한 주제를 선택하면 관련 계산기와 가이드를 함께 확인할 수 있습니다.",
   keys,
   limit,
   compact = false,
@@ -32,7 +32,7 @@ export default function SearchDemandPanel({
           <h2 className="bd-title-md">{title}</h2>
           <p className="bd-text-sub mt-2 max-w-3xl">{description}</p>
         </div>
-        <Link href="/topics" className="bd-button-secondary shrink-0">주제 전체보기</Link>
+        <Link href="/topics" className="bd-button-secondary shrink-0">관련 주제 보기</Link>
       </div>
 
       <div className={`mt-5 grid gap-4 ${compact ? "md:grid-cols-2" : "lg:grid-cols-2"}`}>
