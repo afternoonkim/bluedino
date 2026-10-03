@@ -10,7 +10,7 @@ const links = [
 export default function SiteFooter() {
   return (
     <footer className="mt-14 border-t border-slate-800 bg-slate-950/80">
-      <div className="mx-auto max-w-6xl px-4 py-8 md:px-6">
+      <div className="mx-auto max-w-6xl px-4 pb-28 pt-8 md:px-6 md:py-8">
         <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
           <div className="max-w-2xl">
             <div className="font-bold text-white">BlueDino</div>
