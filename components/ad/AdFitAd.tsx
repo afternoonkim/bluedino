@@ -11,7 +11,6 @@ type AdFitAdProps = {
   variant?: AdFitVariant;
   className?: string;
   label?: string;
-  refreshKey?: string;
 };
 
 const ADFIT_FLAG = process.env.NEXT_PUBLIC_ADFIT_ENABLED;
@@ -63,7 +62,6 @@ export default function AdFitAd({
   variant = "middle",
   className = "",
   label = "광고",
-  refreshKey,
 }: AdFitAdProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const reactId = useId();
@@ -76,7 +74,7 @@ export default function AdFitAd({
     };
   }, [height, unit, variant, width]);
 
-  const adSlotKey = `${variant}-${resolvedUnit ?? "none"}-${refreshKey ?? reactId}`;
+  const adSlotKey = `${variant}-${resolvedUnit ?? "none"}-${reactId}`;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -111,7 +109,7 @@ export default function AdFitAd({
       container.innerHTML = "";
       section?.removeAttribute("hidden");
     };
-  }, [adSlotKey, refreshKey, resolvedHeight, resolvedUnit, resolvedWidth]);
+  }, [adSlotKey, resolvedHeight, resolvedUnit, resolvedWidth]);
 
   if (!ADFIT_ENABLED || !resolvedUnit) return null;
 

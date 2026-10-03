@@ -20,7 +20,6 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
         <AdFitAd
           variant="top"
           label="페이지 상단 스폰서 배너"
-          refreshKey={`top-${pathname}`}
           className="mb-5 mt-0 hidden rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-3 md:flex"
         />
       ) : null}
@@ -34,7 +33,6 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
               <AdFitAd
                 variant="middle"
                 label="사이드 스폰서 배너"
-                refreshKey={`side-${pathname}`}
                 className="my-0 rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-4"
               />
             </div>
@@ -45,7 +43,6 @@ export default function RouteAwareAdShell({ children }: { children: React.ReactN
       <AdFitAd
         variant="bottom"
         label="페이지 하단 스폰서 배너"
-        refreshKey={`bottom-${pathname}`}
         className="mt-8 rounded-2xl border border-white/5 bg-slate-950/20 px-2 py-4"
       />
     </>
