@@ -19,7 +19,7 @@ export default function InfoHubPage() {
   return (
     <main className="bd-page">
       <div className="bd-container space-y-10 md:space-y-14">
-        <header className="max-w-3xl py-4 md:py-8"><span className="bd-badge">투자정보</span><h1 className="bd-title-xl mt-4">기업·산업·ETF 정보를 필요한 만큼만 보세요</h1><p className="bd-text-main mt-4">투자정보는 계산기와 금융가이드의 보조 영역으로 정리했습니다. 관심 있는 기업이나 산업을 바로 선택하고, 필요한 경우 기초·전략 가이드로 이어가세요.</p></header>
+        <header className="max-w-3xl py-4 md:py-8"><span className="bd-badge">투자정보</span><h1 className="bd-title-xl mt-4">기업·산업·ETF 정보를 필요한 만큼만 보세요</h1><p className="bd-text-main mt-4">관심 있는 기업이나 산업, ETF 정보를 바로 확인하고 필요한 경우 투자 기초와 전략도 함께 살펴보세요.</p></header>
         <section className="divide-y divide-slate-800 border-y border-slate-800 bg-slate-950/40">
           {sections.map(([title, href, desc]) => <Link key={href} href={href} className="group flex items-start justify-between gap-4 px-1 py-5 transition hover:bg-slate-900/70 md:px-2"><div><h2 className="text-[16px] font-bold text-white group-hover:text-cyan-200 md:text-lg">{title}</h2><p className="mt-1.5 max-w-3xl text-sm leading-6 text-slate-400">{desc}</p></div><span className="mt-1 text-lg text-slate-500 group-hover:text-cyan-300">→</span></Link>)}
         </section>

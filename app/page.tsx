@@ -26,7 +26,7 @@ export default function HomePage() {
         <section className="py-6 md:py-12">
           <p className="text-sm font-bold text-cyan-300">BlueDino</p>
           <h1 className="mt-3 max-w-3xl text-[32px] font-bold leading-[1.2] tracking-[-0.04em] text-white md:text-[52px]">금융이 궁금할 때,<br className="hidden sm:block" /> 계산하고 확인하세요.</h1>
-          <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 md:text-lg">복잡한 메뉴보다 필요한 행동부터 시작합니다. 내 숫자를 계산하거나, 금융 질문의 답을 찾거나, 투자 정보를 확인하세요.</p>
+          <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 md:text-lg">내 숫자를 계산하거나, 궁금한 금융 질문의 답을 찾거나, 필요한 투자 정보를 바로 확인해보세요.</p>
           <div className="mt-8 grid gap-3 md:grid-cols-3">
             <Link href="/cal" className="group rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm">
               <Calculator className="h-5 w-5 text-cyan-300" /><div className="mt-4 font-bold text-white">계산하기</div><p className="mt-1 text-sm leading-6 text-slate-400">할부·이자·배당·대출을 내 숫자로 확인</p>
@@ -41,7 +41,7 @@ export default function HomePage() {
         </section>
 
         <section>
-          <div className="flex items-end justify-between gap-4"><div><h2 className="bd-title-md">많이 찾는 계산기</h2><p className="bd-text-sub mt-2">네이버 검색 유입이 확인된 계산기를 먼저 배치했습니다.</p></div><Link href="/cal" className="hidden text-sm font-semibold text-cyan-300 hover:text-cyan-200 sm:inline-flex">전체보기 →</Link></div>
+          <div className="flex items-end justify-between gap-4"><div><h2 className="bd-title-md">많이 찾는 계산기</h2><p className="bd-text-sub mt-2">자주 사용하는 계산기를 바로 이용해보세요.</p></div><Link href="/cal" className="hidden text-sm font-semibold text-cyan-300 hover:text-cyan-200 sm:inline-flex">전체보기 →</Link></div>
           <div className="mt-5 divide-y divide-slate-800 border-y border-slate-800 bg-slate-950/40">
             {popular.map(([title, href, desc]) => <Link key={href} href={href} className="group flex items-center justify-between gap-4 px-1 py-4 transition hover:bg-slate-900/70 md:px-2"><div><div className="font-semibold text-white group-hover:text-cyan-200">{title}</div><div className="mt-1 text-sm text-slate-400">{desc}</div></div><ArrowRight className="h-4 w-4 shrink-0 text-slate-500 group-hover:text-cyan-300" /></Link>)}
           </div>

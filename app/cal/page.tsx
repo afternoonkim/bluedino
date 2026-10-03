@@ -68,12 +68,12 @@ export default function CalculatorHubPage() {
         <header className="max-w-3xl py-4 md:py-8">
           <span className="bd-badge">계산기</span>
           <h1 className="bd-title-xl mt-4">필요한 숫자부터 바로 계산하세요</h1>
-          <p className="bd-text-main mt-4">할부·이자·배당·대출·절세 계산기를 한곳에 모았습니다. 설명보다 계산을 먼저 할 수 있도록 자주 찾는 도구를 위에 배치했습니다.</p>
+          <p className="bd-text-main mt-4">할부·이자·배당·대출·절세 계산기를 한곳에서 찾을 수 있습니다. 필요한 계산기를 골라 내 숫자로 바로 확인해보세요.</p>
         </header>
 
         <section>
           <h2 className="bd-title-md">많이 찾는 계산기</h2>
-          <p className="bd-text-sub mt-2">네이버 검색에서 실제 유입이 확인된 계산기를 우선합니다.</p>
+          <p className="bd-text-sub mt-2">자주 사용하는 계산기를 빠르게 이용해보세요.</p>
           <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {popular.map((slug) => { const item = itemFor(slug); return <Link key={slug} href={`/cal/${slug}`} className="rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm"><div className="font-bold text-white">{item.title}</div><p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p><div className="mt-4 text-sm font-semibold text-cyan-300">계산하기 →</div></Link>; })}
           </div>

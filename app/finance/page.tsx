@@ -19,13 +19,13 @@ export default function FinancePage() {
   return (
     <main className="bd-page">
       <div className="bd-container space-y-10 md:space-y-14">
-        <header className="max-w-3xl py-4 md:py-8"><span className="bd-badge">금융가이드</span><h1 className="bd-title-xl mt-4">궁금한 금융 질문부터 찾으세요</h1><p className="bd-text-main mt-4">ISA·IRP·CMA·파킹통장·대출처럼 조건이 복잡한 주제를 질문 단위로 나눴습니다. 긴 설명을 훑기보다 내 상황과 가까운 질문부터 확인하세요.</p></header>
+        <header className="max-w-3xl py-4 md:py-8"><span className="bd-badge">금융가이드</span><h1 className="bd-title-xl mt-4">궁금한 금융 질문부터 찾으세요</h1><p className="bd-text-main mt-4">ISA·IRP·CMA·파킹통장·대출처럼 조건이 복잡한 주제를 질문별로 확인할 수 있습니다. 내 상황과 가까운 항목부터 골라보세요.</p></header>
         <section className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"><div className="text-sm font-bold text-white">절세계좌</div><p className="mt-1 text-sm text-slate-400">ISA · IRP · 연금저축</p></div>
           <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"><div className="text-sm font-bold text-white">현금관리</div><p className="mt-1 text-sm text-slate-400">CMA · 파킹통장</p></div>
           <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"><div className="text-sm font-bold text-white">대출</div><p className="mt-1 text-sm text-slate-400">대출기초 · 신용 · 주담대</p></div>
         </section>
-        <TaggedList title="금융 질문 찾기" description="분류를 선택하거나 검색어를 입력해 바로 좁혀보세요." items={items} filterTags={["절세계좌", "현금관리", "대출"]} searchPlaceholder="예: ISA, IRP, CMA, 파킹통장, 신용대출, 주담대" countLabel="카테고리" />
+        <TaggedList title="금융 질문 찾기" description="분류를 선택하거나 검색어를 입력해 궁금한 내용을 찾아보세요." items={items} filterTags={["절세계좌", "현금관리", "대출"]} searchPlaceholder="예: ISA, IRP, CMA, 파킹통장, 신용대출, 주담대" countLabel="카테고리" />
       </div>
     </main>
   );
