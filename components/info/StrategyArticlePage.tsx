@@ -31,8 +31,6 @@ export type StrategyArticle = {
   calculators: StrategyLinkItem[];
 };
 
-
-
 function getStrategyPageLabels(article: StrategyArticle) {
   const text = `${article.slug} ${article.title} ${article.badge}`;
   if (/배당|income|현금흐름/i.test(text)) {
@@ -142,10 +140,6 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
       />
 
       <article className="bd-container-narrow bd-section space-y-8">
-        {/* <Link href="/info/strategy" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 hover:text-cyan-200">
-          ← 투자 전략으로 돌아가기
-        </Link> */}
-
         <section className="bd-card bd-card-padding">
           <span className="bd-badge">{article.badge}</span>
           <h1 className="bd-title-lg mt-4">{article.title}</h1>
@@ -326,8 +320,7 @@ export default function StrategyArticlePage({ article }: { article: StrategyArti
           category="투자전략 가이드"
         />
 
-        <PageTrustFooter pageKind="투자전략 가이드" updatedAt="2026-04-27" />
-
+        <PageTrustFooter pageKind="투자전략 가이드" />
       </article>
     </div>
   );

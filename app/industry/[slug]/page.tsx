@@ -99,7 +99,6 @@ function getIndustryCtrSeo(hub: IndustryHub): IndustryCtrSeo | undefined {
   return overrides[hub.slug];
 }
 
-
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
@@ -212,8 +211,6 @@ export default async function IndustryHubPage({ params }: PageProps) {
     headline: displayTitle,
     description: displayDescription,
     inLanguage: "ko-KR",
-    datePublished: "2026-04-27",
-    dateModified: "2026-04-27",
     author: {
       "@type": "Organization",
       name: "BlueDino 편집팀",
@@ -323,7 +320,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             <section className="bd-card bd-card-padding">
               <h2 className="bd-title-md">{currentHub.shortTitle} — 국내 주요 종목</h2>
               <p className="bd-text-sub mt-3">
-                사업 설명이 충분하거나 주요 지수에 포함된 종목을 우선 정렬했습니다. 종목명을 누르시면 사업 구조와 분기 추적 지표를 자세히 확인하실 수 있습니다.
+                각 종목의 산업 내 역할과 사업 구조, 실적 확인 포인트를 함께 살펴보세요. 종목명을 누르면 기업별 상세 분석으로 이동합니다.
               </p>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
                 {koreaMatched.map((m) => (
@@ -410,7 +407,7 @@ export default async function IndustryHubPage({ params }: PageProps) {
             </div>
           </ExpandableCard>
 
-          <PageTrustFooter pageKind="산업·테마 가이드" updatedAt="2026-04-27" />
+          <PageTrustFooter pageKind="산업·테마 가이드" />
 
           <ShareAndCite
             url={`/industry/${currentHub.slug}`}

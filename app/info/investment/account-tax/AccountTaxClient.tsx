@@ -13,7 +13,7 @@ export default function AccountTaxClient() {
           <h1 className="mt-4 bd-title-lg">계좌별 세금정보</h1>
           <p className="mt-3 bd-text-sub">
             일반계좌, ISA, 연금저축·IRP 등 계좌 유형에 따라 원금 인출, 매매차익,
-            배당·분배금의 과세 방식이 어떻게 달라지는지 한눈에 비교할 수 있도록 비교할 수 있게 구성했습니다.
+            배당·분배금의 과세 방식이 어떻게 달라지는지 한눈에 비교할 수 있습니다.
           </p>
           <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
             세후 수익률을 비교할 때 먼저 확인해두면 좋은 기준표입니다. 단, 실제 세율 적용과 인출 조건은

@@ -145,6 +145,24 @@ table {
   }
 }
 
+@media (max-width: 1279px) {
+  .grid:has(> aside.space-y-6) > .space-y-6:has(> section[aria-label="이 페이지 공유하기"], > details[aria-label="출처와 정보 이용 안내"]) {
+    display: contents;
+  }
+
+  .grid:has(> aside.space-y-6) > aside.space-y-6 {
+    order: 10;
+  }
+
+  .grid:has(> aside.space-y-6) > .space-y-6:has(> section[aria-label="이 페이지 공유하기"], > details[aria-label="출처와 정보 이용 안내"]) > section[aria-label="이 페이지 공유하기"] {
+    order: 20;
+  }
+
+  .grid:has(> aside.space-y-6) > .space-y-6:has(> section[aria-label="이 페이지 공유하기"], > details[aria-label="출처와 정보 이용 안내"]) > details[aria-label="출처와 정보 이용 안내"] {
+    order: 30;
+  }
+}
+
 @media (max-width: 767px) {
   body {
     font-size: 14px;
