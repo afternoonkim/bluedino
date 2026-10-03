@@ -16,13 +16,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 export const metadata: Metadata = {
   title: "기업분석 | 원자현미경·쌍용C&E·제넥신 주가 체크포인트 | BlueDino",
   description:
-    "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 정리합니다. 원자현미경 주가, 쌍용C&E 주가, 제넥신 주가 전망처럼 자주 찾는 기업도 빠르게 확인할 수 있습니다.",
+    "국내·해외 기업의 사업 구조, 실적 변수와 주가 리스크를 확인하세요. 원자현미경, 쌍용C&E, 제넥신 등 자주 찾는 기업도 빠르게 살펴볼 수 있습니다.",
   keywords: ["기업분석", "국내기업 분석", "해외기업 분석", "주가 전망", "원자현미경 주가", "쌍용C&E 주가", "제넥신 주가 전망"],
   alternates: { canonical: "/company-analysis" },
   openGraph: {
     title: "기업분석 | 주가 변수와 실적 체크포인트 | BlueDino",
     description:
-      "국내기업과 해외기업의 사업 구조, 주가 변수, 실적 체크포인트를 검색과 태그로 확인합니다.",
+      "국내·해외 기업의 사업 구조, 실적 변수와 주가 리스크를 함께 확인하세요.",
     url: `${BASE_URL}/company-analysis`,
     siteName: "BlueDino",
     locale: "ko_KR",

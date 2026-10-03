@@ -15,15 +15,15 @@ export const metadata: Metadata = {
   },
   title: { default: "BlueDino", template: "%s | BlueDino" },
   description:
-    "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
+    "금융이 궁금할 때 필요한 숫자를 바로 계산하고, ISA·IRP·연금저축·대출·ETF와 투자 정보를 함께 확인하세요.",
   robots: { index: true, follow: true },
   other: {
     "google-adsense-account": "ca-pub-5407950462485150",
   },
   openGraph: {
-    title: "BlueDino 금융 계산기와 투자 가이드",
+    title: "BlueDino | 금융 계산기와 금융·투자정보",
     description:
-      "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
+      "금융이 궁금할 때 필요한 숫자를 바로 계산하고, ISA·IRP·연금저축·대출·ETF와 투자 정보를 함께 확인하세요.",
     url: "https://bluedino.kr",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BlueDino 금융 계산기와 투자 가이드",
+    title: "BlueDino | 금융 계산기와 금융·투자정보",
     description:
-      "BlueDino는 복리 계산기, 배당 계산기, FIRE 계산기, 양도세 계산기와 ISA·IRP·연금저축·대출·ETF 투자 가이드를 함께 제공하는 금융 정보 사이트입니다.",
+      "금융이 궁금할 때 필요한 숫자를 바로 계산하고, ISA·IRP·연금저축·대출·ETF와 투자 정보를 함께 확인하세요.",
   },
   alternates: {
     canonical: "/",
@@ -46,7 +46,7 @@ const organizationSchema = {
   name: "BlueDino",
   url: "https://bluedino.kr",
   email: "afternoonkim93@gmail.com",
-  description: "개인 투자자와 예비 투자자를 위한 금융 계산기 및 설명형 가이드를 제공하는 정보 사이트",
+  description: "금융 계산기와 금융·투자 정보를 제공하는 BlueDino",
 };
 
 const websiteSchema = {
@@ -54,7 +54,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "BlueDino",
   url: "https://bluedino.kr",
-  description: "복리·배당·대출·연금 계산기와 투자 가이드를 함께 제공하는 BlueDino",
+  description: "할부·이자·배당·대출 계산기와 금융·투자 정보를 함께 확인하는 BlueDino",
 };
 
 export default function RootLayout({

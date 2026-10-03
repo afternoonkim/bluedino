@@ -12,12 +12,12 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 export const metadata: Metadata = {
   title: "관련주 정리 | 미국 2차전지·반도체 장비·헬스케어 관련주 | BlueDino",
   description:
-    "미국 2차전지 관련주, 미국 반도체 장비주, 헬스케어 관련주, AI 관련주를 산업 단계와 대표 기업 기준으로 비교하는 BlueDino 관련주 가이드입니다.",
+    "미국 2차전지, 반도체 장비, 헬스케어, AI 관련주를 산업 단계와 대표 기업 기준으로 나눠 비교하고 실적 변수를 확인하세요.",
   keywords: ["산업별 관련주", "테마별 관련주", "반도체 관련주", "AI 관련주", "2차전지 관련주", "배당주", "바이오 관련주", "금융주", "자동차 관련주"],
   alternates: { canonical: "/industry" },
   openGraph: {
     title: "관련주 정리 | BlueDino",
-    description: "미국 2차전지·반도체 장비·헬스케어·AI 관련주를 산업 단계별로 비교합니다.",
+    description: "미국 2차전지·반도체 장비·헬스케어·AI 관련주를 산업 단계별로 나눠 비교하고 실적 변수를 확인하세요.",
     url: `${BASE_URL}/industry`,
     siteName: "BlueDino",
     locale: "ko_KR",
