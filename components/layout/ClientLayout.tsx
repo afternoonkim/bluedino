@@ -14,7 +14,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <div className="flex min-h-[calc(100vh-64px)] flex-col">
         <div className="flex-1 px-4 pb-24 pt-4 md:px-6 md:pb-8 md:pt-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <RouteNavigationButtons position="top" />
             <RouteAwareAdShell>{children}</RouteAwareAdShell>
             <RouteNavigationButtons position="bottom" />
           </div>

@@ -103,7 +103,7 @@ export default function TaggedList({
               onClick={() => setActiveTag(tag)}
               className={`shrink-0 rounded-full border px-3 py-1.5 text-[12px] font-semibold transition md:px-3.5 md:py-2 md:text-sm ${
                 active
-                  ? "border-cyan-300 bg-cyan-300 text-slate-950"
+                  ? "border-blue-300/20 bg-[#1E3A5F] text-slate-100"
                   : "border-slate-800 bg-slate-950/60 text-slate-300 hover:border-slate-600 hover:text-white"
               }`}
             >

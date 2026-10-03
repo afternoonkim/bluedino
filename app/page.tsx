@@ -26,7 +26,7 @@ export default function HomePage() {
         <section className="py-6 md:py-12">
           <p className="text-sm font-bold text-cyan-300">BlueDino</p>
           <h1 className="mt-3 max-w-3xl text-[32px] font-bold leading-[1.2] tracking-[-0.04em] text-white md:text-[52px]">금융이 궁금할 때,<br className="hidden sm:block" /> 계산하고 확인하세요.</h1>
-          <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 md:text-lg">내 숫자를 계산하거나, 궁금한 금융 질문의 답을 찾거나, 필요한 투자 정보를 바로 확인해보세요.</p>
+          <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-300 md:text-lg">내 숫자를 계산하거나, 궁금한 금융 질문의 답을 찾거나, 필요한 투자 정보를 바로 확인해보세요.</p>
           <div className="mt-8 grid gap-3 md:grid-cols-3">
             <Link href="/cal" className="group rounded-2xl border border-slate-800 bg-slate-950/40 p-5 transition hover:border-cyan-400/40 hover:shadow-sm">
               <Calculator className="h-5 w-5 text-cyan-300" /><div className="mt-4 font-bold text-white">계산하기</div><p className="mt-1 text-sm leading-6 text-slate-400">할부·이자·배당·대출을 내 숫자로 확인</p>

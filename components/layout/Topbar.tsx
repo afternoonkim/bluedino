@@ -30,13 +30,13 @@ export default function Topbar() {
           {navItems.map((item) => {
             const isActive = active(pathname, item.href);
             return (
-              <Link key={item.href} href={item.href} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${isActive ? "bg-cyan-400 text-slate-950" : "text-slate-300 hover:bg-slate-900 hover:text-white"}`}>
+              <Link key={item.href} href={item.href} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${isActive ? "bg-[#1E3A5F] text-slate-100 ring-1 ring-blue-300/20" : "text-slate-300 hover:bg-slate-900 hover:text-white"}`}>
                 {item.label}
               </Link>
             );
           })}
         </nav>
-        <Link href="/cal" className="hidden rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-400/50 hover:text-cyan-200 sm:inline-flex md:hidden">
+        <Link href="/cal" className="hidden rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-100 transition hover:border-blue-400/40 hover:text-blue-200 sm:inline-flex md:hidden">
           계산기 찾기
         </Link>
       </div>

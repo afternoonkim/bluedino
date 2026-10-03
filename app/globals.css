@@ -108,7 +108,12 @@ table {
   }
 
   .bd-button-primary {
-    @apply inline-flex min-h-10 items-center justify-center rounded-2xl bg-cyan-400 px-4 py-2.5 text-[13px] font-bold text-slate-950 transition hover:bg-cyan-300 md:min-h-11 md:px-5 md:py-3 md:text-sm;
+    @apply inline-flex min-h-10 items-center justify-center rounded-2xl px-4 py-2.5 text-[13px] font-bold text-slate-100 ring-1 ring-blue-300/20 transition md:min-h-11 md:px-5 md:py-3 md:text-sm;
+    background-color: #1e3a5f;
+  }
+
+  .bd-button-primary:hover {
+    background-color: #27496f;
   }
 
   .bd-button-secondary {

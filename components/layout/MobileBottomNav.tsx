@@ -25,7 +25,7 @@ export default function MobileBottomNav() {
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = isActivePath(pathname, href);
           return (
-            <Link key={href} href={href} className={`flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[11px] font-semibold transition ${isActive ? "bg-cyan-400 text-slate-950" : "text-slate-400 hover:bg-slate-900 hover:text-slate-100"}`}>
+            <Link key={href} href={href} className={`flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[11px] font-semibold transition ${isActive ? "bg-[#1E3A5F] text-slate-100 ring-1 ring-blue-300/20" : "text-slate-400 hover:bg-slate-900 hover:text-slate-100"}`}>
               <Icon className="h-4 w-4" />
               <span>{label}</span>
             </Link>
