@@ -30,7 +30,7 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
     title: "배당 계산기",
     searchIntentTitle: "배당 계산기 사용법과 배당 투자 체크포인트",
     intro:
-      "배당 계산기를 찾는 사람들은 단순히 배당금 숫자 하나보다 월 현금흐름이 얼마나 나오는지, 재투자를 하면 결과가 얼마나 달라지는지, 세후 기준으로도 유지 가능한 전략인지 알고 싶어합니다. BlueDino의 배당 계산기 페이지는 그런 사용 상황를 바로 해결할 수 있도록 결과 해석법, FAQ, 관련 계산기와 함께 보면 좋은 정보를 함께 제공합니다.",
+      "배당 계산기를 찾는 사람들은 단순히 배당금 숫자 하나보다 월 현금흐름이 얼마나 나오는지, 재투자를 하면 결과가 얼마나 달라지는지, 세후 기준으로도 유지 가능한 전략인지 알고 싶어합니다. BlueDino의 배당 계산기 페이지는 그런 사용 목적을 바로 해결할 수 있도록 결과 해석법, FAQ, 관련 계산기와 함께 보면 좋은 정보를 함께 제공합니다.",
     description:
       "보유 수량, 주가, 배당수익률, 배당 성장률, 세율, 추가 매수 조건을 함께 넣어 장기 배당 투자 흐름을 비교할 수 있습니다.",
     sections: [
@@ -319,7 +319,7 @@ export const calculatorLandingData: Record<string, CalculatorLandingData> = {
     links: [
       { title: "DSR 계산기", href: "/cal/dsr", description: "담보 기준 한도 이후 실제 소득 기준 상환 가능성을 이어서 확인할 수 있습니다.", tag: "관련 계산기" },
       { title: "주담대 계산기", href: "/cal/mortgage", description: "실제 월 상환액과 총이자를 연결해서 볼 수 있습니다.", tag: "주담대" },
-      { title: "주담대 질문 가이드", href: "/finance/mortgage-loan", description: "내 집 마련 과정에서 자주 나오는 자주 나오는 질문을 정리한 가이드입니다.", tag: "가이드" },
+      { title: "주담대 질문 가이드", href: "/finance/mortgage-loan", description: "내 집 마련 과정에서 자주 나오는 질문을 정리한 가이드입니다.", tag: "가이드" },
       { title: "대출기초 질문 가이드", href: "/finance/loan-basics", description: "LTV, DSR, 금리 구조를 처음부터 정리하고 싶을 때 적합합니다.", tag: "기초" },
     ],
   },
