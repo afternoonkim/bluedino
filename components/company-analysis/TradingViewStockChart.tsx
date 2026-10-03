@@ -103,7 +103,6 @@ function NaverFallbackChart({
   const chartUrl = getNaverFinanceChartUrl(code, period);
   const quoteHref = getLiveQuoteHref({ ticker: code, exchange: "KOSPI", market: "korea" });
 
-
   return (
     <div className="overflow-hidden">
       <div className="flex flex-wrap items-center justify-end gap-2 border-b border-slate-800 bg-slate-950/80 px-4 py-2">
@@ -130,9 +129,9 @@ function NaverFallbackChart({
       <div className="flex items-center justify-center bg-[#081124] p-4 md:p-6" style={{ minHeight: "560px" }}>
         {failedImageUrl === chartUrl ? (
           <div className="max-w-xl text-center">
-            <h3 className="text-lg font-bold text-white">차트 이미지를 불러오지 못했습니다</h3>
+            <h3 className="text-lg font-bold text-white">차트를 불러오지 못했습니다</h3>
             <p className="bd-text-main mt-3">
-              외부 차트가 일시적으로 제한될 수 있습니다. 아래 버튼을 누르면 {companyNameKo}의 현재가와 차트를 직접 확인할 수 있습니다.
+              잠시 후 다시 확인하거나 아래 버튼을 눌러 {companyNameKo}의 현재가와 차트를 확인해 주세요.
             </p>
             <a href={quoteHref} target="_blank" rel="noreferrer" className="bd-button-primary mt-6 inline-flex">
               현재 주가 확인하기
@@ -167,14 +166,13 @@ function UnifiedTradingViewChart({
   );
   const widgetUrl = useMemo(() => getTradingViewWidgetUrl(symbol), [symbol]);
   const isKorea = market === "korea";
-  // 국내 종목은 TradingView 무료 임베드에서 KRX 심볼이 거의 모두 차단되어 있어
-  // 항상 네이버 정적 차트로 표시. 해외 종목만 TradingView iframe 사용.
+
   if (isKorea) {
     return (
       <div className="overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-950/80 px-4 py-2">
           <div className="text-xs font-semibold text-slate-400">네이버 금융 차트</div>
-          <div className="text-xs text-slate-500">실시간 시세는 외부 페이지에서 확인</div>
+          <div className="text-xs text-slate-500">현재가는 네이버 금융에서 확인</div>
         </div>
         <NaverFallbackChart ticker={ticker} companyNameKo={companyNameKo} />
       </div>
@@ -184,7 +182,7 @@ function UnifiedTradingViewChart({
   return (
     <div className="overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-950/80 px-4 py-2">
-        <div className="text-xs font-semibold text-slate-400">TradingView 인터랙티브 차트</div>
+        <div className="text-xs font-semibold text-slate-400">TradingView 차트</div>
         <div className="text-xs text-slate-500">{symbol}</div>
       </div>
       <div
@@ -232,16 +230,16 @@ export default function TradingViewStockChart({
     <section className="bd-card bd-card-padding">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <span className="bd-badge">실시간 주가 차트</span>
+          <span className="bd-badge">주가 차트</span>
           <h2 className="bd-title-md mt-4">
             {companyNameKo}({ticker}) 주가 흐름
           </h2>
           <p className="bd-text-main mt-3">
-            기업분석은 사업 구조와 실적을 보는 작업이지만, 실제 투자 판단에서는 현재 주가가 어느 위치에 있는지도 함께 확인해야 합니다. 단기 등락보다 추세, 거래량, 이전 고점과 저점, 실적 발표 전후의 흐름을 같이 살펴보세요.
+            현재 주가가 어느 구간에 있는지 추세와 이전 고점·저점을 함께 확인해보세요. 단기 등락만 보기보다 실적 발표 전후의 흐름도 같이 보는 편이 좋습니다.
           </p>
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm leading-6 text-slate-300">
-          <div className="font-semibold text-white">차트 기준</div>
+          <div className="font-semibold text-white">종목 코드</div>
           <div>{symbol}</div>
           <a href={quoteHref} target="_blank" rel="noreferrer" className="mt-2 inline-flex text-xs font-semibold text-cyan-300 hover:text-cyan-200">
             {isKorea ? "네이버 금융에서 보기 →" : "TradingView에서 크게 보기 →"}
@@ -259,7 +257,7 @@ export default function TradingViewStockChart({
       </div>
 
       <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-xs leading-6 text-slate-500">
-        해외 종목은 TradingView 인터랙티브 차트, 국내 종목은 네이버 금융 차트 이미지를 동일한 컨테이너로 노출합니다. 국내 거래소 데이터는 외부 임베드 위젯 정책상 인터랙티브로 제공되지 않아, 일·주·월·1년·3년 단위 캔들 차트와 호가/현재가는 상단의 외부 링크에서 확인하실 수 있습니다. 시세는 거래소 정책에 따라 지연될 수 있으며, 최종 투자 판단은 본인의 책임입니다.
+        해외 종목은 TradingView에서, 국내 종목은 네이버 금융 차트로 확인할 수 있습니다. 국내 종목은 위 기간 버튼으로 일·주·월·1년·3년 흐름을 볼 수 있으며, 현재가는 네이버 금융에서 확인해 주세요. 시세는 실제 거래와 차이가 날 수 있으므로 투자 전 최신 정보를 함께 확인하세요.
       </div>
     </section>
   );

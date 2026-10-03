@@ -9,7 +9,7 @@ type ShareAndCiteProps = {
   url: string;
   /** 페이지 제목 (한글 그대로) */
   title: string;
-  /** 인용 안내에 표시할 페이지 종류 (예: "투자 기초 가이드", "기업분석") */
+  /** 공유 안내에 표시할 페이지 종류 (예: "투자 기초 가이드", "기업분석") */
   category?: string;
 };
 
@@ -59,7 +59,6 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
   const threadsShare = `https://www.threads.net/intent/post?text=${encodedTitle}%20${encodedUrl}`;
   const kakaoStoryShare = `https://story.kakao.com/share?url=${encodedUrl}&text=${encodedTitle}`;
 
-
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   useEffect(() => {
@@ -81,7 +80,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
         <div>
           <span className="bd-badge">공유</span>
           <h2 className="bd-title-md mt-3">
-            이 페이지 링크를 저장하거나 공유하기
+            이 페이지를 저장하거나 공유하세요
           </h2>
         </div>
         <button
@@ -89,15 +88,14 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
           onClick={() => handleCopy("url", absoluteUrl)}
           className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-400/60 hover:bg-cyan-400/20"
         >
-          {copiedKey === "url" ? "✓ 링크 복사됨" : "🔗 페이지 링크 복사"}
+          {copiedKey === "url" ? "✓ 링크 복사됨" : "🔗 링크 복사"}
         </button>
       </div>
 
       <p className="bd-text-sub mt-4">
         {category
-          ? `${category} 콘텐츠를 나중에 다시 보거나 다른 사람에게 공유할 때 사용할 수 있습니다.`
-          : "이 페이지를 나중에 다시 보거나 다른 사람에게 공유할 때 사용할 수 있습니다."}
-        {" "}X(트위터), 페이스북, 스레드, 카카오스토리 공유와 링크 복사를 지원합니다.
+          ? `${category}를 나중에 다시 보거나 다른 사람과 공유할 수 있습니다.`
+          : "이 페이지를 나중에 다시 보거나 다른 사람과 공유할 수 있습니다."}
       </p>
 
       <div className="mt-5 flex flex-wrap gap-2">
@@ -107,7 +105,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
           rel="noopener noreferrer"
           className="rounded-full border border-slate-600 bg-slate-900/70 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-slate-400 hover:bg-slate-900"
         >
-          X(트위터) 공유
+          X(트위터)
         </a>
         <a
           href={facebookShare}
@@ -115,7 +113,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
           rel="noopener noreferrer"
           className="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-200 transition hover:border-blue-400/60 hover:bg-blue-400/20"
         >
-          페이스북 공유
+          페이스북
         </a>
         <a
           href={threadsShare}
@@ -123,7 +121,7 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
           rel="noopener noreferrer"
           className="rounded-full border border-slate-600 bg-slate-900/70 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-slate-400 hover:bg-slate-900"
         >
-          스레드 공유
+          스레드
         </a>
         <a
           href={kakaoStoryShare}
@@ -131,10 +129,9 @@ export default function ShareAndCite({ url, title, category }: ShareAndCiteProps
           rel="noopener noreferrer"
           className="rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-2 text-sm font-semibold text-yellow-200 transition hover:border-yellow-400/60 hover:bg-yellow-400/20"
         >
-          카카오스토리 공유
+          카카오스토리
         </a>
       </div>
-
     </section>
   );
 }
