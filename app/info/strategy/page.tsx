@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "투자전략 가이드 | 상황별·연령별 맞춤 투자전략 | BlueDino",
     description:
-      "내 상황에 맞는 투자전략과 절세계좌·자산배분·배당·ETF·하락장 대응 같은 핵심 전략을 한 번에 비교할 수 있는 투자전략 허브입니다.",
+      "내 상황에 맞는 투자전략과 절세계좌·자산배분·배당·ETF·하락장 대응 같은 핵심 전략을 한 번에 비교할 수 있습니다.",
     url: "https://bluedino.kr/info/strategy",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -65,7 +65,7 @@ export default function StrategyHubPage() {
           <span className="bd-badge">투자전략 가이드</span>
           <h1 className="bd-title-xl mt-4">내 상황에 맞는 투자전략을 목록에서 골라보세요</h1>
           <p className="bd-text-main mt-4 max-w-4xl">
-            투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지부터 정리하는 일입니다. 상황별 전략과 핵심 전략을 한 목록으로 정리해 모바일에서도 빠르게 비교할 수 있게 했습니다.
+            투자전략은 남들이 좋다고 하는 상품을 따라가는 일이 아니라, 내 돈을 언제 쓰고 어떤 위험까지 감당할 수 있는지부터 정리하는 일입니다. 지금 내 상황과 필요한 핵심 전략부터 골라 비교해보세요.
           </p>
         </section>
 

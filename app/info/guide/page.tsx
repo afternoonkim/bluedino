@@ -83,7 +83,7 @@ export default function GuidePage() {
           <span className="bd-badge">투자 기초 가이드</span>
           <h1 className="bd-title-xl mt-4">투자를 처음 시작할 때 필요한 개념을 태그로 골라보세요</h1>
           <p className="bd-text-main mt-4 max-w-4xl">
-            주식, ETF, 절세계좌, 배당, 복리처럼 많이 듣지만 한 번에 정리하기 어려운 주제를 목록형으로 바꿨습니다. 긴 카드들을 훑기보다 절세, 투자입문, 현금흐름, 대출 태그 중 지금 필요한 분류를 먼저 눌러보세요.
+            주식, ETF, 절세계좌, 배당, 복리처럼 처음에는 헷갈리기 쉬운 주제를 지금 필요한 분류부터 골라 확인하세요.
           </p>
         </section>
 
@@ -98,7 +98,7 @@ export default function GuidePage() {
 
         <TaggedList
           title="투자 기초 가이드 목록"
-          description="태그와 검색을 같이 쓰면 모바일에서도 필요한 글을 빠르게 찾을 수 있습니다."
+          description="태그와 검색어로 필요한 글을 빠르게 찾아보세요."
           items={guideItems}
           filterTags={guideCategories.map((category) => category.badge)}
           searchPlaceholder="예: ISA, ETF, 배당, 복리, 대출, 세금"
