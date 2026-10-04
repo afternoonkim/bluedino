@@ -14,7 +14,7 @@ const popular = [
   ["신용카드 할부 계산기", "/cal/credit-card-installment", "할부 수수료와 월 청구액 확인"],
   ["파킹통장 이자 계산기", "/cal/parking-account", "구간별 금리 적용 이자 확인"],
   ["배당금 계산기", "/cal/calculator", "예상 배당금과 현금흐름 확인"],
-  ["청년도약계좌 계산기", "/cal/youth-leap-account", "예상 만기 금액 확인"],
+  ["청년미래적금 계산기", "/cal/youth-future-savings", "10월 7~16일 2차 신청 · 3년 만기 예상액 확인"],
 ] as const;
 
 const financeLinks = [["ISA", "/finance/isa"], ["IRP", "/finance/irp"], ["연금저축", "/finance/pension"], ["CMA", "/finance/cma"], ["파킹통장", "/finance/parking"], ["대출", "/finance/loan-basics"]] as const;

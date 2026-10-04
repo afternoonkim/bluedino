@@ -41,14 +41,14 @@ export default function YouthFutureSavingsClient() {
   return (
     <section className="bd-card bd-card-padding">
       <h2 className="bd-title-md">청년미래적금 예상 수령액 계산기</h2>
-      <p className="bd-text-sub mt-3">2026년 출시된 청년미래적금의 기본금리 5%, 기관별 최대 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 반영해 3년 만기 예상액을 계산합니다.</p>
+      <p className="bd-text-sub mt-3">월 납입액과 가입유형을 입력하면 3년 뒤 예상 수령액을 확인할 수 있습니다. 기본금리 5%, 기관별 최대 우대금리 2~3%p, 일반형 6%·우대형 12% 정부기여금 구조를 반영합니다.</p>
       <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
         <span className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-cyan-200">정확도: 참고 시뮬레이션</span>
         <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1">기준: 2026년 10월 금융위원회 공개 자료</span>
       </div>
 
       <div className="mt-6 grid gap-5 md:grid-cols-4">
-        <label className="block"><span className="text-xs font-semibold text-slate-300">월 납입액 (원)</span><input type="number" value={monthly} onChange={(e) => setMonthly(Number(e.target.value) || 0)} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={10_000} min={0} /><span className="mt-2 block text-xs text-slate-400">월 납입 한도는 실제 출시 조건을 확인해 주세요. 기본값은 50만 원입니다.</span></label>
+        <label className="block"><span className="text-xs font-semibold text-slate-300">월 납입액 (원)</span><input type="number" value={monthly} onChange={(e) => setMonthly(Number(e.target.value) || 0)} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={10_000} min={0} /><span className="mt-2 block text-xs text-slate-400">월 최대 50만 원까지 자유롭게 납입할 수 있습니다.</span></label>
         <label className="block"><span className="text-xs font-semibold text-slate-300">기본금리 (%)</span><input type="number" value={baseRate} onChange={(e) => setBaseRate(Number(e.target.value) || 0)} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} /><span className="mt-2 block text-xs text-slate-400">공개 예시는 연 5% 기준</span></label>
         <label className="block"><span className="text-xs font-semibold text-slate-300">우대금리 (%p)</span><input type="number" value={bonusRate} onChange={(e) => setBonusRate(Number(e.target.value) || 0)} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} /><span className="mt-2 block text-xs text-slate-400">기관별 2~3%p 수준 가정</span></label>
         <label className="block"><span className="text-xs font-semibold text-slate-300">가입 유형</span><select value={accountType} onChange={(e) => setAccountType(e.target.value as AccountType)} className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white"><option value="general">일반형 — 정부기여금 6%</option><option value="preferred">우대형 — 정부기여금 12%</option><option value="taxOnly">고소득 구간 — 비과세만 적용</option></select></label>

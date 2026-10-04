@@ -36,7 +36,7 @@ export default function Page() {
           <section className="bd-card bd-card-padding">
             <span className="bd-badge">청년미래적금</span>
             <h1 className="bd-title-lg mt-4">청년미래적금 계산기</h1>
-            <p className="bd-text-main mt-4">2026년 6월 22일 출시된 청년미래적금의 만기 예상액을 가늠하는 페이지입니다. 기본금리 5%에 기관별 최대 우대금리 2~3%p가 더해지는 구조와 일반형·우대형 정부기여금 차이를 함께 확인할 수 있습니다.</p>
+            <p className="bd-text-main mt-4">10월 7~16일 2차 가입신청을 앞두고 있다면, 먼저 내 납입액으로 3년 만기 예상액을 확인해보세요. 기본금리 5%에 기관별 최대 우대금리 2~3%p가 더해지는 구조와 일반형·우대형 정부기여금 차이를 함께 비교할 수 있습니다.</p>
           </section>
           <YouthFutureSavingsClient />
           <section className="bd-card-soft bd-card-padding">
@@ -48,8 +48,8 @@ export default function Page() {
             </div>
           </section>
           <section className="bd-card-soft bd-card-padding">
-            <h2 className="bd-title-md">공식 참고 기준</h2>
-            <p className="bd-text-main mt-3">금융위원회가 2026년 5~6월 확정·공개한 상품 구조를 기준으로 한 시뮬레이션입니다. 2차 가입신청은 2026년 10월 7~16일(토·일·공휴일 제외)이며, 심사 통과자는 11월 16~27일(토·일 제외) 계좌개설 일정이 안내됐습니다. 실제 우대금리 충족 여부와 가입 자격은 신청 금융사와 공식 안내를 확인해 주세요.</p>
+            <h2 className="bd-title-md">10월 2차 신청 전에 확인할 것</h2>
+            <p className="bd-text-main mt-3">2차 가입신청은 2026년 10월 7~16일(토·일·공휴일 제외)이며, 심사 통과자는 11월 16~27일(토·일 제외)에 계좌를 개설할 수 있습니다. 만 19~34세 중 소득·가구소득 요건을 충족해야 하며, 10월 7일은 출생연도 끝자리 홀수, 8일은 짝수 신청자부터 접수합니다. 선착순 상품은 아니므로 본인 신청일과 가입유형을 먼저 확인하세요.</p>
             <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm font-semibold text-slate-200">
               <a href="https://www.fsc.go.kr/no010101/87820" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">금융위원회 2026년 2차 가입 일정 안내 ↗</a>
               <a href="https://www.kinfa.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">서민금융진흥원 청년 금융지원 안내 ↗</a>

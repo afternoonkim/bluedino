@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const groups = [
   { tag: "대출·할부", slugs: ["car-installment", "credit-card-installment", "loan-interest", "mortgage", "dsr", "ltv", "home-affordability", "prepayment-fee", "loan-refinance-saving", "jeonse-loan-interest", "jeonse-vs-monthly"] },
   { tag: "현금관리", slugs: ["cma-interest", "parking-account", "deposit-interest", "installment-savings", "monthly-budget", "emergency-fund"] },
-  { tag: "절세·연금", slugs: ["youth-leap-account", "youth-future-savings", "isa-tax-savings", "irp-tax-credit", "pension-tax-credit", "pension-payout", "retirement-tax", "retirement-target", "salary-net"] },
+  { tag: "청년·절세·연금", slugs: ["youth-leap-account", "youth-future-savings", "isa-tax-savings", "irp-tax-credit", "pension-tax-credit", "pension-payout", "retirement-tax", "retirement-target", "salary-net"] },
   { tag: "투자", slugs: ["calculator", "compound", "fire", "capital-gains", "child-education-fund"] },
 ] as const;
 
@@ -58,7 +58,7 @@ function itemFor(slug: string) {
   return { title: slug.replaceAll("-", " "), description: "입력값을 바탕으로 필요한 금액을 계산합니다." };
 }
 
-const popular = ["car-installment", "cma-interest", "credit-card-installment", "youth-leap-account", "parking-account", "calculator"];
+const popular = ["youth-future-savings", "car-installment", "cma-interest", "credit-card-installment", "parking-account", "calculator"];
 
 export default function CalculatorHubPage() {
   const listItems: TaggedListItem[] = groups.flatMap((group) => group.slugs.map((slug) => { const item = itemFor(slug); return { title: item.title, description: item.description, href: `/cal/${slug}`, badge: group.tag, tags: [group.tag, item.title], cta: "계산하기" }; }));
