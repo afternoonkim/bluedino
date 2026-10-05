@@ -43,7 +43,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
-    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 2, name: "계산기", item: "https://bluedino.kr/cal" },
     { "@type": "ListItem", position: 3, name: "IRP 세액공제 계산기", item: pageUrl },
   ],
 };
@@ -57,7 +57,7 @@ export default function Page() {
       <div className="bd-container-narrow bd-section">
         <CalculatorReferenceBox sources={[{ label: "국세청 연금계좌 세액공제 안내", href: "https://www.nts.go.kr" }, { label: "금융감독원 통합연금포털", href: "https://100lifeplan.fss.or.kr" }, { label: "근로복지공단 퇴직연금 안내", href: "https://www.comwel.or.kr" }]} />
         <RelatedCalculatorLinks links={[{ label: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit" }, { label: "연금 수령액 계산기", href: "/cal/pension-payout" }, { label: "연봉 실수령액 간이 계산기", href: "/cal/salary-net" }, { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings" }]} />
-        <PageTrustFooter pageKind="IRP 세액공제 계산기" updatedAt="2026-04-27" />
+        <PageTrustFooter pageKind="IRP 세액공제 계산기" updatedAt="2026-10-05" />
       </div>
     </>
   );
