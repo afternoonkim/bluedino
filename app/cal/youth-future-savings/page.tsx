@@ -50,9 +50,14 @@ export default function Page() {
           <section className="bd-card-soft bd-card-padding">
             <h2 className="bd-title-md">10월 7일부터 신청 — 내 신청일 먼저 확인하세요</h2>
             <p className="bd-text-main mt-3">2차 가입신청은 2026년 10월 7~16일(토·일·공휴일 제외)입니다. 7일은 출생연도 끝자리 홀수, 8일은 짝수만 신청하고 12~16일은 출생연도와 관계없이 신청할 수 있습니다. 이번 가입기간에는 1991년 11월 17일생부터 2007년 11월 27일생까지가 연령 기준이며, 병역 이행기간은 최대 6년까지 연령 계산에서 제외됩니다. 총급여 7,500만 원 이하(또는 종합소득 6,300만 원 이하) 등 개인소득 요건과 가구 중위소득 200% 이하 요건도 확인해야 합니다. 심사 통과자는 11월 16~27일에 계좌를 개설하며, 선착순 상품은 아닙니다.</p>
+            <div className="mt-5 space-y-3 text-sm leading-7 text-slate-300">
+              <p><strong className="text-slate-100">가입유형을 먼저 고르세요.</strong> 2차 신청부터는 신청 단계에서 일반소득자·중소기업 재직자·소상공인 중 본인에게 맞는 가입유형을 직접 선택합니다.</p>
+              <p><strong className="text-slate-100">소상공인은 확인서를 미리 준비하세요.</strong> 운영 중인 사업장이 여러 곳이라면 모든 사업장의 소상공인확인서를 신청 전에 발급해 두어야 합니다.</p>
+              <p><strong className="text-slate-100">청년도약계좌 가입자도 확인하세요.</strong> 2차 모집에서 청년미래적금으로 갈아탈 수 있는 기회가 추가로 제공되므로, 해지부터 하기보다 공식 안내의 전환 절차와 기존 혜택 유지 조건을 먼저 확인하는 편이 안전합니다.</p>
+            </div>
             <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm font-semibold text-slate-200">
               <a href="https://www.fsc.go.kr/no010101/87820" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">금융위원회 2026년 2차 가입 일정 안내 ↗</a>
-              <a href="https://www.kinfa.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">서민금융진흥원 청년 금융지원 안내 ↗</a>
+              <a href="https://fill4young.kinfa.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">청년미래적금 공식 안내 페이지 ↗</a>
               <a href="https://portal.kfb.or.kr" target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-400/50 hover:text-cyan-200">취급 금융회사 상품 설명서 ↗</a>
             </div>
           </section>
@@ -67,7 +72,7 @@ export default function Page() {
           </section>
         </div>
       </main>
-      <div className="bd-container-narrow bd-section"><PageTrustFooter pageKind="청년미래적금 계산기" updatedAt="2026-10-06" /></div>
+      <div className="bd-container-narrow bd-section"><PageTrustFooter pageKind="청년미래적금 계산기" updatedAt="2026-10-07" /></div>
     </>
   );
 }
