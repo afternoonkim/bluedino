@@ -29,13 +29,16 @@ export default function YouthFutureSavingsClient() {
     const months = YEARS * 12;
     const principal = m * months;
     const avgMonths = (months + 1) / 2;
-    const finalRate = baseRate + bonusRate;
+    const safeBaseRate = Math.max(0, baseRate);
+    const finalRate = safeBaseRate + Math.max(0, bonusRate);
     const interest = principal * (finalRate / 100) * (avgMonths / 12);
     const govtContribution = m * contributionRate(accountType) * months;
-    const taxSaved = interest * TAX_RATE;
-    const finalAmount = principal + interest + govtContribution;
+    const contributionInterest = govtContribution * (safeBaseRate / 100) * (avgMonths / 12);
+    const totalInterest = interest + contributionInterest;
+    const taxSaved = totalInterest * TAX_RATE;
+    const finalAmount = principal + totalInterest + govtContribution;
     const taxableFinalAmount = principal + interest * (1 - TAX_RATE);
-    return { principal, interest, govtContribution, taxSaved, finalAmount, taxableFinalAmount, diff: finalAmount - taxableFinalAmount, finalRate };
+    return { principal, interest, contributionInterest, totalInterest, govtContribution, taxSaved, finalAmount, taxableFinalAmount, diff: finalAmount - taxableFinalAmount, finalRate };
   }, [monthly, baseRate, bonusRate, accountType]);
 
   return (
@@ -55,15 +58,15 @@ export default function YouthFutureSavingsClient() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 text-sm leading-7 text-cyan-50">
-        <p className="font-semibold text-white">기본 예시: 기본금리 5% + 우대금리 3%p = 최종 적용금리 {result.finalRate.toFixed(1)}%</p>
-        <p className="mt-2 font-semibold text-cyan-100">공식 출시 후 공개된 상품 구조를 기준으로 한 예상 시뮬레이션입니다.</p>
-        <p className="mt-2">월 50만 원, 3년 납입, 금리 8% 기준으로 일반형은 약 2,138만 원, 우대형은 약 2,255만 원 수준을 기대 시나리오로 참고할 수 있습니다. 실제 만기액은 우대금리 충족 여부와 정부기여금 지급 방식에 따라 달라질 수 있습니다.</p>
+        <p className="font-semibold text-white">입력 금리: 기본 {Math.max(0, baseRate).toFixed(1)}% + 우대 {Math.max(0, bonusRate).toFixed(1)}%p = 연 {result.finalRate.toFixed(1)}%</p>
+        <p className="mt-2 font-semibold text-cyan-100">정부기여금에 발생하는 이자도 기본금리 기준 단리로 추정해 합산합니다.</p>
+        <p className="mt-2">월 50만 원, 3년 납입, 금리 8% 기준으로 일반형은 약 2,138만 원, 우대형은 약 2,255만 원 수준을 공식 발표 예시로 참고할 수 있습니다. 실제 만기액은 우대금리 충족 여부와 정부기여금 지급 방식에 따라 달라질 수 있습니다.</p>
       </div>
 
       <div className="mt-8 grid gap-4 md:grid-cols-4">
         <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-slate-400">총 납입원금</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.principal)} 원</div></div>
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-emerald-200">정부기여금</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.govtContribution)} 원</div></div>
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-slate-400">비과세 이자</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.interest)} 원</div><div className="mt-1 text-xs text-slate-400">세금 절감 약 {fmt(result.taxSaved)} 원</div></div>
+        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-emerald-200">정부기여금</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.govtContribution)} 원</div><div className="mt-1 text-xs text-slate-300">기여금 이자 약 {fmt(result.contributionInterest)} 원</div></div>
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-slate-400" >비과세 이자 합계</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.totalInterest)} 원</div><div className="mt-1 text-xs text-slate-400">세금 절감 약 {fmt(result.taxSaved)} 원</div></div>
         <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5"><div className="text-xs font-semibold uppercase tracking-wide text-cyan-300">3년 만기 예상액</div><div className="mt-2 text-xl font-bold text-white">{fmt(result.finalAmount)} 원</div></div>
       </div>
 
