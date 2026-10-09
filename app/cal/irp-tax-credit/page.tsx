@@ -7,7 +7,7 @@ import CalculatorReferenceBox, { RelatedCalculatorLinks } from "../components/Ca
 const canonicalPath = "/cal/irp-tax-credit";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
 const pageTitle = "IRP 세액공제 계산기 | BlueDino";
-const pageDescription = "IRP·연금저축 합산 한도 900만 원 기준 세액공제 환급액 계산기";
+const pageDescription = "IRP·연금저축 합산 900만 원 한도에서 근로소득·종합소득 기준을 구분해 예상 세액공제액을 계산합니다. 실제 환급액은 납부세액에 따라 달라집니다.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -57,7 +57,7 @@ export default function Page() {
       <div className="bd-container-narrow bd-section">
         <CalculatorReferenceBox sources={[{ label: "국세청 연금계좌 세액공제 안내", href: "https://www.nts.go.kr" }, { label: "금융감독원 통합연금포털", href: "https://100lifeplan.fss.or.kr" }, { label: "근로복지공단 퇴직연금 안내", href: "https://www.comwel.or.kr" }]} />
         <RelatedCalculatorLinks links={[{ label: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit" }, { label: "연금 수령액 계산기", href: "/cal/pension-payout" }, { label: "연봉 실수령액 간이 계산기", href: "/cal/salary-net" }, { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings" }]} />
-        <PageTrustFooter pageKind="IRP 세액공제 계산기" updatedAt="2026-10-05" />
+        <PageTrustFooter pageKind="IRP 세액공제 계산기" updatedAt="2026-10-09" />
       </div>
     </>
   );

@@ -7,7 +7,7 @@ import CalculatorReferenceBox, { RelatedCalculatorLinks } from "../components/Ca
 const canonicalPath = "/cal/pension-tax-credit";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
 const pageTitle = "연금저축 세액공제 계산기 | BlueDino";
-const pageDescription = "연금저축계좌 납입액에 대한 세액공제 환급액을 연봉별 세액공제율(16.5% / 13.2%) 기준으로 계산";
+const pageDescription = "연금저축 세액공제액을 근로소득 총급여 5,500만 원·사업자 종합소득금액 4,500만 원 기준으로 계산합니다. 연 600만 원 한도와 실제 환급액 차이도 확인하세요.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -57,7 +57,7 @@ export default function Page() {
       <div className="bd-container-narrow bd-section">
         <CalculatorReferenceBox sources={[{ label: "국세청 연금계좌 세액공제 안내", href: "https://www.nts.go.kr" }, { label: "금융감독원 통합연금포털", href: "https://100lifeplan.fss.or.kr" }, { label: "금융투자협회 연금저축 안내", href: "https://www.kofia.or.kr" }]} />
         <RelatedCalculatorLinks links={[{ label: "IRP 세액공제 계산기", href: "/cal/irp-tax-credit" }, { label: "연금 수령액 계산기", href: "/cal/pension-payout" }, { label: "연봉 실수령액 간이 계산기", href: "/cal/salary-net" }, { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings" }]} />
-        <PageTrustFooter pageKind="연금저축 세액공제 계산기" updatedAt="2026-10-05" />
+        <PageTrustFooter pageKind="연금저축 세액공제 계산기" updatedAt="2026-10-09" />
       </div>
     </>
   );
