@@ -149,10 +149,10 @@ export default function RetirementTaxCalculatorPage() {
                 <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/10 p-2 text-cyan-300">
                   <Briefcase size={18} />
                 </div>
-                <h1 className="text-xl font-extrabold tracking-tight text-white">
+                <h2 className="text-xl font-extrabold tracking-tight text-white">
                   {/* 퇴직소득세 간편 계산기{" "} */}
                   <span className="text-slate-400">퇴직소득세 세율 계산기</span>
-                </h1>
+                </h2>
               </div>
               <p className="mt-2 text-sm text-slate-300">
                 퇴직금(만원)과 근속연수를 입력하면{" "}

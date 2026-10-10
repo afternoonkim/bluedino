@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import PageContextHero from "@/components/common/PageContextHero";
 
 export const metadata: Metadata = {
   title: "계산기",
@@ -15,9 +14,6 @@ export default function CalLayout({ children }: { children: React.ReactNode }) {
           단순화 모델입니다. 실제 세액·수익률·실수령액은 개인 조건과 제도 변경에 따라 달라질 수 있습니다.
         </div>
       </section> */}
-
-      <PageContextHero />
-      
 
       {children}
 
