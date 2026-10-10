@@ -48,7 +48,6 @@ export default function CapitalGainsTaxPage() {
   const [useDeduction, setUseDeduction] = useState(true); // 기본공제 250만원
   const [deduction, setDeduction] = useState("2500000"); // 수정 가능
   const [taxRate, setTaxRate] = useState(22); // 기본 22% (지방세 포함)
-  const [carryLoss, setCarryLoss] = useState("0"); // 이월결손금(사용자 입력)
 
   // ===== USD/KRW 환율(자동) =====
   const [usdKrw, setUsdKrw] = useState<number | null>(null);
@@ -72,7 +71,7 @@ export default function CapitalGainsTaxPage() {
     },
     {
       id: uid(),
-      name: "예: (국내환산메모)",
+      name: "예: 원화 환산 해외주식",
       currency: "KRW",
       buy: "30000000",
       sell: "50000000",
@@ -215,17 +214,16 @@ export default function CapitalGainsTaxPage() {
 
     const totalGain = rows.reduce((sum, r) => sum + (r.gainKrw ?? 0), 0);
 
-    const carry = Math.max(0, unformat(carryLoss));
     const baseDeduction = useDeduction ? Math.max(0, unformat(deduction)) : 0;
 
-    // 과세표준 = max(0, (연간순이익 - 이월결손금 - 기본공제))
-    const taxableBase = Math.max(0, totalGain - carry - baseDeduction);
+    // 과세표준 = max(0, 해당 연도 연간 순손익 - 기본공제)
+    const taxableBase = Math.max(0, totalGain - baseDeduction);
 
     const safeTaxRate = clampNumber(Number(taxRate) || 0, 0, 100);
     const tax = taxableBase * (safeTaxRate / 100);
 
     // UI용 “실현손익(추정)” = 연간순손익 - 산출세액
-    // (공제/이월결손금은 “세금”만 줄이는 요소라서, 실현손익 자체에는 영향이 없다는 점을 계산방식에서 명확히 안내)
+    // 기본공제는 세액 계산에만 반영하며 실현손익 자체에는 영향을 주지 않음
     const netAfterTax = totalGain - tax;
 
     // 로그(설명용)
@@ -234,11 +232,6 @@ export default function CapitalGainsTaxPage() {
         label: "연간 순손익(손익통산)",
         value: totalGain,
         hint: "모든 거래의 원화 손익 합계",
-      },
-      {
-        label: "이월결손금 차감",
-        value: -carry,
-        hint: "이전 연도 손실금(사용자 입력)",
       },
       {
         label: "기본공제",
@@ -262,7 +255,6 @@ export default function CapitalGainsTaxPage() {
     return {
       rows,
       totalGain,
-      carry,
       baseDeduction,
       taxableBase,
       tax,
@@ -270,7 +262,7 @@ export default function CapitalGainsTaxPage() {
       safeTaxRate,
       log,
     };
-  }, [trades, rowToKrw, carryLoss, useDeduction, deduction, taxRate, unformat, clampNumber]);
+  }, [trades, rowToKrw, useDeduction, deduction, taxRate, unformat, clampNumber]);
 
   // ===== handlers =====
   const updateTrade = (id: string, patch: Partial<TradeRow>) => {
@@ -455,7 +447,7 @@ export default function CapitalGainsTaxPage() {
           badge="양도세 계산기"
           title="해외주식 세금이 얼마나 나올지 미리 확인하세요"
           description="매수·매도 금액과 필요 비용을 기준으로 해외주식 양도차익과 예상 세금을 계산할 수 있습니다."
-          tip="실제 신고 시에는 연간 손익 합산, 환율, 필요경비 반영 여부를 함께 확인하세요."
+          tip="같은 해 실현한 과세대상 주식의 손익만 합산하세요. 전년도 손실은 차감하지 않으며, 일반적인 국내 상장주식 매매차익은 이 계산에 넣지 않습니다."
         />
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -540,12 +532,7 @@ export default function CapitalGainsTaxPage() {
 
             <NumberInput label="세율(지방세 포함, %)" value={taxRate} setValue={setTaxRate} />
 
-            <MoneyInput
-              label="이월결손금(원) (선택)"
-              value={carryLoss}
-              setValue={setCarryLoss}
-              helper="이전 과세연도에서 넘어온 손실금액이 있다면 입력하세요. (없으면 0)"
-            />
+            <p className="text-sm leading-6 text-slate-400">손실 종목은 같은 귀속연도에 실현한 거래로 추가하세요. 전년도 손실을 이월해 이번 해 양도차익에서 빼는 방식은 적용하지 않습니다.</p>
           </div>
 
           {/* 거래 입력 */}
@@ -763,7 +750,7 @@ export default function CapitalGainsTaxPage() {
                 </div>
                 <div>2) 연간 순손익 = 모든 거래 손익 합산(손익통산)</div>
                 <div>
-                  3) 과세표준 = max(0, <b>연간 순손익 - 이월결손금 - 기본공제</b>)
+                  3) 과세표준 = max(0, <b>해당 연도 연간 순손익 - 기본공제</b>)
                 </div>
                 <div>4) 세금(추정) = 과세표준 × 세율</div>
                 <div className="text-xs text-slate-400">
@@ -810,13 +797,12 @@ export default function CapitalGainsTaxPage() {
             <div className="rounded-3xl border border-slate-800 bg-slate-900/95 shadow-xl p-6 space-y-5 text-slate-100">
               <h2 className="text-lg font-bold text-white">📌 결과 요약</h2>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <MiniCard
                   title="연간 순손익(손익통산)"
                   value={`${format(result.totalGain)}원`}
                   tone={result.totalGain >= 0 ? "green" : "red"}
                 />
-                <MiniCard title="이월결손금 차감" value={`${format(result.carry)}원`} tone="blue" />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -883,8 +869,7 @@ export default function CapitalGainsTaxPage() {
               </div>
 
               <div className="text-xs text-slate-400">
-                * “세후 실현손익(추정)”은 <b>연간 순손익 - 산출세액</b>입니다. (공제/이월결손금은
-                세금만 줄이는 요소)
+                * “세후 실현손익(추정)”은 <b>연간 순손익 - 산출세액</b>입니다. 기본공제는 세금 계산에만 반영됩니다.
               </div>
             </div>
 
@@ -895,8 +880,7 @@ export default function CapitalGainsTaxPage() {
                 - 귀속연도: <b>{taxYear}년</b> 거래 손익 기준
               </div>
               <div className="text-sm text-slate-300">
-                - 통상 신고/납부: <b>{taxYear + 1}년 5월</b> 종합소득세 신고기간(양도소득 포함)
-                기준으로 처리
+                - 신고·납부: <b>{taxYear + 1}년 5월</b> 양도소득세 확정신고(말일이 휴일이면 다음 영업일)
               </div>
               <div className="text-xs text-slate-400">
                 * 정확한 일정/요건은 개인 상황 및 공지에 따라 달라질 수 있어요.
