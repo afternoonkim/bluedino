@@ -97,6 +97,21 @@ export default function CompanyAnalysisPage() {
             compact
           />
 
+          <Link
+            href="/company-analysis/spotlight"
+            className="bd-card bd-card-padding block border-cyan-400/20 transition hover:-translate-y-0.5 hover:border-cyan-300/40"
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="bd-badge">NEW</span>
+              <span className="text-sm font-semibold text-cyan-200">요즘 관심기업 7개</span>
+            </div>
+            <h2 className="bd-title-md mt-4">AI 인프라·우주·SMR·전력기기 기업 최신 분석</h2>
+            <p className="bd-text-sub mt-3 max-w-4xl">
+              SpaceX, CoreWeave, Nebius, Cerebras, Oklo, NuScale Power, 산일전기의 최근 실적·수주·자금조달과 핵심 리스크를 따로 정리했습니다.
+            </p>
+            <div className="mt-4 text-sm font-semibold text-cyan-200">요즘 관심기업 보기 →</div>
+          </Link>
+
           <TaggedList
             title="기업분석 분류"
             description="먼저 국내기업 또는 해외기업을 고른 뒤, 상세 목록에서 기업명·티커·업종 태그로 좁혀보세요."
