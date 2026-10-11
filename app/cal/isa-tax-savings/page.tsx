@@ -6,8 +6,8 @@ import CalculatorReferenceBox, { RelatedCalculatorLinks } from "../components/Ca
 
 const canonicalPath = "/cal/isa-tax-savings";
 const pageUrl = `https://bluedino.kr${canonicalPath}`;
-const pageTitle = "ISA 절세 효과 계산기 | BlueDino";
-const pageDescription = "ISA 운용 수익에 대한 비과세·분리과세(9.9%)와 일반 계좌 배당세(15.4%)를 비교한 절세 효과 계산기";
+const pageTitle = "ISA 절세 효과 계산기 | 과세 대상 순이익·비과세 한도 비교 | BlueDino";
+const pageDescription = "ISA 과세 대상 순이익을 입력해 일반형 200만 원·서민형 400만 원 비과세와 초과분 9.9% 분리과세를 비교하세요. 일반 계좌에서도 비과세인 국내 상장주식 매매차익은 제외합니다.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -43,7 +43,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "BlueDino", item: "https://bluedino.kr" },
-    { "@type": "ListItem", position: 2, name: "투자 계산기", item: "https://bluedino.kr/cal/calculator" },
+    { "@type": "ListItem", position: 2, name: "금융 계산기", item: "https://bluedino.kr/cal" },
     { "@type": "ListItem", position: 3, name: "ISA 절세 효과 계산기", item: pageUrl },
   ],
 };
@@ -55,9 +55,9 @@ export default function Page() {
       <Script id="isa-tax-savings-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={ { __html: JSON.stringify(breadcrumbSchema) } } />
       <IsaTaxSavingsClient />
       <div className="bd-container-narrow bd-section">
-        <CalculatorReferenceBox sources={[{ label: "국세청 ISA 과세 안내", href: "https://www.nts.go.kr" }, { label: "금융위원회 개인종합자산관리계좌 안내", href: "https://www.fsc.go.kr" }, { label: "금융투자협회 ISA 상품 안내", href: "https://www.kofia.or.kr" }]} />
+        <CalculatorReferenceBox sources={[{ label: "KB증권 ISA 과세·상품별 세금 안내", href: "https://www.kbsec.com/go.able?linkcd=m05080009" }, { label: "신한투자증권 ISA 손익통산·가입 조건", href: "https://open.shinhansec.com/mobilealpha/html/FP/SB5491T01.html" }]} />
         <RelatedCalculatorLinks links={[{ label: "청년도약계좌 계산기", href: "/cal/youth-leap-account" }, { label: "청년미래적금 계산기", href: "/cal/youth-future-savings" }, { label: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit" }, { label: "IRP 세액공제 계산기", href: "/cal/irp-tax-credit" }]} />
-        <PageTrustFooter pageKind="ISA 절세 효과 계산기" updatedAt="2026-04-27" />
+        <PageTrustFooter pageKind="ISA 절세 효과 계산기" updatedAt="2026-10-11" />
       </div>
     </>
   );
