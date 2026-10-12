@@ -137,11 +137,6 @@ export default function Sidebar({
           ) : null}
         </div>
 
-        {!collapsed ? (
-          <div className="shrink-0 border-t border-slate-800 p-4 text-xs leading-5 text-slate-500">
-            메뉴를 줄이고, 목록 안에서 태그로 찾는 구조로 정리했습니다.
-          </div>
-        ) : null}
       </aside>
     </>
   );

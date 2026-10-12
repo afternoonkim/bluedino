@@ -1,4 +1,5 @@
 import { calculatorLandingData } from "@/app/cal/components/calculatorLandingData";
+import { spotlightCompanies } from "@/lib/company-analysis/spotlightCompanies";
 import { financeCategories } from "@/lib/finance/config";
 import { getIndexableFinanceRoutes } from "@/lib/finance/indexing";
 import { getFinanceEntry } from "@/lib/finance/content";
@@ -195,6 +196,28 @@ function buildCompanyFeedItems(): RssFeedItem[] {
   return [...marketItems, ...companyItems];
 }
 
+function buildSpotlightFeedItems(): RssFeedItem[] {
+  const latestUpdatedAt = spotlightCompanies.reduce(
+    (latest, company) => company.updatedAt > latest ? company.updatedAt : latest,
+    DEFAULT_UPDATED_AT,
+  );
+
+  return [
+    {
+      title: "요즘 관심기업 분석 | AI·우주·전력·SMR",
+      description: "AI 인프라, 우주, 전력기기, SMR 기업의 최근 변화와 투자 체크포인트를 비교해보세요.",
+      path: "/company-analysis/spotlight",
+      updatedAt: latestUpdatedAt,
+    },
+    ...spotlightCompanies.map((company) => ({
+      title: `${company.companyNameKo}(${company.ticker}) 주가 전망과 기업분석`,
+      description: company.summary,
+      path: `/company-analysis/spotlight/${company.slug}`,
+      updatedAt: company.updatedAt,
+    })),
+  ];
+}
+
 export function getRssFeedItems(): RssFeedItem[] {
   const items = [
     ...buildStaticFeedItems(),
@@ -204,6 +227,7 @@ export function getRssFeedItems(): RssFeedItem[] {
     ...buildStrategyFeedItems(),
     ...buildIndustryFeedItems(),
     ...buildCompanyFeedItems(),
+    ...buildSpotlightFeedItems(),
   ];
 
   const uniqueItems = Array.from(new Map(items.map((item) => [item.path, item])).values());

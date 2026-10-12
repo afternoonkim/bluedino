@@ -11,6 +11,7 @@ import {
   getCompanyArticle,
 } from "@/lib/company-analysis/data";
 import { COMPANY_CUSTOM_NOTES } from "@/lib/company-analysis/companyVariations";
+import { spotlightCompanies } from "@/lib/company-analysis/spotlightCompanies";
 import { industryHubs } from "@/lib/industry/config";
 import { contentBundles } from "@/lib/growth/contentBundles";
 import { getCompanyIndices } from "@/lib/company-analysis/companyMetadata";
@@ -44,6 +45,7 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/company-analysis": "2026-05-17",
   "/company-analysis/korea": "2026-05-17",
   "/company-analysis/global": "2026-05-17",
+  "/company-analysis/spotlight": "2026-10-11",
   "/industry": "2026-05-17",
   "/stocks": "2026-05-17",
   "/etf/compare": "2026-05-17",
@@ -63,6 +65,7 @@ const staticRoutes = [
   "/info",
   "/topics",
   "/company-analysis",
+  "/company-analysis/spotlight",
   "/cal",
   "/stocks",
   "/etf/compare",
@@ -131,6 +134,7 @@ const topicBundleRoutes = contentBundles.map((bundle) => `/topics/${bundle.slug}
  * 기업분석 상세 페이지는 충분한 설명과 주요 분류 정보가 있는 글만 사이트맵에 포함합니다.
  */
 const companyDetailRoutes = getSitemapCompanyAnalysisRoutes().map(({ market, slug }) => `/company-analysis/${market}/${slug}`);
+const spotlightDetailRoutes = spotlightCompanies.map(({ slug }) => `/company-analysis/spotlight/${slug}`);
 
 function parseDate(value: string | undefined, fallback: Date) {
   if (!value) return fallback;
@@ -183,6 +187,12 @@ function resolveLastModified(route: string, fallback: Date): Date {
     }
   }
 
+  if (route.startsWith("/company-analysis/spotlight/")) {
+    const slug = route.slice("/company-analysis/spotlight/".length);
+    const company = spotlightCompanies.find((item) => item.slug === slug);
+    if (company) return parseDate(company.updatedAt, fallback);
+  }
+
   if (route.startsWith("/company-analysis/")) {
     const [, , market, slug] = route.split("/");
     if (market && slug && market !== "korea" && market !== "global") {
@@ -214,6 +224,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...financeRoutes,
       ...companyMarketRoutes,
       ...companyDetailRoutes,
+      ...spotlightDetailRoutes,
       ...industryRoutes,
       ...topicBundleRoutes,
     ]),
