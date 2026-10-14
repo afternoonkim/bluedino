@@ -3178,8 +3178,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "복리 계산기"
       },
       {
-        "href": "/cal/savings",
-        "label": "예금·적금 계산기"
+        "href": "/cal/deposit-interest",
+        "label": "예금 이자 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -3760,8 +3760,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "복리 계산기"
       },
       {
-        "href": "/cal/savings",
-        "label": "예금·적금 계산기"
+        "href": "/cal/deposit-interest",
+        "label": "예금 이자 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -3955,8 +3955,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "복리 계산기"
       },
       {
-        "href": "/cal/savings",
-        "label": "예금·적금 계산기"
+        "href": "/cal/deposit-interest",
+        "label": "예금 이자 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -5262,10 +5262,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       {
         "href": "/cal/compound",
         "label": "복리 계산기"
-      },
-      {
-        "href": "/cal/stock-average-price",
-        "label": "주식 물타기 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -5362,14 +5358,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       {
         "href": "/cal/isa-tax-savings",
         "label": "ISA 절세 계산기"
-      },
-      {
-        "href": "/cal/asset-allocation",
-        "label": "자산배분 계산기"
-      },
-      {
-        "href": "/cal/loss-recovery",
-        "label": "손실 회복 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -5570,10 +5558,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ISA 절세 계산기"
       },
       {
-        "href": "/cal/expense-ratio",
-        "label": "ETF 보수 계산기"
-      },
-      {
         "href": "/cal/compound",
         "label": "복리 계산기"
       }
@@ -5677,10 +5661,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       {
         "href": "/cal/compound",
         "label": "복리 계산기"
-      },
-      {
-        "href": "/cal/etf-return",
-        "label": "ETF 수익률 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -5782,10 +5762,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       {
         "href": "/cal/compound",
         "label": "복리 계산기"
-      },
-      {
-        "href": "/cal/etf-return",
-        "label": "ETF 수익률 계산기"
       }
     ],
     "relatedGuideLinks": [
@@ -5883,14 +5859,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       {
         "href": "/cal/isa-tax-savings",
         "label": "ISA 절세 계산기"
-      },
-      {
-        "href": "/cal/isa-tax-savings",
-        "label": "ISA 절세 계산기"
-      },
-      {
-        "href": "/cal/fund-return",
-        "label": "펀드 수익률 계산기"
       },
       {
         "href": "/cal/compound",
