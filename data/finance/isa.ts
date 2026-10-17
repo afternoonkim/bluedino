@@ -3673,8 +3673,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ISA 기초 가이드"
       },
       {
-        "href": "/info/guide/pension-savings-basics",
-        "label": "연금저축 기초 가이드"
+        "href": "/info/guide/pension",
+        "label": "연금저축계좌 기초 가이드"
       },
       {
         "href": "/info/investment/account-tax",
@@ -3770,8 +3770,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ISA 기초 가이드"
       },
       {
-        "href": "/info/guide/cma-basics",
-        "label": "CMA 기초 가이드"
+        "href": "/finance/cma/cma-계좌란-뭐야-그냥-통장이랑-뭐가-다를까",
+        "label": "CMA 계좌와 은행 통장 차이"
       },
       {
         "href": "/info/investment/account-tax",
@@ -5270,16 +5270,12 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ISA 기초 가이드"
       },
       {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
-      },
-      {
         "href": "/info/investment/account-tax",
         "label": "계좌별 세금 구조 보기"
       },
       {
-        "href": "/info/strategy/long-term-investing",
-        "label": "장기투자 전략 보기"
+        "href": "/info/guide/long-vs-short-term",
+        "label": "장기투자와 단기투자 비교"
       }
     ],
     "faq": [
@@ -5361,10 +5357,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
       }
     ],
     "relatedGuideLinks": [
-      {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
-      },
       {
         "href": "/info/guide/isa-basics",
         "label": "ISA 기초 가이드"
@@ -5572,10 +5564,6 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ETF 기초 가이드"
       },
       {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
-      },
-      {
         "href": "/info/investment/account-tax",
         "label": "계좌별 세금 구조 보기"
       }
@@ -5673,12 +5661,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ETF 기초 가이드"
       },
       {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
-      },
-      {
-        "href": "/info/strategy/long-term-investing",
-        "label": "장기투자 전략 보기"
+        "href": "/info/guide/long-vs-short-term",
+        "label": "장기투자와 단기투자 비교"
       }
     ],
     "faq": [
@@ -5774,12 +5758,8 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ETF 기초 가이드"
       },
       {
-        "href": "/info/strategy/long-term-investing",
-        "label": "장기투자 전략 보기"
-      },
-      {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
+        "href": "/info/guide/long-vs-short-term",
+        "label": "장기투자와 단기투자 비교"
       }
     ],
     "faq": [
@@ -5871,16 +5851,12 @@ export const isaQuestions: FinanceQuestionItem[] = [
         "label": "ISA 기초 가이드"
       },
       {
-        "href": "/info/guide/isa-basics",
-        "label": "ISA 기초 가이드"
-      },
-      {
         "href": "/info/investment/account-tax",
         "label": "계좌별 세금 구조 보기"
       },
       {
-        "href": "/info/guide/fund-basics",
-        "label": "펀드 기초 가이드"
+        "href": "/info/guide/isa-benefits",
+        "label": "ISA 절세 혜택 알아보기"
       }
     ],
     "faq": [
