@@ -28,6 +28,16 @@ const nextConfig: NextConfig = {
         destination: "/cal/retirement-tax",
         permanent: true,
       },
+      {
+        source: "/finance/cma/cma-계좌-단점은-뭐가-있을까-2",
+        destination: "/finance/cma/cma-계좌-단점은-뭐가-있을까",
+        permanent: true,
+      },
+      {
+        source: "/finance/cma/cma-계좌-금리-높은-증권사는-어디일까-2",
+        destination: "/finance/cma/cma-계좌-금리-높은-증권사는-어디일까",
+        permanent: true,
+      },
     ];
   },
 };
