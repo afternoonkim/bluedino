@@ -16,6 +16,7 @@ import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 const DEFAULT_UPDATED_AT = "2026-05-17";
+const CALCULATOR_UPDATED_AT: Record<string, string> = { "youth-future-savings": "2026-10-18" };
 const FEED_TITLE = "BlueDino 금융 계산기와 투자 가이드";
 const FEED_DESCRIPTION =
   "배당·복리·대출·연금 계산기, 절세계좌 가이드, ETF 투자전략, 산업·기업분석을 실제 금융 결정을 앞두고 필요한 기준을 정리한 BlueDino 최신 콘텐츠입니다.";
@@ -60,14 +61,14 @@ function buildStaticFeedItems(): RssFeedItem[] {
       description:
         "배당 계산기, 복리 계산기, 대출이자 계산기, DSR 계산기, LTV 계산기와 ISA·IRP·연금저축·ETF 투자 가이드를 계산기와 가이드로 함께 살펴볼 수 있습니다.",
       path: "/",
-      updatedAt: DEFAULT_UPDATED_AT,
+      updatedAt: "2026-10-18",
     },
     {
       title: "금융 계산기 모음 | 배당·복리·대출·연금 계산",
       description:
         "투자와 대출, 연금 계획에 자주 필요한 계산기를 목적별로 모아 사용 흐름과 함께 비교할 수 있게 구성했습니다.",
       path: "/cal",
-      updatedAt: DEFAULT_UPDATED_AT,
+      updatedAt: "2026-10-18",
     },
     {
       title: "금융 질문 가이드 | ISA·IRP·연금저축·대출 기초 정리",
@@ -112,7 +113,7 @@ function buildCalculatorFeedItems(): RssFeedItem[] {
     title: `${calculator.title} | 사용법과 결과 해석`,
     description: calculator.description || calculator.intro,
     path: `/cal/${calculator.slug}`,
-    updatedAt: DEFAULT_UPDATED_AT,
+    updatedAt: CALCULATOR_UPDATED_AT[calculator.slug] ?? DEFAULT_UPDATED_AT,
   }));
 }
 

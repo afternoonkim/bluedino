@@ -22,9 +22,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 const DEFAULT_UPDATED_AT = "2026-05-17";
 
 const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
-  "/": "2026-05-17",
+  "/": "2026-10-18",
   "/finance": "2026-05-17",
-  "/cal": "2026-05-17",
+  "/cal": "2026-10-18",
   "/info": "2026-05-17",
   "/topics": "2026-07-05",
   "/cal/capital-gains": "2026-10-11",
@@ -35,7 +35,7 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/cal/dsr": "2026-10-05",
   "/cal/irp-tax-credit": "2026-10-09",
   "/cal/pension-tax-credit": "2026-10-09",
-  "/cal/youth-future-savings": "2026-10-08",
+  "/cal/youth-future-savings": "2026-10-18",
   "/cal/calculator": "2026-10-11",
   "/cal/ltv": "2026-10-03",
   "/cal/isa-tax-savings": "2026-10-11",
