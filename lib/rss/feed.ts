@@ -16,7 +16,13 @@ import type { CompanyAnalysisMarket } from "@/lib/company-analysis/types";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 const DEFAULT_UPDATED_AT = "2026-05-17";
-const CALCULATOR_UPDATED_AT: Record<string, string> = { "youth-future-savings": "2026-10-18" };
+const CALCULATOR_UPDATED_AT: Record<string, string> = {
+  "youth-future-savings": "2026-10-18",
+  "cma-interest": "2026-10-22",
+  "deposit-interest": "2026-10-22",
+  "parking-account": "2026-10-22",
+  "installment-savings": "2026-10-22",
+};
 const FEED_TITLE = "BlueDino 금융 계산기와 투자 가이드";
 const FEED_DESCRIPTION =
   "배당·복리·대출·연금 계산기, 절세계좌 가이드, ETF 투자전략, 산업·기업분석을 실제 금융 결정을 앞두고 필요한 기준을 정리한 BlueDino 최신 콘텐츠입니다.";

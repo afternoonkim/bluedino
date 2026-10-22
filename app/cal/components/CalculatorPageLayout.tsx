@@ -14,6 +14,9 @@ function buildDefaultInterpretation(title: string) {
   if (title.includes("주택") || title.includes("DSR") || title.includes("LTV") || title.includes("주담대")) {
     return ["대출 가능 금액만 보지 말고 취득세, 중개보수, 이사비, 비상금까지 함께 남는지 확인하세요.", "DSR·LTV 규제와 금융회사 심사 기준은 실제 한도에 큰 영향을 줍니다.", "금리가 0.5~1%p 오를 때 월 상환액이 감당 가능한지도 함께 비교하세요."];
   }
+  if (title.includes("CMA")) {
+    return ["계산 결과는 입력한 수익률이 보유 기간 동안 유지된다는 가정입니다.", "일평균 예상 수익은 총수익을 일수로 나눈 값이며 매일 지급되는 금액이 아닙니다.", "상품 유형에 따른 운용·재투자 조건과 출금 가능 시간을 함께 확인하세요."];
+  }
   if (title.includes("예금") || title.includes("적금") || title.includes("파킹")) {
     return ["세전 이자와 세후 이자를 구분해서 확인하세요.", "우대금리 조건을 실제로 충족할 수 있는지 확인해야 최종 수령액이 비슷해집니다.", "예금자보호 한도와 중도해지 이율도 함께 확인해야 합니다."];
   }
@@ -36,6 +39,9 @@ function buildDefaultMistakes(title: string) {
   if (title.includes("주택") || title.includes("DSR") || title.includes("LTV") || title.includes("주담대")) {
     return ["대출 한도만 보고 계약금을 결정하면 부대비용과 비상금이 부족할 수 있습니다.", "기존 대출 원리금을 빼지 않으면 DSR 부담을 낮게 볼 수 있습니다.", "중도상환수수료와 금리 변동 가능성을 빼고 갈아타기 손익을 판단하면 오차가 커집니다."];
   }
+  if (title.includes("CMA")) {
+    return ["일반 증권사의 CMA를 은행 예금처럼 예금자보호 대상으로 생각하지 마세요.", "현재 안내된 수익률이 보유 기간 내내 유지된다고 단정하지 마세요.", "계산기의 일평균 예상 수익을 실제 매일 입금되는 금액으로 혼동하지 마세요."];
+  }
   if (title.includes("예금") || title.includes("적금") || title.includes("파킹")) {
     return ["연 금리를 월 금리처럼 적용하면 이자가 과대 계산됩니다.", "세전 이자만 보고 상품을 비교하면 실제 수령액이 달라질 수 있습니다.", "우대금리 한도와 한도 초과 금리를 구분하지 않으면 파킹통장 수익이 다르게 보입니다."];
   }
@@ -49,20 +55,21 @@ function normalizeCalcKind(title: string) {
   if (title.includes("DSR")) return "dsr";
   if (title.includes("LTV")) return "ltv";
   if (title.includes("주담대") || title.includes("주택담보")) return "mortgage";
+  if (title.includes("예금") || title.includes("적금") || title.includes("파킹") || title.includes("CMA")) return "cash";
   if (title.includes("대출") || title.includes("이자")) return "loan";
   if (title.includes("배당")) return "dividend";
   if (title.includes("복리")) return "compound";
   if (title.includes("FIRE") || title.includes("은퇴")) return "retirement";
   if (title.includes("연금") || title.includes("IRP")) return "pension";
   if (title.includes("ISA")) return "isa";
-  if (title.includes("예금") || title.includes("적금") || title.includes("파킹") || title.includes("CMA")) return "cash";
   if (title.includes("연봉") || title.includes("실수령")) return "salary";
   return "general";
 }
 
 function buildCalculatorInputHint(title: string) {
   const kind = normalizeCalcKind(title);
-  if (kind === "cash") return "예치금, 연 금리, 보관 기간, 우대금리 한도를 먼저 넣어보세요.";
+  if (title.includes("CMA")) return "예치금, 가정 연 수익률, 보유일수를 입력하고 실제 상품 수익률을 확인하세요.";
+  if (kind === "cash") return "예치금, 연 금리, 보관 기간을 입력하고 상품별 우대금리 조건을 확인하세요.";
   if (kind === "dividend") return "보유 수량, 배당금 또는 배당수익률, 세금 조건을 먼저 확인하세요.";
   if (kind === "loan" || kind === "mortgage" || kind === "dsr" || kind === "ltv") return "대출금, 금리, 기간, 기존 부채처럼 한도와 상환액을 바꾸는 값을 먼저 넣어보세요.";
   if (kind === "pension" || kind === "isa") return "납입액, 소득 구간, 운용 기간, 세금 조건을 먼저 넣어보세요.";
@@ -82,8 +89,8 @@ function buildCalculatorQuickItems(title: string, whenToUse: string[]) {
       value: whenToUse[0] ?? "계산 결과의 총액보다 세후 금액과 월 부담을 먼저 확인하세요.",
     },
     {
-      label: "아래에서 접어둔 정보",
-      value: "계산식, 예시, FAQ, 공식 참고 기준은 필요한 경우에만 펼쳐서 확인할 수 있습니다.",
+      label: "계산 결과를 더 확인하려면",
+      value: "계산식과 예시, 자주 묻는 질문을 확인하고 실제 상품 조건과 비교하세요.",
     },
   ];
 }
@@ -96,6 +103,7 @@ function defaultRelatedGuides(title: string) {
       { label: "주택담보대출 질문 가이드", href: "/finance/mortgage-loan" },
     ];
   }
+  if (title.includes("CMA")) return [{ label: "CMA 계좌 선택 기준", href: "/finance/cma" }, { label: "파킹통장과 비교하기", href: "/finance/parking" }];
   if (title.includes("ISA")) return [{ label: "ISA 질문 가이드", href: "/finance/isa" }, { label: "계좌별 세금 구조", href: "/info/investment/account-tax" }];
   if (title.includes("IRP") || title.includes("연금")) return [{ label: "IRP 질문 가이드", href: "/finance/irp" }, { label: "연금저축 질문 가이드", href: "/finance/pension" }, { label: "은퇴 현금흐름 전략", href: "/info/strategy/retirement-income" }];
   if (title.includes("배당")) return [{ label: "배당 투자 기초", href: "/info/guide/dividend-basics" }, { label: "배당 전략", href: "/info/strategy/dividend" }];
