@@ -13,7 +13,7 @@ const sections = [
   ["ETF", "/etf/ranking", "ETF 비교에 필요한 순위와 기본 지표를 확인합니다."],
   ["투자 기초", "/info/guide", "주식·ETF·배당·복리·포트폴리오의 기본 개념을 정리합니다."],
   ["투자전략", "/info/strategy", "상황과 목표에 따라 달라지는 투자 판단 기준을 확인합니다."],
-  ["증권사 신규 가입·주식 혜택", "/finance/events", "주식 지급과 친구 초대 이벤트의 참여 조건을 확인합니다."],
+  ["앱테크 추천인 코드", "/finance/events", "앱별 초대 코드와 입력 방법을 확인합니다."],
 ] as const;
 
 export default function InfoHubPage() {

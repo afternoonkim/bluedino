@@ -4,7 +4,7 @@ import { Calculator, Landmark, TrendingUp, ArrowRight, Gift } from "lucide-react
 
 export const metadata: Metadata = {
   title: "BlueDino | 금융 계산기·금융가이드·투자정보·금융 혜택",
-  description: "CMA·배당금 계산기, ISA·IRP 가이드와 은행·증권·가상자산의 금융 앱테크 및 친구 초대 혜택을 확인하세요.",
+  description: "CMA·배당금 계산기, ISA·IRP 가이드와 앱테크 추천코드와 입력 방법을 확인하세요.",
   alternates: { canonical: "/" },
 };
 
@@ -41,7 +41,7 @@ export default function HomePage() {
         </section>
 
         <section aria-labelledby="home-benefits-heading" className="rounded-2xl border border-slate-800 bg-slate-950/40 px-4 py-5 md:px-6">
-          <div className="flex items-start gap-3"><Gift className="mt-0.5 h-5 w-5 shrink-0 text-blue-300" aria-hidden="true" /><div className="min-w-0"><h2 id="home-benefits-heading" className="text-[17px] font-bold text-white">금융 앱테크·친구 초대 혜택</h2><p className="mt-1 text-[13px] leading-6 text-slate-300">출석 체크부터 신규 가입 혜택까지, 참여 조건을 확인해 보세요.</p><Link href="/finance/events" className="mt-3 inline-flex min-h-10 items-center gap-1 text-[13px] font-semibold text-blue-200 hover:text-white">진행 중인 금융 혜택 보기 <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div></div>
+          <div className="flex items-start gap-3"><Gift className="mt-0.5 h-5 w-5 shrink-0 text-blue-300" aria-hidden="true" /><div className="min-w-0"><h2 id="home-benefits-heading" className="text-[17px] font-bold text-white">앱테크 추천인 코드</h2><p className="mt-1 text-[13px] leading-6 text-slate-300">앱별 추천인 코드와 입력 방법을 한눈에 확인하세요.</p><Link href="/finance/events" className="mt-3 inline-flex min-h-10 items-center gap-1 text-[13px] font-semibold text-blue-200 hover:text-white">추천인 코드 모음 보기 <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></div></div>
         </section>
 
         <section>

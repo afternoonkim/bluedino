@@ -1,31 +1,22 @@
 import type { Metadata } from "next";
-import { Gift } from "lucide-react";
-import { publishedEvents } from "@/lib/finance/events";
-import EventList from "@/components/finance/EventList";
+import ReferralCodeList from "@/components/finance/ReferralCodeList";
 
 export const metadata: Metadata = {
- title: "금융 혜택·이벤트 | 은행·증권·가상자산 | BlueDino",
- description: "카카오뱅크·케이뱅크·토스·빗썸·업비트 등 7개 금융사의 공식 이벤트와 친구 초대 혜택을 확인하세요.",
- alternates: { canonical: "/finance/events" },
+  title: "앱테크 추천인 코드 모음 | 코드 복사·가입 방법 | BlueDino",
+  description: "빗썸, 케이뱅크 알파카드, 카카오페이증권 친구 초대 코드와 입력 방법, 바로가기 링크를 한 화면에서 확인하세요.",
+  alternates: { canonical: "/finance/events" },
 };
-export const revalidate = 3600;
 
-export default function FinanceEventsPage() {
- const events = publishedEvents();
- return (
-  <main className="bd-page">
-   <div className="bd-container mx-auto max-w-4xl space-y-5 pb-8">
-    <header className="space-y-2 py-3 md:py-6">
-     <div className="flex items-center gap-2 text-sm font-semibold text-blue-300">
-      <Gift className="h-4 w-4" aria-hidden="true" /> 금융 혜택
-     </div>
-     <h1 className="text-[22px] font-bold tracking-tight text-white md:text-3xl">지금 확인할 금융 이벤트</h1>
-     <p className="max-w-2xl text-[14px] leading-6 text-slate-300">
-      친구 초대·신규 가입·출석 체크·간편 참여 혜택을 모았어요.
-     </p>
-    </header>
-    <EventList events={events} />
-   </div>
-  </main>
- );
+export default function BenefitsPage() {
+  return (
+    <main className="bd-page">
+      <div className="bd-container mx-auto max-w-3xl space-y-4 pb-8">
+        <header className="space-y-1 py-3 md:py-6">
+          <h1 className="text-[22px] font-bold tracking-tight text-white md:text-3xl">앱테크 추천인 코드</h1>
+          <p className="text-[13px] leading-6 text-slate-300">코드를 복사하고, 가입할 때 입력 방법을 확인하세요.</p>
+        </header>
+        <ReferralCodeList />
+      </div>
+    </main>
+  );
 }

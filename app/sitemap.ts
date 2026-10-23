@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { publishedEvents } from "@/lib/finance/events";
 import { getFinanceEntry } from "@/lib/finance/content";
 import { getIndexableFinanceRoutes } from "@/lib/finance/indexing";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
@@ -26,7 +25,6 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/": "2026-10-18",
   "/finance": "2026-05-17",
   "/finance/events": "2026-10-23",
-  "/finance/events/guide": "2026-10-23",
   "/cal": "2026-10-18",
   "/info": "2026-05-17",
   "/topics": "2026-07-05",
@@ -70,7 +68,6 @@ const staticRoutes = [
   "/",
   "/finance",
   "/finance/events",
-  "/finance/events/guide",
   "/info",
   "/topics",
   "/company-analysis",
@@ -162,11 +159,6 @@ function getArticleLastModified(article: unknown, fallback: Date): Date {
 }
 
 function resolveLastModified(route: string, fallback: Date): Date {
-  if (route.startsWith("/finance/events/")) {
-    const slug = route.slice("/finance/events/".length);
-    const event = publishedEvents().find((item) => item.slug === slug);
-    if (event) return parseDate(event.verifiedAt, fallback);
-  }
 
   if (route.startsWith("/finance/")) {
     const [, , category, slug] = route.split("/");
@@ -228,7 +220,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categoryRoutes = financeCategories.map((category) => category.basePath);
   const financeRoutes = getIndexableFinanceRoutes().map(({ category, slug }) => `/finance/${category}/${slug}`);
-  const eventRoutes = publishedEvents().map((event) => `/finance/events/${event.slug}`);
 
   const allRoutes = Array.from(
     new Set([
@@ -237,7 +228,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...strategyRoutes,
       ...categoryRoutes,
       ...financeRoutes,
-      ...eventRoutes,
       ...companyMarketRoutes,
       ...companyDetailRoutes,
       ...spotlightDetailRoutes,
