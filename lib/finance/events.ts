@@ -11,6 +11,25 @@ export type FinanceEvent = {
 // 친구 초대 코드는 공개 웹 게시 허용이 확인된 경우에만 사용합니다.
 export const financeEvents:FinanceEvent[] = [
  {
+  slug:"kakaobank-mirae-first-account-2026",company:"카카오뱅크",category:"은행",participationType:"신규 가입",
+  title:"카카오뱅크에서 미래에셋증권 첫 계좌 개설",benefit:"첫 계좌 개설 축하금 1만원",
+  endsAt:"2026-12-31",verifiedAt:"2026-10-23",hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["미래에셋증권 계좌를 이전에 개설한 적 없는 최초 신규 고객","카카오뱅크에서 미래에셋증권 다이렉트 주식계좌를 개설하는 고객"],
+  steps:["카카오뱅크 공식 증권계좌 개설 안내에서 대상 조건을 확인해요.","카카오뱅크 앱에서 미래에셋증권 주식계좌를 최초로 개설해요.","계좌 상태가 정상인지와 개설축하금 지급 여부를 확인해요."],
+  cautions:["첫 계좌 개설 축하금 1만원은 2026년 12월 31일까지의 신규 개설 혜택입니다.","추가로 안내되는 투자지원금 2만원은 국내주식 매수에 사용해야 하며 기한 내 사용하지 않으면 회수됩니다. 기본 축하금과 구분하세요.","다른 신규 개설 행사와 보상이 중복되지 않을 수 있습니다.","공식 페이지에서 상세 조건과 변경 여부를 확인하세요."],
+  officialUrl:"https://www.kakaobank.com/products/miraeStockAccount"
+ },
+ {
+  slug:"kbank-samsung-first-account-2026",company:"케이뱅크",category:"은행",participationType:"신규 가입",
+  title:"케이뱅크에서 삼성증권 첫 계좌 개설",benefit:"신규 개설 후 행사 신청 시 투자지원금 3만원",
+  endsAt:"2026-10-30",verifiedAt:"2026-10-23",hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["삼성증권 최초 신규 계좌 개설 고객","케이뱅크를 통해 이벤트 기간 내 계좌를 개설하고 삼성증권 앱에서 대상 이벤트를 신청하는 고객"],
+  steps:["케이뱅크 공식 안내에서 최초 신규 고객 자격을 확인해요.","이벤트 기한 내 케이뱅크 경유 삼성증권 계좌를 개설해요.","삼성증권 mPOP 앱에서 국내주식 고객감사 이벤트를 신청해요.","3만원 신청 혜택과 별도로 안내된 추가 실적 조건을 구분해 확인해요."],
+  cautions:["투자지원금 최대 10만원 가운데 기본 신청 혜택은 3만원이며, 나머지 7만원은 100만원 이상 매수와 잔고 유지 조건을 충족해야 합니다.","케이뱅크 별도 현금 최대 2만원도 잔고 조건에 따라 지급됩니다.","이벤트 신청이 필요하며 계좌 개설만으로 모든 혜택을 받을 수 없습니다.","투자지원금의 출금·사용 제한은 공식 안내를 확인하세요."],
+  officialUrl:"https://www.kbanknow.com/web/product/invest/samsung"
+ },
+
+ {
   slug:"bithumb-friend-invite",company:"빗썸",category:"가상자산",participationType:"친구 초대",
   title:"빗썸 친구 초대: 신규 가입·계좌 연결 혜택",benefit:"계좌 연결 시 1만원, 거래 시 추가 4만원(신규 초대받은 고객)",
   verifiedAt:"2026-10-23",hasRequiredTrade:false,hasRequiredPayment:false,
