@@ -2,7 +2,7 @@ export type EventCategory = "은행" | "증권" | "가상자산";
 export type ParticipationType = "친구 초대" | "신규 가입" | "출석 체크" | "간편 참여";
 export type FinanceEvent = {
  slug:string;company:string;category:EventCategory;participationType:ParticipationType;
- title:string;benefit:string;endsAt?:string;verifiedAt:string;
+ title:string;benefit:string;endsAt?:string;verifiedAt:string;reviewBy?:string;
  audience:string[];steps:string[];cautions:string[];officialUrl?:string;sourceType?:"user-supplied-app-screen"|"official-web";
  referralUrl?:string;referralAllowed?:boolean;
  hasRequiredTrade:boolean;hasRequiredPayment:boolean;
@@ -10,6 +10,19 @@ export type FinanceEvent = {
 // 대출·신용카드 발급 및 이용 실적·고액 거래 유도 이벤트는 등록하지 않습니다.
 // 친구 초대 코드는 공개 웹 게시 허용이 확인된 경우에만 사용합니다.
 export const financeEvents:FinanceEvent[] = [
+ {
+  slug:"kbank-alpha-card-friend-invite-2026",
+  company:"케이뱅크",category:"은행",participationType:"친구 초대",
+  title:"청소년 알파카드 친구 초대하면 서로 5,000원",
+  benefit:"초대인·발급받는 친구 각각 5,000원(조건 충족 시)",
+  verifiedAt:"2026-10-23",reviewBy:"2026-10-30",sourceType:"user-supplied-app-screen",
+  hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["만 14세 이상 만 19세 미만의 케이뱅크 알파(ALPHA) 가입 및 알파카드 발급 대상자","초대 코드를 발급받고 공유할 수 있는 초대인과 신규 카드를 발급하는 친구"],
+  steps:["케이뱅크 알파카드 친구 초대 이벤트의 대상과 최신 지급 조건을 확인해요.","초대받은 친구가 케이뱅크 앱에서 알파카드 발급을 신청해요.","발급 과정 마지막 단계에서 초대인의 코드를 입력해요. 화면을 닫으면 다시 입력하지 못할 수 있으니 미리 확인해요.","카드 발급 및 이벤트의 지급 조건을 충족한 뒤 두 사람의 보상을 확인해요."],
+  cautions:["이 이벤트는 성인이 아니라 만 14세 이상 만 19세 미만 청소년을 대상으로 합니다.","제공된 앱 화면에는 초대인과 초대받은 사람 각각 5,000원 지급 및 초대 횟수 제한 없음이라고 안내되어 있습니다.","발급 외 최초 결제 등의 추가 지급 조건과 행사 종료일은 제공된 화면만으로 확정할 수 없어 앱 약관 재확인이 필요합니다.","초대 코드의 상업용 공개 웹사이트 게시 허용 여부는 확인되지 않았으므로 BlueDino는 개인 추천 코드를 게시하지 않습니다.","케이뱅크 공식 알파카드 상품 소개와 친구 초대 이벤트의 조건은 서로 다를 수 있습니다."],
+  officialUrl:"https://www.kbanknow.com/web/product/card/alpha-card"
+ },
+
  {
   slug:"kakaopay-securities-2026-marriage-stock-gift",
   company:"카카오페이증권",category:"증권",participationType:"간편 참여",
@@ -111,5 +124,5 @@ export const financeEvents:FinanceEvent[] = [
 export const targetCompanies = ["카카오페이증권","카카오뱅크","케이뱅크","토스증권","토스뱅크","빗썸","업비트"] as const;
 export function publishedEvents(now=new Date()){
  const date=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(now);
- return financeEvents.filter(e=>e.verifiedAt && (e.officialUrl?.startsWith("https://") || e.sourceType==="user-supplied-app-screen") && (!e.endsAt||e.endsAt>=date) && !e.hasRequiredPayment && !e.hasRequiredTrade);
+ return financeEvents.filter(e=>e.verifiedAt && (e.officialUrl?.startsWith("https://") || e.sourceType==="user-supplied-app-screen") && (!e.endsAt||e.endsAt>=date) && (!e.reviewBy||e.reviewBy>=date) && !e.hasRequiredPayment && !e.hasRequiredTrade);
 }
