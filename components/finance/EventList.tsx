@@ -7,7 +7,7 @@ const filters = ["전체", "친구 초대", "신규 가입", "출석 체크", "�
 export default function EventList({events}:{events:FinanceEvent[]}) {
  const [filter,setFilter]=useState<(typeof filters)[number]>("전체");
  const [query,setQuery]=useState("");
- const shown=useMemo(()=>events.filter(e=>(filter==="전체"||(e.participationType===filter)) && [e.company,e.title,e.benefit].join(" ").toLowerCase().includes(query.trim().toLowerCase())).sort((a,b)=>a.endsAt.localeCompare(b.endsAt)),[events,filter,query]);
+ const shown=useMemo(()=>events.filter(e=>(filter==="전체"||(e.participationType===filter)) && [e.company,e.title,e.benefit].join(" ").toLowerCase().includes(query.trim().toLowerCase())).sort((a,b)=>(a.endsAt??"9999-12-31").localeCompare(b.endsAt??"9999-12-31")),[events,filter,query]);
  return <section aria-label="금융 이벤트 목록" className="space-y-3">
   <div className="relative"><Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" aria-hidden="true"/><label htmlFor="event-search" className="sr-only">금융사나 혜택 검색</label><input id="event-search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="금융사·혜택 검색" className="min-h-10 w-full rounded-xl border border-slate-700 bg-slate-950/70 py-2 pl-10 pr-3 text-[14px] text-white outline-none placeholder:text-slate-500 focus:border-blue-400"/></div>
   <div className="flex gap-2 overflow-x-auto pb-1" role="group" aria-label="이벤트 분류">{filters.map(f=><button key={f} type="button" aria-pressed={filter===f} onClick={()=>setFilter(f)} className={`min-h-10 shrink-0 rounded-full border px-3 text-[13px] font-semibold ${filter===f?"border-blue-400/50 bg-[#1E3A5F] text-white":"border-slate-700 bg-slate-950/50 text-slate-300"}`}>{f}</button>)}</div>

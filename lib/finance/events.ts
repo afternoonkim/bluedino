@@ -5,6 +5,7 @@ export type FinanceEvent = {
  title:string;benefit:string;endsAt?:string;verifiedAt:string;reviewBy?:string;
  audience:string[];steps:string[];cautions:string[];officialUrl?:string;sourceType?:"user-supplied-app-screen"|"official-web";
  referralUrl?:string;referralAllowed?:boolean;
+ referralEvidence?:string;
  hasRequiredTrade:boolean;hasRequiredPayment:boolean;
 };
 // 대출·신용카드 발급 및 이용 실적·고액 거래 유도 이벤트는 등록하지 않습니다.
@@ -50,7 +51,7 @@ export const financeEvents:FinanceEvent[] = [
   slug:"bithumb-daily-roulette-2026",company:"빗썸",category:"가상자산",participationType:"간편 참여",
   title:"빗썸 100만 룰렛: 매일 포인트 추첨",
   benefit:"10·15·20·25·500포인트 등 랜덤 지급, 100만 포인트는 일 최대 1명 추첨",
-  verifiedAt:"2026-10-23",sourceType:"user-supplied-app-screen",hasRequiredTrade:false,hasRequiredPayment:false,
+  verifiedAt:"2026-10-23",reviewBy:"2026-10-30",sourceType:"user-supplied-app-screen",hasRequiredTrade:false,hasRequiredPayment:false,
   audience:["빗썸 앱에서 룰렛 티켓을 보유한 참여 가능 고객","룰렛 참여 조건 및 티켓 획득 방법은 앱 안내에서 확인해야 해요."],
   steps:["빗썸 앱의 혜택 메뉴에서 '100만 룰렛'을 확인해요.","사용할 수 있는 티켓이 있는지 확인해요.","티켓이 있으면 룰렛을 돌리고 포인트 지급 결과를 확인해요.","추가 티켓은 회원 등급별 거래 미션 등으로 받을 수 있으므로 별도 조건을 확인해요."],
   cautions:["스크린샷상 100만 포인트는 매일 최대 1명에게 확률적으로 지급됩니다. 누구나 100만 포인트를 받는 이벤트가 아니에요.","이미지를 촬영한 시점에는 남은 티켓이 0장이었으며, 기본 티켓이 매일 자동으로 지급되는지는 확인되지 않았어요.","추가 티켓을 위한 거래 미션이 있지만 포인트를 받기 위해 무리하게 가상자산을 거래하는 것은 권하지 않아요.","룰렛 포인트는 빗썸 포인트샵의 가상자산 교환에 사용할 수 있으나 세부 교환 조건과 가상자산 가격 변동을 확인하세요.","종료일 및 실제 참여 가능 상태는 빗썸 앱에서 재확인해야 합니다."],
@@ -95,7 +96,7 @@ export const financeEvents:FinanceEvent[] = [
  {
   slug:"kakaobank-mirae-first-account-2026",company:"카카오뱅크",category:"은행",participationType:"신규 가입",
   title:"카카오뱅크에서 미래에셋증권 첫 계좌 개설",benefit:"첫 계좌 개설 축하금 1만원",
-  endsAt:"2026-12-31",verifiedAt:"2026-10-23",hasRequiredTrade:false,hasRequiredPayment:false,
+  endsAt:"2026-12-31",verifiedAt:"2026-10-23",reviewBy:"2026-10-30",hasRequiredTrade:false,hasRequiredPayment:false,
   audience:["미래에셋증권 계좌를 이전에 개설한 적 없는 최초 신규 고객","카카오뱅크에서 미래에셋증권 다이렉트 주식계좌를 개설하는 고객"],
   steps:["카카오뱅크 공식 증권계좌 개설 안내에서 대상 조건을 확인해요.","카카오뱅크 앱에서 미래에셋증권 주식계좌를 최초로 개설해요.","계좌 상태가 정상인지와 개설축하금 지급 여부를 확인해요."],
   cautions:["첫 계좌 개설 축하금 1만원은 2026년 12월 31일까지의 신규 개설 혜택입니다.","추가로 안내되는 투자지원금 2만원은 국내주식 매수에 사용해야 하며 기한 내 사용하지 않으면 회수됩니다. 기본 축하금과 구분하세요.","다른 신규 개설 행사와 보상이 중복되지 않을 수 있습니다.","공식 페이지에서 상세 조건과 변경 여부를 확인하세요."],
@@ -125,4 +126,34 @@ export const targetCompanies = ["카카오페이증권","카카오뱅크","케�
 export function publishedEvents(now=new Date()){
  const date=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(now);
  return financeEvents.filter(e=>e.verifiedAt && (e.officialUrl?.startsWith("https://") || e.sourceType==="user-supplied-app-screen") && (!e.endsAt||e.endsAt>=date) && (!e.reviewBy||e.reviewBy>=date) && !e.hasRequiredPayment && !e.hasRequiredTrade);
+}
+
+// 공개 추천 허용 증빙이 있을 때만 개인 초대 링크가 사용됩니다.
+export function approvedReferralUrl(event:FinanceEvent):string|undefined{
+ if(!event.referralAllowed || !event.referralEvidence?.trim() || !event.referralUrl) return undefined;
+ try{
+  const url=new URL(event.referralUrl);
+  return url.protocol==="https:" ? url.href : undefined;
+ }catch{return undefined;}
+}
+export function eventDestination(event:FinanceEvent):{url:string;kind:"referral"|"official"}|undefined{
+ const referral=approvedReferralUrl(event);
+ if(referral)return {url:referral,kind:"referral"};
+ if(!event.officialUrl)return undefined;
+ try{
+  const url=new URL(event.officialUrl);
+  return url.protocol==="https:" ? {url:url.href,kind:"official"} : undefined;
+ }catch{return undefined;}
+}
+export function eventReviewReport(now=new Date()){
+ const today=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(now);
+ return financeEvents.map(e=>({
+  slug:e.slug,company:e.company,
+  state:e.hasRequiredPayment||e.hasRequiredTrade?"excluded":
+   e.endsAt && e.endsAt<today?"expired":
+   e.reviewBy && e.reviewBy<today?"review-overdue":"active",
+  deadline:e.endsAt??null,reviewBy:e.reviewBy??null,
+  hasDestination:Boolean(eventDestination(e)),
+  referralApproved:Boolean(approvedReferralUrl(e))
+ }));
 }
