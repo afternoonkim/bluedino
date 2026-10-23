@@ -11,6 +11,25 @@ export type FinanceEvent = {
 // 친구 초대 코드는 공개 웹 게시 허용이 확인된 경우에만 사용합니다.
 export const financeEvents:FinanceEvent[] = [
  {
+  slug:"bithumb-daily-roulette-2026",company:"빗썸",category:"가상자산",participationType:"간편 참여",
+  title:"빗썸 100만 룰렛: 매일 포인트 추첨",
+  benefit:"10·15·20·25·500포인트 등 랜덤 지급, 100만 포인트는 일 최대 1명 추첨",
+  verifiedAt:"2026-10-23",sourceType:"user-supplied-app-screen",hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["빗썸 앱에서 룰렛 티켓을 보유한 참여 가능 고객","룰렛 참여 조건 및 티켓 획득 방법은 앱 안내에서 확인해야 해요."],
+  steps:["빗썸 앱의 혜택 메뉴에서 '100만 룰렛'을 확인해요.","사용할 수 있는 티켓이 있는지 확인해요.","티켓이 있으면 룰렛을 돌리고 포인트 지급 결과를 확인해요.","추가 티켓은 회원 등급별 거래 미션 등으로 받을 수 있으므로 별도 조건을 확인해요."],
+  cautions:["스크린샷상 100만 포인트는 매일 최대 1명에게 확률적으로 지급됩니다. 누구나 100만 포인트를 받는 이벤트가 아니에요.","이미지를 촬영한 시점에는 남은 티켓이 0장이었으며, 기본 티켓이 매일 자동으로 지급되는지는 확인되지 않았어요.","추가 티켓을 위한 거래 미션이 있지만 포인트를 받기 위해 무리하게 가상자산을 거래하는 것은 권하지 않아요.","룰렛 포인트는 빗썸 포인트샵의 가상자산 교환에 사용할 수 있으나 세부 교환 조건과 가상자산 가격 변동을 확인하세요.","종료일 및 실제 참여 가능 상태는 빗썸 앱에서 재확인해야 합니다."],
+ },
+ {
+  slug:"bithumb-daily-checkin-oct-2026",company:"빗썸",category:"가상자산",participationType:"출석 체크",
+  title:"빗썸 매일매일 출석 체크",
+  benefit:"기본 출석 10P, 연속 출석 보너스 최대 1,000P",
+  endsAt:"2026-10-31",verifiedAt:"2026-10-23",sourceType:"user-supplied-app-screen",hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["빗썸 앱에서 2026년 10월 출석 체크 혜택에 참여 가능한 고객"],
+  steps:["빗썸 앱 혜택에서 '매일매일 출석 체크'를 찾아요.","매일 00시~24시 사이 출석 체크에 참여해요.","기본 출석 포인트와 연속 7·14·21일 달성 보너스를 확인해요.","한 달 연속 출석 조건을 충족하면 1,000P 보너스 조건을 확인해요."],
+  cautions:["첨부된 2026년 10월 출석표 기준으로 기본 출석은 10P, 연속 출석에 따른 보너스는 50P·100P·200P·1,000P로 표시돼요.","표의 '내일부터 매일오면 +1,070P'는 해당 사용자의 출석 상황에 따른 예상치로 모든 고객에게 지급되는 금액은 아니에요.","포인트는 출석 시 즉시 지급된다고 안내되지만, 포인트샵에서 가상자산 교환 조건을 확인해야 해요.","10월 출석표는 10월 31일 이후 진행 중 목록에서 제외됩니다. 다음 달 행사는 별도 검증이 필요해요."],
+ },
+
+ {
   slug:"kakaopay-securities-channel-friend-samsung-2026",
   company:"카카오페이증권",category:"증권",participationType:"간편 참여",
   title:"카카오페이증권 카카오톡 채널 친구 추가하고 삼성전자 1주 추첨",
