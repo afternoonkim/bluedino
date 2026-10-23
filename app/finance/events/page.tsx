@@ -15,7 +15,7 @@ export default function FinanceEventsPage() {
    <header className="space-y-2 py-3 md:py-6">
      <div className="flex items-center gap-2 text-sm font-semibold text-blue-300"><Gift className="h-4 w-4" aria-hidden="true" /> 금융 혜택</div>
      <h1 className="text-[22px] font-bold tracking-tight text-white md:text-3xl">지금 확인할 금융 이벤트</h1>
-     <p className="max-w-2xl text-[14px] leading-6 text-slate-300">은행·증권·가상자산 이벤트를 한곳에서 확인하세요. 받을 수 있는 혜택과 참여 조건을 먼저 알려드립니다.</p>
+     <p className="max-w-2xl text-[14px] leading-6 text-slate-300">친구 초대·신규 가입·출석 체크·간편 참여 혜택을 모았어요. 비용이나 불필요한 거래 부담이 있는 이벤트는 제외합니다.</p>
    </header>
    <EventList events={events}/>
    <section className="rounded-2xl border border-slate-800 bg-slate-950/40 px-4 py-4">
