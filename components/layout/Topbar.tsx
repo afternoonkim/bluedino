@@ -1,22 +1,18 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 const navItems = [
   { href: "/cal", label: "계산기" },
   { href: "/finance", label: "금융가이드" },
   { href: "/info", label: "투자정보" },
+  { href: "/finance/events", label: "금융 혜택" },
 ];
-
 function active(pathname: string, href: string) {
-  if (href === "/info") {
-    return pathname.startsWith("/info") || pathname.startsWith("/topics") || pathname.startsWith("/company-analysis") || pathname.startsWith("/industry") || pathname.startsWith("/stocks") || pathname.startsWith("/etf");
-  }
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (href === "/finance") return pathname === "/finance" || (pathname.startsWith("/finance/") && !pathname.startsWith("/finance/events"));
+  if (href === "/info") return ["/info", "/topics", "/company-analysis", "/industry", "/stocks", "/etf"].some(p => pathname === p || pathname.startsWith(p + "/"));
+  return pathname === href || pathname.startsWith(href + "/");
 }
-
 export default function Topbar() {
   const pathname = usePathname();
   return (
@@ -30,15 +26,13 @@ export default function Topbar() {
           {navItems.map((item) => {
             const isActive = active(pathname, item.href);
             return (
-              <Link key={item.href} href={item.href} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${isActive ? "bg-[#1E3A5F] text-slate-100 ring-1 ring-blue-300/20" : "text-slate-300 hover:bg-slate-900 hover:text-white"}`}>
+              <Link key={item.href} href={item.href} aria-current={isActive ? "page" : undefined} className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${isActive ? "bg-[#1E3A5F] text-white ring-1 ring-blue-300/20" : "text-slate-300 hover:bg-slate-900 hover:text-white"}`}>
                 {item.label}
               </Link>
             );
           })}
         </nav>
-        <Link href="/cal" className="hidden rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-100 transition hover:border-blue-400/40 hover:text-blue-200 sm:inline-flex md:hidden">
-          계산기 찾기
-        </Link>
+        <Link href="/finance/events" className="inline-flex rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs font-semibold text-white transition hover:border-blue-400/40 sm:text-sm md:hidden">금융 혜택</Link>
       </div>
     </header>
   );
