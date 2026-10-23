@@ -11,6 +11,19 @@ export type FinanceEvent = {
 // 친구 초대 코드는 공개 웹 게시 허용이 확인된 경우에만 사용합니다.
 export const financeEvents:FinanceEvent[] = [
  {
+  slug:"kakaopay-securities-random-stock-invite-2026",
+  company:"카카오페이증권",category:"증권",participationType:"친구 초대",
+  title:"친구 초대하고 랜덤 주식 뽑기",
+  benefit:"추첨 시 100원~최대 100만원 상당 랜덤 주식",
+  endsAt:"2026-12-31",verifiedAt:"2026-10-23",
+  sourceType:"user-supplied-app-screen",
+  hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["만 19세 이상 카카오페이증권 고객","기존 주식 거래 이력에 따라 참여 방법이 다를 수 있는 고객"],
+  steps:["카카오페이증권 앱에서 랜덤 주식 뽑기 이벤트를 열어요.","최초 랜덤 주식 뽑기 대상이라면 앱에서 해당 기회를 먼저 사용해요.","앱의 '친구 초대하고 주식 뽑기' 메뉴를 통해 친구에게 초대 링크를 보내요.","친구가 초대 이벤트 페이지에 방문하고 초대가 인정되면 추가 뽑기 기회가 주어질 수 있어요."],
+  cautions:["이벤트 기간은 첨부된 카카오페이증권 앱 화면 기준 2026년 8월 12일부터 12월 31일까지예요. 사전 예고 없이 변경·중단될 수 있어요.","100원~100만원은 랜덤 주식의 보상 범위로 특정 주식이나 최대 금액 당첨을 보장하지 않아요.","비회원 친구는 회원가입 이후 초대가 인정될 수 있고, 초대받은 친구의 이벤트 페이지 방문 확인이 필요해요.","최초 뽑기 기회와 추가 친구 초대 기회는 기존 주식 거래 이력에 따라 다르게 적용돼요.","개인 초대 링크의 공개 웹사이트 게시 허용 여부는 확인되지 않아 링크를 제공하지 않아요.","현재 공개된 공식 웹 이벤트 주소를 확인하지 못했으므로 카카오페이증권 앱에서 직접 최신 조건을 확인해 주세요."]
+ },
+
+ {
   slug:"kakaobank-mirae-first-account-2026",company:"카카오뱅크",category:"은행",participationType:"신규 가입",
   title:"카카오뱅크에서 미래에셋증권 첫 계좌 개설",benefit:"첫 계좌 개설 축하금 1만원",
   endsAt:"2026-12-31",verifiedAt:"2026-10-23",hasRequiredTrade:false,hasRequiredPayment:false,
@@ -42,5 +55,5 @@ export const financeEvents:FinanceEvent[] = [
 export const targetCompanies = ["카카오페이증권","카카오뱅크","케이뱅크","토스증권","토스뱅크","빗썸","업비트"] as const;
 export function publishedEvents(now=new Date()){
  const date=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(now);
- return financeEvents.filter(e=>e.verifiedAt && e.officialUrl.startsWith("https://") && (!e.endsAt||e.endsAt>=date) && !e.hasRequiredPayment && !e.hasRequiredTrade);
+ return financeEvents.filter(e=>e.verifiedAt && (e.officialUrl?.startsWith("https://") || e.sourceType==="user-supplied-app-screen") && (!e.endsAt||e.endsAt>=date) && !e.hasRequiredPayment && !e.hasRequiredTrade);
 }
