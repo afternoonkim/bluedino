@@ -3,7 +3,7 @@ export type ParticipationType = "친구 초대" | "신규 가입" | "출석 체�
 export type FinanceEvent = {
  slug:string;company:string;category:EventCategory;participationType:ParticipationType;
  title:string;benefit:string;endsAt?:string;verifiedAt:string;
- audience:string[];steps:string[];cautions:string[];officialUrl:string;
+ audience:string[];steps:string[];cautions:string[];officialUrl?:string;sourceType?:"user-supplied-app-screen"|"official-web";
  referralUrl?:string;referralAllowed?:boolean;
  hasRequiredTrade:boolean;hasRequiredPayment:boolean;
 };
@@ -11,16 +11,30 @@ export type FinanceEvent = {
 // 친구 초대 코드는 공개 웹 게시 허용이 확인된 경우에만 사용합니다.
 export const financeEvents:FinanceEvent[] = [
  {
+  slug:"kakaopay-securities-channel-friend-samsung-2026",
+  company:"카카오페이증권",category:"증권",participationType:"간편 참여",
+  title:"카카오페이증권 카카오톡 채널 친구 추가하고 삼성전자 1주 추첨",
+  benefit:"10명 추첨, 삼성전자 1주",
+  endsAt:"2026-10-31",verifiedAt:"2026-10-23",
+  sourceType:"user-supplied-app-screen",hasRequiredTrade:false,hasRequiredPayment:false,
+  audience:["이벤트 페이지에서 카카오페이증권 카카오톡 채널 친구 추가에 동의하는 고객","이전에 해당 채널 친구 추가 동의를 완료한 고객은 참여 불가"],
+  steps:["카카오페이증권 앱에서 '카카오톡 친구 하면 주식 드려요' 이벤트를 찾아요.","친구 추가하기 버튼을 눌러 채널 친구 추가에 동의하면 응모가 완료돼요.","11월 10일 개별 당첨 안내를 확인해요.","당첨된 경우 카카오페이증권 주식계좌 개설 및 주식 약정을 진행해 수령해요."],
+  cautions:["응모 기간은 2026년 9월 1일부터 10월 31일까지입니다.","삼성전자 1주는 10명을 추첨해 지급하며, 참가자 전원 지급이 아닙니다.","이미 채널 친구 추가 동의를 완료한 고객은 참여할 수 없습니다.","당첨 통지는 11월 10일 예정이며, 주식은 안내된 수령 기한까지 받아야 합니다.","카카오페이증권 채널 차단·알림 차단 시 당첨 안내를 놓칠 수 있습니다.","해당 행사는 친구 초대 추천 보상이 없는 일반 간편 참여 이벤트입니다.","공식 외부 웹 참여 링크는 확인되지 않았으므로 앱에서 직접 확인해 주세요."]
+ },
+
+ {
   slug:"kakaopay-securities-random-stock-invite-2026",
   company:"카카오페이증권",category:"증권",participationType:"친구 초대",
   title:"친구 초대하고 랜덤 주식 뽑기",
   benefit:"추첨 시 100원~최대 100만원 상당 랜덤 주식",
   endsAt:"2026-12-31",verifiedAt:"2026-10-23",
   sourceType:"user-supplied-app-screen",
+  referralUrl:"https://kko.kakao.com/P_FTF_SEC_2608V1?invite_code=0RXWXVC70TBD7&sb=y",
+  referralAllowed:false,
   hasRequiredTrade:false,hasRequiredPayment:false,
   audience:["만 19세 이상 카카오페이증권 고객","기존 주식 거래 이력에 따라 참여 방법이 다를 수 있는 고객"],
   steps:["카카오페이증권 앱에서 랜덤 주식 뽑기 이벤트를 열어요.","최초 랜덤 주식 뽑기 대상이라면 앱에서 해당 기회를 먼저 사용해요.","앱의 '친구 초대하고 주식 뽑기' 메뉴를 통해 친구에게 초대 링크를 보내요.","친구가 초대 이벤트 페이지에 방문하고 초대가 인정되면 추가 뽑기 기회가 주어질 수 있어요."],
-  cautions:["이벤트 기간은 첨부된 카카오페이증권 앱 화면 기준 2026년 8월 12일부터 12월 31일까지예요. 사전 예고 없이 변경·중단될 수 있어요.","100원~100만원은 랜덤 주식의 보상 범위로 특정 주식이나 최대 금액 당첨을 보장하지 않아요.","비회원 친구는 회원가입 이후 초대가 인정될 수 있고, 초대받은 친구의 이벤트 페이지 방문 확인이 필요해요.","최초 뽑기 기회와 추가 친구 초대 기회는 기존 주식 거래 이력에 따라 다르게 적용돼요.","개인 초대 링크의 공개 웹사이트 게시 허용 여부는 확인되지 않아 링크를 제공하지 않아요.","현재 공개된 공식 웹 이벤트 주소를 확인하지 못했으므로 카카오페이증권 앱에서 직접 최신 조건을 확인해 주세요."]
+  cautions:["이벤트 기간은 첨부된 카카오페이증권 앱 화면 기준 2026년 8월 12일부터 12월 31일까지예요. 사전 예고 없이 변경·중단될 수 있어요.","100원~100만원은 랜덤 주식의 보상 범위로 특정 주식이나 최대 금액 당첨을 보장하지 않아요.","비회원 친구는 회원가입 이후 초대가 인정될 수 있고, 초대받은 친구의 이벤트 페이지 방문 확인이 필요해요.","최초 뽑기 기회와 추가 친구 초대 기회는 기존 주식 거래 이력에 따라 다르게 적용돼요.","초대 링크는 제공받았지만 공개 웹사이트 게시 허용 여부가 확인되지 않아 현재 참여 버튼에는 연결되지 않습니다.","현재 공개된 공식 웹 이벤트 주소를 확인하지 못했으므로 카카오페이증권 앱에서 직접 최신 조건을 확인해 주세요."]
  },
 
  {
