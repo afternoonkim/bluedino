@@ -8,6 +8,7 @@ export const metadata: Metadata = {
  description: "카카오뱅크·케이뱅크·토스·빗썸·업비트 등 7개 금융사의 공식 이벤트와 친구 초대 혜택을 확인하세요.",
  alternates: { canonical: "/finance/events" },
 };
+export const revalidate = 3600;
 export default function FinanceEventsPage() {
  const events = publishedEvents();
  return <main className="bd-page"><div className="bd-container mx-auto max-w-4xl space-y-5 pb-8">
