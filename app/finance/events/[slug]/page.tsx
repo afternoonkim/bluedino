@@ -14,6 +14,7 @@ export default async function EventDetail({params}:{params:Promise<{slug:string}
  if(!e)notFound();
  const usesReferral=Boolean(e.referralAllowed && e.referralUrl);
  const url=usesReferral?e.referralUrl:e.officialUrl;
+ const related=publishedEvents().filter(item=>item.slug!==e.slug && item.company===e.company).slice(0,3);
  return <main className="bd-page"><article className="bd-container mx-auto max-w-3xl space-y-5 pb-10">
  <Link href="/finance/events" className="inline-flex min-h-10 items-center text-[13px] text-blue-200">← 금융 혜택 전체</Link>
  <header className="space-y-2"><p className="text-[12px] text-slate-400">{e.company} · {e.participationType}</p><h1 className="text-[22px] font-bold leading-snug text-white md:text-3xl">{e.title}</h1><p className="text-[12px] text-slate-400">{e.endsAt ? `응모 마감 ${e.endsAt}` : "종료일 별도 공지"} · 정보 확인 {e.verifiedAt}{e.sourceType==="user-supplied-app-screen" ? " · 출처: 앱 화면" : ""}</p></header>
@@ -24,5 +25,6 @@ export default async function EventDetail({params}:{params:Promise<{slug:string}
  {usesReferral&&<p className="rounded-xl border border-blue-800/60 bg-blue-950/40 p-3 text-[13px] leading-6 text-blue-100">이 페이지에는 운영자가 추천 보상을 받을 수 있는 초대 링크가 포함되어 있습니다.</p>}
  {url ? <a href={url} target="_blank" rel={usesReferral?"noopener noreferrer sponsored":"noopener noreferrer"} className="flex min-h-12 items-center justify-center rounded-xl bg-[#1E3A5F] px-4 py-3 text-[14px] font-semibold text-white hover:bg-[#27496f]">공식 이벤트 상세 조건 확인하기 ↗</a> : <p className="rounded-xl border border-slate-700 bg-slate-900/70 p-4 text-[13px] leading-6 text-slate-200">카카오페이증권 앱의 랜덤 주식 뽑기 화면에서 직접 참여 조건을 확인해 주세요. 외부 참여 링크는 확인 전까지 제공하지 않습니다.</p>}
  <p className="text-[12px] leading-5 text-slate-400">상품 이용 및 응모 전에 금융사 공식 안내에서 최신 조건과 유의사항을 확인하세요.</p>
+ {related.length>0&&<section className="space-y-2 border-t border-slate-800 pt-5"><h2 className="text-[16px] font-semibold text-white">같은 금융사의 다른 혜택</h2><div className="divide-y divide-slate-800">{related.map(item=><Link key={item.slug} href={`/finance/events/${item.slug}`} className="flex min-h-12 items-center justify-between gap-3 py-3 text-[13px] text-slate-200 hover:text-white"><span>{item.title}</span><span aria-hidden="true">→</span></Link>)}</div></section>}
  </article></main>;
 }

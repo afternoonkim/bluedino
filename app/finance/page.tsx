@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import TaggedList, { type TaggedListItem } from "@/components/explore/TaggedList";
 import { financeCategories } from "@/lib/finance/config";
 import { getQuestionsByCategory } from "@/lib/finance/data";
@@ -19,6 +20,7 @@ export default function FinancePage() {
   return (
     <main className="bd-page">
       <div className="bd-container space-y-10 md:space-y-14">
+        <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"><h2 className="text-[15px] font-bold text-white">참여할 수 있는 금융 혜택도 찾아보세요</h2><p className="mt-1 text-[13px] leading-6 text-slate-300">친구 초대·신규 가입·출석 체크 등 간단한 금융 이벤트를 모았어요.</p><Link href="/finance/events" className="mt-2 inline-flex min-h-10 items-center text-[13px] font-semibold text-blue-200">금융 혜택 전체보기 →</Link></div>
         <header className="max-w-3xl py-4 md:py-8"><span className="bd-badge">금융가이드</span><h1 className="bd-title-xl mt-4">궁금한 금융 질문부터 찾으세요</h1><p className="bd-text-main mt-4">ISA·IRP·CMA·파킹통장·대출처럼 조건이 복잡한 주제를 질문별로 확인할 수 있습니다. 내 상황과 가까운 항목부터 골라보세요.</p></header>
         <section className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-slate-800 bg-slate-950/40 p-4"><div className="text-sm font-bold text-white">절세계좌</div><p className="mt-1 text-sm text-slate-400">ISA · IRP · 연금저축</p></div>
