@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import ReferralCodeList from "@/components/finance/ReferralCodeList";
 
 export const metadata: Metadata = {
-  title: "앱테크 추천인 코드 모음 | 코드 복사·가입 방법 | BlueDino",
-  description: "빗썸, 케이뱅크 알파카드, 카카오페이증권 친구 초대 코드와 입력 방법, 바로가기 링크를 한 화면에서 확인하세요.",
+  title: "앱테크 추천인 코드 모음 | 모니모·빗썸·라플·케이뱅크",
+  description: "모니모, 빗썸, 카카오페이증권, 라플, 케이뱅크 알파카드 추천인 코드와 입력 방법, 가입 혜택, 바로가기 링크를 확인하세요.",
   alternates: { canonical: "/finance/events" },
 };
 
