@@ -19,7 +19,7 @@ const DEFAULT_UPDATED_AT = "2026-05-17";
 const CALCULATOR_UPDATED_AT: Record<string, string> = {
   "youth-future-savings": "2026-10-18",
   "cma-interest": "2026-10-22",
-  "deposit-interest": "2026-10-22",
+  "deposit-interest": "2026-10-24",
   "parking-account": "2026-10-22",
   "installment-savings": "2026-10-22",
 };
