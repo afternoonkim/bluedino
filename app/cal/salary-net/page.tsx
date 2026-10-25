@@ -10,7 +10,7 @@ import SalaryNetCalculatorClient from "./SalaryNetCalculatorClient";
 export const metadata: Metadata = {
   title: "연봉 실수령액 간이 계산기 | 세후 월급 참고 계산 | BlueDino",
   description:
-    "연봉을 입력하면 2026년 4대보험 요율과 주요 소득세 공식을 기준으로 예상 월급 실수령액을 확인할 수 있는 참고용 간이 계산기입니다.",
+    "연봉과 비과세액을 입력해 예상 월급 실수령액을 확인하세요. 2026년 7월 국민연금 상·하한액과 보험료율을 반영한 간이 추정이며 실제 급여명세서와 다를 수 있습니다.",
   keywords: ["연봉 실수령액 계산기",
     "세후 월급 계산기",
     "월급 실수령액 계산",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "연봉 실수령액 간이 계산기 | 세후 월급 참고 계산 | BlueDino",
     description:
-      "연봉을 입력하면 2026년 4대보험 요율과 주요 소득세 공식을 기준으로 예상 월급 실수령액을 확인할 수 있는 참고용 간이 계산기입니다.",
+      "연봉과 비과세액을 입력해 예상 월급 실수령액을 확인하세요. 2026년 7월 국민연금 상·하한액과 보험료율을 반영한 간이 추정이며 실제 급여명세서와 다를 수 있습니다.",
     url: "https://bluedino.kr/cal/salary-net",
     siteName: "BlueDino",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "연봉 실수령액 간이 계산기 | 세후 월급 참고 계산 | BlueDino",
     description:
-      "연봉을 입력하면 2026년 4대보험 요율과 주요 소득세 공식을 기준으로 예상 월급 실수령액을 확인할 수 있는 참고용 간이 계산기입니다.",
+      "연봉과 비과세액을 입력해 예상 월급 실수령액을 확인하세요. 2026년 7월 국민연금 상·하한액과 보험료율을 반영한 간이 추정이며 실제 급여명세서와 다를 수 있습니다.",
   },
 };
 
@@ -46,7 +46,7 @@ const structuredData = {
   name: "연봉 실수령액 간이 계산기",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
-  description: "연봉을 입력하면 2026년 4대보험 요율과 주요 소득세 공식을 기준으로 예상 월급 실수령액을 확인할 수 있는 참고용 간이 계산기입니다.",
+  description: "연봉과 비과세액을 입력해 예상 월급 실수령액을 확인하세요. 2026년 7월 국민연금 상·하한액과 보험료율을 반영한 간이 추정이며 실제 급여명세서와 다를 수 있습니다.",
   url: "https://bluedino.kr/cal/salary-net",
 };
 
@@ -90,9 +90,9 @@ export default function Page() {
           { label: "IRP 세액공제 계산기", href: "/cal/irp-tax-credit", description: "연말정산 절세 가능 금액을 함께 점검할 수 있습니다." },
           { label: "연금저축 세액공제 계산기", href: "/cal/pension-tax-credit", description: "연금계좌 납입액에 따른 세액공제 효과를 확인할 수 있습니다." },
         ]} />
-        <CalculatorReferenceBox sources={[{ label: "국세청 근로소득세 안내", href: "https://www.nts.go.kr" }, { label: "국민건강보험공단 보험료 안내", href: "https://www.nhis.or.kr" }, { label: "국민연금공단 기준소득월액 안내", href: "https://www.nps.or.kr" }, { label: "근로복지공단 고용보험료 안내", href: "https://www.comwel.or.kr" }]} />
+        <CalculatorReferenceBox sources={[{ label: "국세청 근로소득세 안내", href: "https://www.nts.go.kr" }, { label: "국민건강보험공단 2026년 보험료율", href: "https://edi.nhis.or.kr/portal/images/popup/20251204_pop01longdesc.html" }, { label: "국민연금공단 2026년 기준소득월액 안내", href: "https://www.nps.or.kr/pnsinfo/ntpsklg/getOHAF0038M0.do?menuId=MN24001113" }, { label: "근로복지공단 고용보험료 안내", href: "https://www.comwel.or.kr" }]} />
       </div>
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-25" />
     </>
   );
 }

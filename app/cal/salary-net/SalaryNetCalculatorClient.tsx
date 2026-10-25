@@ -15,8 +15,6 @@ import {
 import CalculatorSeoContent from "../components/CalculatorSeoContent";
 
 
-type SalaryCalculationMode = "formulaBased" | "withholdingTable";
-
 type WithholdingRate = 80 | 100 | 120;
 
 type DeductionBreakdown = {
@@ -116,8 +114,9 @@ function calculateSalaryNet(params: {
   const annualNonTaxable = Math.max(0, params.monthlyNonTaxableWon) * 12;
   const monthlyTaxable = Math.max(0, monthlyGross - params.monthlyNonTaxableWon);
 
-  // 2026년 기준 4대보험 근로자 부담분을 반영한 참고용 계산
-  const pensionBase = clamp(monthlyTaxable, 370_000, 6_370_000);
+  // 2026.7.~2027.6. 국민연금 기준소득월액 41만~659만 원 (근로자 4.75%)
+  // 급여가 없는 입력에서는 가입자 보험료를 임의로 발생시키지 않습니다.
+  const pensionBase = monthlyTaxable > 0 ? clamp(monthlyTaxable, 410_000, 6_590_000) : 0;
   const nationalPension = pensionBase * 0.0475;
   const healthInsurance = monthlyTaxable * 0.03595;
   const longTermCare = healthInsurance * 0.1314;
@@ -241,7 +240,6 @@ export default function SalaryNetCalculatorPage() {
   const [childCount, setChildCount] = useState(0);
   const [withholdingRate, setWithholdingRate] = useState<WithholdingRate>(100);
   const [excludeEmploymentInsurance, setExcludeEmploymentInsurance] = useState(false);
-  const [calculationMode, setCalculationMode] = useState<SalaryCalculationMode>("formulaBased");
 
   const result = useMemo(
     () =>
@@ -293,7 +291,7 @@ export default function SalaryNetCalculatorPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300">
                 <Wallet className="h-4 w-4" />
-                월급 실수령액 빠른 계산 · 정확도: 제도 기준 반영
+                월급 실수령액 간이 계산 · 2026년 적용 기준
               </div>
               <h1 className="mt-4 text-2xl font-black tracking-tight text-white md:text-3xl">
                 연봉 실수령액 간이 계산기
@@ -313,47 +311,30 @@ export default function SalaryNetCalculatorPage() {
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 월 실수령액</p>
                 <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-cyan-300">{won(result.monthlyNet)}</p>
-                <p className="text-xs text-slate-400">2026년 5월 공개 기준</p>
+                <p className="text-xs text-slate-400">2026년 7월 국민연금 기준 반영</p>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
                 <p className="text-xs font-semibold text-slate-400">예상 연 실수령액</p>
                 <p className="mt-2 min-w-0 break-all text-[clamp(1rem,1.5vw,1.125rem)] font-bold leading-tight text-emerald-300">{won(result.annualNet)}</p>
-                <p className="text-xs text-slate-400">2026년 5월 공개 기준</p>
+                <p className="text-xs text-slate-400">2026년 7월 국민연금 기준 반영</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-5 text-sm leading-7 text-amber-50/90">
-          <p className="font-semibold text-amber-100">기준: 2026년 5월 현재 공개 자료 기준 · 정확도: 제도 기준 반영</p>
-          <p className="mt-1">실제 적용 조건은 금융사, 세법, 정부 정책 변경과 회사별 급여 처리 방식에 따라 달라질 수 있습니다.</p>
-          <p className="mt-2">계산 방식은 현재 공식을 바탕으로 한 연말정산식 추정 방식과, 추후 국세청 간이세액표 방식으로 분리할 수 있도록 구조를 나누었습니다.</p>
+          <p className="font-semibold text-amber-100">계산 기준: 2026년 7월~2027년 6월 국민연금 상·하한액 및 2026년 보험료율</p>
+          <p className="mt-1">국민연금은 회사가 신고한 기준소득월액으로 부과되므로 현재 월급으로 단순 추정한 금액과 다를 수 있습니다. 실제 보험료와 원천징수세액은 급여명세서에서 확인하세요.</p>
+          <p className="mt-2">월급과 상여금은 12개월로 나눈 평균값이며, 이 계산기는 국세청 근로소득 간이세액표를 직접 조회하지 않습니다. 상여금 지급월과 연말정산 결과는 별도로 확인하세요.</p>
         </div>
 
         <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-900/95 p-5">
-          <p className="text-sm font-semibold text-white">계산 방식 선택</p>
-          <p className="mt-2 text-sm leading-6 text-slate-400">현재 화면은 주요 소득세 공식과 4대보험 요율을 반영한 참고 계산입니다. 국세청 간이세액표 방식은 별도 표 데이터 연결 후 사용할 수 있도록 선택 영역을 분리해 두었습니다.</p>
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            {[
-              { key: "formulaBased" as const, title: "연말정산식 추정 방식", desc: "현재 제공 중인 참고 계산 방식입니다." },
-              { key: "withholdingTable" as const, title: "국세청 간이세액표 방식", desc: "추후 간이세액표 데이터 기준으로 확장할 수 있습니다." },
-            ].map((mode) => (
-              <button
-                key={mode.key}
-                type="button"
-                onClick={() => setCalculationMode(mode.key)}
-                className={`rounded-2xl border px-4 py-4 text-left transition ${calculationMode === mode.key ? "border-cyan-400 bg-cyan-500/10" : "border-slate-800 bg-slate-950/70 hover:border-slate-600"}`}
-              >
-                <span className="block text-sm font-semibold text-white">{mode.title}</span>
-                <span className="mt-1 block text-xs leading-5 text-slate-400">{mode.desc}</span>
-              </button>
-            ))}
-          </div>
-          {calculationMode === "withholdingTable" ? (
-            <p className="mt-3 rounded-2xl border border-amber-400/20 bg-amber-400/5 px-4 py-3 text-sm leading-6 text-amber-100">
-              현재 결과는 아직 간이세액표 직접 조회값이 아니라, 2026년 4대보험 요율과 주요 소득세 공식을 반영한 참고용 결과입니다.
-            </p>
-          ) : null}
+          <p className="text-sm font-semibold text-white">급여명세서와 비교할 때</p>
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            국민연금은 2026년 7월부터 기준소득월액 하한 41만 원·상한 659만 원이 적용됩니다.
+            이 계산기는 월 과세대상 급여로 추정하지만 실제 부과액은 회사가 신고한 기준소득월액에 따라 달라질 수 있습니다.
+            소득세도 간이세액표 직접 조회값이 아니므로 실제 공제 내역을 급여명세서와 비교하세요.
+          </p>
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)]">
