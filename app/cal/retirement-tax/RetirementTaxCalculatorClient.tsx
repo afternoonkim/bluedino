@@ -139,7 +139,7 @@ export default function RetirementTaxCalculatorPage() {
           badge="퇴직소득세 계산기"
           title="퇴직소득세 세율 계산기로 퇴직금 실수령액을 확인하세요"
           description="근속기간과 퇴직급여를 넣으면 예상 퇴직소득세와 지방소득세, 실수령액을 바로 확인할 수 있습니다."
-          tip="정확한 금액은 실제 지급 방식과 세법 적용 기준에 따라 달라질 수 있습니다."
+          tip="일시금 수령 시 예상 세액입니다. IRP로 이체해 연금으로 받으면 과세 시점과 세액이 달라질 수 있습니다."
         />
         {/* 헤더 카드 */}
         <div className="rounded-3xl border border-slate-800 bg-slate-900/95 p-6 shadow-xl text-slate-100">
@@ -288,7 +288,7 @@ export default function RetirementTaxCalculatorPage() {
               <Table2 size={18} />
             </div>
             <h2 className="text-lg font-extrabold text-white">
-              퇴직소득세율 참고표 (2025년 기준)
+              퇴직소득세율 참고표 (2026년 계산 기준)
             </h2>
           </div>
           <p className="mt-2 text-sm text-slate-300">
@@ -350,6 +350,15 @@ export default function RetirementTaxCalculatorPage() {
               className="text-cyan-300 hover:underline"
             >
               (국세청 안내 보기)
+            </a>
+            {" · "}
+            <a
+              href="https://nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7888&mi=6608"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:underline"
+            >
+              연금으로 받을 때 세금 확인
             </a>
           </div>
         </div>

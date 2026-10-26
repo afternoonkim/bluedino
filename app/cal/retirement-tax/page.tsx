@@ -9,7 +9,7 @@ import RetirementTaxCalculatorClient from "./RetirementTaxCalculatorClient";
 export const metadata: Metadata = {
   title: "퇴직소득세 세율 계산기 | 퇴직금 세금·실수령액 바로 확인 | BlueDino",
   description:
-    "퇴직소득세 세율 계산기입니다. 근속연수와 퇴직급여를 넣어 예상 세금, 지방소득세, 퇴직금 실수령액을 바로 확인하세요.",
+    "근속연수와 퇴직급여를 입력해 일시금 수령 시 예상 퇴직소득세·지방소득세를 계산하세요. IRP 연금수령 시 과세 방식과 차이도 확인할 수 있습니다.",
   keywords: ["퇴직소득세 세율 계산기", "퇴직소득세 계산기",
     "퇴직금 세금 계산",
     "퇴직소득 계산기",
@@ -82,7 +82,7 @@ export default function Page() {
       <RetirementTaxCalculatorClient />
       <CalculatorResultSeoNote calculator="retirement-tax" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="퇴직소득세 계산기" updatedAt="2026-10-26" />
     </>
   );
 }
