@@ -83,7 +83,7 @@ export default function Page() {
       <CalculatorMetaSections
         accuracyLevel="참고 시뮬레이션"
         basisLabel="기준: 입력한 배당수익률·성장률·세율 가정 기준"
-        officialSources={[{ label: "전자공시시스템 배당 공시", href: "https://dart.fss.or.kr" }, { label: "국세청 배당소득 과세 안내", href: "https://www.nts.go.kr" }, { label: "금융투자협회 금융투자상품 안내", href: "https://www.kofia.or.kr" }]}
+        officialSources={[{ label: "전자공시시스템 배당 공시", href: "https://dart.fss.or.kr" }, { label: "국세청 배당소득 과세 안내", href: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7914&mi=40359" }, { label: "금융투자협회 금융투자상품 안내", href: "https://www.kofia.or.kr" }]}
         relatedCalculators={[
           { label: "복리 계산기", href: "/cal/compound", description: "배당 재투자와 적립식 투자 효과를 함께 비교합니다." },
           { label: "FIRE 계산기", href: "/cal/fire", description: "배당 현금흐름을 경제적 자유 목표와 연결합니다." },
@@ -93,7 +93,7 @@ export default function Page() {
       />
       <CalculatorResultSeoNote calculator="dividend" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-27" />
     </>
   );
 }

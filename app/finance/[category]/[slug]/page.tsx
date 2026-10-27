@@ -10,6 +10,7 @@ import ExpandableCard from "@/components/common/ExpandableCard";
 import DetailPriorityPanel from "@/components/common/DetailPriorityPanel";
 import { getFinanceCategory } from "@/lib/finance/config";
 import { getAllFinanceRoutes } from "@/lib/finance/data";
+import { isIndexableFinanceEntry } from "@/lib/finance/indexing";
 import { getFinanceEntry, getRelatedEntries } from "@/lib/finance/content";
 import { safeDecodeSegment } from "@/lib/route-utils";
 import type { FinanceCategoryKey } from "@/lib/finance/types";
@@ -101,6 +102,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: fullTitle,
     description: entry.description,
     keywords: entry.keywords,
+    robots: { index: isIndexableFinanceEntry(entry), follow: true },
     alternates: { canonical: canonicalPath },
     openGraph: {
       title: fullTitle,
@@ -151,7 +153,6 @@ export default async function FinanceQuestionPage({ params }: PageProps) {
     headline: entry.title,
     description: entry.description,
     inLanguage: "ko-KR",
-    datePublished: "2025-01-01",
     dateModified: entry.updatedAt,
     author: {
       "@type": "Organization",

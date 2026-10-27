@@ -90,7 +90,7 @@ export default function Page() {
       />
       <CalculatorResultSeoNote calculator="capital-gains" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-10" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-27" />
     </>
   );
 }
