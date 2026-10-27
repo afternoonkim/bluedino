@@ -89,11 +89,11 @@ export default function Page() {
           { label: "FIRE 계산기", href: "/cal/fire", description: "배당 현금흐름을 경제적 자유 목표와 연결합니다." },
           { label: "ISA 절세 계산기", href: "/cal/isa-tax-savings", description: "배당·이자 수익의 세후 차이를 확인합니다." },
         ]}
-        caution="배당금은 기업의 이사회 결정, 환율, 세율, 배당락, 계좌 유형에 따라 달라질 수 있습니다. 계산 결과는 투자 판단을 위한 참고용으로 활용해 주세요."
+        caution="배당금은 기업의 배당 결정, 환율, 원천징수와 계좌 유형에 따라 달라집니다. 이 계산기는 고정 세율 가정만 적용하며 ISA 비과세·손익통산 및 연금계좌 인출 과세는 별도로 확인해야 합니다."
       />
       <CalculatorResultSeoNote calculator="dividend" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-28" />
     </>
   );
 }

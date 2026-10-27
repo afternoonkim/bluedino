@@ -93,9 +93,7 @@ export default function CalculatorPage() {
     if (!taxEnabled) return 0;
 
     if (accountType === "general") return 15.4;
-    if (accountType === "isa") return 9.9;
-    if (accountType === "pension") return 0;
-    if (accountType === "custom") return customTaxRate;
+    if (accountType === "custom") return Math.min(99, Math.max(0, Number.isFinite(customTaxRate) ? customTaxRate : 0));
 
     return 0;
   }, [accountType, customTaxRate, taxEnabled]);
@@ -230,7 +228,7 @@ export default function CalculatorPage() {
     const yieldValue = yieldRate / 100;
     const taxRate = getTaxRate() / 100;
 
-    if (yieldValue === 0) {
+    if (yieldValue <= 0 || priceValue <= 0 || taxRate >= 1) {
       return {
         requiredAsset: 0,
         requiredShares: 0,
@@ -241,7 +239,7 @@ export default function CalculatorPage() {
 
     const yearlyTarget = unformat(targetMonthlyDividend) * 12;
 
-    const requiredAsset = yearlyTarget / yieldValue;
+    const requiredAsset = yearlyTarget / (yieldValue * (1 - taxRate));
     const requiredShares = requiredAsset / priceValue;
 
     const yearlyBeforeTax = requiredAsset * yieldValue;
@@ -298,7 +296,7 @@ export default function CalculatorPage() {
           badge="배당 계산기"
           title="배당 계산기로 세후 배당금과 월 현금흐름을 바로 확인하세요"
           description="보유 수량, 주당 배당금, 배당수익률, 세율을 넣으면 세후 배당금과 월 배당 현금흐름을 빠르게 확인할 수 있습니다. 재투자 효과까지 비교해 배당 목표를 현실적으로 잡아보세요."
-          tip="세전보다 세후 기준이 더 먼저 볼 기준입니다. 계좌 유형과 세율 설정을 함께 확인해보세요."
+          tip="세후 현금흐름을 목표로 한다면 예상 세율을 먼저 확인하세요. ISA·연금계좌의 실제 세금은 별도로 계산해야 합니다."
         />
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -421,12 +419,12 @@ export default function CalculatorPage() {
               {targetEnabled && (
                 <div className="mt-6 rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 p-6 text-white shadow-2xl">
                   <div className="mb-4 text-sm text-slate-400">
-                    목표 월 배당금을 입력하면 필요한 투자 규모를 계산합니다
+                    목표 세후 월 배당금을 입력하면 적용 세율을 반영해 필요한 투자 규모를 역산합니다.
                   </div>
 
                   <div className="mb-6">
                     <label className="mb-2 block text-sm text-slate-400">
-                      목표 월 배당금
+                      목표 세후 월 배당금
                     </label>
                     <input
                       type="text"
@@ -477,7 +475,7 @@ export default function CalculatorPage() {
                         </div>
 
                         <div className="border-t border-slate-700 pt-4 text-xs text-slate-400">
-                          현재 배당률 {yieldRate}% · 세율 {getTaxRate()}% 기준
+                          연 배당률 {yieldRate}% · 적용 세율 {getTaxRate()}%의 단순 가정입니다. 실제 배당 지급액과 투자금은 달라질 수 있습니다.
                         </div>
                       </>
                     );
@@ -505,21 +503,19 @@ export default function CalculatorPage() {
               </div>
 
               <div className="mt-2 text-sm text-slate-400">
-                현재 적용 세율: {taxEnabled ? `${getTaxRate()}%` : "0%"}
+                현재 계산에 적용한 세율: {taxEnabled ? `${getTaxRate()}%` : "0% (세금 제외 가정)"}
               </div>
 
               {taxEnabled && (
                 <div className="mt-6 space-y-4">
                   <label className="min-w-0 break-all text-[clamp(0.95rem,1.4vw,1rem)] font-semibold leading-tight text-white">
-                    계좌 유형
+                    세율 계산 방식
                   </label>
 
-                  <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-2">
                     {[
-                      { key: "general", label: "일반계좌", sub: "15.4%" },
-                      { key: "isa", label: "ISA", sub: "9.9%" },
-                      { key: "pension", label: "연금계좌", sub: "0%" },
-                      { key: "custom", label: "직접입력", sub: "" },
+                      { key: "general", label: "일반적인 국내 배당", sub: "15.4% 가정" },
+                      { key: "custom", label: "세율 직접 입력", sub: "0~99%" },
                     ].map((item) => (
                       <button
                         key={item.key}
@@ -536,6 +532,8 @@ export default function CalculatorPage() {
                     ))}
                   </div>
 
+                  <p className="text-xs leading-5 text-slate-400">ISA는 계좌 전체 과세대상 순손익의 비과세 한도와 초과분에 세금을 적용하므로 배당금마다 9.9%를 떼는 방식이 아닙니다. 연금계좌도 수령 조건에 따라 과세됩니다. 두 계좌의 실제 세금은 이 단순 계산에 포함되지 않으며, 직접 입력은 비교용 가정입니다.</p>
+
                   {accountType === "custom" && (
                     <div className="mt-3">
                       <label className="mb-1 block text-sm text-slate-300">
@@ -544,7 +542,10 @@ export default function CalculatorPage() {
                       <input
                         type="number"
                         value={customTaxRate}
-                        onChange={(e) => setCustomTaxRate(Number(e.target.value))}
+                        min={0}
+                        max={99}
+                        step={0.1}
+                        onChange={(e) => setCustomTaxRate(Math.min(99, Math.max(0, Number(e.target.value) || 0)))}
                         className="bd-input"
                       />
                     </div>
@@ -824,13 +825,13 @@ export default function CalculatorPage() {
                   },
                   {
                     q: "목표 월 배당 100만원을 만들려면?",
-                    a: "목표 배당금 역산 기능을 켜고 목표 월 배당금을 입력하면 필요한 투자금과 주식 수를 확인할 수 있습니다.",
+                    a: "목표 배당금 역산을 켜고 세후 월 목표액을 입력하면 선택한 세율을 반영한 예상 투자금과 주식 수를 확인할 수 있습니다. 실제 배당률과 세금은 달라질 수 있습니다.",
                   },
                 ]}
                 faqs={[
                   {
                     q: "세금은 어떤 방식으로 반영되나요?",
-                    a: "일반계좌, ISA, 연금계좌 또는 직접 입력 세율을 선택해 세후 배당 기준으로 계산합니다.",
+                    a: "일반적인 국내 배당의 15.4% 또는 직접 입력한 세율을 매 배당금에 동일하게 적용하는 단순 모델입니다. ISA의 계좌별 비과세·손익통산과 연금계좌의 인출 과세는 자동 계산하지 않습니다.",
                   },
                   {
                     q: "재투자 수익률이 왜 더 높게 나오나요?",

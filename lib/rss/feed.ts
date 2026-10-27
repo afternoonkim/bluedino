@@ -18,7 +18,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bluedino.kr";
 const DEFAULT_UPDATED_AT = "2026-05-17";
 const CALCULATOR_UPDATED_AT: Record<string, string> = {
   "youth-future-savings": "2026-10-18",
-  "calculator": "2026-10-27",
+  "calculator": "2026-10-28",
   "capital-gains": "2026-10-27",
   "cma-interest": "2026-10-22",
   "deposit-interest": "2026-10-24",
