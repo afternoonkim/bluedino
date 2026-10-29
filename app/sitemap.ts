@@ -31,6 +31,7 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/cal/capital-gains": "2026-10-27",
   "/cal/salary-net": "2026-10-25",
   "/cal/retirement-tax": "2026-10-26",
+  "/cal/loan-refinance-saving": "2026-10-29",
   "/cal/fire": "2026-10-11",
   "/cal/compound": "2026-10-11",
   "/cal/dsr": "2026-10-05",

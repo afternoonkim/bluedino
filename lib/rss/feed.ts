@@ -81,6 +81,12 @@ function buildStaticFeedItems(): RssFeedItem[] {
       updatedAt: "2026-10-18",
     },
     {
+      title: "대출 갈아타기 절감액 계산기 | 원리금균등상환 비교",
+      description: "기존·신규 대출의 전체 이자 차이와 중도상환수수료, 부대비용을 비교하고 비용 회수 시점을 확인하세요.",
+      path: "/cal/loan-refinance-saving",
+      updatedAt: "2026-10-29",
+    },
+    {
       title: "금융 질문 가이드 | ISA·IRP·연금저축·대출 기초 정리",
       description:
         "처음 금융상품을 비교할 때 헷갈리는 조건, 세금, 한도, 상환 구조를 질문별로 차근차근 살펴볼 수 있습니다.",
