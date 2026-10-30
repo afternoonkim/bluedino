@@ -10,13 +10,13 @@ import DsrCalculatorClient from "./DsrCalculatorClient";
 export const metadata: Metadata = {
   title: "DSR 계산기 | 총부채원리금상환비율 계산 | BlueDino",
   description:
-    "연 소득과 기존 대출, 신규 대출 정보를 입력하면 DSR을 계산하고 추가 대출 가능 여력을 확인할 수 있는 DSR 계산기입니다.",
+    "연 소득과 기존 대출 원리금, 신규 대출 조건으로 예상 DSR과 비교 비율별 대출 원금을 추정하세요. 스트레스 DSR과 실제 심사 한도는 별도 확인이 필요합니다.",
   keywords: ["DSR 계산기", "총부채원리금상환비율", "대출 한도 계산", "대출 가능 금액", "주담대 DSR", "BlueDino"],
   alternates: { canonical: "/cal/dsr" },
   openGraph: {
     title: "DSR 계산기 | 총부채원리금상환비율 계산 | BlueDino",
     description:
-      "연 소득과 기존 대출, 신규 대출 정보를 입력하면 DSR을 계산하고 추가 대출 가능 여력을 확인할 수 있는 DSR 계산기입니다.",
+      "연 소득과 기존 대출 원리금, 신규 대출 조건으로 예상 DSR과 비교 비율별 대출 원금을 추정하세요. 스트레스 DSR과 실제 심사 한도는 별도 확인이 필요합니다.",
     url: "https://bluedino.kr/cal/dsr",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DSR 계산기 | 총부채원리금상환비율 계산 | BlueDino",
     description:
-      "연 소득과 기존 대출, 신규 대출 정보를 입력하면 DSR을 계산하고 추가 대출 가능 여력을 확인할 수 있는 DSR 계산기입니다.",
+      "연 소득과 기존 대출 원리금, 신규 대출 조건으로 예상 DSR과 비교 비율별 대출 원금을 추정하세요. 스트레스 DSR과 실제 심사 한도는 별도 확인이 필요합니다.",
   },
 };
 
@@ -40,7 +40,7 @@ const structuredData = {
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description:
-    "연 소득과 기존 대출, 신규 대출 정보를 입력하면 DSR을 계산하고 추가 대출 가능 여력을 확인할 수 있는 DSR 계산기입니다.",
+    "연 소득과 기존 대출 원리금, 신규 대출 조건으로 예상 DSR과 비교 비율별 대출 원금을 추정하세요. 스트레스 DSR과 실제 심사 한도는 별도 확인이 필요합니다.",
   url: "https://bluedino.kr/cal/dsr",
 };
 
@@ -77,14 +77,14 @@ export default function Page() {
       <DsrCalculatorClient />
       <CalculatorMetaSections
         accuracyLevel="제도 기준 반영"
-        basisLabel="기준: 2026년 10월 5일 확인한 금융위원회 공개 대출 규제와 입력값 기준"
-        officialSources={[{ label: "금융위원회 가계대출·DSR 제도 안내", href: "https://www.fsc.go.kr" }, { label: "금융감독원 금융소비자 정보", href: "https://www.fss.or.kr" }, { label: "취급 금융회사 대출 심사 기준", href: "https://portal.kfb.or.kr" }]}
+        basisLabel="기준: 2026년 10월 30일 확인한 금융위원회 스트레스 DSR 안내 및 입력값 기준"
+        officialSources={[{ label: "금융위원회 2026년 스트레스 DSR 안내", href: "https://better.fsc.go.kr/fsc_new/status/adminMap/PrvntcDetail.do?muNo=144&postNo=5349&stNo=11" }, { label: "금융감독원 금융소비자 정보", href: "https://www.fss.or.kr" }, { label: "취급 금융회사 대출 심사 기준", href: "https://portal.kfb.or.kr" }]}
         relatedCalculators={[{ label: "LTV 계산기", href: "/cal/ltv", description: "담보가치 기준 대출 가능 금액을 함께 확인할 수 있습니다." }, { label: "주담대 계산기", href: "/cal/mortgage", description: "월 상환액과 DSR 부담을 함께 볼 수 있습니다." }, { label: "대출이자 계산기", href: "/cal/loan-interest", description: "대출 조건별 상환액을 상세히 확인할 수 있습니다." }]}
         caution="금융위원회는 3단계 스트레스 DSR을 2025년 7월 1일부터 시행하고 있습니다. 이 계산기는 사용자가 입력한 실제 금리와 목표 DSR로 상환 부담을 단순 추정하며, 대출유형·지역별 스트레스 금리와 금융회사 심사기준을 자동 적용하지 않으므로 실제 한도와 다를 수 있습니다."
       />
       <CalculatorResultSeoNote calculator="dsr" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-05" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-10-30" />
     </>
   );
 }

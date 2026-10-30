@@ -34,12 +34,14 @@ export default function DsrCalculatorClient() {
     const monthly = monthlyPayment(principal, interestRate, months);
     const newAnnualRepayment = monthly * 12;
     const totalAnnualRepayment = existing + newAnnualRepayment;
-    const dsr = income > 0 ? (totalAnnualRepayment / income) * 100 : 0;
+    const dsr = income > 0 ? (totalAnnualRepayment / income) * 100 : null;
     const availableAnnualRepayment = Math.max(0, income * (targetDsr / 100) - existing);
     const availableMonthlyRepayment = availableAnnualRepayment / 12;
-    const maxPrincipalByTarget = availableMonthlyRepayment <= 0
-      ? 0
-      : principal * (availableMonthlyRepayment / monthly || 0);
+    // 현재 신규 대출 입력액이 0원이어도 상환 여력으로 대출 원금을 역산할 수 있어야 합니다.
+    const paymentForOneMillion = monthlyPayment(1_000_000, interestRate, months);
+    const maxPrincipalByTarget = availableMonthlyRepayment > 0 && paymentForOneMillion > 0
+      ? (availableMonthlyRepayment / paymentForOneMillion) * 1_000_000
+      : 0;
 
     const scenarioRates = [interestRate - 1, interestRate, interestRate + 1].map((rate) => Math.max(rate, 0.1));
     const chartData = scenarioRates.map((rate) => {
@@ -74,9 +76,11 @@ export default function DsrCalculatorClient() {
     };
   }, [annualIncome, existingAnnualRepayment, newLoanAmount, interestRate, loanYears, targetDsr]);
 
-  const statusText = result.dsr <= targetDsr
-    ? `현재 입력 기준 DSR은 ${formatPercent(result.dsr)}로 목표 기준 ${targetDsr}% 이내입니다.`
-    : `현재 입력 기준 DSR은 ${formatPercent(result.dsr)}로 목표 기준 ${targetDsr}%를 넘을 가능성이 있습니다.`;
+  const statusText = result.dsr === null
+    ? "연 소득이 0원이면 DSR을 계산할 수 없습니다. 금융회사에서 인정하는 연 소득을 입력하세요."
+    : result.dsr <= targetDsr
+      ? `입력한 DSR은 ${formatPercent(result.dsr)}로 선택한 비교 비율 ${targetDsr}% 이내입니다. 대출 승인을 의미하지는 않습니다.`
+      : `입력한 DSR은 ${formatPercent(result.dsr)}로 선택한 비교 비율 ${targetDsr}%를 초과합니다.`;
 
   return (
     <div className="bd-page">
@@ -113,7 +117,7 @@ export default function DsrCalculatorClient() {
                   <div className="mt-2 text-sm text-slate-400">연 {interestRate.toFixed(1)}%</div>
                 </div>
               </Field>
-              <Field label="목표 DSR 기준">
+              <Field label="비교할 DSR 비율 (심사 기준 아님)">
                 <div className="flex flex-wrap gap-2">
                   {policyPresets.map((preset) => (
                     <button key={preset} type="button" onClick={() => setTargetDsr(preset)} className={preset === targetDsr ? "bd-button-primary text-sm" : "bd-button-secondary text-sm"}>
@@ -129,10 +133,10 @@ export default function DsrCalculatorClient() {
             <h2 className="bd-title-md">계산 결과</h2>
             <p className="mt-3 bd-text-sub">{statusText}</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <ResultCard title="예상 DSR" value={formatPercent(result.dsr)} sub="총부채원리금상환비율" />
+              <ResultCard title="예상 DSR" value={result.dsr === null ? "계산 불가" : formatPercent(result.dsr)} sub="총부채원리금상환비율" />
               <ResultCard title="신규 월 상환액" value={formatCurrency(result.monthly)} sub="원리금균등 기준" />
               <ResultCard title="연간 총 상환액" value={formatCurrency(result.totalAnnualRepayment)} sub="기존+신규 합산" />
-              <ResultCard title="목표 기준 최대 대출 추정" value={formatCurrency(result.maxPrincipalByTarget)} sub={`${targetDsr}% 기준 단순 추정`} />
+              <ResultCard title="비교 비율 기준 신규 대출 원금" value={formatCurrency(result.maxPrincipalByTarget)} sub={`${targetDsr}% 가정 · 실제 심사 한도 아님`} />
             </div>
 
             <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
@@ -140,6 +144,11 @@ export default function DsrCalculatorClient() {
               <div className="mt-2 text-2xl font-bold text-white">{formatCurrency(result.availableAnnualRepayment)}</div>
               <div className="mt-2 text-sm text-slate-400">월 기준 약 {formatCurrency(result.availableMonthlyRepayment)}</div>
             </div>
+            <p className="mt-4 text-sm leading-7 text-slate-400">
+              신규 대출금액을 0원으로 입력해도 선택한 비교 비율에서 감당할 수 있는 원금을 역산합니다.
+              이 계산은 원리금균등상환과 입력 금리를 가정하며, 스트레스 DSR·소득 인정 방식·대출별 산정만기·LTV·상품별 한도를 자동 반영하지 않습니다.
+              실제 대출 가능 금액은 취급 금융회사에서 확인하세요.
+            </p>
           </section>
         </div>
 
