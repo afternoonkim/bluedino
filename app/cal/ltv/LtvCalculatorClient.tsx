@@ -36,6 +36,7 @@ export default function LtvCalculatorClient() {
 
     return {
       price,
+      existing,
       maxLoan,
       actualLtv,
       ownCapitalNeed,
@@ -55,7 +56,7 @@ export default function LtvCalculatorClient() {
         <CalculatorHero
           badge="주담대 계산기"
           title="LTV 계산기로 담보대출 가능 범위를 빠르게 가늠하세요"
-          description="주택 가격, 기존 담보대출, 보유 현금을 입력하면 담보인정비율 기준에서 추가 대출 가능 금액과 필요한 자기자본 규모를 빠르게 확인할 수 있습니다. 실제 LTV 규제는 지역, 주택 수, 정책, 금융사 기준에 따라 달라질 수 있습니다."
+          description="주택 가격과 직접 선택한 LTV 비율로 담보 기준 추가 대출 여력을 계산합니다. 실제 대출한도는 규제지역, 주택 수, 주택가격별 금액 상한, DSR, 선순위 대출에 따라 달라집니다."
           tip="LTV는 집값 대비 대출 비중을 보여주는 지표입니다. 집을 살 수 있느냐보다 자기자본이 얼마나 필요한지 먼저 보게 해주는 계산기라고 생각하면 이해가 쉽습니다."
         />
 
@@ -66,41 +67,45 @@ export default function LtvCalculatorClient() {
               <Field label="주택 가격">
                 <input className="bd-input" value={Number(housePrice || 0).toLocaleString("ko-KR")} onChange={(e) => setHousePrice(e.target.value.replace(/[^0-9]/g, ""))} />
               </Field>
-              <Field label="기존 담보대출">
+              <Field label="이 주택의 기존 선순위 대출(없으면 0)">
                 <input className="bd-input" value={Number(existingMortgage || 0).toLocaleString("ko-KR")} onChange={(e) => setExistingMortgage(e.target.value.replace(/[^0-9]/g, ""))} />
               </Field>
-              <Field label="현재 보유 자금">
+              <Field label="주택 구입에 사용할 보유 현금">
                 <input className="bd-input" value={Number(cashReady || 0).toLocaleString("ko-KR")} onChange={(e) => setCashReady(e.target.value.replace(/[^0-9]/g, ""))} />
               </Field>
-              <Field label="적용 LTV 기준">
+              <Field label="비교할 LTV 비율(직접 선택)">
                 <div>
                   <input type="range" min={20} max={80} step={5} value={policyLtv} onChange={(e) => setPolicyLtv(Number(e.target.value))} className="w-full accent-cyan-400" />
-                  <div className="mt-2 text-sm text-slate-400">{policyLtv}%</div>
+                  <div className="mt-2 text-sm text-slate-400">{policyLtv}% · 초기 70%는 예시이며 실제 적용 비율은 직접 확인해야 합니다.</div>
                 </div>
               </Field>
+              <p className="text-xs leading-6 text-slate-400">규제지역 일반 무주택자는 40%, 비규제지역 일반 무주택자는 70%, 수도권·규제지역 생애최초는 70% 등 조건에 따라 다릅니다. 지방 비규제지역 생애최초는 80%가 적용될 수도 있습니다. 대출 취급이 제한되는 경우 이 슬라이더만으로 판단할 수 없습니다.</p>
             </div>
           </section>
 
           <section className="bd-card bd-card-padding">
             <h2 className="bd-title-md">계산 결과</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <ResultCard title="추가 가능 대출" value={formatCurrency(result.maxLoan)} sub="기존 담보대출 반영" />
+              <ResultCard title="LTV 산술상 추가 여력" value={formatCurrency(result.maxLoan)} sub="주택가격별 금액 상한·DSR 미반영" />
               <ResultCard title="적용 LTV" value={formatPercent(result.actualLtv)} sub="추정 담보인정비율" />
-              <ResultCard title="필요 자기자본" value={formatCurrency(result.ownCapitalNeed)} sub="주택 가격 - 가능 대출" />
-              <ResultCard title="자금 부족분" value={formatCurrency(Math.max(0, result.cashGap))} sub={result.purchasePossible ? "현재 보유 자금으로 충당 가능" : "추가 자금 확인 필요"} />
+              <ResultCard title="필요 자기자본(신규 매수 가정)" value={result.existing > 0 ? "별도 확인" : formatCurrency(result.ownCapitalNeed)} sub={result.existing > 0 ? "기존 대출이 있으면 매수 자금과 구분" : "주택가격 - 신규 대출(부대비용 제외)"} />
+              <ResultCard title="자금 부족분" value={result.existing > 0 ? "별도 확인" : formatCurrency(Math.max(0, result.cashGap))} sub={result.existing > 0 ? "기존 대출의 상환·승계 조건 확인 필요" : result.purchasePossible ? "현재 보유 자금으로 충당 가능" : "추가 자금 확인 필요"} />
             </div>
             <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-sm leading-7 text-slate-300">
-              {result.purchasePossible
-                ? "현재 입력 기준으로는 보유 자금과 대출 가능 금액을 합쳐 자금 구조를 맞출 가능성이 있습니다. 다만 취득세, 중개수수료, 이사비, 잔금 일정 같은 부대비용도 따로 확인하는 것이 부담을 줄일 수 있습니다."
-                : "현재 입력 기준으로는 자기자본이 부족할 수 있습니다. 대출 규제보다 실제 잔금과 부대비용이 더 큰 변수일 수 있으니 여유 자금까지 같이 계산해보세요."}
+              {result.existing > 0
+                ? "같은 주택에 기존 선순위 대출이 있으면 추가 대출의 산술상 여력만 표시합니다. 실제 매수 잔금이나 자기자본 부족액은 기존 대출의 상환·승계 조건에 따라 달라져 별도 확인이 필요합니다."
+                : result.purchasePossible
+                ? "입력한 LTV 가정만으로는 보유 자금이 충분해 보이지만, 주택가격별 6억·4억·2억 원 상한(수도권·규제지역 주택구입 목적), DSR, 취득세와 기타 부대비용을 반영하면 부족할 수 있습니다."
+                : "입력한 LTV 가정만으로도 자기자본이 부족합니다. 주택가격별 대출 상한과 DSR, 취득세 등 부대비용을 함께 확인하세요."}
             </div>
           </section>
         </div>
 
         <AdFitAd variant="bottom" label="LTV 계산기 중간 스폰서 배너" className="rounded-2xl border border-white/5 bg-slate-950/20 py-4" />
 
+        {result.existing === 0 ? (
         <section className="bd-card bd-card-padding">
-          <h2 className="bd-title-md">자금 구조 한눈에 보기</h2>
+          <h2 className="bd-title-md">자금 구조 한눈에 보기(기존 담보대출 0원 가정)</h2>
           <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
             <div className="h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -127,14 +132,20 @@ export default function LtvCalculatorClient() {
             </div>
           </div>
         </section>
+        ) : (
+          <section className="bd-card bd-card-padding">
+            <h2 className="bd-title-md">기존 대출이 있는 경우의 자금 구조</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-300">이 주택에 이미 대출이 있다면 단순한 주택가격·현금 비중 차트는 실제 매수자금 구조를 보여주지 못합니다. 기존 대출의 상환·승계 여부와 신규 대출 조건을 금융회사에 확인한 뒤 자금 계획을 세우세요.</p>
+          </section>
+        )}
 
         <CalculatorSeoContent
           heading="LTV 계산기 해석할 때 같이 봐야 하는 요소"
-          intro="이 계산기는 집값 대비 어느 정도까지 대출이 가능한지, 그리고 자기자본이 얼마나 필요한지 빠르게 가늠해볼 때 유용합니다."
+          intro="이 계산기는 직접 선택한 LTV 비율을 주택가격에 적용하는 단순 비교 도구입니다. 실제 규제비율이나 대출 승인 가능액을 자동으로 판단하지 않습니다."
           sections={[
             {
               title: "LTV는 한도, DSR은 상환능력",
-              body: "LTV는 담보가치 기준의 한도이고, DSR은 소득 기준의 상환 가능성을 보는 지표입니다. 실제 대출 가능 금액은 둘 중 더 보수적인 기준에 맞춰지는 경우가 많습니다.",
+              body: "LTV는 담보가치 기준의 한도이고 DSR은 소득 기준의 상환 여력을 봅니다. 수도권·규제지역의 주택구입 목적 대출에는 주택 시가에 따라 6억·4억·2억 원 금액 상한도 따로 적용될 수 있습니다. 이 계산기에는 해당 상한과 DSR이 자동 반영되지 않습니다.",
             },
             {
               title: "부대비용은 별도로 계산해야 한다",

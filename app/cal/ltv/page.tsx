@@ -10,13 +10,13 @@ import LtvCalculatorClient from "./LtvCalculatorClient";
 export const metadata: Metadata = {
   title: "LTV 계산기 | 담보인정비율 계산 | BlueDino",
   description:
-    "주택 가격과 보유 자금, 기존 담보대출을 입력하면 LTV를 계산하고 필요한 자기자본 규모를 확인할 수 있는 LTV 계산기입니다.",
+    "주택가격과 직접 선택한 LTV 비율로 추가 대출 여력을 비교합니다. 실제 주담대 한도에는 규제지역·주택가격별 금액 상한·DSR이 추가 적용될 수 있습니다.",
   keywords: ["LTV 계산기", "담보인정비율", "주택담보대출 계산", "주담대 한도", "필요 자기자본", "BlueDino"],
   alternates: { canonical: "/cal/ltv" },
   openGraph: {
     title: "LTV 계산기 | 담보인정비율 계산 | BlueDino",
     description:
-      "주택 가격과 보유 자금, 기존 담보대출을 입력하면 LTV를 계산하고 필요한 자기자본 규모를 확인할 수 있는 LTV 계산기입니다.",
+      "주택가격과 직접 선택한 LTV 비율로 추가 대출 여력을 비교합니다. 실제 주담대 한도에는 규제지역·주택가격별 금액 상한·DSR이 추가 적용될 수 있습니다.",
     url: "https://bluedino.kr/cal/ltv",
     siteName: "BlueDino",
     locale: "ko_KR",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LTV 계산기 | 담보인정비율 계산 | BlueDino",
     description:
-      "주택 가격과 보유 자금, 기존 담보대출을 입력하면 LTV를 계산하고 필요한 자기자본 규모를 확인할 수 있는 LTV 계산기입니다.",
+      "주택가격과 직접 선택한 LTV 비율로 추가 대출 여력을 비교합니다. 실제 주담대 한도에는 규제지역·주택가격별 금액 상한·DSR이 추가 적용될 수 있습니다.",
   },
 };
 
@@ -40,7 +40,7 @@ const structuredData = {
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description:
-    "주택 가격과 보유 자금, 기존 담보대출을 입력하면 LTV를 계산하고 필요한 자기자본 규모를 확인할 수 있는 LTV 계산기입니다.",
+    "주택가격과 직접 선택한 LTV 비율로 추가 대출 여력을 비교합니다. 실제 주담대 한도에는 규제지역·주택가격별 금액 상한·DSR이 추가 적용될 수 있습니다.",
   url: "https://bluedino.kr/cal/ltv",
 };
 
@@ -76,15 +76,15 @@ export default function Page() {
       />
       <LtvCalculatorClient />
       <CalculatorMetaSections
-        accuracyLevel="제도 기준 반영"
-        basisLabel="기준: 2026년 5월 현재 공개 대출 규제와 입력값 기준"
-        officialSources={[{ label: "금융위원회 주택담보대출 제도 안내", href: "https://www.fsc.go.kr" }, { label: "금융감독원 금융소비자 정보", href: "https://www.fss.or.kr" }, { label: "국토교통부 부동산 정책 자료", href: "https://www.molit.go.kr" }]}
+        accuracyLevel="참고 시뮬레이션"
+        basisLabel="2026년 11월 1일 확인한 금융위 공개 자료와 직접 선택한 LTV 가정 기준"
+        officialSources={[{ label: "금융위원회 2025년 10월 주택가격별 대출한도·LTV 안내", href: "https://www.fsc.go.kr/no010101/85432" }, { label: "금융위원회 2026년 6월 규제지역 추가 지정 안내", href: "https://fsc.go.kr/po010102/87222" }, { label: "금융위원회 2025년 6월 생애최초 LTV 안내", href: "https://www.fsc.go.kr/no010101/84824" }]}
         relatedCalculators={[{ label: "DSR 계산기", href: "/cal/dsr", description: "소득 기준 상환 여력을 함께 점검할 수 있습니다." }, { label: "주담대 계산기", href: "/cal/mortgage", description: "LTV와 월 상환액을 한 번에 이어서 볼 수 있습니다." }, { label: "주택 구매 가능 금액 계산기", href: "/cal/home-affordability", description: "부대비용과 현금 여력을 함께 계산할 수 있습니다." }]}
-        caution="LTV는 규제지역, 주택 수, 대출 목적, 금융회사 심사 기준에 따라 실제 적용 한도가 달라질 수 있습니다."
+        caution="초기 70%는 예시입니다. 지역·주택 수·생애최초 여부에 맞는 LTV를 직접 선택해야 하며, 주택가격별 대출 금액 상한·DSR·대출 취급 제한·선순위 채권은 이 계산기에 자동 반영되지 않습니다."
       />
       <CalculatorResultSeoNote calculator="ltv" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-04-27" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-11-01" />
     </>
   );
 }

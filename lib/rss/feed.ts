@@ -21,6 +21,7 @@ const CALCULATOR_UPDATED_AT: Record<string, string> = {
   "calculator": "2026-10-28",
   "capital-gains": "2026-10-27",
   "dsr": "2026-10-31",
+  "ltv": "2026-11-01",
   "cma-interest": "2026-10-22",
   "deposit-interest": "2026-10-24",
   "salary-net": "2026-10-25",
