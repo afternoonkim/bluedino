@@ -84,7 +84,7 @@ export default function Page() {
       />
       <CalculatorResultSeoNote calculator="ltv" />
       {landingData ? <CalculatorLandingSection data={landingData} /> : null}
-      <PageTrustFooter pageKind="계산기" updatedAt="2026-11-01" />
+      <PageTrustFooter pageKind="계산기" updatedAt="2026-11-02" />
     </>
   );
 }
