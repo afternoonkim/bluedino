@@ -26,7 +26,7 @@ const CALCULATOR_UPDATED_AT: Record<string, string> = {
   "deposit-interest": "2026-10-24",
   "salary-net": "2026-10-25",
   "retirement-tax": "2026-10-26",
-  "parking-account": "2026-10-22",
+  "parking-account": "2026-11-03",
   "installment-savings": "2026-10-22",
 };
 const FEED_TITLE = "BlueDino 금융 계산기와 투자 가이드";

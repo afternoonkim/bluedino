@@ -8,6 +8,11 @@ function fmt(v: number) {
   return Math.round(v).toLocaleString("ko-KR");
 }
 
+function safeInput(value: string, max: number) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? Math.min(max, Math.max(0, parsed)) : 0;
+}
+
 export default function ParkingAccountClient() {
   const [principal, setPrincipal] = useState<number>(20_000_000);
   const [limit, setLimit] = useState<number>(100_000_000);
@@ -42,30 +47,30 @@ export default function ParkingAccountClient() {
       <div className="mt-6 grid gap-5 md:grid-cols-2">
         <label className="block">
           <span className="text-xs font-semibold text-slate-300">예치 금액 (원)</span>
-          <input type="number" value={principal} onChange={(e) => setPrincipal(Math.max(0, Number(e.target.value) || 0))}
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1_000_000} min={0} />
+          <input type="number" value={principal} onChange={(e) => setPrincipal(safeInput(e.target.value, 1_000_000_000_000))}
+            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1_000_000} min={0} max={1_000_000_000_000} />
         </label>
         <label className="block">
           <span className="text-xs font-semibold text-slate-300">우대 금리 적용 한도 (원)</span>
-          <input type="number" value={limit} onChange={(e) => setLimit(Math.max(0, Number(e.target.value) || 0))}
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1_000_000} min={0} />
+          <input type="number" value={limit} onChange={(e) => setLimit(safeInput(e.target.value, 1_000_000_000_000))}
+            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1_000_000} min={0} max={1_000_000_000_000} />
           <span className="mt-2 block text-xs text-slate-400">초과분은 아래에 입력한 금리 적용</span>
         </label>
         <label className="block">
           <span className="text-xs font-semibold text-slate-300">한도 내 연 금리 (%)</span>
-          <input type="number" value={rate} onChange={(e) => setRate(Math.max(0, Number(e.target.value) || 0))}
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} />
+          <input type="number" value={rate} onChange={(e) => setRate(safeInput(e.target.value, 100))}
+            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} max={100} />
         </label>
         <label className="block">
           <span className="text-xs font-semibold text-slate-300">한도 초과분 적용 금리 (%)</span>
-          <input type="number" value={overflowRate} onChange={(e) => setOverflowRate(Math.max(0, Number(e.target.value) || 0))}
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} />
+          <input type="number" value={overflowRate} onChange={(e) => setOverflowRate(safeInput(e.target.value, 100))}
+            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={0.1} min={0} max={100} />
           <span className="mt-2 block text-xs text-slate-400">상품설명서에 표시된 한도 초과분 적용금리를 입력해 주세요.</span>
         </label>
         <label className="block">
           <span className="text-xs font-semibold text-slate-300">보유 기간 (개월)</span>
-          <input type="number" value={months} onChange={(e) => setMonths(Math.max(1, Number(e.target.value) || 1))}
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1} min={1} />
+          <input type="number" value={months} onChange={(e) => setMonths(Math.max(1, Math.round(safeInput(e.target.value, 120))))}
+            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-base text-white" step={1} min={1} max={120} />
         </label>
       </div>
 
@@ -84,7 +89,8 @@ export default function ParkingAccountClient() {
           <div className="mt-1 text-xs text-slate-400">{result.overflow > 0 ? "초과분 별도 금리 적용" : "한도 내"}</div>
         </div>
       </div>
-      <p className="mt-5 text-xs leading-6 text-slate-400">보유기간 동안 잔액과 금리가 일정하다는 가정의 단순 계산입니다. 실제 은행은 일별 잔액·금리·이자 지급일·원 단위 처리에 따라 정산하며, 월평균 금액은 실제 매월 입금액이 아닙니다.</p>
+      <p className="mt-5 text-sm leading-6 text-slate-300">세전 예상 이자 {fmt(result.interestPre)}원 · 예상 원천징수 {fmt(result.tax)}원 (일반과세 15.4% 가정)</p>
+      <p className="mt-3 text-xs leading-6 text-slate-400">보유기간 동안 잔액과 금리가 일정하다는 가정의 단순 계산입니다. 실제 은행은 일별 잔액·금리·이자 지급일·원 단위 처리에 따라 정산하며, 월평균 금액은 실제 매월 입금액이 아닙니다.</p>
     </section>
   );
 }

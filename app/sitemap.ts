@@ -41,7 +41,7 @@ const STATIC_ROUTE_UPDATED_AT: Record<string, string> = {
   "/cal/calculator": "2026-10-28",
   "/cal/ltv": "2026-11-02",
   "/cal/isa-tax-savings": "2026-10-11",
-  "/cal/parking-account": "2026-10-22",
+  "/cal/parking-account": "2026-11-03",
   "/cal/cma-interest": "2026-10-22",
   "/cal/deposit-interest": "2026-10-24",
   "/cal/installment-savings": "2026-10-22",
