@@ -119,7 +119,7 @@ function buildStaticFeedItems(): RssFeedItem[] {
     {
       title: "산업·테마 가이드 | 반도체·2차전지·AI 관련주 비교",
       description:
-        "주요 산업과 테마를 사업 구조, 핵심 변수, 관련 기업분석으로 연결해 이해할 수 있게 비교할 수 있게 구성했습니다.",
+        "반도체·AI·2차전지 등 주요 산업의 사업 구조와 투자 위험을 비교하고, 관련 기업분석까지 확인해 보세요.",
       path: "/industry",
       updatedAt: DEFAULT_UPDATED_AT,
     },
